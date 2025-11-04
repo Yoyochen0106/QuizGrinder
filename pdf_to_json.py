@@ -46,8 +46,7 @@ def extract_exams_from_pdf(file_path: str):
 
     # output_filename = file_name_only.replace(".pdf", "_structured_output.json")
     output_filename = list(os.path.splitext(file_name_only))
-    output_filename.insert(1, "_structured_output")
-    output_filename.insert(2, ".")
+    output_filename[1] = "_structured_output.json"
     output_filename = ''.join(output_filename)
     output_filepath = os.path.join(OUT_DIR, output_filename)
     if os.path.exists(output_filepath):
