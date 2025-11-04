@@ -1,0 +1,754 @@
+{
+  "problems": [
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 1,
+      "subject": "industry",
+      "question": "我國電路板產業發展歷史悠久,支撐現有 IC 及顯示器產業,為全球最大之電路板製造國,因此電路板被稱為”電子之母”,你認為其最主要的原因為何?",
+      "options": {
+        "A": "所有主被動元件都需安裝於其上後產品才可運作",
+        "B": "在所有零組件中它的價格最高",
+        "C": "產業發展最早",
+        "D": "產值最大"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 2,
+      "subject": "industry",
+      "question": "如按照電路板發展的歷程來看,其發展的先後順序分別是硬板-軟板-IC載板,若以現今實際應用的線路間距(Pitch)需求來看,何者為最小?",
+      "options": {
+        "A": "軟板",
+        "B": "載板",
+        "C": "一般硬板",
+        "D": "高密度多層硬板"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 3,
+      "subject": "industry",
+      "question": "關於電路板的分類,可以從產品應用、金屬材料、結構軟硬、製程、絕緣材料及導通結構等類別來分類,若以”結構軟硬”來分類,下列選項何者非屬於此種分類?",
+      "options": {
+        "A": "硬板",
+        "B": "高密度連結板",
+        "C": "軟硬板",
+        "D": "軟板"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 4,
+      "subject": "industry",
+      "question": "三種應用於電路板的絕緣材料,其玻璃轉移溫度(Tg),由低到高的排序依序為何?",
+      "options": {
+        "A": "環氧樹脂-酚醛樹脂-石蠟",
+        "B": "石蠟-酚醛樹脂-環氧樹脂",
+        "C": "環氧樹脂-石蠟-酚醛樹脂",
+        "D": "石蠟-環氧樹脂-酚醛樹脂"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 5,
+      "subject": "industry",
+      "question": "不同電子模組或不同硬板間要做連通,除了以連接器互連外,還可用何種設計來替代,使其具有更佳的連接可靠度?",
+      "options": {
+        "A": "軟質排線",
+        "B": "軟硬結合板",
+        "C": "光纖",
+        "D": "IC載板"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 6,
+      "subject": "industry",
+      "question": "在電路板依產品應用分類中,其中有一項為 IC 構裝載板(IC Substrate),在早期半導體元件構裝都是以陶瓷材料或者導線架(Lead Frame)作為載體,經過構裝後再安裝到電路板上,請問下列何者非電子構裝板由陶瓷材料轉向有機材料的原因?",
+      "options": {
+        "A": "需求量大",
+        "B": "低單價",
+        "C": "信賴度要求加嚴",
+        "D": "產品生命週期縮短"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 7,
+      "subject": "industry",
+      "question": "電子設備的構裝關係圖,請問將晶片作成適合組裝的狀態稱為下列哪一種構裝?",
+      "options": {
+        "A": "零階構裝",
+        "B": "二階構裝",
+        "C": "一階構裝",
+        "D": "三階構裝"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 8,
+      "subject": "industry",
+      "question": "電子產品以印刷電路板為連接基礎,而電路板也是電子元件的承載母體,印刷電路板在電腦與週邊電子產業鏈中扮演不可或缺的重要角色,台灣亦是印刷電路板的佼佼者,下列何者非台灣著名的 PCB 製造廠商?",
+      "options": {
+        "A": "華通電腦",
+        "B": "金像電子",
+        "C": "楠梓電子",
+        "D": "華碩電腦"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 9,
+      "subject": "industry",
+      "question": "關於印刷電路板未來的發展,下列何者為非?",
+      "options": {
+        "A": "隨著環保意識逐漸抬頭,電子組裝採無鉛製程,PCB 需具備更好的耐熱性及熱安定性",
+        "B": "嘗試著將被動元件內藏於電路板中,讓 PCB 不再只是結構性元件",
+        "C": "軟板的精度有限,未來將逐漸被淘汰",
+        "D": "因應綠色材料的趨勢,基板廠商開發出無鹵素基板"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 10,
+      "subject": "industry",
+      "question": "隨著環保意識逐漸抬頭,電子材料正進行一場綠色環保大革命。而印刷電路板是所有電子產品不可或缺的主要部分,目前與基板材料相關課題有下列哪一項是符合環保課題?",
+      "options": {
+        "A": "Sn-Pb",
+        "B": "無鉛、無鹵",
+        "C": "Sn-Pb-Ag",
+        "D": "以上皆是"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 11,
+      "subject": "industry",
+      "question": "目前的晶圓的線路製作和電路板的線路製作,其最精細尺寸兩者差了約多少倍?",
+      "options": {
+        "A": "10倍",
+        "B": "100倍",
+        "C": "1000倍",
+        "D": "100000倍"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 12,
+      "subject": "process",
+      "question": "是 Motorola 那一項基礎技術的產生,造就了雙面線路的製作,使得電子零組件的組裝更具有效率及高信賴性?",
+      "options": {
+        "A": "細線路蝕刻技術",
+        "B": "高 Tg耐熱材料技術",
+        "C": "電鍍導通孔技術",
+        "D": "真空壓合技術"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 13,
+      "subject": "process",
+      "question": "電路板組裝在表面黏著技術(SMT)發展成功後邁入了新世代,而印刷電路板在 SMT 的發展上也扮演著重要的角色。下列那一項的電路板技術是SMT 發展成功的重要技術項的發明?",
+      "options": {
+        "A": "感光性阻焊漆(Photo-image solder resist)",
+        "B": "乾膜光阻(Dry film photo-resist)",
+        "C": "高密度電路板(HDI)技術",
+        "D": "雷射鑽孔"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 14,
+      "subject": "process",
+      "question": "軟電路板主要由焊盤、過孔、安裝孔、導線、元器件、接插件孔、填充、電氣邊界等組成。常見的印刷電路板種類,依雙面板(Double-Sided PCB)請問結構中的上層與下層的連接名稱是什麼?",
+      "options": {
+        "A": "焊盤",
+        "B": "導線",
+        "C": "填充",
+        "D": "過孔"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 15,
+      "subject": "industry",
+      "question": "軟板主要構成的原料為軟板基板(FCCL),可依層數區分為無膠系軟板基板(2 Layer FCCL)和有膠系軟板基板(3Layer FCCL),兩者最大差異在於銅箔和聚醯亞胺薄膜之間有無接著膠劑。而2L FCCL 具有的優點為何",
+      "options": {
+        "A": "耐熱性高",
+        "B": "尺寸安定性良好",
+        "C": "耐撓折性好",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 16,
+      "subject": "process",
+      "question": "請問此圖為哪種類型軟板?",
+      "options": {
+        "A": "單面板",
+        "B": "雙面板",
+        "C": "多層板",
+        "D": "可雙面連結的單面板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 17,
+      "subject": "process",
+      "question": "在軟板基材的必要區域開出窗口或是長條的空槽,做完雙面組裝的街點區域,這種結構稱為?",
+      "options": {
+        "A": "單面軟板",
+        "B": "多層軟板",
+        "C": "單面雙作軟板",
+        "D": "單加單結構軟板"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 18,
+      "subject": "industry",
+      "question": "硬式印刷電路板介電材料以玻纖及樹脂為主,為了終端應用產品實際信賴度的需求,下列那項特性沒有關係?",
+      "options": {
+        "A": "介電材料柔軟性",
+        "B": "介電材料漲縮性",
+        "C": "介電材料吸濕性",
+        "D": "介電材料耐熱性"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 19,
+      "subject": "industry",
+      "question": "一般軟板產品類型會設計成單面軟板、雙面軟板、多層軟板、…等,對於這些軟板類型有清楚的認識,才不致於產生不恰當的應用選擇,請問下列對軟板的優勢的敘述何者有誤?",
+      "options": {
+        "A": "充分運用空間同時可以獲得立體化連結設計的可能性",
+        "B": "提供動態的連結",
+        "C": "適用於輕量薄型的產品設計",
+        "D": "與電纜相比可以提供較高的電流"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 20,
+      "subject": "industry",
+      "question": "軟板因其具有輕量薄型的特色,搭配現今電子產品行動化的需求,成為這些年來電路板產業中市場成長最快的產品之一·你可知道軟板的最早起源與應用的產業是以下那一個?",
+      "options": {
+        "A": "醫療",
+        "B": "軍事航太",
+        "C": "汽車",
+        "D": "消費型電子"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 21,
+      "subject": "industry",
+      "question": "下列那種終端電子產品不會使用多層電路板設計?",
+      "options": {
+        "A": "筆記電腦",
+        "B": "智慧型手機",
+        "C": "伺服器",
+        "D": "滑鼠"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 22,
+      "subject": "industry",
+      "question": "電子產品功能性複雜化不斷地提高,為了提高電路板上的元件擺放密度,將半導體元件直接用載板構裝,常見的構裝方式為何?",
+      "options": {
+        "A": "COB",
+        "B": "COG",
+        "C": "COF",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 23,
+      "subject": "industry",
+      "question": "Waste Electrical and Electronic Equipment (WEEE)- 廢電子電機設備指令,是歐盟在2003年2月所通過的一項環保指令,下列何者非WEEE 所強調的3R 目標要求?",
+      "options": {
+        "A": "再建造 rebuild",
+        "B": "再使用 reuse",
+        "C": "再生利用 recycling",
+        "D": "回收再利用 recovery"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 24,
+      "subject": "industry",
+      "question": "WEEE 為歐盟於2003年2月所通過的一項環保指令,制訂所有廢棄電子電機設備以下列哪一項當作其目標?",
+      "options": {
+        "A": "收集",
+        "B": "再生",
+        "C": "回收",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 25,
+      "subject": "industry",
+      "question": "全球電子工業不斷創新和製程進步而呈現快速發展趨勢,下列哪一項指令的實施,迫使歐盟市場上流通的電子、電器設備生產商須更加速開發與綠色環保有關產品的研究、設計和產業化生產?",
+      "options": {
+        "A": "WEEE指令",
+        "B": "RoHS指令",
+        "C": "EuP指令",
+        "D": "Green Chemistry指令"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 26,
+      "subject": "industry",
+      "question": "因應 RoHS 的規範,大部分企業皆直接採取材料取代的方式。以不受限制的材料來取代指令中禁用的材質。下列何者不是 RoHS 規範電子產品在製造時不得使用的化學物質?",
+      "options": {
+        "A": "汞",
+        "B": "銀",
+        "C": "鉛",
+        "D": "聚溴聯苯"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 27,
+      "subject": "industry",
+      "question": "歐盟於 2003 發布第 2002/95/EC 號指令(RoHS Rev.1),請問 RoHS 指令開始實施日期為何時?",
+      "options": {
+        "A": "2004/1/25",
+        "B": "2005/8/15",
+        "C": "2006/7/1",
+        "D": "2007/7/1"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 28,
+      "subject": "industry",
+      "question": "〈RoHS指令〉主要是在規範電子電機產業禁用對環境污染和人體有害的物質材料,RoHS 中文譯為危害性物質限制指令,請問英文原始稱謂為下列哪一項呢?",
+      "options": {
+        "A": "Restriction of Hazardous Substances Directive",
+        "B": "Directive of Ecodesign Requirements of Energy-using Products",
+        "C": "Waste Electrical and Electronic Equipment Directive",
+        "D": "以上皆非"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 29,
+      "subject": "industry",
+      "question": "RoHS指令的主要目標在於對電機與電子設備中有害物質的限制,從而保護人類健康,並保證對廢棄物進行合理的回收與處理,以保護環境。",
+      "options": {
+        "A": "COB",
+        "B": "COG",
+        "C": "COF",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 30,
+      "subject": "industry",
+      "question": "該指令適用於其工作電壓交流與直流為多少伏特的所有設備?",
+      "options": {
+        "A": "大於1000V AC 或1500V DC",
+        "B": "小於1000V AC或1500V DC",
+        "C": "等於1000V AC或1500V DC",
+        "D": "以上皆非"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 31,
+      "subject": "process",
+      "question": "考慮到產品廢棄時所造成的環境污染問題,傳統的電子封裝生產過程中,鉛主要用於黏接晶片和印刷電路板的焊接錫球。現在的無鉛技術不再需要用鉛,請問鉛已被下列哪一項合金取代呢?",
+      "options": {
+        "A": "錫",
+        "B": "銅",
+        "C": "銀",
+        "D": "以上皆是"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 32,
+      "subject": "industry",
+      "question": "原始融熔態的玻璃組成成份不同,會影響玻璃纖維的特性,不同組成所呈現的差異,在其級別表中有詳細的區別,而且各有獨特及不同應用之處。按組成的不同,玻璃的等級可分四種商品:A 級為高鹼性,C 級為抗化性,E級為電子用途,S 級為高強度。請問電路板中所用的是哪個等級的玻璃纖維",
+      "options": {
+        "A": "高鹼性(A級)",
+        "B": "電子用途(E級)",
+        "C": "抗化性(C級)",
+        "D": "高強度(S級)"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 33,
+      "subject": "process",
+      "question": "印刷電路板材料於壓合製程之後,若未達材料設定之玻璃轉化溫度(Tg),在可靠度測試時最主要會產生何種問題?",
+      "options": {
+        "A": "空泡",
+        "B": "分層爆板",
+        "C": "雜質",
+        "D": "鹵素含量偏高"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 34,
+      "subject": "process",
+      "question": "PCB 介電質材料除了絕緣性外,也對線路的特性阻抗、訊號傳輸、電子雜訊等產生影響。為了達到產品的目標範圍並調整出適合生產的線路配置, 在設計電路板時必須考慮些什麼?",
+      "options": {
+        "A": "介電常數(dielectric constant)",
+        "B": "絕緣電組(electrical strength)",
+        "C": "介電正切耗損角(loss tangent)",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 35,
+      "subject": "process",
+      "question": "高密度互連技術(HDI)之印刷電路板為使通/盲孔結構得以形成完全填滿,電鍍液中常需額外添加有機及無機添加劑。下列有關添加劑的敘述,何者不正確?",
+      "options": {
+        "A": "氫離子(H+)在於增加電鍍時的導電性,降低鍍浴中的電阻值。避免電阻值過高時,其相對的反應電位較高,容易造成添加劑的破壞、消耗及其它副反應。在填充盲孔時一般採用低銅高酸來獲得較好的填充效果",
+        "B": "光澤劑(brightener)在填充盲孔時具有加速銅離子還原於孔內的能力,且能使電鍍銅膜具有光亮的效果",
+        "C": "平整劑(leveler)帶有很強的正電性 N+,帶有很強的正電性,很容易吸附在鍍件表面電流密度較大處,與銅離子競爭,使銅離子在高電流處不易沉積,但又不影響低電流區的銅沉積,使原本起伏不平的表面變得更為平坦",
+        "D": "抑制劑(suppressor)能明顯加強電鍍銅鍍液陰極極化,抑制了電鍍銅的沉積"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 36,
+      "subject": "process",
+      "question": "如果基本材料有(甲)導電性樹脂(乙)銅箔(丙)強化用纖維布(丁)介電質樹脂(戊)鋁箔。銅箔基板(copper clad laminate)一般是由哪些三個基本結構所組成的?",
+      "options": {
+        "A": "甲丙丁",
+        "B": "乙丙丁",
+        "C": "乙丁戊",
+        "D": "甲丙戊"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 37,
+      "subject": "process",
+      "question": "電解銅箔(ED,electro deposit copper) 從電鍍鼓(drum) 撕下後我們通稱為生箔, 接續著會繼續下面的處理步驟:(甲)Bonding Stage 處理在粗面(matte side)上再以高電流極短時間內快速鍍上銅。(乙) Thermal barrier treatments 處理瘤化完成後再於其上鍍一層黃銅或鋅。(丙)Stabilization 耐熱處理後,再進行最後的鉻化處理(Chromation),光面與粗面同時進行做為防污防銹的作用,也稱鈍化處理(passivation)或\"抗氧化處理\"(antioxidant)。這三道處理後, 才能成為電路板所使用的銅箔,請問瘤化處理的目的為何?",
+      "options": {
+        "A": "提升耐熱性",
+        "B": "防止氧化",
+        "C": "增加表面積",
+        "D": "增加延展性"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 38,
+      "subject": "process",
+      "question": "以雙面或多層電路板做為核心基板,再利用介電材料在其上逐層製作線路提高密度的電路板製作法被稱為高密度增層電路板,為了滿足現行高佈線密度的電子產品設計需求,何種導通孔設計方式最適合?",
+      "options": {
+        "A": "盲孔板",
+        "B": "通孔板",
+        "C": "雷射孔板",
+        "D": "以上皆是"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 39,
+      "subject": "process",
+      "question": "一般的高密度增層電路板,多以 B+N+B 的數字結構來表示疊板結構,例如2+4+2 為HDI板的命名方式,其中前方及後方的”2”代表是",
+      "options": {
+        "A": "銅層層數",
+        "B": "線路佈線層數",
+        "C": "增層結構層數",
+        "D": "以上皆非"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 40,
+      "subject": "process",
+      "question": "PCB 製前工程根據客戶原始資料審查分析後,由原物料(BOM)需求的展開來決定原物料的廠牌、種類及規格,下列何者非 PCB 生產的主要原物料?",
+      "options": {
+        "A": "銅箔基板(Laminate)",
+        "B": "膠片(Prepreg)",
+        "C": "止焊油墨(Solder Resist)",
+        "D": "底片(Photographic Film)"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 41,
+      "subject": "process",
+      "question": "PCBA 組裝的主要方式為焊接、打線及端子插接三種,下列何種 PCB 表面處理較適合打線及端子插接的組裝方式?",
+      "options": {
+        "A": "噴錫(HASL)",
+        "B": "有機保護膜(OSP)",
+        "C": "浸銀",
+        "D": "化學鎳金(ENIG)"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 42,
+      "subject": "process",
+      "question": "印刷電路板(printed circuit boards, PCBs)或晶片載板(chip-carrier boards) 上之 Cu 銲墊及導線,在產品出貨前常會進行表面處理(surface finish)工程。其中,Au/Pd(P)/Ni(P) 三層金屬結構是常見的表面處理方式之一。底下那個選項不是鍍 Pd(P)層的功用:",
+      "options": {
+        "A": "增加銲墊表面之粗糙度",
+        "B": "避免浸 Au(immersion Au)置換 Ni 時的賈凡尼腐蝕(Galvanic corrosion)",
+        "C": "降低鍍 Au 層的厚度,以減少鍍膜之總成本",
+        "D": "適於打 Au線(Au wire-bonding)及打 Cu線(Cu wire-bonding)製程"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 43,
+      "subject": "process",
+      "question": "高密度互連技術(high-density-interconnection technology, HDI)印刷電路板(printed circuit boards, PCBs)廣泛使用微孔(microvia)技術。微孔可藉由機械鑽孔或雷射鑽孔製作。目前雷射鑽孔已逐漸取代機械鑽孔方式,下列何者非雷射鑽孔取代機械鑽孔的主要原因?",
+      "options": {
+        "A": "隨著 HDI-PCB 之微孔(microvia)數量相當多,使用雷鑽較有效率",
+        "B": "機械鑽針製作需特殊合金如鈷、鎢…等稀有金屬日漸減少,故單價提高,同時雷射燒孔等技術成熟,單價下降",
+        "C": "雷射鑽孔相較於機械鑽孔可生產更小的孔徑",
+        "D": "機械鑽孔無法達到高縱橫比(aspect ratio)能力"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 44,
+      "subject": "process",
+      "question": "電路板有很多的鑽孔作為垂直連結導通之用,以機械或雷射鑽孔後會產生許多膠渣,必須加以去除。現行電路板製程中,普遍採用的除膠渣製程是下列哪一種系統?",
+      "options": {
+        "A": "重鉻酸",
+        "B": "濃硫酸",
+        "C": "鹼性高錳酸鹽",
+        "D": "電漿"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 45,
+      "subject": "process",
+      "question": "電路板製作線路過程採用影像轉移(Image Transfer)技術,其製程需使用到光阻劑(Photo-resist),請問以下敘述何者正確?",
+      "options": {
+        "A": "此光阻是曝光後經會被顯像液分解",
+        "B": "此光阻使用越厚越好",
+        "C": "此光阻在保護膜的貼覆下可以曝曬陽光",
+        "D": "此光阻採用的是負型光阻"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 46,
+      "subject": "process",
+      "question": "晶片載板(chip-carrier boards)上之 Cu 銲墊,在產品出貨前常會進行表面處理(surface finish)工程。其中,Au/Pd(P)/Ni(P)三層金屬結構是常見的表面處理方式之一。下列那個選項不是鍍 Ni(P)層的功用:",
+      "options": {
+        "A": "防止 Au 與 Cu 的交互擴散",
+        "B": "避免銲點界面產生大量的介金屬(intermetallic)",
+        "C": "避免 Cu銲墊的消耗",
+        "D": "增加晶片載板於高頻使用時的訊號完整性"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 47,
+      "subject": "process",
+      "question": "根據法拉第定律(Faraday's law),在電路板電鍍液相同的情況下,若要在一半時間內鍍製具相同厚度的電鍍銅膜,則下列何種操作是正確的?",
+      "options": {
+        "A": "將電流密度減半",
+        "B": "將電流密度加倍",
+        "C": "將電流密度調整為原先之1/4",
+        "D": "電流密度必須固定"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 48,
+      "subject": "process",
+      "question": "PCB 的熱壓合製程,以下流程何者正確?",
+      "options": {
+        "A": "銅面黑棕化->鉚合->堆疊->熱壓->冷壓",
+        "B": "銅面黑棕化->堆疊->鉚合->熱壓->冷壓",
+        "C": "堆疊->銅面黑棕化->鉚合->熱壓->冷壓",
+        "D": "銅面黑棕化->鉚合->堆疊->冷壓->熱壓"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 49,
+      "subject": "process",
+      "question": "部份軟板被設計需具備一定的耐彎折能力,以下何種銅皮較適合動態連續動作的軟板產品?",
+      "options": {
+        "A": "電鍍銅皮",
+        "B": "輾壓銅皮",
+        "C": "回火銅皮",
+        "D": "合金銅皮"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 106,
+      "exam_number": "1",
+      "source": "106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+      "number": 50,
+      "subject": "process",
+      "question": "電路板業界常用的尺寸有 inch、mil、mm 等,請問 1mm 等於多少 mil?",
+      "options": {
+        "A": "0.0393 mil",
+        "B": "3.93 mil",
+        "C": "393 mil",
+        "D": "39.3 mil"
+      },
+      "answer": "D"
+    }
+  ]
+}

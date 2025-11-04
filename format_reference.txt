@@ -1,0 +1,18 @@
+{
+"problems": [
+{
+"year": 111,
+"exam_number": "1",
+"source": "N111年第一次初級電路板製程工程師-02電路板製造概論(當次試題公告111.05.21)-含疑義釋覆結果.pdf"
+"number": 1,
+"subject": "process" or "industry",
+"question": "...",
+"options": {
+"A": "...",
+"B": "...",
+"C": "...",
+"D": "..."
+},
+"answer": "A" or ...,
+},
+...

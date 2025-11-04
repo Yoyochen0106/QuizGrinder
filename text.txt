@@ -1,0 +1,754 @@
+{
+  "problems": [
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 1,
+      "subject": "process",
+      "question": "下列哪種單元操作主要用於將兩種或多種互不相溶的液體混合以形成穩定的分散體？",
+      "options": {
+        "A": "過濾 (Filtration)",
+        "B": "蒸餾 (Distillation)",
+        "C": "乳化 (Emulsification)",
+        "D": "結晶 (Crystallization)"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 2,
+      "subject": "industry",
+      "question": "全球半導體產業鏈中，哪個環節負責將設計好的電路圖轉換為實體晶片？",
+      "options": {
+        "A": "IC設計 (IC Design)",
+        "B": "晶圓製造 (Wafer Fabrication)",
+        "C": "封裝測試 (Packaging and Testing)",
+        "D": "設備供應 (Equipment Supply)"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 3,
+      "subject": "process",
+      "question": "在化學反應器設計中，連續攪拌槽反應器 (CSTR) 相較於管式反應器 (PFR) 的主要優勢為何？",
+      "options": {
+        "A": "反應器體積效率高",
+        "B": "溫度控制較容易",
+        "C": "可達到較高的轉換率",
+        "D": "反應物混合不均勻"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 4,
+      "subject": "industry",
+      "question": "綠色能源產業中，太陽能光電發電系統的核心組件為何？",
+      "options": {
+        "A": "風力發電機",
+        "B": "燃料電池",
+        "C": "光伏電池模組",
+        "D": "潮汐發電機"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 5,
+      "subject": "process",
+      "question": "為提高蒸餾塔的分離效率，通常會採取哪種措施？",
+      "options": {
+        "A": "減少塔板數量",
+        "B": "降低回流比",
+        "C": "增加回流比",
+        "D": "提高進料溫度"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 6,
+      "subject": "industry",
+      "question": "全球供應鏈管理 (SCM) 的主要目標是？",
+      "options": {
+        "A": "最大化庫存量",
+        "B": "最小化產品種類",
+        "C": "優化產品從原料到最終用戶的流動",
+        "D": "僅關注生產成本"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 7,
+      "subject": "process",
+      "question": "在化學製程中，通常使用哪種設備來分離氣體和固體顆粒？",
+      "options": {
+        "A": "熱交換器",
+        "B": "離心機",
+        "C": "旋風分離器",
+        "D": "攪拌槽"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 8,
+      "subject": "industry",
+      "question": "工業4.0 (Industry 4.0) 的核心概念不包括下列哪項？",
+      "options": {
+        "A": "物聯網 (IoT)",
+        "B": "大數據分析 (Big Data Analytics)",
+        "C": "人工智慧 (AI)",
+        "D": "大量勞動密集型生產"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 9,
+      "subject": "process",
+      "question": "提高反應溫度對大多數吸熱反應的影響是？",
+      "options": {
+        "A": "降低反應速率",
+        "B": "提高反應速率",
+        "C": "不影響反應速率",
+        "D": "僅影響平衡常數"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 10,
+      "subject": "industry",
+      "question": "循環經濟 (Circular Economy) 的主要目標是？",
+      "options": {
+        "A": "最大化資源消耗",
+        "B": "最小化廢棄物和污染",
+        "C": "僅關注產品的生命週期",
+        "D": "提高產品的價格"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 11,
+      "subject": "process",
+      "question": "在流體輸送中，為了減少管路中的壓降，通常會採取哪種措施？",
+      "options": {
+        "A": "增加流體流速",
+        "B": "縮小管徑",
+        "C": "選擇較光滑的管壁材料",
+        "D": "增加管路長度"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 12,
+      "subject": "industry",
+      "question": "全球化對產業發展的影響不包括下列哪項？",
+      "options": {
+        "A": "國際貿易增加",
+        "B": "供應鏈在地化",
+        "C": "技術轉移加速",
+        "D": "市場競爭加劇"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 13,
+      "subject": "process",
+      "question": "熱交換器中，逆流操作相較於並流操作的優點是？",
+      "options": {
+        "A": "傳熱溫差較大",
+        "B": "流體阻力較小",
+        "C": "換熱效率較高",
+        "D": "設備成本較低"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 14,
+      "subject": "industry",
+      "question": "以下哪項不是智慧製造 (Smart Manufacturing) 的特徵？",
+      "options": {
+        "A": "自動化生產",
+        "B": "數據驅動決策",
+        "C": "彈性化生產",
+        "D": "完全依賴人力判斷"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 15,
+      "subject": "process",
+      "question": "化學製程中，通常用於測量和控制壓力的儀器是？",
+      "options": {
+        "A": "溫度計",
+        "B": "流量計",
+        "C": "壓力計",
+        "D": "液位計"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 16,
+      "subject": "industry",
+      "question": "電動車產業發展的關鍵技術挑戰之一是？",
+      "options": {
+        "A": "傳統燃油引擎效率",
+        "B": "電池續航力和充電時間",
+        "C": "車輛外觀設計",
+        "D": "車內娛樂系統"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 17,
+      "subject": "process",
+      "question": "催化劑在化學反應中的作用是什麼？",
+      "options": {
+        "A": "改變反應的熱力學平衡",
+        "B": "降低反應活化能，加速反應速率",
+        "C": "增加反應物的濃度",
+        "D": "提高反應產物的純度"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 18,
+      "subject": "industry",
+      "question": "人工智慧在醫療產業的應用，不包括下列哪項？",
+      "options": {
+        "A": "輔助診斷疾病",
+        "B": "藥物研發加速",
+        "C": "制定治療方案",
+        "D": "取代所有醫護人員"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 19,
+      "subject": "process",
+      "question": "在固液分離操作中，濾餅洗滌的主要目的是？",
+      "options": {
+        "A": "增加濾液量",
+        "B": "去除濾餅中的可溶性雜質",
+        "C": "提高過濾速率",
+        "D": "使濾餅更堅固"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 20,
+      "subject": "industry",
+      "question": "新興的生物科技產業主要涉及哪些領域？",
+      "options": {
+        "A": "傳統機械製造",
+        "B": "基因工程、藥物開發、農業生物技術",
+        "C": "石油開採和煉製",
+        "D": "金融服務"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 21,
+      "subject": "process",
+      "question": "乾燥操作中，自由水去除後，接著去除的是哪種水分？",
+      "options": {
+        "A": "表面水",
+        "B": "束縛水",
+        "C": "游離水",
+        "D": "結晶水"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 22,
+      "subject": "industry",
+      "question": "未來製造業的發展趨勢中，下列哪一項描述是錯誤的？",
+      "options": {
+        "A": "客製化生產將更加普遍",
+        "B": "產品生命週期會縮短",
+        "C": "生產過程將越來越不透明",
+        "D": "智慧化、自動化程度提高"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 23,
+      "subject": "process",
+      "question": "在萃取操作中，選擇性溶劑的標準之一是？",
+      "options": {
+        "A": "與溶質完全不互溶",
+        "B": "對目標溶質有較高的溶解度但對其他組分溶解度低",
+        "C": "密度與待分離溶液相同",
+        "D": "沸點非常高"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 24,
+      "subject": "industry",
+      "question": "面對全球氣候變遷，各國產業在永續發展方面應著重哪一項？",
+      "options": {
+        "A": "擴大高碳排放產業",
+        "B": "發展再生能源與節能技術",
+        "C": "減少國際合作",
+        "D": "降低環境法規標準"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 25,
+      "subject": "process",
+      "question": "質量傳遞過程的驅動力通常是？",
+      "options": {
+        "A": "溫度差",
+        "B": "壓力差",
+        "C": "濃度差",
+        "D": "速度差"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 26,
+      "subject": "industry",
+      "question": "區塊鏈技術在金融產業的應用，不包括下列哪項？",
+      "options": {
+        "A": "加密貨幣發行",
+        "B": "跨境支付",
+        "C": "智能合約執行",
+        "D": "傳統現金交易"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 27,
+      "subject": "process",
+      "question": "在製程安全管理 (PSM) 中，危險與可操作性研究 (HAZOP) 的主要目的是？",
+      "options": {
+        "A": "評估產品市場潛力",
+        "B": "識別製程中的潛在危險與可操作性問題",
+        "C": "優化生產成本",
+        "D": "縮短產品開發週期"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 28,
+      "subject": "industry",
+      "question": "下列哪一種商業模式是透過提供免費基本服務，但對進階功能或內容收費？",
+      "options": {
+        "A": "訂閱模式 (Subscription Model)",
+        "B": "免費增值模式 (Freemium Model)",
+        "C": "廣告模式 (Advertising Model)",
+        "D": "直銷模式 (Direct Sales Model)"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 29,
+      "subject": "process",
+      "question": "薄膜分離技術中，逆滲透 (Reverse Osmosis) 主要用於去除水中的？",
+      "options": {
+        "A": "懸浮固體",
+        "B": "溶解鹽類",
+        "C": "大分子有機物",
+        "D": "氣體"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 30,
+      "subject": "industry",
+      "question": "共享經濟 (Sharing Economy) 的核心概念是？",
+      "options": {
+        "A": "鼓勵個人擁有更多資產",
+        "B": "透過平台分享閒置資源或服務",
+        "C": "完全免費提供所有產品",
+        "D": "只適用於交通運輸產業"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 31,
+      "subject": "process",
+      "question": "在反應工程中，選擇性 (Selectivity) 是指？",
+      "options": {
+        "A": "反應物的總轉化率",
+        "B": "目標產物產量與其他副產物產量之比",
+        "C": "反應器單位時間的產量",
+        "D": "反應達到平衡所需的時間"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 32,
+      "subject": "industry",
+      "question": "全球化時代，企業在選擇生產基地時，除了成本，還需考量哪些因素？",
+      "options": {
+        "A": "僅考慮當地勞工成本",
+        "B": "政府政策、供應鏈彈性、市場接近性",
+        "C": "只看當地稅收優惠",
+        "D": "完全不考慮環境影響"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 33,
+      "subject": "process",
+      "question": "流體力學中，雷諾數 (Reynolds number) 主要用於判斷流體的哪種狀態？",
+      "options": {
+        "A": "溫度",
+        "B": "黏度",
+        "C": "流動模式 (層流或紊流)",
+        "D": "密度"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 34,
+      "subject": "industry",
+      "question": "新零售 (New Retail) 的概念結合了線上與線下體驗，其核心要素是？",
+      "options": {
+        "A": "只專注於實體店面銷售",
+        "B": "只專注於線上電商平台",
+        "C": "數據驅動、全通路整合、消費者體驗優化",
+        "D": "完全不考慮物流配送"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 35,
+      "subject": "process",
+      "question": "在製程控制中，比例-積分-微分 (PID) 控制器的P項主要作用是？",
+      "options": {
+        "A": "消除穩態誤差",
+        "B": "加速響應，減小超調",
+        "C": "預測未來誤差，減小滯後",
+        "D": "僅用於測量輸出"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 36,
+      "subject": "industry",
+      "question": "生技醫療產業中，個人化醫療 (Personalized Medicine) 的發展方向是？",
+      "options": {
+        "A": "提供標準化的治療方案",
+        "B": "根據個體基因、環境與生活方式定制治療方案",
+        "C": "僅關注疾病的預防",
+        "D": "完全排除藥物治療"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 37,
+      "subject": "process",
+      "question": "吸收塔中，氣體與液體逆流接觸的主要目的是？",
+      "options": {
+        "A": "增加設備體積",
+        "B": "提高傳質效率",
+        "C": "減少操作壓力",
+        "D": "防止氣體洩漏"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 38,
+      "subject": "industry",
+      "question": "全球能源轉型過程中，核能的角色通常被認為是？",
+      "options": {
+        "A": "主要的再生能源",
+        "B": "高碳排放能源",
+        "C": "低碳基載電力來源之一",
+        "D": "已經被完全淘汰的能源"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 39,
+      "subject": "process",
+      "question": "板式熱交換器 (Plate Heat Exchanger) 相較於管殼式熱交換器 (Shell-and-Tube Heat Exchanger) 的優點是？",
+      "options": {
+        "A": "耐高溫高壓",
+        "B": "易於清潔，換熱效率高",
+        "C": "適用於高黏度流體",
+        "D": "結構簡單，成本低廉"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 40,
+      "subject": "industry",
+      "question": "數位轉型 (Digital Transformation) 對企業營運的影響不包括下列哪項？",
+      "options": {
+        "A": "提高營運效率",
+        "B": "優化客戶體驗",
+        "C": "加速產品創新",
+        "D": "減少對技術的依賴"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 41,
+      "subject": "process",
+      "question": "化學製程中，通常用於將液體從一個容器傳輸到另一個容器的設備是？",
+      "options": {
+        "A": "壓縮機",
+        "B": "泵浦",
+        "C": "風機",
+        "D": "蒸發器"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 42,
+      "subject": "industry",
+      "question": "物聯網 (IoT) 在智慧城市建設中的應用，不包括下列哪項？",
+      "options": {
+        "A": "智慧交通管理",
+        "B": "智慧能源監控",
+        "C": "智慧垃圾處理",
+        "D": "完全取代人類互動"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 43,
+      "subject": "process",
+      "question": "吸附操作中，活性炭常用於去除液體或氣體中的什麼？",
+      "options": {
+        "A": "大量水份",
+        "B": "大型固體顆粒",
+        "C": "微量有機污染物或異味",
+        "D": "金屬離子"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 44,
+      "subject": "industry",
+      "question": "全球高科技產業發展的驅動力之一是？",
+      "options": {
+        "A": "減少研發投入",
+        "B": "技術創新與突破",
+        "C": "關閉國際市場",
+        "D": "停止產品升級"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 45,
+      "subject": "process",
+      "question": "在顆粒分離技術中，沉降 (Sedimentation) 的效率主要受哪些因素影響？",
+      "options": {
+        "A": "流體顏色和氣味",
+        "B": "顆粒大小、密度差和流體黏度",
+        "C": "設備的電力消耗",
+        "D": "操作人員的經驗"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 46,
+      "subject": "industry",
+      "question": "下列哪種商業模式透過點對點 (P2P) 網路直接連接供給方和需求方？",
+      "options": {
+        "A": "傳統零售模式",
+        "B": "平台經濟模式",
+        "C": "壟斷模式",
+        "D": "特許經營模式"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 47,
+      "subject": "process",
+      "question": "沸點精確度要求高的液體混合物分離，通常會考慮使用哪種蒸餾技術？",
+      "options": {
+        "A": "簡單蒸餾",
+        "B": "閃蒸",
+        "C": "精餾 (Fractional Distillation)",
+        "D": "常壓蒸餾"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 48,
+      "subject": "industry",
+      "question": "在供應鏈中，應對全球事件 (如疫情、戰爭) 導致的中斷，企業應如何增強韌性？",
+      "options": {
+        "A": "僅依賴單一供應商",
+        "B": "建立多樣化供應來源與庫存緩衝",
+        "C": "完全停止全球採購",
+        "D": "不進行風險評估"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 49,
+      "subject": "process",
+      "question": "製程中，安全閥 (Safety Valve) 的主要功能是？",
+      "options": {
+        "A": "調節正常操作流量",
+        "B": "在系統壓力過高時自動洩壓，防止設備損壞",
+        "C": "測量流體溫度",
+        "D": "提高系統的穩定性"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 111,
+      "exam_number": "1",
+      "source": "text.txt",
+      "number": 50,
+      "subject": "industry",
+      "question": "碳中和 (Carbon Neutrality) 的目標是指？",
+      "options": {
+        "A": "完全停止所有碳排放",
+        "B": "實現二氧化碳淨排放量為零",
+        "C": "僅關注減少能源消耗",
+        "D": "將所有碳排放轉移到其他國家"
+      },
+      "answer": "B"
+    }
+  ]
+}

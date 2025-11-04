@@ -1,0 +1,754 @@
+{
+  "problems": [
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 1,
+      "subject": "process",
+      "question": "基板製造使用的高純度導體指的是下列何種金屬?",
+      "options": {
+        "A": "銅",
+        "B": "鎳",
+        "C": "金",
+        "D": "銀"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 2,
+      "subject": "process",
+      "question": "導線的集膚效應(Skin Effect)主要跟銅箔的何項特性有關?",
+      "options": {
+        "A": "厚度",
+        "B": "粗糙度",
+        "C": "硬度",
+        "D": "純度"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 3,
+      "subject": "process",
+      "question": "電子零件主要以何種物質連接零件腳及板面焊墊?",
+      "options": {
+        "A": "銅",
+        "B": "錫",
+        "C": "銀",
+        "D": "金"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 4,
+      "subject": "process",
+      "question": "電路板必須承受電器產品實際使用之環境變化考驗,尤其是Z軸方向的漲縮,更容易產生哪方面的信賴性問題?",
+      "options": {
+        "A": "通孔",
+        "B": "線路",
+        "C": "焊墊",
+        "D": "對位"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 5,
+      "subject": "process",
+      "question": "薄銅產品(5µm)在超細線路使用有其優勢,但相對的,也存在一些待克服的問題,主要的問題是下列何者?",
+      "options": {
+        "A": "粗糙度太大",
+        "B": "附著力不佳",
+        "C": "容易皺褶",
+        "D": "容易氧化"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 6,
+      "subject": "process",
+      "question": "基板在高濕環境容易吸濕,基板吸濕後不會對下列何項特性造成影響?",
+      "options": {
+        "A": "絕緣電阻",
+        "B": "耐熱性",
+        "C": "介電常數",
+        "D": "以上皆非"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 7,
+      "subject": "process",
+      "question": "真空蝕刻機主要在克服水平蝕刻製程設備的何種效應,以提高蝕刻品質?",
+      "options": {
+        "A": "連鎖效應",
+        "B": "水池效應",
+        "C": "賈凡尼效應",
+        "D": "蝴蝶效應"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 8,
+      "subject": "process",
+      "question": "軟性電路板使用可經焊接製程的絕緣材料,主要為下列何者?",
+      "options": {
+        "A": "聚雙胺酚",
+        "B": "聚苯乙烯",
+        "C": "聚醯亞胺",
+        "D": "聚酯"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 9,
+      "subject": "process",
+      "question": "下列何者為最常使用的PI厚度,且其成本相對最低?",
+      "options": {
+        "A": "12.5 μm",
+        "B": "25 μm",
+        "C": "50 μm",
+        "D": "75μm"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 10,
+      "subject": "process",
+      "question": "下列何者並非RA銅箔的特性?",
+      "options": {
+        "A": "適合動態捲曲需求產品",
+        "B": "延展性良好",
+        "C": "價格低廉",
+        "D": "導電性佳"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 11,
+      "subject": "process",
+      "question": "下列何者並非 Bonding Ply須具備的特性?",
+      "options": {
+        "A": "良好附著力",
+        "B": "絕緣性佳",
+        "C": "流動性高",
+        "D": "耐熱性佳"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 12,
+      "subject": "process",
+      "question": "下列何者使用非連續之玻璃蓆,而非使用玻纖布為支撐材?",
+      "options": {
+        "A": "FR-4",
+        "B": "FR-5",
+        "C": "CEM3",
+        "D": "以上皆非"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 13,
+      "subject": "process",
+      "question": "電解銅箔的電鍍液是使用下列何種化學藥液?",
+      "options": {
+        "A": "氯化銅",
+        "B": "氯化氨銅",
+        "C": "硫酸銅",
+        "D": "硝酸銅"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 14,
+      "subject": "process",
+      "question": "下列何種樹脂的阻抗很低,在高頻微波通訊應用上目前是無法被取代的?",
+      "options": {
+        "A": "環氧樹脂",
+        "B": "酚醛樹脂",
+        "C": "聚四氟乙烯",
+        "D": "BT 樹脂"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 15,
+      "subject": "industry",
+      "question": "下列哪一個規範是針對 PCB 基材及相對應膠片材料的總規範?",
+      "options": {
+        "A": "IPC-6012",
+        "B": "IPC-4101",
+        "C": "IPC-6013",
+        "D": "IPC-A-600"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 16,
+      "subject": "industry",
+      "question": "下列何項原物料因沒有規格型號問題,故並非屬製前設計物料清單(Bill of Materials ; BOM)的範圍?",
+      "options": {
+        "A": "基板",
+        "B": "膠片",
+        "C": "銅箔",
+        "D": "銅球"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 17,
+      "subject": "process",
+      "question": "下列哪一項並非製前設計提供的治工具(Tooling)?",
+      "options": {
+        "A": "AOI 程式",
+        "B": "測試程式",
+        "C": "曝光底片",
+        "D": "印刷治具"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 18,
+      "subject": "process",
+      "question": "SAP 與 mSAP 流程最大差異在下列何項?",
+      "options": {
+        "A": "基材銅",
+        "B": "化銅",
+        "C": "影像轉移",
+        "D": "電鍍"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 19,
+      "subject": "process",
+      "question": "下列哪一項並非銅面前處理的目的?",
+      "options": {
+        "A": "平滑",
+        "B": "均勻",
+        "C": "活性",
+        "D": "乾淨"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 20,
+      "subject": "process",
+      "question": "下列何種 PCB 銅面前處理方式成本最低廉?",
+      "options": {
+        "A": "噴砂",
+        "B": "刷磨",
+        "C": "化學微蝕",
+        "D": "超粗化"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 21,
+      "subject": "process",
+      "question": "刷痕試驗的目的是要確認下列何項品質項目?",
+      "options": {
+        "A": "刷磨量",
+        "B": "刷磨深度",
+        "C": "刷磨均勻性",
+        "D": "粗糙度"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 22,
+      "subject": "process",
+      "question": "PCB 成品中玻纖被溶液滲透可能造成下列何種可靠度問題?",
+      "options": {
+        "A": "鍍層龜裂",
+        "B": "孔壁與內層連接不良",
+        "C": "線路斷裂",
+        "D": "離子遷移"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 23,
+      "subject": "process",
+      "question": "液態光阻塗佈方式,下列何者可同時兩面塗佈?",
+      "options": {
+        "A": "壓膜法",
+        "B": "噴塗法",
+        "C": "濂幕式塗佈",
+        "D": "滾輪塗佈"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 24,
+      "subject": "process",
+      "question": "無塵室的壓力設計,一般會維持怎樣的壓力設定?",
+      "options": {
+        "A": "與外界等壓",
+        "B": "正壓 2-3mmHg",
+        "C": "負壓 2-3mmHg",
+        "D": "負壓5-6mmHg"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 25,
+      "subject": "process",
+      "question": "下列何者並非雷射直接成像(Laser Direct Image ; LDI)的優勢?",
+      "options": {
+        "A": "無須底片",
+        "B": "解析度高",
+        "C": "提升良率",
+        "D": "降低生產成本"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 26,
+      "subject": "process",
+      "question": "電路板水平設備噴壓設定,一般而言上噴壓會比下噴壓稍大,下列何者並非如此設定的原因?",
+      "options": {
+        "A": "克服水池效應",
+        "B": "平衡上下反應速度",
+        "C": "避免卡板",
+        "D": "提升細線路能力"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 27,
+      "subject": "process",
+      "question": "一般內層會將顯影、蝕刻、去膜連線生產,簡稱為下列何者?",
+      "options": {
+        "A": "SES線",
+        "B": "DES 線",
+        "C": "ENIG 線",
+        "D": "VCP 線"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 28,
+      "subject": "process",
+      "question": "蝕刻液亦稱腐蝕液,主要靠下列何種反應來腐蝕溶解金屬銅?",
+      "options": {
+        "A": "置換反應",
+        "B": "還原反應",
+        "C": "氧化反應",
+        "D": "電解反應"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 29,
+      "subject": "process",
+      "question": "蝕破點的影響因素多,主要影響因素不包含下列哪一項?",
+      "options": {
+        "A": "銅箔粗化深度",
+        "B": "蝕刻液參數",
+        "C": "設備噴灑設計",
+        "D": "環境溫度"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 30,
+      "subject": "process",
+      "question": "下列何種蝕刻液的自動添加液中不含鹽酸(HCl)?",
+      "options": {
+        "A": "氯化銅",
+        "B": "氯化氨銅",
+        "C": "氯化鐵",
+        "D": "以上皆要"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 31,
+      "subject": "process",
+      "question": "疊合後未用完的 PP 要用 PE 袋包好密封,防止水氣進入,以免造成下列何種現象?",
+      "options": {
+        "A": "膠流量變大",
+        "B": "固化時間變長",
+        "C": "填膠不良",
+        "D": "固化時間變短"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 32,
+      "subject": "process",
+      "question": "壓合過程中,下列何者為升溫段主要功能?",
+      "options": {
+        "A": "控制樹脂硬化時間",
+        "B": "提供樹脂硬化能量",
+        "C": "控制流膠條件",
+        "D": "降低內應力"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 33,
+      "subject": "process",
+      "question": "在鑽針使用的選擇上,下列何種鑽針較不適用於軟板鑽孔?",
+      "options": {
+        "A": "ST 型鑽針",
+        "B": "UC型鑽針",
+        "C": "ID型鑽針",
+        "D": "以上皆是"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 34,
+      "subject": "process",
+      "question": "下列何者並非鑽針套環的功用?",
+      "options": {
+        "A": "固定套環到鑽尖距離",
+        "B": "控制鑽孔深度",
+        "C": "分辨鑽徑",
+        "D": "區分鑽針的廠牌"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 35,
+      "subject": "process",
+      "question": "下列何種雷射鑽孔方式最容易有 over hang 的問題?",
+      "options": {
+        "A": "樹脂表面直接成孔法",
+        "B": "超薄銅箔直接燒穿法",
+        "C": "開銅窗法",
+        "D": "開大銅窗法"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 36,
+      "subject": "process",
+      "question": "下列哪一個項目不需使用電漿除膠方式,因不符合效益?",
+      "options": {
+        "A": "Rigid-Flex板",
+        "B": "Teflon base 板",
+        "C": "需求 Etch-back 板",
+        "D": "High Tg 板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 37,
+      "subject": "process",
+      "question": "以電鍍添加劑來說,下列何種添加劑對鍍銅沉積具有抑制效果,同時具備降低表面張力的效果?",
+      "options": {
+        "A": "光澤劑",
+        "B": "載運劑",
+        "C": "整平劑",
+        "D": "加速劑"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 38,
+      "subject": "process",
+      "question": "防焊塗佈方式,雖然有許多選擇,但還是以下列哪一種方式最為盛行?",
+      "options": {
+        "A": "濂塗式",
+        "B": "靜電噴塗式",
+        "C": "噴塗式",
+        "D": "網版印刷式"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 39,
+      "subject": "process",
+      "question": "ENEPIG 的優點不包含下列何者?",
+      "options": {
+        "A": "成本比 ENIG低",
+        "B": "可打金線",
+        "C": "優良焊錫可靠性",
+        "D": "防止黑鎳發生"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 40,
+      "subject": "process",
+      "question": "下列何種加工方式並非用來幫助客戶容易將多板連片折斷成單片的成型加工工序?",
+      "options": {
+        "A": "郵票孔",
+        "B": "V-Cut",
+        "C": "切斜邊",
+        "D": "以上皆是"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 41,
+      "subject": "process",
+      "question": "下列何者並非沖型 Punch 成型的特點?",
+      "options": {
+        "A": "適合單一料號",
+        "B": "板邊較為細緻",
+        "C": "產速快",
+        "D": "量大時單板生產成本較低"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 42,
+      "subject": "industry",
+      "question": "下列PCB 材料何者不符合永久性材料的定義?",
+      "options": {
+        "A": "化學銅",
+        "B": "鑽針",
+        "C": "銅箔",
+        "D": "PP膠片"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 43,
+      "subject": "process",
+      "question": "下列製程中品質管制(In-Process Quality Control; IPQC)檢查項目,何者必須使用特定量測儀器才能判定?",
+      "options": {
+        "A": "短路",
+        "B": "線路均勻性",
+        "C": "汙染",
+        "D": "以上皆是"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 44,
+      "subject": "process",
+      "question": "下列項目何者的分類屬於機械及組裝特性檢查?",
+      "options": {
+        "A": "外形尺寸",
+        "B": "鍍層接著性",
+        "C": "孔徑尺寸",
+        "D": "特性阻抗"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 45,
+      "subject": "process",
+      "question": "PCB 生產採用批次管制,下列何者為識別批次的關鍵紀錄?",
+      "options": {
+        "A": "作業進出時間",
+        "B": "品質狀況",
+        "C": "操作者",
+        "D": "數量"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 46,
+      "subject": "process",
+      "question": "下列何種測試後,線路不需再驗證可確認線路仍處於正常狀態?",
+      "options": {
+        "A": "成品掉落測試",
+        "B": "長期熱循環測試",
+        "C": "蒸氣鍋測試",
+        "D": "離子汙染度測試"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 47,
+      "subject": "process",
+      "question": "判斷鍍層介面的切片作業流程,其最後一個步驟是下列何者?",
+      "options": {
+        "A": "粗研磨",
+        "B": "細研磨",
+        "C": "微蝕",
+        "D": "拋光"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 48,
+      "subject": "industry",
+      "question": "下列何者組織在各領域的細節制定完整,對其他規範產生很大影響?",
+      "options": {
+        "A": "IPC",
+        "B": "TPCA",
+        "C": "JPCA",
+        "D": "UL"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 49,
+      "subject": "industry",
+      "question": "IPC-6012 Class2 於化學鎳的厚度最低要求為下列何者?",
+      "options": {
+        "A": "2.0 μm",
+        "B": "2.5 μm",
+        "C": "3.0 μm",
+        "D": "3.5 μm"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+      "number": 50,
+      "subject": "industry",
+      "question": "IPC-6012 Class3 對於鍍通孔的局部區域,最小孔銅厚度要求為下列何者?",
+      "options": {
+        "A": "15 μm",
+        "B": "18μm",
+        "C": "20 μm",
+        "D": "25 μm"
+      },
+      "answer": "C"
+    }
+  ]
+}

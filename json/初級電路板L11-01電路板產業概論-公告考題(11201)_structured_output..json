@@ -1,0 +1,754 @@
+{
+  "problems": [
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 1,
+      "subject": "industry",
+      "question": "關於PCB的敘述,下列何者為非有誤?",
+      "options": {
+        "A": "又稱 Printed Wiring Board",
+        "B": "元件連結的平台",
+        "C": "又稱母板",
+        "D": "印刷板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 2,
+      "subject": "process",
+      "question": "對於一般硬式 PCB 的要求特性,下列何者為非?",
+      "options": {
+        "A": "耐熱",
+        "B": "高強度",
+        "C": "低電阻",
+        "D": "耐高電壓"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 3,
+      "subject": "industry",
+      "question": "PCB 的製作技術是在哪一年被真正發明?",
+      "options": {
+        "A": "1903",
+        "B": "1930",
+        "C": "1936",
+        "D": "1947"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 4,
+      "subject": "process",
+      "question": "最初發表的PCB 製作技術,是以下列何者為基材?",
+      "options": {
+        "A": "環氧樹脂(Epoxy Resin)",
+        "B": "聚醯亞胺(PI)",
+        "C": "B-三氮樹脂(BT)",
+        "D": "酚醛樹脂(Phenolic Resin)"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 5,
+      "subject": "industry",
+      "question": "PCB 是從何種電子零件上市後才開始被廣泛應用?",
+      "options": {
+        "A": "二極體",
+        "B": "三極體",
+        "C": "電晶體",
+        "D": "積體電路"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 6,
+      "subject": "process",
+      "question": "PCB 何時開始大量採用蝕刻銅膜技術來製造?",
+      "options": {
+        "A": "1940~50",
+        "B": "1950~60",
+        "C": "1960~70",
+        "D": "1970~80"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 7,
+      "subject": "process",
+      "question": "關於增層電路板的觀念,下列何者為非?",
+      "options": {
+        "A": "多次壓合",
+        "B": "微孔技術",
+        "C": "多層板",
+        "D": "以上皆非"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 8,
+      "subject": "industry",
+      "question": "增層電路板(HDI)的技術自何時開始成熟與大量應用?",
+      "options": {
+        "A": "1970",
+        "B": "1980",
+        "C": "1990",
+        "D": "2000"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 9,
+      "subject": "industry",
+      "question": "電子產品上使用的主被動元件必須被安裝在電路板上,透過電路板的結構設計使各元件間內部電性連接,以發揮電子產品的功能,所以電路板產業的商業交易模式為下列何者?",
+      "options": {
+        "A": "B to B",
+        "B": "B to C",
+        "C": "C to C",
+        "D": "C to B"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 10,
+      "subject": "industry",
+      "question": "電子產業中下列何者不會使用到PCB?",
+      "options": {
+        "A": "網路",
+        "B": "光電元件",
+        "C": "晶圓晶片",
+        "D": "通訊"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 11,
+      "subject": "process",
+      "question": "下列何者的改變,會影響PCB 製造技術,使得 PCB 無法持續成長?",
+      "options": {
+        "A": "電子產品輕薄短小化",
+        "B": "革命性替代材料的發明",
+        "C": "市場經濟",
+        "D": "以上皆是"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 12,
+      "subject": "process",
+      "question": "PCB 智慧製造分為三個里程碑,下列何者為短期里程碑的要求?",
+      "options": {
+        "A": "安裝感測器",
+        "B": "機台聯網",
+        "C": "資訊安全軟體升級",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 13,
+      "subject": "industry",
+      "question": "一般 PCB 最基本常見的分類如下,與製作價格高低的直接依據是下列何者?",
+      "options": {
+        "A": "金屬層結構",
+        "B": "絕緣材料",
+        "C": "材質軟硬",
+        "D": "導熱基材"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 14,
+      "subject": "industry",
+      "question": "PCB 以金屬層結構分類時,下列何者為非?",
+      "options": {
+        "A": "單面板",
+        "B": "雙面板",
+        "C": "多層板",
+        "D": "HDI板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 15,
+      "subject": "process",
+      "question": "硬式 PCB 大量使用的基板材料為?",
+      "options": {
+        "A": "環氧樹脂(Epoxy Resin)",
+        "B": "聚醯亞胺(PI)",
+        "C": "B-三氮樹脂(BT)",
+        "D": "酚醛樹脂(Phenolic Resin)"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 16,
+      "subject": "process",
+      "question": "載板主要的基板材料為下列何者?",
+      "options": {
+        "A": "環氧樹脂(Epoxy Resin)",
+        "B": "聚醯亞胺(PI)",
+        "C": "B-三氮樹脂(BT)",
+        "D": "酚醛樹脂(Phenolic Resin)"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 17,
+      "subject": "process",
+      "question": "滑鼠、鍵盤等低階電子產品,常用的基板材料為下列何者?",
+      "options": {
+        "A": "環氧樹脂(Epoxy Resin)",
+        "B": "聚醯亞胺(PI)",
+        "C": "B-三氮樹脂(BT)",
+        "D": "酚醛樹脂(Phenolic Resin)"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 18,
+      "subject": "industry",
+      "question": "PCB 以材質軟硬分類時,下列何者為非?",
+      "options": {
+        "A": "Rigid PCB",
+        "B": "Flexible PCB",
+        "C": "Metal Core PCB",
+        "D": "Rigid-Flex PCB"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 19,
+      "subject": "industry",
+      "question": "一般軟性電路板的分類,下列何者為非?",
+      "options": {
+        "A": "單面板",
+        "B": "雙面板",
+        "C": "多層板",
+        "D": "組裝軟板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 20,
+      "subject": "process",
+      "question": "軟硬結合板中的軟板,其主要的功能為下列何者?",
+      "options": {
+        "A": "排線接線",
+        "B": "連接器套接",
+        "C": "EMI貼附",
+        "D": "以上皆是"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 21,
+      "subject": "industry",
+      "question": "軟硬結合板目前的主要市場,下列何者為非?",
+      "options": {
+        "A": "軍用設備",
+        "B": "記憶卡",
+        "C": "數位相機鏡頭",
+        "D": "筆記型電腦螢幕"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 22,
+      "subject": "process",
+      "question": "IC載板的附加功能下列何者為非?",
+      "options": {
+        "A": "保護電路",
+        "B": "設計散熱途徑",
+        "C": "建立零件模組化標準",
+        "D": "承載 IC"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 23,
+      "subject": "process",
+      "question": "下列何者產品特性,不需考慮應用厚銅板的設計?",
+      "options": {
+        "A": "快速散熱",
+        "B": "高電壓",
+        "C": "高電流運作",
+        "D": "低尺寸安定性"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 24,
+      "subject": "process",
+      "question": "常被用於散熱器的厚銅板類型為下列何者?",
+      "options": {
+        "A": "一般厚銅板",
+        "B": "金屬核心板",
+        "C": "複合金屬夾心板",
+        "D": "以上皆是"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 25,
+      "subject": "industry",
+      "question": "下列何種產品不需要應用高技術層次的PCB?",
+      "options": {
+        "A": "電話機",
+        "B": "伺服器",
+        "C": "固態式硬碟",
+        "D": "手機"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 26,
+      "subject": "process",
+      "question": "一般家用電器的遙控器使用幾層的PCB?",
+      "options": {
+        "A": "1~2層",
+        "B": "2~4 層",
+        "C": "4~6 層",
+        "D": "10 層以上"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 27,
+      "subject": "industry",
+      "question": "下列何者並非 PCB 在電子產品的主要功能?",
+      "options": {
+        "A": "承載元件",
+        "B": "電氣連接",
+        "C": "作為機構元件",
+        "D": "作為被動元件"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 28,
+      "subject": "process",
+      "question": "下列何者為一般等級 PCB的線寬規格?",
+      "options": {
+        "A": "150~100 μm",
+        "B": "100~75 μm",
+        "C": "50~30μm",
+        "D": "30~10 μm"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 29,
+      "subject": "process",
+      "question": "下列何者是高密度等級PCB的微孔直徑?",
+      "options": {
+        "A": "300~250 μm",
+        "B": "250~150 μm",
+        "C": "150~75 μm",
+        "D": "10~5 μm"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 30,
+      "subject": "process",
+      "question": "下列何者為一般等級 PCB的銅墊尺寸?",
+      "options": {
+        "A": "700~500 μm",
+        "B": "500∼300 μm",
+        "C": "300~200 μm",
+        "D": "200~100 μm"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 31,
+      "subject": "process",
+      "question": "下列何者為一般等級電子產品設計的PCB 層數?",
+      "options": {
+        "A": "1~2層",
+        "B": "4~8 層",
+        "C": "10~16 層",
+        "D": "18~20 層"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 32,
+      "subject": "process",
+      "question": "下列何者為封裝模組級 PCB 的板厚?",
+      "options": {
+        "A": "0.6~1.2mm",
+        "B": "0.4~1.0mm",
+        "C": "0.2~0.8mm",
+        "D": "0.2mm 以下"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 33,
+      "subject": "process",
+      "question": "下列何者並非封裝板基材的材料?",
+      "options": {
+        "A": "酚醛樹脂(Phenolic Resin)",
+        "B": "B-三氮樹脂(BT)",
+        "C": "聚氧二甲苯(PPE)",
+        "D": "Megtron"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 34,
+      "subject": "process",
+      "question": "下列何者並非 PCB 電氣特性中的交流特性?",
+      "options": {
+        "A": "特性阻抗",
+        "B": "高頻特性",
+        "C": "絕緣電阻",
+        "D": "雜訊容許量"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 35,
+      "subject": "process",
+      "question": "下列何者對 PCB 的良率及整體電性表現影響較小?",
+      "options": {
+        "A": "介電材料",
+        "B": "線路配置",
+        "C": "斷面構造",
+        "D": "防焊厚度"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 36,
+      "subject": "process",
+      "question": "組裝密度提升時零件的距離改變,高密度細線路設計的使用可能造成下列何者影響?",
+      "options": {
+        "A": "線路電阻變大",
+        "B": "線路電阻變小",
+        "C": "線路變短",
+        "D": "以上皆非"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 37,
+      "subject": "process",
+      "question": "銅的電阻係數 0.0174,當線寬10µm,厚度5µm,線長10mm時,線路電阻為?",
+      "options": {
+        "A": "34.8Ω",
+        "B": "3.48Ω",
+        "C": "0.348Ω",
+        "D": "以上皆非"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 38,
+      "subject": "process",
+      "question": "下列何者是未來提高 PCB 密度的關鍵因素?",
+      "options": {
+        "A": "成本",
+        "B": "絕緣性",
+        "C": "使用壽命",
+        "D": "導電性"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 39,
+      "subject": "industry",
+      "question": "下列何者為目前PCB產品的主要時脈?",
+      "options": {
+        "A": "500MHz~2.4GHz",
+        "B": "2.4GHz~10GHz",
+        "C": "10GHz~100GHz",
+        "D": "100GHz 以上"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 40,
+      "subject": "process",
+      "question": "一般常見較嚴格的 PCB 特性阻抗精度,下列何者為非?",
+      "options": {
+        "A": "±12%",
+        "B": "±10%",
+        "C": "±8%",
+        "D": "±5%"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 41,
+      "subject": "industry",
+      "question": "IC 載板在電子產品構裝的分類屬於下列何者?",
+      "options": {
+        "A": "零階構裝",
+        "B": "一階構裝",
+        "C": "二階構裝",
+        "D": "三階構裝"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 42,
+      "subject": "industry",
+      "question": "球柵陣列構裝的英文縮寫為下列何者?",
+      "options": {
+        "A": "CSP",
+        "B": "CGA",
+        "C": "PGA",
+        "D": "BGA"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 43,
+      "subject": "process",
+      "question": "下列何者為需依賴 HDI PCB 才能實現低價大量目標的晶片構裝方式?",
+      "options": {
+        "A": "打線(Wire Bonding)",
+        "B": "導線架(LeadFrame)",
+        "C": "捲帶式自動黏合(TAB)",
+        "D": "接腳插入式技術(Through hole Mounting Technology; TMT)"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 44,
+      "subject": "process",
+      "question": "下列何者為早期電子元件組裝到PCB的方式?",
+      "options": {
+        "A": "接腳插入式技術(Through hole Mounting Technology;TMT)",
+        "B": "表面黏著技術(Surface Mount Technology;SMT)",
+        "C": "插針格柵陣列(Pin Grid Array;PGA)",
+        "D": "柱狀格柵陣列(Columm Grid Array;CGA)"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 45,
+      "subject": "industry",
+      "question": "下列何者並非 WEEE指令的要求?",
+      "options": {
+        "A": "涵蓋產品最後的生命週期",
+        "B": "設定產品再生/回收目標下限",
+        "C": "鼓勵再用/回收而設計的措施",
+        "D": "能源使用產品生態化設計"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 46,
+      "subject": "industry",
+      "question": "WEEE指令所規範的電機電子產品不包含下列何者?",
+      "options": {
+        "A": "照明設備",
+        "B": "監控儀器",
+        "C": "醫療器材",
+        "D": "大型靜態工業工具"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 47,
+      "subject": "industry",
+      "question": "WEEE指令的最新版本為?",
+      "options": {
+        "A": "2003",
+        "B": "2005",
+        "C": "2012",
+        "D": "2019"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 48,
+      "subject": "industry",
+      "question": "RoHS 危害物質限制指令最新版本為?",
+      "options": {
+        "A": "2003",
+        "B": "2006",
+        "C": "2011",
+        "D": "2015"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 49,
+      "subject": "industry",
+      "question": "RoHS指令限制的有害物質清單共有以下幾種?",
+      "options": {
+        "A": "6種",
+        "B": "8種",
+        "C": "10種",
+        "D": "12種"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 112,
+      "exam_number": "1",
+      "source": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+      "number": 50,
+      "subject": "process",
+      "question": "RoHS指令的哪一項物質對PCB 製造產生重大影響?",
+      "options": {
+        "A": "Pb",
+        "B": "Pd",
+        "C": "Cr",
+        "D": "Cd"
+      },
+      "answer": "A"
+    }
+  ]
+}

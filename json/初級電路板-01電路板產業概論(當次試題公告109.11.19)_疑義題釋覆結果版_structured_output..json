@@ -1,0 +1,754 @@
+{
+  "problems": [
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 1,
+      "subject": "industry",
+      "question": "關於印刷電路板演進重大紀事,下列敘述何者有誤?",
+      "options": {
+        "A": "1913 年 Arthur Berry 提出第一個 Subtractive method,在金屬箔上塗佈阻劑以蝕出線路",
+        "B": "1936年Paul Eisler 發表金屬箔線路形成技術,是 PCB 鼻祖",
+        "C": "1990年代 IBM 開發表面增層線路(Surface Laminar Circuit ; SLC)的印刷電路板",
+        "D": "2000年代 IBM 開發出覆晶 C4 技術"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 2,
+      "subject": "industry",
+      "question": "終端產品的應用趨勢是電路板發展的驅動力,下列何者是未來電路板可能的應用範圍?",
+      "options": {
+        "A": "虛擬實境",
+        "B": "穿載裝置",
+        "C": "3D 列印",
+        "D": "以上皆是"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 3,
+      "subject": "industry",
+      "question": "半導體與構裝技術的發展是連結晶圓製程與電路板製程的重要關鍵,下列關於構裝技術的演進順序何者正確?",
+      "options": {
+        "A": "Surface Mount → Pin-Through Hole → Ball Grid Array → Through-Silicon Via",
+        "B": "Pin-Through Hole → Surface Mount → Ball Grid Array → Through-Silicon Via",
+        "C": "Surface Mount → Ball Grid Array → Pin-Through Hole → Through-Silicon Via",
+        "D": "Through-Silicon Via → Surface Mount → Ball Grid Array → Pin-through Hole"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 4,
+      "subject": "industry",
+      "question": "晶片構裝的方式包括打線接合、捲帶自動接合與覆晶接合,若以構裝面積大小來比較,下列何者正確?",
+      "options": {
+        "A": "打線接合 > 捲帶自動接合 > 覆晶接合",
+        "B": "捲帶自動接合 > 覆晶接合 > 打線接合",
+        "C": "覆晶接合 > 捲帶自動接合 > 打線接合",
+        "D": "覆晶接合 > 捲帶自動接合 = 打線接合"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 5,
+      "subject": "industry",
+      "question": "因應不同產品需求,印刷電路板的層數從單層至 10 層以上甚至 HDI 板都有,下列何者不是目前 HDI 板的主要應用範圍?",
+      "options": {
+        "A": "事務機",
+        "B": "手機",
+        "C": "航太",
+        "D": "IC載板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 6,
+      "subject": "industry",
+      "question": "System in Package (SiP)是將一個系統或子系統的全部或大部分電子功能配置在整合型基板內,其技術不包括下列何者?",
+      "options": {
+        "A": "晶片堆疊",
+        "B": "內埋元件基板",
+        "C": "多晶片模組",
+        "D": "二極真空管"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 7,
+      "subject": "industry",
+      "question": "材料的發展是電路板產業持續精進的重要關鍵,下列何者不是電路板相關材料的未來發展方向?",
+      "options": {
+        "A": "Tg (玻璃轉化溫度)超過180 °C 的板材",
+        "B": "Dk ( 介電常數)小於3.6 的板材",
+        "C": "厚度 5 µm 但粗糙度低於1.5 µm 的銅箔",
+        "D": "Df ( 損耗因子)大於0.5 的板材"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 8,
+      "subject": "industry",
+      "question": "電路板產業在桃園聚落形成,下列何者非關鍵因素?",
+      "options": {
+        "A": "早期環保法規較寬鬆",
+        "B": "周邊配套完整",
+        "C": "內銷需求旺",
+        "D": "交通便利"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 9,
+      "subject": "industry",
+      "question": "絕緣電阻是印刷電路板重要的電氣性質,一般而言,不論加濕或其他汙染因素加總,絕緣電阻仍應達多少數值以上才有實用性?",
+      "options": {
+        "A": "5 × 108 ohm",
+        "B": "5 × 106 ohm",
+        "C": "5 × 104 ohm",
+        "D": "沒有限制"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 10,
+      "subject": "industry",
+      "question": "傳統晶圓級封裝(Wafer Level Package ) 多採用 Fan-in 技術,為增加I/O數逐漸發展出 Fan-out 技術,關於 Fan-out 技術的描述何者有誤?",
+      "options": {
+        "A": "封膠面板的面積比晶片大",
+        "B": "須使用 Redistribution Layer (RDL )",
+        "C": "可能遭遇板材 Warpage 問題",
+        "D": "可以使用銅 / 銅對接完全取代銲錫"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 11,
+      "subject": "industry",
+      "question": "現階段電子產品高頻/高速的功能需求,下列敘述何者為非?",
+      "options": {
+        "A": "工作電壓降低、頻寬變大、波長變短其可容許的雜訊量相對變小",
+        "B": "輸出或輸入的阻抗與電路板傳輸結構的匹配越形重要",
+        "C": "電路板材質需要選擇更高的 Dk 及 Df",
+        "D": "線路截面積的容差必須更小"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 12,
+      "subject": "industry",
+      "question": "金屬核心板(MCPCB ) 的結構設計最大的考量是以下何者?",
+      "options": {
+        "A": "散熱性",
+        "B": "美觀",
+        "C": "重量",
+        "D": "導電性"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 13,
+      "subject": "industry",
+      "question": "複合金屬夾心板使用 Invar 合金,關於 Invar 合金的描述下列何者為非?",
+      "options": {
+        "A": "Invar 是鐵鎳合金",
+        "B": "Invar 是高頻傳輸必要的元件",
+        "C": "在 XYZ 三方向的熱膨脹係數都很低",
+        "D": "常被使用作為散熱基板"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 14,
+      "subject": "industry",
+      "question": "硬板(Rigid PCB)是常見的印刷電路板,其組成材料不包括以下何者?",
+      "options": {
+        "A": "電解銅箔",
+        "B": "玻璃纖維",
+        "C": "矽晶片",
+        "D": "環氧樹脂"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 15,
+      "subject": "industry",
+      "question": "下列何者不是使用於一般硬板的材料成份?",
+      "options": {
+        "A": "樹脂",
+        "B": "聚亞醯胺",
+        "C": "玻璃纖維",
+        "D": "銅皮"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 16,
+      "subject": "industry",
+      "question": "智慧型手機為追求更高效能的表現,過去使用高密度內連結(HDI)多層板作為主機板已不敷使用,必須導入新的電路板封裝技術,下列敘述何者為非?",
+      "options": {
+        "A": "必須大量導入系統級封裝(SiP ) 技術",
+        "B": "使用類載板(Substrate-Like) HDI",
+        "C": "線寬/距必須微縮至35微米以下",
+        "D": "使用 Through-Silicon Via 技術"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 17,
+      "subject": "industry",
+      "question": "綠色製造與環保 6R 息息相關,其中 Refuse 代表何種意義?",
+      "options": {
+        "A": "拒用無環保觀念產品",
+        "B": "減少丟棄的垃圾量",
+        "C": "回收使用再生產品",
+        "D": "維修保養以延長物品使用壽命"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 18,
+      "subject": "industry",
+      "question": "WEEE 的全文及中文名稱為?",
+      "options": {
+        "A": "「Wanted Electrical and Electronic Equipment ( WEEE ) -需求之電子電機設備指令」",
+        "B": "「Waste Electronic Equipment Estimated ( WEEE) -廢電子電機設備指令」",
+        "C": "「Waste Electrical and Electronic Equipment ( WEEE ) -廢電子電機設備指令」",
+        "D": "以上皆非"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 19,
+      "subject": "industry",
+      "question": "歐盟於2003年2月通過「Waste Electrical and Electronic Equipment (WEEE) -廢電子電機設備指令」之環保指令,其目的為何?",
+      "options": {
+        "A": "鼓勵為有利於再用 / 回收而設計的措施,提高回收再用比例",
+        "B": "減少電子產品製作時的耗水量",
+        "C": "減少第三世界的電子廢棄垃圾",
+        "D": "提高能源使用效率"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 20,
+      "subject": "industry",
+      "question": "關於電路板產業綠色製造的導入策略,下列何者為非?",
+      "options": {
+        "A": "改善製程用水效率",
+        "B": "導入清潔脫脂製程",
+        "C": "開發生物可分解塑膠",
+        "D": "使用含鉛含鹵的材料"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 21,
+      "subject": "industry",
+      "question": "印刷電路板以電氣連接及承載元件為主要功能,它須具備的特性,下列敘述何者正確?",
+      "options": {
+        "A": "耐熱",
+        "B": "低強度",
+        "C": "高電阻",
+        "D": "高雜訊"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 22,
+      "subject": "industry",
+      "question": "IC載板(Carrier ) 用於晶片 IC 與電路板間訊號傳輸用途並保護 IC,請問下圖為何種載板封裝模式?",
+      "options": {
+        "A": "PBGA",
+        "B": "CSP",
+        "C": "PoP",
+        "D": "FCCSP"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 23,
+      "subject": "industry",
+      "question": "典型的組裝後的印刷電路板,兩面佈滿各種零件,有插腳( DIP ),表面黏著(SMD)·球柵陣列( Ball Grid Array ),連接器(Connector ),下圖中所指的是何種元件?",
+      "options": {
+        "A": "DIP",
+        "B": "SMD",
+        "C": "Ball Grid Array",
+        "D": "Connector"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 24,
+      "subject": "industry",
+      "question": "隨著高I/O趨勢,為滿足高功能 IC 需求,何種技術可以滿足需求?",
+      "options": {
+        "A": "球柵陣列(Ball Grid Arry,BGA )",
+        "B": "導線架",
+        "C": "表面黏著( SMD )",
+        "D": "插腳(DIP)"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 25,
+      "subject": "industry",
+      "question": "傳統硬式的印刷電路板的下游產業是組裝業(Assembly),下列何者是近年來最常使用的組裝技術?",
+      "options": {
+        "A": "導線架技術 ( Lead Frame Technology)",
+        "B": "覆晶技術 ( Flip Chip Technology)",
+        "C": "接腳插入式技術(Through Hole Mounting Technology ; TMT )",
+        "D": "表面黏貼技術(Surface Mounting Technology; SMT )"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 26,
+      "subject": "industry",
+      "question": "印刷電路板在電子產品供應鏈佔重要地位,一般而言其定位為何?",
+      "options": {
+        "A": "半導體",
+        "B": "零組件",
+        "C": "光電元件",
+        "D": "軟體"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 27,
+      "subject": "industry",
+      "question": "目前台灣印刷電路板產業上中下游已產生群聚效應,且供應鏈已相當完整,試問超過六成集中於何處?",
+      "options": {
+        "A": "北台灣",
+        "B": "中台灣",
+        "C": "南台灣",
+        "D": "花蓮台東地區"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 28,
+      "subject": "industry",
+      "question": "電路板產品應用中,何種電路板產品是常見的密度高I/O(輸入/輸出)的封裝技術?",
+      "options": {
+        "A": "硬板",
+        "B": "軟板",
+        "C": "軟硬結合板",
+        "D": "IC載板(Carrier)"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 29,
+      "subject": "industry",
+      "question": "電路板產業是日常生活食衣住行育樂都有相關,全球印刷電路板產值最大地區為何?",
+      "options": {
+        "A": "北美",
+        "B": "兩岸三地",
+        "C": "南亞",
+        "D": "歐洲"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 30,
+      "subject": "industry",
+      "question": "印刷電路板隨著覆晶技術的應用,對於高密度電路板需求逐步提高,製程能力重要指標為線寬 / 線距,目前印刷電路板線寬/線距製程能力已達到約多少?",
+      "options": {
+        "A": "100 μm",
+        "B": "75 µm",
+        "C": "50 µm",
+        "D": "10 µm"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 31,
+      "subject": "industry",
+      "question": "電路板主要功能在於承載元件與各主動被動元件間之電氣連接,是提供電子零組件在安裝與互連的主要支撐體。印刷電路板的材料不斷演進,目前一般消費性電子產品的印刷電路板材料大宗使用於何種材料?",
+      "options": {
+        "A": "陶瓷材料",
+        "B": "鋁導線架",
+        "C": "石蠟紙",
+        "D": "有機材料"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 32,
+      "subject": "process",
+      "question": "多層電路板是以絕緣材料固定配置的線路,作為電子互連的基礎,因此線路電阻越低越好。銅的電阻係數為 0.0174 Ohm-µm,當線寬為 15µm,厚度 5µm時,若線長 10mm 時電阻為多少 Ohm?\n(Hint:電阻公式 R = p*l/A)\nR:電阻; p:電阻係數; 1:線長 ; A:截面積",
+      "options": {
+        "A": "3.48 Ohm",
+        "B": "2.32 Ohm",
+        "C": "0.00232 Ohm",
+        "D": "0.00522 Ohm"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 33,
+      "subject": "industry",
+      "question": "歐盟於廢棄電子電機設備指令(Waste Electrical and Electronic Equipment),自2018年8月15 日起於歐盟市場流通電子電機產品中,對於第四類消費設備規定最小回收再利用率須達多少?",
+      "options": {
+        "A": "50%",
+        "B": "60%",
+        "C": "70%",
+        "D": "80%"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 34,
+      "subject": "industry",
+      "question": "產品設計階段就構思其結局,讓廢棄產品成為另一個循環的開始,減少廢棄物,也將廢棄物其他有用的物質或產品循環再利用,以維持自然界的循環體系和工業界的循環體系,維持個別獨立卻又能和諧共存,此稱之為何種經濟?",
+      "options": {
+        "A": "生產經濟",
+        "B": "循環經濟",
+        "C": "製造經濟",
+        "D": "服務經濟"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 35,
+      "subject": "industry",
+      "question": "環境保護已是生產電子產品的重要課題,歐盟於 2015年6月4日正式公告RoHS 指令禁用物質清單中,下列何者為非?",
+      "options": {
+        "A": "鎘(Cd)",
+        "B": "鉛(Pb)",
+        "C": "汞(Hg)",
+        "D": "六價鉻(Cr6+)"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 36,
+      "subject": "industry",
+      "question": "為了環境的保護,無鹵素(Halogen Free ) 產品為目前最新綠色產品趨勢,在電路板的製程與材料選用上也陸續地朝這方向在努力,電路板中何種物質多含有鹵素?",
+      "options": {
+        "A": "樹脂",
+        "B": "銅",
+        "C": "玻璃纖維",
+        "D": "電木板補強材"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 37,
+      "subject": "industry",
+      "question": "綠色工廠包括綠建築與清潔生產兩個評估系統,試問何者屬於綠建築評估項目?",
+      "options": {
+        "A": "減碳效益",
+        "B": "生產製造",
+        "C": "環境化設計",
+        "D": "社會責任"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 38,
+      "subject": "process",
+      "question": "印刷電路板製造過程中,噴錫製程所產生的廢棄物常見為何?",
+      "options": {
+        "A": "銅粉",
+        "B": "廢蝕刻液",
+        "C": "廢助焊劑",
+        "D": "電鍍廢液"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 39,
+      "subject": "industry",
+      "question": "綠色製造的導入中,印刷電路板業者常會進行改善,何者屬於工安險管理類?",
+      "options": {
+        "A": "製程用水效率改善",
+        "B": "供應商風險評估",
+        "C": "綠色供應鏈危害物質管理",
+        "D": "承攬商管理"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 40,
+      "subject": "process",
+      "question": "印刷電路板製造過程中,電鍍廢液可能於何種製程產出?",
+      "options": {
+        "A": "噴錫",
+        "B": "壓合",
+        "C": "成型",
+        "D": "表面處理"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 41,
+      "subject": "industry",
+      "question": "請問「印刷電路板」又稱為什麼名稱?",
+      "options": {
+        "A": "母板",
+        "B": "半導體電路板",
+        "C": "顯示板",
+        "D": "觸控面板"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 42,
+      "subject": "process",
+      "question": "印刷電路板的電氣特性阻抗值的精度,現在已更進一步要求至何種範圍內?",
+      "options": {
+        "A": "±3%",
+        "B": "±5%",
+        "C": "±8%",
+        "D": "±10%"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 43,
+      "subject": "industry",
+      "question": "近年來,微波通訊系統中的可攜帶式或汽車電話系統與全球衛星定位系統需求快速成長,使得在通訊系統中扮演關鍵性零組件的介質諧振器與介質濾波器的需求日益增加。為了因應此一需求,介電材料需降低傳遞的損失才能維持傳輸訊號的完整性,而下列何者不是影響訊號傳遞效能的重要指標?",
+      "options": {
+        "A": "導體損失",
+        "B": "介電損失",
+        "C": "介電常數",
+        "D": "介電材料之 Tg (玻璃轉化溫度)"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 44,
+      "subject": "industry",
+      "question": "無線通訊產品由 3G 演化到 4G,甚至即將登場的 5G 通訊,對產品規格要求更加嚴苛,藉由軟板天線才能因應更高頻、高速、低訊號流失傳輸的需求。隨著5G 通訊市場逐步打開,下列何種材料因電 / 物特性極佳而可能被大量應用於目前高階電子產品的天線軟板?",
+      "options": {
+        "A": "LCP (Liquid Crystal Polymer )",
+        "B": "FR-4 ( Flame Retardant 4 )",
+        "C": "PET (Polyethylene Terephthalate )",
+        "D": "HDPE ( High Density Polyethylene )"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 45,
+      "subject": "industry",
+      "question": "在無線通訊頻譜資源缺乏及高數據傳輸速率的發展趨勢下,毫米波通訊技術被視為解決高頻寬傳輸的方案之一。請問下列何者非毫米波的傳播特性?",
+      "options": {
+        "A": "自由空間傳播",
+        "B": "大氣吸收損耗",
+        "C": "降雨衰減",
+        "D": "微量輻射釋放"
+      },
+      "answer": "D"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 46,
+      "subject": "industry",
+      "question": "由於 5G 的高頻段屬於毫米波(mmWave)級別,訊號傳遞時之波的特性影響會較低頻段明顯。當兩條導線距離相近並進行高頻訊號傳輸時,容易出現電感耦合(induction coupling)與電容耦合(capacitive coupling)等現象。這些現象會導致雜訊干擾原訊號俗稱為?",
+      "options": {
+        "A": "串音干擾(crosstalk)",
+        "B": "集膚效應(skin effect)",
+        "C": "反射(reflection)",
+        "D": "阻抗(impedance)"
+      },
+      "answer": "A"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 47,
+      "subject": "process",
+      "question": "在介電質相同的情況下,傳輸頻率越高,電場震盪速度越快。這使得介電材質中的電偶極矩來不及旋轉完,而導致電磁波相位延遲(phase delay)。當對介電質施加電場後,各原子因為正負電荷分離,會形成許多電偶極矩(Electric Dipole Moment)此現象稱之為?",
+      "options": {
+        "A": "介入損耗(Insertion loss )",
+        "B": "介電質極化現象 ( Dielectric Polarization )",
+        "C": "串音干擾(Crosstalk )",
+        "D": "集膚效應( Skin effect )"
+      },
+      "answer": "B"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 48,
+      "subject": "industry",
+      "question": "廢棄電子電機設備指令 WEEE 是歐盟在 2003 年月所公布的一項環保指定,下列何者不是其管制重點?",
+      "options": {
+        "A": "擴大生產商責任以涵蓋產品最後的生命週期",
+        "B": "鼓勵為有利於再用 / 回收而設計的措施",
+        "C": "減少能源消耗並提升能源使用效率",
+        "D": "減少棄置垃圾、有害物的影響和資源耗損上生產"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 49,
+      "subject": "industry",
+      "question": "HDI 設計的板子目前應用於智慧型手機,以及一些電子模組頗為普遍,這種結構設計不會應用於下列哪種電路板類別?",
+      "options": {
+        "A": "軟硬結合板",
+        "B": "雙面板",
+        "C": "多層硬板",
+        "D": "IC載板"
+      },
+      "answer": "C"
+    },
+    {
+      "year": 109,
+      "exam_number": "01",
+      "source": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+      "number": 50,
+      "subject": "process",
+      "question": "因應產品高速化訊號的電訊需求,電路板必須提供何種必要的設計?",
+      "options": {
+        "A": "軟板化",
+        "B": "微孔化",
+        "C": "多層化",
+        "D": "載板化"
+      },
+      "answer": "C"
+    }
+  ]
+}
