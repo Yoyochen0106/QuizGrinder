@@ -51,24 +51,25 @@ $(document).ready(function() {
     const chosen = this.id;
     const correct = current.answer;
     if ($(".option.correct, .option.wrong").length) {
-      // 更新統計
-      totalCount++;
-      if (chosen === correct) correctCount++;
-
-      // 寫入 cookie
-      document.cookie = "quiz_stats=" + encodeURIComponent(JSON.stringify({
-        correct: correctCount,
-        total: totalCount
-      })) + "; path=/; max-age=" + (60 * 60 * 24 * 365);
-
-      // 更新狀態顯示
-      const accuracy = totalCount ? ((correctCount / totalCount) * 100).toFixed(1) : 0;
-      $("#status").html(`來源：${current.source} (#${current.number})<br>正確/答題數: ${correctCount}/${totalCount} 正確率: ${accuracy}%`);
-
       // next problem
       showNextProblem();
       return;
     }
+
+    // 更新統計
+    totalCount++;
+    if (chosen === correct) correctCount++;
+
+    // 寫入 cookie
+    document.cookie = "quiz_stats=" + encodeURIComponent(JSON.stringify({
+      correct: correctCount,
+      total: totalCount
+    })) + "; path=/; max-age=" + (60 * 60 * 24 * 365);
+
+    // 更新狀態顯示
+    const accuracy = totalCount ? ((correctCount / totalCount) * 100).toFixed(1) : 0;
+    $("#status").html(`來源：${current.source} (#${current.number})<br>正確/答題數: ${correctCount}/${totalCount} 正確率: ${accuracy}%`);
+
     if (chosen === correct) {
       $(this).addClass("correct");
     } else {
