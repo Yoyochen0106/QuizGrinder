@@ -2,6 +2,7 @@ let problems = [];
 let current = null;
 let correctCount = 0;
 let totalCount = 0;
+let shuffledIndices = [];
 
 function loadProblems() {
   console.log("getting problem_sources_mock_test.json")
@@ -13,7 +14,10 @@ function loadProblems() {
         console.log(`got ${src}.json`)
         problems.push(...data.problems);
       }).always(() => {
-        if (--pending === 0) showNextProblem();
+        if (--pending === 0) {
+          reshuffleIndices()
+          showNextProblem();
+        }
       });
     });
   });
@@ -29,9 +33,20 @@ function loadProblems() {
   }
 }
 
+function reshuffleIndices() {
+  shuffledIndices = Array.from(problems.keys());
+  for (let i = shuffledIndices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+  }
+}
+
 function showNextProblem() {
   $(".option").removeClass("correct wrong");
-  current = problems[Math.floor(Math.random() * problems.length)];
+
+  if (shuffledIndices.length === 0) reshuffleIndices();
+  const nextIndex = shuffledIndices.pop();
+  current = problems[nextIndex];
   if (!current) return;
 
   $("#problem").text(current.question);
