@@ -1,1 +1,216 @@
-/* wordle：實作中 */
+/* QuizGrinder 版面風格：Wordle 風（搭配 skins/wordle.js）
+   極簡白底／深灰底、置中窄欄、方格翻牌、綠／灰兩色。 */
+
+:root[data-skin="wordle"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f3f4f5; --line: #d3d6da;
+  --fg: #121213; --fg-muted: #6b6e70; --accent: #6aaa64; --accent-fg: #ffffff; --mask: #121213;
+  --ok: #3f7d3a; --ok-bg: #e4f1e2; --bad: #5c5f61; --bad-bg: #e6e7e8; --warn: #8a6d00; --warn-bg: #f6efcc;
+  --focus: #6aaa64; --shadow: 0 4px 23px rgba(0, 0, 0, .2); --paper: #ffffff; --paper-img: 1;
+  --wd-green: #6aaa64; --wd-grey: #787c7e; --wd-key: #d3d6da; --wd-key-fg: #1a1a1b; --wd-tile-line: #d3d6da; --wd-tile-active: #878a8c;
+  --wd-scrim: rgba(255, 255, 255, .55); --wd-modal: #ffffff; --wd-modal-line: #f6f7f8;
+  --font-display: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --font-body: "Helvetica Neue", Arial, "Noto Sans TC", "PingFang TC", sans-serif;
+  --r: 4px; --nav-h: 4rem; --max: 34rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="wordle"]:not([data-theme="light"]) {
+    --bg: #121213; --surface: #121213; --surface-2: #1f1f20; --line: #3a3a3c;
+    --fg: #f8f8f8; --fg-muted: #9a9c9e; --accent: #538d4e; --accent-fg: #ffffff; --mask: #f8f8f8;
+    --ok: #79b873; --ok-bg: #1d2e1c; --bad: #a9abad; --bad-bg: #2a2a2c; --warn: #d6c15a; --warn-bg: #2e2a12;
+    --focus: #79b873; --shadow: 0 4px 23px rgba(0, 0, 0, .6); --paper: #d9d9d9; --paper-img: .92;
+    --wd-green: #538d4e; --wd-grey: #3a3a3c; --wd-key: #818384; --wd-key-fg: #f8f8f8; --wd-tile-line: #3a3a3c; --wd-tile-active: #565758;
+    --wd-scrim: rgba(0, 0, 0, .55); --wd-modal: #121213; --wd-modal-line: #1a1a1b;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="wordle"][data-theme="dark"] {
+  --bg: #121213; --surface: #121213; --surface-2: #1f1f20; --line: #3a3a3c;
+  --fg: #f8f8f8; --fg-muted: #9a9c9e; --accent: #538d4e; --accent-fg: #ffffff; --mask: #f8f8f8;
+  --ok: #79b873; --ok-bg: #1d2e1c; --bad: #a9abad; --bad-bg: #2a2a2c; --warn: #d6c15a; --warn-bg: #2e2a12;
+  --focus: #79b873; --shadow: 0 4px 23px rgba(0, 0, 0, .6); --paper: #d9d9d9; --paper-img: .92;
+  --wd-green: #538d4e; --wd-grey: #3a3a3c; --wd-key: #818384; --wd-key-fg: #f8f8f8; --wd-tile-line: #3a3a3c; --wd-tile-active: #565758;
+  --wd-scrim: rgba(0, 0, 0, .55); --wd-modal: #121213; --wd-modal-line: #1a1a1b;
+  color-scheme: dark;
+}
+:root[data-skin="wordle"] body::before { background: var(--bg); }
+
+/* ---------------------------------------------------------------- 頂部列 */
+:root[data-skin="wordle"] .topbar { background: var(--bg); border-bottom: 1px solid var(--line); }
+.wd-top { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .5rem; }
+.wd-top-l { position: relative; display: flex; align-items: center; }
+.wd-top-r { display: flex; align-items: center; justify-content: flex-end; gap: .1rem; }
+.wd-top .sk-iconbtn { border-radius: 4px; }
+.wd-top .sk-iconbtn .ico { width: 1.5rem; height: 1.5rem; }
+.wd-title {
+  display: inline-flex; align-items: center; gap: .5rem; color: var(--fg); text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; letter-spacing: .02em; line-height: 1; white-space: nowrap;
+}
+.wd-title .wd-pad { width: 1.65rem; height: 1.65rem; }
+.wd-title .wd-pad svg { stroke-width: 2.4; }
+.wd-menu {
+  position: absolute; top: calc(100% + .6rem); left: 0; z-index: 40; width: 15rem; padding: .5rem 0;
+  background: var(--wd-modal); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow);
+}
+.wd-menu-h { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; padding: .4rem 1.1rem .6rem; border-bottom: 1px solid var(--line); margin-bottom: .3rem; }
+.wd-menu-item { display: flex; align-items: center; gap: .8rem; padding: .6rem 1.1rem; color: var(--fg); text-decoration: none; font-weight: 700; font-size: .95rem; }
+.wd-menu-item:hover, .wd-menu-item:focus-visible { background: var(--surface-2); }
+
+/* ---------------------------------------------------------------- 棋盤 */
+:root[data-skin="wordle"] main { padding-top: 1.5rem; }
+.wd-home { max-width: 32rem; margin: 0 auto; display: grid; justify-items: center; gap: 1.25rem; }
+.wd-date { font-size: .78rem; font-weight: 700; letter-spacing: .14em; color: var(--fg-muted); }
+.wd-board { display: grid; gap: 5px; }
+.wd-row { display: grid; grid-template-columns: repeat(5, 3.6rem); gap: 5px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }
+button.wd-row { cursor: pointer; border-radius: 2px; }
+button.wd-row:hover .wd-tile { filter: brightness(1.08); }
+.wd-tile {
+  width: 3.6rem; height: 3.6rem; display: grid; place-items: center; border: 2px solid var(--wd-tile-line); background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-weight: 700; font-size: 1.55rem; line-height: 1; user-select: none;
+}
+.wd-tile.active { border-color: var(--wd-tile-active); }
+.wd-tile.filled { border-color: var(--wd-tile-active); }
+.wd-tile.ok { background: var(--wd-green); border-color: var(--wd-green); color: #fff; }
+.wd-tile.ng { background: var(--wd-grey); border-color: var(--wd-grey); color: #fff; }
+.wd-tile.flip { animation: wd-flip .5s ease-in both; animation-delay: calc(var(--i) * 250ms); }
+.wd-tile.flip.ok { --wd-to: var(--wd-green); }
+.wd-tile.flip.ng { --wd-to: var(--wd-grey); }
+@keyframes wd-flip {
+  0% { transform: rotateX(0); background: var(--bg); border-color: var(--wd-tile-active); color: transparent; }
+  49% { transform: rotateX(-90deg); background: var(--bg); border-color: var(--wd-tile-active); color: transparent; }
+  50% { transform: rotateX(-90deg); background: var(--wd-to); border-color: var(--wd-to); color: #fff; }
+  100% { transform: rotateX(0); background: var(--wd-to); border-color: var(--wd-to); color: #fff; }
+}
+.wd-row.active-row .wd-tile { border-color: var(--wd-tile-active); }
+
+/* ---------------------------------------------------------------- 題目卡（鍵盤風選項） */
+.wd-card { width: 100%; display: grid; gap: .85rem; padding-top: .25rem; }
+.wd-qhead { font-size: .78rem; color: var(--fg-muted); font-weight: 700; letter-spacing: .04em; }
+.wd-q { font-size: 1.08rem; line-height: 1.75; font-weight: 500; white-space: pre-wrap; overflow-wrap: anywhere; }
+.wd-hint { font-size: .75rem; color: var(--fg-muted); text-align: center; }
+.wd-opts { gap: 8px; }
+.wd-opts .ans-opt {
+  border: 0; border-radius: 4px; background: var(--wd-key); color: var(--wd-key-fg); font-weight: 700; padding: .8rem .9rem; min-height: 3.6rem; align-items: center;
+}
+.wd-opts .ans-opt:hover:not([disabled]) { filter: brightness(.94); }
+.wd-opts .ans-l { color: inherit; opacity: .7; }
+.wd-opts .ans-opt.ok { background: var(--wd-green); color: #fff; }
+.wd-opts .ans-opt.ng { background: var(--wd-grey); color: #fff; }
+:root[data-skin="wordle"][data-theme="dark"] .wd-opts .ans-opt.ng { background: #1f1f20; outline: 2px solid #3a3a3c; outline-offset: -2px; }
+.wd-opts .ans-opt.ok .ans-l, .wd-opts .ans-opt.ok .ans-m, .wd-opts .ans-opt.ng .ans-l, .wd-opts .ans-opt.ng .ans-m { color: #fff; opacity: 1; }
+.wd-opts .ans-opt.dim { opacity: .45; }
+.wd-verdict { justify-self: center; font-weight: 700; font-size: .95rem; padding: .55rem 1rem; border-radius: 4px; background: var(--fg); color: var(--bg); }
+.wd-verdict.ok { background: var(--wd-green); color: #fff; }
+.wd-verdict.done { background: var(--fg); }
+.wd-answer { text-align: center; line-height: 1.7; overflow-wrap: anywhere; }
+.wd-answer span { color: var(--fg-muted); font-size: .85rem; }
+.wd-big { text-align: center; font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1; }
+.wd-note { font-size: .82rem; color: var(--fg-muted); line-height: 1.7; text-align: center; }
+.wd-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.wd-key {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: 0; border-radius: 4px; cursor: pointer; text-decoration: none;
+  background: var(--wd-key); color: var(--wd-key-fg); font-weight: 700; font-size: .9rem; height: 3.2rem; padding: 0 1.1rem;
+}
+.wd-key.wide { min-width: 8rem; }
+.wd-key.primary { background: var(--wd-green); color: #fff; }
+.wd-key:hover { filter: brightness(.95); }
+.wd-key .ico { width: 1.1rem; height: 1.1rem; }
+.wd-card > .wd-key { justify-self: center; }
+
+/* ---------------------------------------------------------------- 對話框 */
+.wd-modal-back { background: var(--wd-scrim); }
+.wd-modal-back .mx-close { display: none; }
+.wd-x { position: absolute; top: .75rem; right: .75rem; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 4px; background: transparent; color: var(--fg); cursor: pointer; display: grid; place-items: center; }
+.wd-x:hover { background: var(--surface-2); }
+.wd-modal {
+  position: relative; width: min(31rem, 100%); max-height: calc(100dvh - 24px); overflow-y: auto; background: var(--wd-modal); color: var(--fg);
+  border: 1px solid var(--wd-modal-line); border-radius: 8px; box-shadow: var(--shadow); padding: 2rem 1.6rem 1.6rem;
+  animation: wd-slide .25s ease-out both;
+}
+@keyframes wd-slide { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.wd-statsblock { display: grid; gap: .9rem; justify-items: center; }
+.wd-statsblock.compact { justify-items: stretch; }
+.wd-mh { font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .1em; text-align: center; }
+.wd-mh.small { font-size: .9rem; }
+.wd-mh.left { text-align: left; }
+.wd-statsblock.compact .wd-mh { text-align: left; }
+.wd-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 4.5rem)); gap: .4rem; justify-content: center; }
+.wd-stat { display: grid; justify-items: center; text-align: center; gap: .1rem; }
+.wd-stat b { font-size: 2.2rem; font-weight: 400; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.wd-stat span { font-size: .72rem; line-height: 1.3; }
+.wd-dist { width: 100%; max-width: 22rem; display: grid; gap: 4px; justify-self: center; }
+.wd-dist-row { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: .35rem; align-items: center; font-size: .85rem; }
+.wd-dist-k { font-variant-numeric: tabular-nums; text-align: center; }
+.wd-dist-bar { display: flex; justify-content: flex-end; background: var(--wd-grey); color: #fff; font-weight: 700; padding: 1px .45rem; min-width: 1.4rem; }
+.wd-dist-bar.today { background: var(--wd-green); }
+.wd-empty { font-size: .85rem; color: var(--fg-muted); text-align: center; line-height: 1.7; }
+.wd-foot { display: flex; align-items: center; gap: 1rem; width: 100%; padding-top: .75rem; justify-content: center; }
+.wd-next { display: grid; justify-items: center; font-size: .8rem; font-weight: 700; letter-spacing: .06em; }
+.wd-clock { font-size: 1.8rem; font-weight: 400; letter-spacing: .04em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.wd-sep { width: 1px; align-self: stretch; background: var(--fg); }
+.wd-share {
+  display: inline-flex; align-items: center; gap: .5rem; border: 0; border-radius: 4px; cursor: pointer; background: var(--wd-green); color: #fff;
+  font-weight: 700; font-size: 1.1rem; height: 3.2rem; padding: 0 1.4rem;
+}
+.wd-share .ico { width: 1.25rem; height: 1.25rem; }
+.wd-share:hover { filter: brightness(1.06); }
+.wd-modal.help { display: grid; gap: .75rem; }
+.wd-lead { font-weight: 700; line-height: 1.7; }
+.wd-rules { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; font-size: .92rem; line-height: 1.7; }
+.wd-demo { display: grid; gap: .4rem; padding: .25rem 0; font-size: .9rem; }
+.wd-row.small { grid-template-columns: repeat(5, 2.5rem); }
+.wd-row.small .wd-tile { width: 2.5rem; height: 2.5rem; font-size: 1.15rem; }
+.wd-modal.help .wd-note { text-align: left; border-top: 1px solid var(--line); padding-top: .75rem; }
+.wd-modal.review { display: grid; gap: .75rem; }
+.wd-olist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.wd-olist li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr) auto; gap: .5rem; align-items: center; padding: .55rem .75rem; border-radius: 4px; background: var(--wd-key); color: var(--wd-key-fg); font-weight: 600; overflow-wrap: anywhere; }
+.wd-olist li.ok { background: var(--wd-green); color: #fff; }
+.wd-olist li.ng { background: var(--wd-grey); color: #fff; }
+.wd-m { font-size: .72rem; font-weight: 700; }
+.wd-statpanel { display: grid; gap: 1rem; }
+
+/* ---------------------------------------------------------------- 其他畫面：同一種極簡外觀 */
+:root[data-skin="wordle"] .view { max-width: 36rem; }
+:root[data-skin="wordle"] h1 { font-family: var(--font-display); font-size: 1.9rem; }
+:root[data-skin="wordle"] .eyebrow { font-family: var(--font-body); font-weight: 700; color: var(--fg-muted); letter-spacing: .14em; }
+:root[data-skin="wordle"] .panel, :root[data-skin="wordle"] .card, :root[data-skin="wordle"] .kpi, :root[data-skin="wordle"] .qitem, :root[data-skin="wordle"] .action {
+  border-radius: 6px; box-shadow: none; background: var(--bg);
+}
+:root[data-skin="wordle"] .kpi { text-align: center; justify-items: center; border: 0; }
+:root[data-skin="wordle"] .kpi b { font-family: var(--font-body); font-weight: 400; font-size: 1.5rem; overflow-wrap: anywhere; }
+:root[data-skin="wordle"] .kpi { padding-inline: .25rem; min-width: 0; }
+:root[data-skin="wordle"] .btn { border: 0; border-radius: 4px; background: var(--wd-key); color: var(--wd-key-fg); font-weight: 700; }
+:root[data-skin="wordle"] .btn.primary, :root[data-skin="wordle"] .btn.mask { background: var(--wd-green); color: #fff; }
+:root[data-skin="wordle"] .btn.ghost { background: transparent; color: var(--fg-muted); }
+:root[data-skin="wordle"] .btn.danger { background: transparent; color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad); }
+:root[data-skin="wordle"] .opt { border: 0; border-radius: 4px; background: var(--wd-key); color: var(--wd-key-fg); font-weight: 700; }
+:root[data-skin="wordle"] .opt:hover:not([disabled]) { filter: brightness(.94); }
+:root[data-skin="wordle"] .opt .key { background: transparent; color: inherit; opacity: .7; }
+:root[data-skin="wordle"] .opt.correct { background: var(--wd-green); color: #fff; }
+:root[data-skin="wordle"] .opt.wrong { background: var(--wd-grey); color: #fff; }
+:root[data-skin="wordle"] .opt.correct .key, :root[data-skin="wordle"] .opt.wrong .key, :root[data-skin="wordle"] .opt.correct .mark, :root[data-skin="wordle"] .opt.wrong .mark { background: transparent; color: #fff; opacity: 1; }
+:root[data-skin="wordle"] .opt.selected { box-shadow: inset 0 0 0 2px var(--wd-tile-active); }
+:root[data-skin="wordle"] .feedback { border-radius: 4px; }
+:root[data-skin="wordle"] .chip[aria-pressed="true"], :root[data-skin="wordle"] .seg button[aria-pressed="true"] { background: var(--wd-green); border-color: var(--wd-green); color: #fff; }
+:root[data-skin="wordle"] .progress > i, :root[data-skin="wordle"] .bar .track i { background: var(--wd-green); }
+:root[data-skin="wordle"] .bar .track i.low, :root[data-skin="wordle"] .bar .track i.mid { background: var(--wd-grey); }
+:root[data-skin="wordle"] .chart .b { fill: var(--wd-green); }
+:root[data-skin="wordle"] .chart .b2 { fill: var(--wd-grey); }
+:root[data-skin="wordle"] .navgrid button.done { border-color: var(--wd-green); color: var(--ok); }
+:root[data-skin="wordle"] .toast { top: calc(var(--nav-h) + 1rem); bottom: auto !important; background: var(--fg); color: var(--bg); border-radius: 4px; font-weight: 700; }
+:root[data-skin="wordle"] #bottomnav a[aria-current="page"] { color: var(--wd-green); }
+
+@media (max-width: 720px) {
+  :root[data-skin="wordle"] { --nav-h: 3.4rem; }
+  .wd-title { font-size: 1.45rem; }
+  .wd-title .wd-pad { width: 1.3rem; height: 1.3rem; }
+  .wd-top .sk-iconbtn { width: 2.25rem; height: 2.25rem; }
+  :root[data-skin="wordle"] main { padding-top: 1rem; }
+  .wd-row { grid-template-columns: repeat(5, 3.25rem); }
+  .wd-tile { width: 3.25rem; height: 3.25rem; font-size: 1.35rem; }
+  .wd-modal { padding: 1.75rem 1.1rem 1.25rem; }
+  .wd-stat b { font-size: 1.8rem; }
+  .wd-foot { gap: .75rem; }
+  .wd-clock { font-size: 1.45rem; }
+  .wd-share { font-size: 1rem; padding: 0 1rem; }
+}
