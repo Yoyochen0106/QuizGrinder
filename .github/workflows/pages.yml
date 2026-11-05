@@ -56,7 +56,7 @@ jobs:
       - name: 組出要發佈的檔案（不含 PDF 與工具）
         run: |
           mkdir -p _site/data
-          cp index.html style.css app.js skins.css skins.js sw.js manifest.webmanifest icon.svg _site/
+          cp index.html style.css app.js skins.css skins.js skins-more.css skins-more.js sw.js manifest.webmanifest icon.svg _site/
           cp data/bank.json _site/data/
           cp -r data/figures _site/data/
       - uses: actions/upload-pages-artifact@v3

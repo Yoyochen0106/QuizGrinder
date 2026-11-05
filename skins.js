@@ -17,15 +17,17 @@
   const { h, fill } = QG;
   const root = document.documentElement;
 
-  const SKINS = [
-    { id: 'classic', label: '原版' },
-    { id: 'feed', label: '影音牆' },
-    { id: 'search', label: '極簡搜尋' },
-    { id: 'docs', label: '文件站' },
-  ];
+  /* 版面登錄表：{ id, label, top(view), side(view), views:{home, browse, ...}, after(view), bottomNav } */
+  const SKINS = [{ id: 'classic', label: '原版' }];
+  const REG = { classic: SKINS[0] };
+  function register(def) {
+    if (!REG[def.id]) SKINS.push(def);
+    else SKINS[SKINS.indexOf(REG[def.id])] = def;
+    REG[def.id] = def;
+  }
   const skin = () => {
     const s = QG.S().settings.skin;
-    return SKINS.some((k) => k.id === s) ? s : 'classic';
+    return REG[s] ? s : 'classic';
   };
 
   /* ---------------------------------------------------------------- 圖示 */
@@ -46,7 +48,7 @@
     arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
     bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/>',
-    pad: '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/>',
+    pad: '<rect x="2" y="2" width="16" height="20" rx="4"/><circle cx="10" cy="12" r="3.6"/><path d="M13.6 12H23"/><circle cx="10" cy="12" r=".6"/>',
   };
   const FILLED = new Set(['apps']);
   function icon(name, cls) {
@@ -107,13 +109,14 @@
       side.hidden = true; toc.hidden = true; bottom.hidden = true;
       fill(side); fill(toc); fill(bottom);
     } else {
-      fill(top, s === 'feed' ? feedTop() : s === 'search' ? searchTop(view) : docsTop(view));
-      side.hidden = s === 'search';
-      fill(side, s === 'feed' ? feedSide(view) : s === 'docs' ? docsSide(view) : null);
+      const def = REG[s];
+      fill(top, def.top ? def.top(view) : null);
+      side.hidden = !def.side;
+      fill(side, def.side ? def.side(view) : null);
       toc.hidden = true;
       fill(toc);
-      bottom.hidden = false;
-      fill(bottom, NAV.map((n) => h('a', { href: '#' + n.v, 'aria-current': isCurrent(view, n.v) ? 'page' : null },
+      bottom.hidden = def.bottomNav === false;
+      fill(bottom, (def.nav || NAV).map((n) => h('a', { href: '#' + n.v, class: n.big ? 'big' : null, 'aria-current': isCurrent(view, n.v) ? 'page' : null },
         icon(n.icon), h('span', { text: n.label }), n.badge ? h('span', { class: 'badge', 'data-badge': 'review', hidden: true }) : null)));
     }
     buildSkinbar();
@@ -122,10 +125,13 @@
   function buildSkinbar() {
     const bar = document.getElementById('skinbar');
     if (!bar) return;
+    const sel = h('select', { class: 'sk-bar-select', id: 'sk-select', 'aria-label': '版面風格', onchange: (e) => setSkin(e.target.value) },
+      SKINS.map((k) => h('option', { value: k.id, text: k.label, selected: skin() === k.id })));
     fill(bar, h('span', { class: 'sk-bar-label', text: '版面風格' }),
       h('div', { class: 'sk-bar-btns', role: 'group', 'aria-label': '版面風格' }, SKINS.map((k) =>
         h('button', { type: 'button', 'aria-pressed': skin() === k.id ? 'true' : 'false', text: k.label,
-          onclick: () => setSkin(k.id) }))));
+          onclick: () => setSkin(k.id) }))),
+      sel);
   }
 
   function setSkin(id) {
@@ -720,16 +726,27 @@
   });
 
   /* ---------------------------------------------------------------- 接上主程式 */
+  register({ id: 'feed', label: '影音牆', top: feedTop, side: feedSide, views: { home: feedHome, browse: feedResults },
+    after: (view) => { if (view === 'practice' || view === 'review') feedUpNext(view); } });
+  register({ id: 'search', label: '極簡搜尋', top: searchTop, views: { home: searchHome, browse: searchResults } });
+  register({ id: 'docs', label: '文件站', top: docsTop, side: docsSide, views: { home: docsHome }, after: docsAfter });
+
   const base = Object.assign({}, QG.views);
-  QG.views.home = () => (skin() === 'feed' ? feedHome() : skin() === 'search' ? searchHome() : skin() === 'docs' ? docsHome() : base.home());
-  QG.views.browse = () => (skin() === 'search' ? searchResults() : skin() === 'feed' ? feedResults() : base.browse());
+  for (const name of Object.keys(base)) {
+    QG.views[name] = () => {
+      const def = REG[skin()];
+      return def.views && def.views[name] ? def.views[name](base) : base[name]();
+    };
+  }
 
   QG.hooks.beforeRender = (view) => { closePalette(); buildShell(view); };
-  QG.hooks.afterRender = (view) => {
-    const s = skin();
-    if (s === 'feed' && (view === 'practice' || view === 'review')) feedUpNext(view);
-    if (s === 'docs') docsAfter(view);
+  QG.hooks.afterRender = (view, changed) => {
+    const def = REG[skin()];
+    if (def.after) def.after(view, changed);
   };
+
+  /* 給其他版面檔（skins-more.js）使用 */
+  window.QGSkins = { register, icon, hue, go, brand, NAV, isCurrent, progressOf, highlight, thumb, skin, base, ICONS, closePalette };
 
   root.dataset.skin = skin();
 })();

@@ -1,8 +1,8 @@
 /* QuizGrinder Service Worker：離線可用。
  * 程式與題庫採「網路優先、失敗用快取」，確保題庫更新後立即生效；
  * 題目圖片採「快取優先」。更新程式時把 VERSION 加一即可清掉舊快取。 */
-const VERSION = 'qg-v3';
-const CORE = ['./', 'index.html', 'style.css', 'app.js', 'skins.css', 'skins.js', 'data/bank.json', 'manifest.webmanifest', 'icon.svg'];
+const VERSION = 'qg-v4';
+const CORE = ['./', 'index.html', 'style.css', 'app.js', 'skins.css', 'skins.js', 'skins-more.css', 'skins-more.js', 'data/bank.json', 'manifest.webmanifest', 'icon.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));

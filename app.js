@@ -1190,7 +1190,7 @@
   /* 給 skins.js（版面風格實驗）使用的內部 API；主程式本身不依賴它 */
   window.QG = {
     h, fill, put, $, S, Store, views, hooks, render, browse, setKeys, toast,
-    startCustomPractice, startReview, ensurePractice, buildQueue, dueReviewIds, totals, streak, filterQuestions, filterLabel,
+    record, startCustomPractice, startReview, ensurePractice, buildQueue, dueReviewIds, totals, streak, filterQuestions, filterLabel,
     questionCard, rangePanel, kpi, barRow, toggleStar, srcLabel, updateBadges, pct, fmtNum, shuffle, dayKey,
     SUBJ, SUBJ_SHORT, SUBJ_CODE, LETTERS, EXAM_LEN, EXAM_MIN,
     get QS() { return QS; }, get QMAP() { return QMAP; }, get EXAM_MAP() { return EXAM_MAP; },

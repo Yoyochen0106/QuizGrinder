@@ -36,8 +36,8 @@ def main():
     args = ap.parse_args()
     out = ROOT / "dist" / ("artifact-skins" if args.experiment else "artifact")
     html = (ROOT / "index.html").read_text("utf-8")
-    css = (ROOT / "style.css").read_text("utf-8") + "\n" + (ROOT / "skins.css").read_text("utf-8")
-    js = (ROOT / "app.js").read_text("utf-8") + "\n" + (ROOT / "skins.js").read_text("utf-8")
+    css = "\n".join((ROOT / f).read_text("utf-8") for f in ("style.css", "skins.css", "skins-more.css"))
+    js = "\n".join((ROOT / f).read_text("utf-8") for f in ("app.js", "skins.js", "skins-more.js"))
     head = section(html, "HEAD")
     env = "window.QG_ENV = 'artifact';"
     if args.experiment:

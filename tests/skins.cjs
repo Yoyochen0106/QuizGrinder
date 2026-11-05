@@ -5,8 +5,8 @@ const assert = require('assert');
 
 const BASE = process.argv[2] || 'http://localhost:8000/';
 const SHOTS = process.argv[3] || '';
-const SKINS = ['classic', 'feed', 'search', 'docs'];
-const LABEL = { classic: '原版', feed: '影音牆', search: '極簡搜尋', docs: '文件站' };
+const SKINS = ['classic', 'feed', 'search', 'docs', 'ig', 'threads', 'game'];
+const LABEL = { classic: '原版', feed: '影音牆', search: '極簡搜尋', docs: '文件站', ig: '照片牆', threads: '串文', game: '要塞' };
 
 (async () => {
   const browser = await chromium.launch();
@@ -17,9 +17,10 @@ const LABEL = { classic: '原版', feed: '影音牆', search: '極簡搜尋', do
     page.on('pageerror', (e) => errors.push(`${tag} pageerror: ${e.message}`));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(`${tag} console: ${m.text()}`); });
       await page.goto(BASE + '?skins#home');
-    await page.waitForSelector('#skinbar button');
+    await page.waitForSelector('#sk-select', { state: 'attached' });
     for (const skin of SKINS) {
-      await page.click(`#skinbar button:has-text("${LABEL[skin]}")`);
+      if (tag === 'mobile') await page.selectOption('#sk-select', skin);
+      else await page.click(`#skinbar button:has-text("${LABEL[skin]}")`);
       await page.waitForFunction((s) => document.documentElement.dataset.skin === s, skin);
       for (const v of ['home', 'practice', 'browse', 'stats']) {
         await page.goto(BASE + '?skins#' + v);
@@ -49,6 +50,49 @@ const LABEL = { classic: '原版', feed: '影音牆', search: '極簡搜尋', do
         await page.click('.g-res .g-title >> nth=0');
         await page.waitForSelector('.g-ans:not([hidden])');
         if (SHOTS) await page.screenshot({ path: `${SHOTS}/desk-search-results.png`, fullPage: true });
+      }
+      if (skin === 'ig') {
+        await page.goto(BASE + '?skins#home');
+        await page.click('.ig-post >> nth=0 >> .ans-opt >> nth=0');
+        await page.waitForSelector('.ig-post >> nth=0 >> .ig-comments:not([hidden])');
+        await page.click('.ig-story >> nth=0');
+        await page.waitForSelector('.st .ans-opt');
+        await page.keyboard.press('2');
+        await page.waitForSelector('.st .ans-opt.ok');
+        if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-ig-story.png` });
+        await page.keyboard.press('Escape');
+        await page.waitForSelector('.st', { state: 'detached' });
+        await page.goto(BASE + '?skins#stats');
+        await page.waitForSelector('.ig-prof-head');
+        if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-ig-profile.png` });
+      }
+      if (skin === 'threads') {
+        await page.goto(BASE + '?skins#home');
+        await page.click('.th-thread >> nth=0 >> .ans-opt >> nth=1');
+        await page.waitForSelector('.th-thread.has-reply');
+        if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-threads-reply.png` });
+        await page.goto(BASE + '?skins#browse');
+        await page.waitForSelector('.th-acct');
+      }
+      if (skin === 'game') {
+        await page.goto(BASE + '?skins#home');
+        await page.click('.gm-bld >> nth=0');
+        await page.waitForSelector('.gm-dialog');
+        if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-game-building.png` });
+        await page.click('.gm-dialog .gm-btn.green');
+        await page.waitForSelector('#qcard');
+        await page.keyboard.press('1');
+        await page.waitForSelector('.feedback');
+        if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-game-practice.png` });
+        if (tag === 'desk') {
+          await page.goto(BASE + '?skins#exam');
+          await page.click('button:has-text("開始考試")');
+          await page.waitForSelector('.navgrid');
+          await page.click('button:has-text("交卷")');
+          await page.click('button:has-text("確定交卷")');
+          await page.waitForSelector('.gm-victory');
+          if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-game-result.png` });
+        }
       }
       if (skin === 'docs' && tag === 'desk') {
         await page.goto(BASE + '?skins#home');
