@@ -1,1 +1,296 @@
-/* uma：實作中 */
+/* QuizGrinder 版面風格：賽馬娘風（搭配 skins/uma.js）
+   明亮、圓潤、粉彩的育成介面：草地綠＋粉紅點綴、粗屬性條、等級字母徽章、圓角卡片。
+   刻意只做一種明亮外觀，淺色 token 與兩個深色區塊寫同一組值。 */
+
+:root[data-skin="uma"] {
+  --bg: #f1faef; --surface: #ffffff; --surface-2: #f2f7f1; --line: #dcebd8;
+  --fg: #4a4458; --fg-muted: #857e93; --accent: #ff6fae; --accent-fg: #ffffff; --mask: #3fb44c;
+  --ok: #2f9a3c; --ok-bg: #e2f6df; --bad: #e0457b; --bad-bg: #ffe6ef; --warn: #b8770c; --warn-bg: #fff2d6;
+  --focus: #ff6fae; --shadow: 0 4px 0 #d6ead2, 0 8px 22px rgba(74, 120, 70, .12); --paper: #ffffff; --paper-img: 1;
+  --uma-g: #5cc95a; --uma-g2: #2f9a3c; --uma-pink: #ff6fae; --uma-y: #ffc93c; --uma-o: #ff9a3c;
+  --font-display: "Nunito", "Noto Sans TC", "PingFang TC", sans-serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --r: 16px; --nav-h: 3.75rem; --max: 48rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="uma"]:not([data-theme="light"]) {
+    --bg: #f1faef; --surface: #ffffff; --surface-2: #f2f7f1; --line: #dcebd8;
+    --fg: #4a4458; --fg-muted: #857e93; --accent: #ff6fae; --accent-fg: #ffffff; --mask: #3fb44c;
+    --ok: #2f9a3c; --ok-bg: #e2f6df; --bad: #e0457b; --bad-bg: #ffe6ef; --warn: #b8770c; --warn-bg: #fff2d6;
+    --focus: #ff6fae; --shadow: 0 4px 0 #d6ead2, 0 8px 22px rgba(74, 120, 70, .12); --paper: #ffffff; --paper-img: 1;
+    color-scheme: light;
+  }
+}
+:root[data-skin="uma"][data-theme="dark"] {
+  --bg: #f1faef; --surface: #ffffff; --surface-2: #f2f7f1; --line: #dcebd8;
+  --fg: #4a4458; --fg-muted: #857e93; --accent: #ff6fae; --accent-fg: #ffffff; --mask: #3fb44c;
+  --ok: #2f9a3c; --ok-bg: #e2f6df; --bad: #e0457b; --bad-bg: #ffe6ef; --warn: #b8770c; --warn-bg: #fff2d6;
+  --focus: #ff6fae; --shadow: 0 4px 0 #d6ead2, 0 8px 22px rgba(74, 120, 70, .12); --paper: #ffffff; --paper-img: 1;
+  color-scheme: light;
+}
+:root[data-skin="uma"] body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle, rgba(92, 201, 90, .13) 1.6px, transparent 2px),
+    linear-gradient(180deg, #dff4ff 0, #f1faef 14rem);
+  background-size: 22px 22px, 100% 100%;
+  background-attachment: fixed;
+}
+:root[data-skin="uma"] body::before { background: #ffffff; }
+
+/* ---------------------------------------------------------------- 頂部列 */
+:root[data-skin="uma"] .topbar { background: rgba(255, 255, 255, .96); border-bottom: 0; box-shadow: 0 3px 0 var(--uma-g), 0 6px 14px rgba(47, 154, 60, .12); }
+.uma-top { gap: .75rem; min-width: 0; }
+.uma-brand { display: inline-flex; align-items: center; gap: .4rem; color: var(--fg); text-decoration: none; font-family: var(--font-display); font-weight: 900; white-space: nowrap; }
+.uma-brand-ico { width: 1.6rem; height: 1.6rem; color: var(--uma-g2); }
+.uma-top-turn { display: inline-flex; align-items: baseline; gap: .3rem; padding: .15rem .8rem; border-radius: 999px; background: var(--uma-g); color: #fff; white-space: nowrap; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .12); }
+.uma-top-turn small { font-size: .65rem; font-weight: 700; opacity: .9; }
+.uma-top-turn b { font-size: 1rem; font-weight: 900; }
+.uma-top-turn span { font-family: var(--font-display); font-weight: 800; font-size: .8rem; }
+.uma-top-race { display: inline-flex; align-items: center; gap: .3rem; color: var(--uma-pink); font-weight: 900; font-size: .85rem; text-decoration: none; white-space: nowrap; }
+.uma-top-race .ico { width: 1.1rem; height: 1.1rem; }
+.uma-mood { display: inline-flex; align-items: center; gap: .35rem; padding: .15rem .7rem .15rem .25rem; border-radius: 999px; background: #fff; border: 2px solid currentColor; font-weight: 900; font-size: .85rem; white-space: nowrap; }
+.uma-mood-arrow { position: relative; width: 1.35rem; height: 1.35rem; border-radius: 50%; background: currentColor; flex: none; }
+.uma-mood-arrow::before {
+  content: ""; position: absolute; inset: 0; margin: auto; width: .75rem; height: .75rem;
+  background: #fff; clip-path: polygon(0 38%, 52% 38%, 52% 10%, 100% 50%, 52% 90%, 52% 62%, 0 62%); transform: rotate(var(--rot));
+}
+.uma-mood.m-top { color: #ff4f9a; }
+.uma-mood.m-good { color: #ff8a1f; }
+.uma-mood.m-norm { color: #e2a400; }
+.uma-mood.m-low { color: #3d8de0; }
+.uma-mood.m-bad { color: #8a63d2; }
+
+/* ---------------------------------------------------------------- 通用外觀 */
+:root[data-skin="uma"] h1, :root[data-skin="uma"] h2, :root[data-skin="uma"] h3 { font-family: var(--font-body); font-weight: 900; }
+:root[data-skin="uma"] .eyebrow { font-family: var(--font-display); font-weight: 900; color: var(--uma-g2); letter-spacing: .06em; }
+:root[data-skin="uma"] .panel, :root[data-skin="uma"] .kpi, :root[data-skin="uma"] .qitem, :root[data-skin="uma"] .action, :root[data-skin="uma"] .card {
+  background: #fff; border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
+}
+:root[data-skin="uma"] .kpi b { font-family: var(--font-display); font-weight: 900; color: var(--uma-g2); }
+:root[data-skin="uma"] .btn { border-radius: 999px; border: 2px solid var(--line); font-weight: 700; box-shadow: 0 3px 0 #d6ead2; }
+:root[data-skin="uma"] .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #d6ead2; }
+:root[data-skin="uma"] .btn.primary { background: linear-gradient(#73d86f, #3fb44c); border-color: #2f9a3c; color: #fff; box-shadow: 0 3px 0 #2a8436; }
+:root[data-skin="uma"] .btn.mask { background: linear-gradient(#ff8cc0, #ff5ea3); border-color: #e0457b; color: #fff; box-shadow: 0 3px 0 #c93a6c; }
+:root[data-skin="uma"] .btn.ghost { box-shadow: none; border-color: transparent; }
+:root[data-skin="uma"] .chip[aria-pressed="true"], :root[data-skin="uma"] .seg button[aria-pressed="true"] { background: var(--uma-g); border-color: var(--uma-g); color: #fff; }
+:root[data-skin="uma"] .seg { border-radius: 999px; border-width: 2px; }
+:root[data-skin="uma"] .chip { border-width: 2px; font-weight: 700; }
+:root[data-skin="uma"] input[type="search"], :root[data-skin="uma"] input[type="text"], :root[data-skin="uma"] select, :root[data-skin="uma"] textarea { border-radius: 12px; border-width: 2px; }
+:root[data-skin="uma"] .tag { border-radius: 999px; padding-inline: .55rem; font-weight: 700; }
+:root[data-skin="uma"] .progress { height: 10px; border-radius: 999px; background: #e6f2e3; }
+:root[data-skin="uma"] .progress > i { background: linear-gradient(90deg, var(--uma-y), var(--uma-o)); border-radius: 999px; }
+:root[data-skin="uma"] .bar .track { height: .8rem; border-radius: 999px; }
+:root[data-skin="uma"] .bar .track i { background: linear-gradient(90deg, var(--uma-y), var(--uma-o)); border-radius: 999px; }
+:root[data-skin="uma"] .bar .track i.low { background: linear-gradient(90deg, #ff9cc5, var(--uma-pink)); }
+:root[data-skin="uma"] .chart .b { fill: var(--uma-g); }
+:root[data-skin="uma"] .chart .b2 { fill: var(--uma-pink); }
+:root[data-skin="uma"] .action.lead { background: linear-gradient(135deg, #73d86f, #3fb44c); border-color: #2f9a3c; }
+:root[data-skin="uma"] .score b { font-family: var(--font-display); font-weight: 900; color: var(--uma-pink); }
+:root[data-skin="uma"] .timer { font-family: var(--font-display); font-weight: 900; }
+:root[data-skin="uma"] .navgrid button { border-radius: 10px; }
+:root[data-skin="uma"] #bottomnav { background: #fff; border-top: 0; box-shadow: 0 -3px 0 var(--uma-g); }
+:root[data-skin="uma"] #bottomnav a[aria-current="page"] { color: var(--uma-g2); }
+:root[data-skin="uma"] #bottomnav a.big { color: #fff; background: linear-gradient(#ff8cc0, #ff5ea3); border-radius: 16px; padding-inline: .9rem; box-shadow: 0 3px 0 #c93a6c; }
+:root[data-skin="uma"] .toast { background: var(--uma-g2); color: #fff; font-weight: 700; }
+
+/* 作答 */
+.uma-strip {
+  max-width: var(--max); margin: 0 auto .9rem; display: flex; align-items: center; gap: .6rem; padding: .35rem .5rem .35rem .4rem;
+  background: linear-gradient(90deg, #73d86f, #3fb44c); color: #fff; border-radius: 999px; box-shadow: 0 3px 0 #2a8436; font-size: .85rem;
+}
+.uma-strip-turn { background: #fff; color: var(--uma-g2); border-radius: 999px; padding: .05rem .7rem; font-family: var(--font-display); font-weight: 800; white-space: nowrap; }
+.uma-strip-t { font-weight: 900; letter-spacing: .1em; }
+.uma-strip-n { font-family: var(--font-display); font-weight: 900; padding-right: .5rem; white-space: nowrap; }
+:root[data-skin="uma"] #qcard { border-color: #cfe9ca; border-top: 8px solid var(--uma-g); }
+:root[data-skin="uma"] .qtext { font-weight: 500; }
+:root[data-skin="uma"] .opt { border: 2px solid var(--line); border-radius: 22px; padding: .55rem 1.1rem .55rem .6rem; box-shadow: 0 3px 0 #e1eedd; font-weight: 500; transition: transform .1s; }
+:root[data-skin="uma"] .opt:hover:not([disabled]) { border-color: var(--uma-g); transform: translateY(-1px); }
+:root[data-skin="uma"] .opt .key { border-radius: 50%; background: #eaf7e8; color: var(--uma-g2); font-family: var(--font-display); font-weight: 900; }
+:root[data-skin="uma"] .opt.correct { border-color: var(--uma-g); }
+:root[data-skin="uma"] .opt.wrong { border-color: var(--uma-pink); }
+:root[data-skin="uma"] .feedback { position: relative; border-width: 2px; border-radius: 18px; }
+:root[data-skin="uma"] .feedback.ok::after, :root[data-skin="uma"] .feedback.bad::after {
+  position: absolute; right: 1rem; top: -1rem; padding: .15rem .8rem; border-radius: 999px; font-weight: 900; font-size: .9rem; color: #fff;
+  animation: uma-pop .45s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+:root[data-skin="uma"] .feedback.ok::after { content: "訓練成功！"; background: linear-gradient(#ffb347, #ff8a1f); box-shadow: 0 3px 0 #d36b0c; }
+:root[data-skin="uma"] .feedback.bad::after { content: "下次加油"; background: linear-gradient(#a8b4ff, #7d8ce8); box-shadow: 0 3px 0 #5f6dc4; }
+@keyframes uma-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------------------------------------------------------------- 首頁：備考培育 */
+.uma-home { max-width: 70rem; margin: 0 auto; display: grid; gap: 1.1rem; }
+.uma-card { background: #fff; border: 2px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 1rem 1.15rem 1.1rem; min-width: 0; position: relative; }
+.uma-card-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem .8rem; margin-bottom: .7rem; }
+.uma-card-h h2 { font-size: 1.15rem; position: relative; padding-left: .8rem; }
+.uma-card-h h2::before { content: ""; position: absolute; left: 0; top: .2em; bottom: .2em; width: .3rem; border-radius: 4px; background: var(--uma-g); }
+.uma-sub { font-size: .76rem; color: var(--fg-muted); }
+.uma-k { font-size: .78rem; font-weight: 900; color: var(--uma-g2); white-space: nowrap; }
+
+/* 回合列 */
+.uma-turn {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .6rem 1.4rem; padding: .9rem 1.3rem;
+  border-radius: 24px; color: #fff; position: relative; overflow: hidden;
+  background: linear-gradient(100deg, #5cc95a 0%, #49bb55 55%, #3aa7c9 100%); box-shadow: 0 5px 0 #2a8436, 0 10px 24px rgba(47, 154, 60, .25);
+}
+.uma-turn::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, .09) 0 14px, transparent 14px 28px);
+}
+.uma-turn > * { position: relative; }
+.uma-turn-k { font-size: .75rem; font-weight: 900; letter-spacing: .1em; opacity: .9; }
+.uma-turn-big b { font-size: 2rem; font-weight: 900; line-height: 1.1; text-shadow: 0 2px 0 rgba(0, 0, 0, .15); }
+.uma-turn-big span { font-weight: 700; font-size: .9rem; }
+.uma-turn-track { display: flex; align-items: center; gap: .3rem; flex-wrap: wrap; min-width: 0; }
+.uma-wk { width: .9rem; height: .9rem; border-radius: 50%; background: rgba(255, 255, 255, .35); display: grid; place-items: center; flex: none; }
+.uma-wk.done { background: #fff; }
+.uma-wk.now { width: 1.9rem; height: 1.9rem; background: var(--uma-y); box-shadow: 0 0 0 3px #fff, 0 3px 0 4px rgba(0, 0, 0, .1); color: #6a4b00; font-family: var(--font-display); font-size: .95rem; }
+.uma-wk.goal { width: 2rem; height: 2rem; background: var(--uma-pink); box-shadow: 0 0 0 3px #fff; color: #fff; }
+.uma-wk.goal .ico { width: 1.1rem; height: 1.1rem; }
+.uma-turn-r { display: grid; justify-items: end; gap: .05rem; }
+.uma-count { display: flex; align-items: baseline; gap: .25rem; font-weight: 900; }
+.uma-count b { font-family: var(--font-display); font-size: 2.4rem; line-height: 1; color: #fff; text-shadow: 0 3px 0 #e0457b, 0 0 0 #fff; -webkit-text-stroke: 1px #e0457b; paint-order: stroke fill; }
+.uma-link { border: 0; background: rgba(255, 255, 255, .22); color: #fff; font-weight: 700; font-size: .75rem; border-radius: 999px; padding: .15rem .7rem; cursor: pointer; }
+.uma-link:hover { background: rgba(255, 255, 255, .35); }
+.uma-dateform {
+  grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .6rem; padding: .7rem .9rem; border-radius: 16px;
+  background: #fff; color: var(--fg);
+}
+.uma-df-l { font-weight: 900; font-size: .85rem; color: var(--uma-g2); }
+.uma-dateform input[type="date"] { border: 2px solid var(--line); border-radius: 12px; padding: .3rem .6rem; background: #fff; color: var(--fg); min-width: 0; }
+.uma-df-err { color: var(--bad); font-weight: 700; font-size: .8rem; }
+.uma-df-note { flex-basis: 100%; font-size: .74rem; color: var(--fg-muted); }
+
+/* 按鈕 */
+.uma-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border-radius: 999px; border: 2px solid #c9dfc4; background: #fff; color: var(--fg);
+  font-weight: 900; cursor: pointer; padding: .45rem 1.2rem; text-decoration: none; box-shadow: 0 3px 0 #d6ead2; font-size: .9rem;
+}
+.uma-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #d6ead2; }
+.uma-btn.small { padding: .25rem .9rem; font-size: .8rem; }
+.uma-btn.green { background: linear-gradient(#73d86f, #3fb44c); border-color: #2f9a3c; color: #fff; box-shadow: 0 3px 0 #2a8436; }
+.uma-btn.pink { background: linear-gradient(#ff8cc0, #ff5ea3); border-color: #e0457b; color: #fff; box-shadow: 0 4px 0 #c93a6c; }
+.uma-btn.big { font-size: 1.25rem; padding: .6rem 1.5rem; letter-spacing: .2em; }
+.uma-btn .ico { width: 1.2rem; height: 1.2rem; }
+
+/* 狀態卡 */
+.uma-grid { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 1.1rem; align-items: start; }
+.uma-col { display: grid; gap: 1.1rem; min-width: 0; }
+.uma-status { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.2rem; align-items: center; }
+.uma-eval { display: grid; justify-items: center; gap: .1rem; padding: .3rem .9rem .5rem; border-radius: 18px; background: linear-gradient(#fff8e1, #ffeef6); border: 2px solid #ffe2ad; }
+.uma-eval-k { font-size: .72rem; font-weight: 900; color: #b8770c; letter-spacing: .1em; }
+.uma-eval-v { font-size: .8rem; font-weight: 700; color: var(--fg-muted); }
+.uma-eval-v b { font-family: var(--font-display); font-size: 1.2rem; color: var(--fg); }
+.uma-eval-n { font-size: .68rem; color: var(--fg-muted); }
+.uma-status-r { display: grid; gap: .55rem; min-width: 0; }
+.uma-row { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem .7rem; min-width: 0; }
+.uma-energy { position: relative; flex: 1 1 10rem; min-width: 8rem; height: 1.3rem; border-radius: 999px; background: #e9eef5; border: 2px solid #fff; box-shadow: 0 0 0 2px #cfd9e6; overflow: hidden; }
+.uma-energy i { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: linear-gradient(90deg, #ffd23c, #ff9a3c 60%, #ff6fae); }
+.uma-energy span { position: relative; display: block; text-align: center; font-family: var(--font-display); font-weight: 900; font-size: .78rem; line-height: 1.15rem; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .45); }
+
+/* 等級徽章 */
+.uma-grade {
+  display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 8px; flex: none;
+  font-family: var(--font-display); font-weight: 900; font-size: 1.05rem; color: #fff; line-height: 1;
+  background: var(--gc, #a7a3b0); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15), 0 0 0 2px #fff, 0 0 0 3px var(--gc, #a7a3b0);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+}
+.uma-grade.big { width: 4.6rem; height: 4.6rem; border-radius: 20px; font-size: 3.4rem; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .15), 0 0 0 4px #fff, 0 0 0 6px var(--gc, #a7a3b0); margin: .3rem 0; }
+.uma-grade.tiny { width: 1.3rem; height: 1.3rem; font-size: .8rem; border-radius: 6px; }
+.uma-grade.g-S { --gc: #f2b400; background: linear-gradient(135deg, #ffe066, #f2b400 50%, #ff9a3c); }
+.uma-grade.g-A { --gc: #ff5e7e; }
+.uma-grade.g-B { --gc: #ff7eb6; }
+.uma-grade.g-C { --gc: #ff9a3c; }
+.uma-grade.g-D { --gc: #45bf5a; }
+.uma-grade.g-E { --gc: #2eb8b0; }
+.uma-grade.g-F { --gc: #5b9cf0; }
+.uma-grade.g-G { --gc: #a7a3b0; }
+
+/* 屬性條 */
+.uma-stats { display: grid; gap: .55rem; }
+.uma-stats .uma-card-h { margin-bottom: .2rem; }
+.uma-stat { display: grid; grid-template-columns: 7.5rem auto minmax(0, 1fr) 2.6rem; align-items: center; gap: .65rem; }
+.uma-stat-name { display: flex; min-width: 0; }
+.uma-stat-t { padding: .1rem .7rem; border-radius: 999px; background: var(--sc); color: #fff; font-weight: 900; font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.uma-stat-bar {
+  position: relative; height: 1.15rem; border-radius: 999px; background: #eef1f6; overflow: hidden; box-shadow: inset 0 2px 0 rgba(0, 0, 0, .06);
+}
+.uma-stat-bar::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), rgba(255, 255, 255, .9) calc(10% - 2px) 10%); }
+.uma-stat-bar i { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: linear-gradient(90deg, var(--sc), var(--sc2)); }
+.uma-stat-v { font-family: var(--font-display); font-weight: 900; font-size: 1.35rem; text-align: right; color: var(--fg); }
+.uma-c0 { --sc: #3d9cf0; --sc2: #7cc6ff; }
+.uma-c1 { --sc: #ff6fae; --sc2: #ffa7cf; }
+.uma-c2 { --sc: #ff8a1f; --sc2: #ffc35c; }
+.uma-c3 { --sc: #39b54a; --sc2: #8ee07a; }
+.uma-c4 { --sc: #9a6ce0; --sc2: #c6a6ff; }
+
+/* 目標賽事 */
+.uma-race { display: grid; gap: .45rem; justify-items: center; text-align: center; padding-top: 2.1rem; background: linear-gradient(180deg, #fff 0, #fff4f9 100%); border-color: #ffd3e6; box-shadow: 0 4px 0 #ffd3e6, 0 8px 22px rgba(255, 111, 174, .14); }
+.uma-race-ribbon {
+  position: absolute; top: -.1rem; left: 50%; transform: translateX(-50%); padding: .3rem 1.6rem .35rem; color: #fff; font-weight: 900; letter-spacing: .2em; font-size: .85rem;
+  background: linear-gradient(#ff8cc0, #ff5ea3); clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%, 10px 50%); white-space: nowrap;
+}
+.uma-race h2 { font-size: 1.6rem; }
+.uma-race-sub { font-size: .8rem; color: var(--fg-muted); }
+.uma-race-count { display: flex; align-items: baseline; gap: .3rem; font-weight: 900; color: var(--fg); }
+.uma-race-count b { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: var(--uma-pink); }
+.uma-race-rec { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; width: 100%; margin: .2rem 0 .5rem; }
+.uma-race-rec div { display: grid; padding: .3rem 0; border-radius: 14px; background: #fff; border: 2px solid #ffe0ee; }
+.uma-race-rec span { font-size: .7rem; font-weight: 700; color: var(--fg-muted); }
+.uma-race-rec b { font-family: var(--font-display); font-size: 1.3rem; }
+
+/* 訓練卡 */
+.uma-train { display: grid; gap: .2rem; }
+.uma-tcards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .8rem; }
+.uma-tcard {
+  position: relative; display: grid; justify-items: center; gap: .3rem; padding: 1.1rem .5rem .8rem; border-radius: 22px; cursor: pointer; min-width: 0;
+  background: linear-gradient(180deg, #fff 55%, color-mix(in srgb, var(--sc) 14%, #fff)); border: 3px solid var(--sc); color: var(--fg);
+  box-shadow: 0 5px 0 var(--sc); transition: transform .12s;
+}
+.uma-tcard:hover { transform: translateY(-4px); }
+.uma-tcard:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--sc); }
+.uma-temblem {
+  width: 3.4rem; height: 3.4rem; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; font-weight: 900; color: #fff;
+  background: radial-gradient(circle at 35% 30%, var(--sc2), var(--sc)); box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--sc);
+}
+.uma-tname { font-size: .92rem; font-weight: 900; text-align: center; line-height: 1.3; overflow-wrap: anywhere; }
+.uma-tinfo { display: flex; flex-wrap: wrap; justify-content: center; gap: .1rem .5rem; font-size: .7rem; color: var(--fg-muted); font-weight: 700; }
+.uma-tlv { position: absolute; top: .45rem; left: .55rem; font-family: var(--font-display); font-weight: 900; font-size: .8rem; color: var(--sc); }
+.uma-tag-rec {
+  position: absolute; top: -.75rem; right: -.4rem; padding: .1rem .6rem; border-radius: 999px; background: var(--uma-y); color: #6a4b00; font-weight: 900; font-size: .75rem;
+  box-shadow: 0 2px 0 #d39b00; transform: rotate(6deg);
+}
+.uma-tcard.rec { animation: uma-bob 1.8s ease-in-out infinite; }
+@keyframes uma-bob { 50% { transform: translateY(-4px); } }
+.uma-more { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-top: 1rem; }
+.uma-chips { display: flex; flex-wrap: wrap; gap: .4rem; min-width: 0; }
+.uma-chip {
+  display: inline-flex; align-items: center; gap: .4rem; border: 2px solid var(--line); background: #fff; border-radius: 999px; padding: .2rem .35rem .2rem .8rem;
+  font-weight: 700; font-size: .82rem; cursor: pointer; color: var(--fg); box-shadow: 0 2px 0 #e1eedd;
+}
+.uma-chip:hover { border-color: var(--uma-g); }
+
+@media (max-width: 960px) {
+  .uma-grid { grid-template-columns: minmax(0, 1fr); }
+  .uma-tcards { grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
+}
+@media (max-width: 720px) {
+  .uma-top-race span, .uma-brand b { display: none; }
+  .uma-top { gap: .45rem; }
+  .uma-turn { grid-template-columns: minmax(0, 1fr) auto; padding: .8rem 1rem; }
+  .uma-turn-track { grid-column: 1 / -1; grid-row: 2; }
+  .uma-turn-big b { font-size: 1.6rem; }
+  .uma-count b { font-size: 2rem; }
+  .uma-status { grid-template-columns: minmax(0, 1fr); justify-items: stretch; }
+  .uma-eval { grid-template-columns: auto auto; justify-content: center; column-gap: 1rem; }
+  .uma-eval .uma-grade.big { grid-row: span 3; }
+  .uma-stat { grid-template-columns: 5.6rem auto minmax(0, 1fr) 2.2rem; gap: .45rem; }
+  .uma-stat-t { font-size: .74rem; padding: .1rem .5rem; }
+  .uma-tcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem .7rem; }
+  .uma-card { padding: .9rem .9rem 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uma-tcard.rec { animation: none; }
+  .uma-tcard, .uma-opt { transition: none; }
+}

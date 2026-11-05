@@ -1,1 +1,354 @@
-/* sekai：實作中 */
+/* QuizGrinder 版面風格：Project SEKAI 風（搭配 skins/sekai.js）
+   節奏遊戲介面：深夜藍底＋霓虹青／粉／紫漸層、斜條紋、選曲清單、難度徽章、大判定字。
+   刻意只做一種深色外觀，淺色 token 與兩個深色區塊寫同一組值。 */
+
+:root[data-skin="sekai"] {
+  --bg: #151233; --surface: #211d4a; --surface-2: #2c2760; --line: #3f3a7a;
+  --fg: #f4f2ff; --fg-muted: #aaa6d6; --accent: #33e1ff; --accent-fg: #0d0b26; --mask: #ff4fa3;
+  --ok: #4ff0b4; --ok-bg: #133d3a; --bad: #ff6b8a; --bad-bg: #44183a; --warn: #ffe14f; --warn-bg: #3e3520;
+  --focus: #33e1ff; --shadow: 0 10px 30px rgba(5, 3, 30, .5); --paper: #e4e2f2; --paper-img: .94;
+  --sekai-c: #33e1ff; --sekai-p: #ff4fa3; --sekai-v: #8a5cff; --sekai-y: #ffe14f;
+  --sekai-grad: linear-gradient(100deg, #33e1ff, #8a5cff 50%, #ff4fa3);
+  --font-display: "Montserrat", "Noto Sans TC", "PingFang TC", sans-serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --r: 12px; --nav-h: 3.6rem; --max: 48rem;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="sekai"]:not([data-theme="light"]) {
+    --bg: #151233; --surface: #211d4a; --surface-2: #2c2760; --line: #3f3a7a;
+    --fg: #f4f2ff; --fg-muted: #aaa6d6; --accent: #33e1ff; --accent-fg: #0d0b26; --mask: #ff4fa3;
+    --ok: #4ff0b4; --ok-bg: #133d3a; --bad: #ff6b8a; --bad-bg: #44183a; --warn: #ffe14f; --warn-bg: #3e3520;
+    --focus: #33e1ff; --shadow: 0 10px 30px rgba(5, 3, 30, .5); --paper: #e4e2f2; --paper-img: .94;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="sekai"][data-theme="dark"] {
+  --bg: #151233; --surface: #211d4a; --surface-2: #2c2760; --line: #3f3a7a;
+  --fg: #f4f2ff; --fg-muted: #aaa6d6; --accent: #33e1ff; --accent-fg: #0d0b26; --mask: #ff4fa3;
+  --ok: #4ff0b4; --ok-bg: #133d3a; --bad: #ff6b8a; --bad-bg: #44183a; --warn: #ffe14f; --warn-bg: #3e3520;
+  --focus: #33e1ff; --shadow: 0 10px 30px rgba(5, 3, 30, .5); --paper: #e4e2f2; --paper-img: .94;
+  color-scheme: dark;
+}
+:root[data-skin="sekai"] body {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(-60deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 22px),
+    radial-gradient(ellipse 60% 45% at 8% 0%, rgba(51, 225, 255, .22), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 100% 30%, rgba(255, 79, 163, .2), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 40% 110%, rgba(138, 92, 255, .25), transparent 70%);
+  background-attachment: fixed;
+}
+:root[data-skin="sekai"] body::before { background: #110e2b; }
+
+/* ---------------------------------------------------------------- 頂部列 */
+:root[data-skin="sekai"] .topbar { background: rgba(17, 14, 43, .85); border-bottom: 0; backdrop-filter: blur(8px); }
+:root[data-skin="sekai"] .topbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--sekai-grad); }
+.sekai-top { gap: .5rem; min-width: 0; }
+.sekai-brand { display: inline-flex; align-items: center; gap: .45rem; text-decoration: none; color: var(--fg); }
+.sekai-brand-ico { width: 1.6rem; height: 1.6rem; color: var(--sekai-c); }
+.sekai-brand b { font-family: var(--font-display); font-weight: 800; letter-spacing: .12em; font-size: .95rem; background: var(--sekai-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sekai-chip { display: inline-flex; align-items: baseline; gap: .35rem; padding: .2rem .8rem; background: rgba(255, 255, 255, .08); transform: skewX(-14deg); border-left: 3px solid var(--sekai-c); white-space: nowrap; }
+.sekai-chip > * { transform: skewX(14deg); }
+.sekai-chip small { font-family: var(--font-display); font-weight: 800; font-size: .58rem; letter-spacing: .14em; color: var(--fg-muted); }
+.sekai-chip b { font-family: var(--font-display); font-weight: 800; font-size: .9rem; }
+.sekai-chip:nth-of-type(2) { border-left-color: var(--sekai-p); }
+.sekai-chip:nth-of-type(3) { border-left-color: var(--sekai-y); }
+
+/* ---------------------------------------------------------------- 通用外觀 */
+:root[data-skin="sekai"] h1, :root[data-skin="sekai"] h2, :root[data-skin="sekai"] h3 { font-family: var(--font-body); font-weight: 900; }
+:root[data-skin="sekai"] .eyebrow { font-family: var(--font-display); font-weight: 800; letter-spacing: .16em; color: var(--sekai-c); }
+:root[data-skin="sekai"] .panel, :root[data-skin="sekai"] .kpi, :root[data-skin="sekai"] .qitem, :root[data-skin="sekai"] .action, :root[data-skin="sekai"] .card {
+  background: rgba(33, 29, 74, .85); border: 1px solid var(--line); border-radius: 14px;
+}
+:root[data-skin="sekai"] .kpi { border-top: 3px solid var(--sekai-c); }
+:root[data-skin="sekai"] .kpi:nth-child(3n+2) { border-top-color: var(--sekai-p); }
+:root[data-skin="sekai"] .kpi:nth-child(3n) { border-top-color: var(--sekai-v); }
+:root[data-skin="sekai"] .kpi b { font-family: var(--font-display); font-weight: 800; }
+:root[data-skin="sekai"] .btn { border-radius: 999px; font-weight: 700; background: var(--surface-2); }
+:root[data-skin="sekai"] .btn.primary { background: var(--sekai-grad); border: 0; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+:root[data-skin="sekai"] .btn.mask { background: var(--sekai-p); border-color: var(--sekai-p); color: #fff; }
+:root[data-skin="sekai"] .btn.ghost { background: transparent; }
+:root[data-skin="sekai"] .chip { background: transparent; }
+:root[data-skin="sekai"] .chip[aria-pressed="true"], :root[data-skin="sekai"] .seg button[aria-pressed="true"] { background: var(--sekai-c); border-color: var(--sekai-c); color: #0d0b26; font-weight: 700; }
+:root[data-skin="sekai"] .seg button { background: transparent; }
+:root[data-skin="sekai"] input[type="search"], :root[data-skin="sekai"] input[type="text"], :root[data-skin="sekai"] select, :root[data-skin="sekai"] textarea { background: #1a1640; border-color: var(--line); }
+:root[data-skin="sekai"] .progress { height: 6px; border-radius: 999px; background: #2c2760; }
+:root[data-skin="sekai"] .progress > i { background: var(--sekai-grad); }
+:root[data-skin="sekai"] .bar .track { background: #2c2760; border-radius: 999px; }
+:root[data-skin="sekai"] .bar .track i { background: linear-gradient(90deg, var(--sekai-c), var(--sekai-v)); }
+:root[data-skin="sekai"] .bar .track i.low { background: var(--sekai-p); }
+:root[data-skin="sekai"] .bar .track i.mid { background: var(--sekai-y); }
+:root[data-skin="sekai"] .chart .b { fill: var(--sekai-c); }
+:root[data-skin="sekai"] .chart .b2 { fill: var(--sekai-p); }
+:root[data-skin="sekai"] .action.lead { background: var(--sekai-grad); border: 0; }
+:root[data-skin="sekai"] .score b, :root[data-skin="sekai"] .timer { font-family: var(--font-display); font-weight: 800; }
+:root[data-skin="sekai"] .tag { background: rgba(255, 255, 255, .08); }
+:root[data-skin="sekai"] .tag.subj { border-color: var(--sekai-c); color: var(--sekai-c); }
+:root[data-skin="sekai"] #bottomnav { background: rgba(17, 14, 43, .96); border-top: 0; box-shadow: 0 -2px 0 rgba(138, 92, 255, .6); }
+:root[data-skin="sekai"] #bottomnav a[aria-current="page"] { color: var(--sekai-c); }
+:root[data-skin="sekai"] #bottomnav a.big { background: var(--sekai-grad); color: #fff; border-radius: 12px; padding-inline: .8rem; }
+:root[data-skin="sekai"] #skinbar { background: #211d4a; }
+:root[data-skin="sekai"] .toast { background: var(--sekai-grad); color: #fff; font-weight: 700; }
+/* 一般作答頁 */
+:root[data-skin="sekai"] #qcard { border: 0; background: linear-gradient(#262158, #1e1a47); box-shadow: 0 0 0 1px #4a4392, 0 12px 30px rgba(5, 3, 30, .5); position: relative; overflow: hidden; }
+:root[data-skin="sekai"] #qcard::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--sekai-grad); }
+:root[data-skin="sekai"] .opt { border-radius: 12px; border: 1px solid #4a4392; background: rgba(255, 255, 255, .04); }
+:root[data-skin="sekai"] .opt:hover:not([disabled]) { border-color: var(--sekai-c); box-shadow: 0 0 0 1px var(--sekai-c), 0 0 18px rgba(51, 225, 255, .25); }
+:root[data-skin="sekai"] .opt .key { border-radius: 8px; background: var(--sekai-v); color: #fff; font-family: var(--font-display); font-weight: 800; }
+:root[data-skin="sekai"] .feedback { border-radius: 12px; }
+:root[data-skin="sekai"] .feedback.ok strong { background: var(--sekai-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------------------------------------------------------------- 首頁 */
+.sekai-home { max-width: 74rem; margin: 0 auto; }
+.sekai-head-en {
+  position: absolute; left: -.2rem; top: -1.3rem; font-family: var(--font-display); font-weight: 800; font-size: 3.2rem; line-height: 1; letter-spacing: .04em;
+  color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .14); pointer-events: none; white-space: nowrap;
+}
+.sekai-select { display: grid; grid-template-columns: 22rem minmax(0, 1fr); grid-template-areas: "head head" "detail list"; gap: 1rem 1.4rem; align-items: start; }
+.sekai-head { grid-area: head; position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; padding-top: .6rem; }
+.sekai-head h1 { font-size: 1.8rem; font-style: italic; }
+.sekai-head-n { font-family: var(--font-display); font-weight: 800; color: var(--fg-muted); font-size: .85rem; }
+.sekai-tabs { margin-left: auto; display: inline-flex; gap: .4rem; }
+.sekai-tabs button {
+  border: 0; padding: .35rem 1.3rem; font-weight: 900; font-size: .9rem; cursor: pointer; color: var(--fg); background: rgba(255, 255, 255, .08);
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+.sekai-tabs button[aria-pressed="true"] { background: var(--sekai-grad); color: #fff; }
+
+/* 唱片封面（原創 CSS 圖形） */
+.sekai-jacket {
+  position: relative; display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border-radius: 8px; overflow: hidden; flex: none;
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, .14) 0 4px, transparent 4px 11px),
+    linear-gradient(135deg, hsl(var(--h) 90% 62%), hsl(calc(var(--h) + 70) 85% 55%) 60%, hsl(calc(var(--h) + 140) 80% 45%));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
+}
+.sekai-jacket b { position: relative; font-size: 1.3rem; font-weight: 900; color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
+.sekai-jk-ring { position: absolute; width: 140%; height: 140%; left: 30%; top: 30%; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .35); }
+.sekai-jk-ring.r2 { width: 80%; height: 80%; left: -25%; top: -30%; border-width: 2px; border-color: rgba(255, 255, 255, .25); }
+.sekai-jacket.big { width: 100%; height: auto; aspect-ratio: 1; border-radius: 16px; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .4), 0 16px 40px rgba(5, 3, 30, .6); }
+.sekai-jacket.big b { font-size: 6rem; text-shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+.sekai-jacket.big .sekai-jk-ring { border-width: 10px; }
+.sekai-jacket.big .sekai-jk-ring.r2 { border-width: 6px; }
+
+/* 選中的曲目 */
+.sekai-detail {
+  grid-area: detail; position: sticky; top: calc(var(--nav-h) + 1rem); display: grid; gap: .8rem; padding: 1rem; border-radius: 20px; min-width: 0;
+  background: linear-gradient(160deg, hsl(var(--h) 60% 30% / .55), rgba(33, 29, 74, .9) 55%); border: 1px solid rgba(255, 255, 255, .14);
+}
+.sekai-d-head { display: grid; gap: .1rem; }
+.sekai-d-sub { font-size: .75rem; color: var(--fg-muted); font-weight: 700; }
+.sekai-d-head h2 { font-size: 1.4rem; line-height: 1.3; }
+.sekai-diffrow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .25rem; }
+.sekai-dpill {
+  font-family: var(--font-display); font-weight: 800; font-size: .58rem; letter-spacing: .04em; text-align: center; padding: .3rem 0; border-radius: 6px;
+  background: rgba(255, 255, 255, .06); color: rgba(255, 255, 255, .35); border: 1px solid rgba(255, 255, 255, .08);
+}
+.sekai-dpill.on { color: #fff; background: var(--dc); border-color: #fff; box-shadow: 0 0 14px var(--dc); transform: scale(1.08); }
+.sekai-d-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+.sekai-d-stats div { display: grid; padding: .35rem .6rem; border-radius: 10px; background: rgba(0, 0, 0, .22); }
+.sekai-d-stats span { font-family: var(--font-display); font-weight: 800; font-size: .58rem; letter-spacing: .14em; color: var(--fg-muted); }
+.sekai-d-stats b { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
+.sekai-d-flags { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; font-size: .75rem; color: var(--fg-muted); }
+.sekai-d-flags .fc, .sekai-d-flags .ap { font-family: var(--font-display); font-weight: 800; font-size: .7rem; padding: .1rem .6rem; border-radius: 999px; color: #fff; }
+.sekai-d-flags .fc { background: linear-gradient(90deg, #ff4fa3, #ff9a3c); }
+.sekai-d-flags .ap { background: var(--sekai-grad); }
+.sekai-start {
+  display: flex; align-items: center; justify-content: center; gap: .6rem; border: 0; cursor: pointer; padding: .8rem 1rem; color: #fff;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; letter-spacing: .14em; border-radius: 14px;
+  background: linear-gradient(100deg, #18c8ef, #8a5cff 55%, #ff4fa3); box-shadow: 0 6px 0 #4b2aa8, 0 10px 26px rgba(138, 92, 255, .5);
+  position: relative; overflow: hidden;
+}
+.sekai-start::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, .12) 0 8px, transparent 8px 20px); }
+.sekai-start .ico { width: 1.2rem; height: 1.2rem; }
+.sekai-start .ico svg { fill: currentColor; }
+.sekai-start:active { transform: translateY(3px); box-shadow: 0 3px 0 #4b2aa8; }
+.sekai-start.small { font-size: 1rem; padding: .6rem 1.4rem; }
+.sekai-rule { font-size: .74rem; color: var(--fg-muted); line-height: 1.6; }
+
+/* 清單 */
+.sekai-listwrap { grid-area: list; min-width: 0; }
+.sekai-list { display: grid; gap: .45rem; }
+.sekai-row {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .8rem; padding: .45rem .9rem .45rem .45rem; border: 0; cursor: pointer;
+  text-align: left; color: var(--fg); background: rgba(33, 29, 74, .78); border-radius: 12px; position: relative; transition: transform .12s, background .12s;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.sekai-row:hover { background: rgba(48, 42, 104, .9); transform: translateX(-4px); }
+.sekai-row.sel { background: linear-gradient(100deg, rgba(51, 225, 255, .28), rgba(138, 92, 255, .32) 60%, rgba(255, 79, 163, .3)); box-shadow: inset 0 0 0 2px #fff, 0 0 22px rgba(51, 225, 255, .35); transform: translateX(-10px); }
+.sekai-row.sel::before { content: ""; position: absolute; left: -12px; top: 50%; width: 0; height: 0; border: 8px solid transparent; border-left-color: #fff; transform: translateY(-50%); }
+.sekai-row-main { display: grid; min-width: 0; }
+.sekai-row-t { font-weight: 900; font-size: .98rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sekai-row-s { font-size: .72rem; color: var(--fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sekai-row-r { display: grid; justify-items: end; gap: .2rem; }
+.sekai-row-best { display: inline-flex; align-items: center; gap: .3rem; font-family: var(--font-display); font-weight: 800; font-size: .8rem; }
+.sekai-row-best.none { color: var(--fg-muted); }
+.sekai-diff {
+  display: inline-block; min-width: 4.6rem; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: .62rem; letter-spacing: .08em;
+  padding: .15rem .5rem; border-radius: 6px; color: #fff; background: var(--dc); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2);
+}
+.sekai-d0 { --dc: #3fcf5e; }
+.sekai-d1 { --dc: #3a9bff; }
+.sekai-d2 { --dc: #f0b315; }
+.sekai-d3 { --dc: #ff3d64; }
+.sekai-d4 { --dc: #b04dff; }
+.sekai-diff.sekai-dnew { --dc: transparent; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4); color: var(--fg-muted); }
+.sekai-rk, .sekai-rk-t { font-style: normal; font-family: var(--font-display); font-weight: 800; }
+.sekai-rk { display: inline-grid; place-items: center; width: 1.2rem; height: 1.2rem; border-radius: 50%; font-size: .7rem; color: #fff; background: #777; }
+.sekai-rk.r-S, .sekai-big-rank.r-S { background: linear-gradient(135deg, #ffe14f, #ff4fa3, #33e1ff); }
+.sekai-rk.r-A { background: #ff4fa3; }
+.sekai-rk.r-B { background: #3a9bff; }
+.sekai-rk.r-C { background: #6c6a8a; }
+
+/* ---------------------------------------------------------------- 遊玩 */
+.sekai-play { max-width: 50rem; margin: 0 auto; display: grid; gap: .8rem; }
+.sekai-hud { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .6rem 1rem; }
+.sekai-hud-l, .sekai-hud-r { display: flex; align-items: center; gap: .8rem; min-width: 0; flex-wrap: wrap; }
+.sekai-hud-song { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; }
+.sekai-hud-song .sekai-jacket { width: 2.4rem; height: 2.4rem; }
+.sekai-hud-song > span { display: grid; min-width: 0; line-height: 1.25; }
+.sekai-hud-song b { font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 13rem; }
+.sekai-hud-song small { font-family: var(--font-display); font-weight: 800; color: var(--fg-muted); font-size: .72rem; }
+.sekai-life { display: inline-flex; align-items: center; gap: .4rem; }
+.sekai-life-k { font-family: var(--font-display); font-weight: 800; font-size: .62rem; letter-spacing: .14em; color: var(--sekai-c); }
+.sekai-life-bar { width: 8rem; height: .7rem; background: rgba(255, 255, 255, .12); transform: skewX(-20deg); overflow: hidden; }
+.sekai-life-bar i { display: block; height: 100%; background: linear-gradient(90deg, #4ff0b4, #33e1ff); transition: width .3s; }
+.sekai-life.low .sekai-life-bar i { background: linear-gradient(90deg, #ff3d64, #ff9a3c); }
+.sekai-life b { font-family: var(--font-display); font-weight: 800; font-size: .85rem; min-width: 1.8rem; }
+.sekai-score { display: grid; justify-items: end; line-height: 1; }
+.sekai-score small, .sekai-combo small { font-family: var(--font-display); font-weight: 800; font-size: .58rem; letter-spacing: .16em; color: var(--fg-muted); }
+.sekai-score b { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.sekai-combo { display: grid; justify-items: center; line-height: 1; min-width: 3.6rem; opacity: .35; }
+.sekai-combo.on { opacity: 1; }
+.sekai-combo b { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; background: linear-gradient(180deg, #fff, #ffd1ea); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sekai-lane { position: relative; display: grid; grid-template-columns: 25fr 25fr 50fr; height: 1.6rem; border-radius: 6px; overflow: hidden; background: rgba(0, 0, 0, .3); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15); }
+.sekai-zone { display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: .58rem; letter-spacing: .14em; color: rgba(255, 255, 255, .7); }
+.sekai-zone.z-p { background: linear-gradient(90deg, rgba(255, 225, 79, .3), rgba(255, 79, 163, .3)); }
+.sekai-zone.z-g { background: rgba(255, 79, 163, .2); border-left: 1px solid rgba(255, 255, 255, .25); }
+.sekai-zone.z-o { background: rgba(51, 225, 255, .14); border-left: 1px solid rgba(255, 255, 255, .25); }
+.sekai-lane-cur { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: rgba(255, 255, 255, .22); border-right: 3px solid #fff; box-shadow: 6px 0 14px rgba(255, 255, 255, .6); }
+.sekai-lane-t { position: absolute; right: .5rem; top: 0; bottom: 0; display: flex; align-items: center; gap: .15rem; font-family: var(--font-display); font-weight: 800; font-size: .72rem; }
+.sekai-qcard { position: relative; display: grid; gap: .8rem; padding: 1.1rem 1.2rem 1.2rem; border-radius: 18px; background: linear-gradient(#262158, #1e1a47); box-shadow: 0 0 0 1px #4a4392, 0 14px 34px rgba(5, 3, 30, .55); min-width: 0; }
+.sekai-qmeta { display: flex; flex-wrap: wrap; gap: .3rem .7rem; align-items: center; font-size: .72rem; color: var(--fg-muted); }
+.sekai-qno { font-family: var(--font-display); font-weight: 800; letter-spacing: .14em; color: #fff; background: var(--sekai-grad); padding: .05rem .6rem; border-radius: 4px; }
+.sekai-prev { font-size: .82rem; color: var(--fg-muted); }
+.sekai-prev summary { cursor: pointer; color: var(--sekai-c); }
+.sekai-qtext { font-size: 1.1rem; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.sekai-ans { gap: .55rem; }
+.sekai-ans .ans-opt {
+  border: 0; border-radius: 12px; padding: .7rem .9rem; background: rgba(255, 255, 255, .06); box-shadow: inset 4px 0 0 var(--lc), inset 0 0 0 1px rgba(255, 255, 255, .1);
+  transition: transform .08s, background .12s;
+}
+.sekai-ans .ans-opt:nth-child(1) { --lc: #33e1ff; }
+.sekai-ans .ans-opt:nth-child(2) { --lc: #ff4fa3; }
+.sekai-ans .ans-opt:nth-child(3) { --lc: #ffe14f; }
+.sekai-ans .ans-opt:nth-child(4) { --lc: #8a5cff; }
+.sekai-ans .ans-opt:hover:not([disabled]) { background: rgba(255, 255, 255, .12); transform: translateX(4px); }
+.sekai-ans .ans-l { color: var(--lc); font-family: var(--font-display); font-weight: 800; }
+.sekai-ans .ans-opt.ok { background: rgba(79, 240, 180, .16); box-shadow: inset 4px 0 0 var(--ok), inset 0 0 0 2px var(--ok); }
+.sekai-ans .ans-opt.ng { background: rgba(255, 107, 138, .16); box-shadow: inset 4px 0 0 var(--bad), inset 0 0 0 2px var(--bad); }
+.sekai-judgehost { position: absolute; left: 0; right: 0; top: 34%; display: grid; justify-items: center; pointer-events: none; z-index: 2; }
+.sekai-judgehost:empty { display: none; }
+.sekai-judge { display: grid; justify-items: center; animation: sekai-judge .7s cubic-bezier(.2, 1.4, .4, 1) both; }
+.sekai-judge b { font-family: var(--font-display); font-weight: 800; font-size: 3.6rem; font-style: italic; letter-spacing: .06em; line-height: 1; -webkit-text-stroke: 2px #fff; paint-order: stroke fill; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5)); }
+.sekai-judge.j-perfect b { background: linear-gradient(90deg, #ffe14f, #ff4fa3, #8a5cff, #33e1ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sekai-judge.j-great b { color: #ff4fa3; }
+.sekai-judge.j-good b { color: #33b6ff; }
+.sekai-judge.j-miss b { color: #8b88a8; -webkit-text-stroke-color: #d8d6ea; }
+.sekai-combo-pop { font-family: var(--font-display); font-weight: 800; font-size: 1rem; letter-spacing: .16em; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .6); }
+.sekai-judge-sec { font-family: var(--font-display); font-weight: 800; font-size: .8rem; color: #fff; background: rgba(0, 0, 0, .45); padding: 0 .6rem; border-radius: 999px; margin-top: .2rem; }
+@keyframes sekai-judge { 0% { transform: scale(1.8); opacity: 0; } 40% { transform: scale(.94); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.sekai-next:empty { display: none; }
+.sekai-next { display: flex; justify-content: flex-end; }
+.sekai-nextbtn { display: inline-flex; align-items: center; gap: .6rem; border: 0; border-radius: 999px; padding: .55rem 1.3rem; font-weight: 900; color: #fff; cursor: pointer; background: var(--sekai-grad); box-shadow: 0 4px 0 #4b2aa8; }
+.sekai-nextbtn kbd { background: rgba(0, 0, 0, .25); color: #fff; border-color: rgba(255, 255, 255, .4); }
+.sekai-play-foot { display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.sekai-quit { border: 1px solid var(--line); background: transparent; color: var(--fg-muted); border-radius: 999px; padding: .3rem .9rem; cursor: pointer; font-size: .8rem; }
+.sekai-keys { font-size: .72rem; color: var(--fg-muted); }
+
+/* ---------------------------------------------------------------- 結算 */
+.sekai-result { max-width: 56rem; margin: 0 auto; display: grid; gap: 1rem; }
+.sekai-res-head { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; padding-top: .6rem; }
+.sekai-res-head h1 { font-size: 1.8rem; font-style: italic; }
+.sekai-res-song { display: inline-flex; align-items: center; gap: .6rem; min-width: 0; }
+.sekai-res-song .sekai-jacket { width: 2.4rem; height: 2.4rem; }
+.sekai-res-main {
+  display: grid; grid-template-columns: 13rem minmax(0, 1fr) 15rem; gap: 1rem; align-items: center; padding: 1.4rem; border-radius: 22px; position: relative; overflow: hidden;
+  background: linear-gradient(120deg, hsl(var(--h) 60% 30% / .5), rgba(33, 29, 74, .92) 50%, rgba(80, 30, 90, .6)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+.sekai-res-main::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, .04) 0 10px, transparent 10px 26px); pointer-events: none; }
+.sekai-res-main > * { position: relative; }
+.sekai-res-k { font-family: var(--font-display); font-weight: 800; font-size: .7rem; letter-spacing: .2em; color: var(--fg-muted); }
+.sekai-res-rank { display: grid; justify-items: center; gap: .2rem; }
+.sekai-big-rank {
+  display: grid; place-items: center; width: 8rem; height: 8rem; border-radius: 50%; font-family: var(--font-display); font-weight: 800; font-size: 5rem; color: #fff; font-style: normal;
+  background: #6c6a8a; box-shadow: 0 0 0 5px rgba(255, 255, 255, .85), 0 0 40px rgba(255, 255, 255, .35); animation: sekai-rank .8s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+.sekai-big-rank.r-A { background: linear-gradient(135deg, #ff7ab8, #ff3d8c); }
+.sekai-big-rank.r-B { background: linear-gradient(135deg, #5fb4ff, #3a6bff); }
+@keyframes sekai-rank { from { transform: scale(2) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.sekai-flag { font-family: var(--font-display); font-weight: 800; font-size: .8rem; letter-spacing: .1em; padding: .15rem .8rem; border-radius: 999px; color: #fff; margin-top: .4rem; }
+.sekai-flag.fc { background: linear-gradient(90deg, #ff4fa3, #ff9a3c); }
+.sekai-flag.ap { background: var(--sekai-grad); }
+.sekai-flag.fail { background: #4b4870; }
+.sekai-res-score { display: grid; gap: .1rem; }
+.sekai-res-score > b { font-family: var(--font-display); font-weight: 800; font-size: 3rem; line-height: 1.1; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+.sekai-newrec { justify-self: start; font-family: var(--font-display); font-weight: 800; font-size: .8rem; letter-spacing: .14em; padding: .1rem .7rem; border-radius: 4px; color: #2a2100; background: var(--sekai-y); animation: sekai-blink 1s steps(2) 3; }
+@keyframes sekai-blink { 50% { opacity: .3; } }
+.sekai-res-hi { font-family: var(--font-display); font-weight: 800; font-size: .8rem; color: var(--fg-muted); }
+.sekai-res-combo { display: flex; align-items: baseline; gap: .6rem; margin-top: .5rem; }
+.sekai-res-combo span { font-family: var(--font-display); font-weight: 800; font-size: .7rem; letter-spacing: .16em; color: var(--fg-muted); }
+.sekai-res-combo b { font-family: var(--font-display); font-weight: 800; font-size: 1.8rem; }
+.sekai-res-counts { display: grid; gap: .35rem; }
+.sekai-cnt { display: flex; justify-content: space-between; align-items: baseline; padding: .3rem .8rem; border-radius: 8px; background: rgba(0, 0, 0, .25); border-left: 4px solid var(--jc); }
+.sekai-cnt span { font-family: var(--font-display); font-weight: 800; font-size: .8rem; letter-spacing: .1em; color: var(--jc); font-style: italic; }
+.sekai-cnt b { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
+.sekai-cnt.j-perfect { --jc: #ffd84f; }
+.sekai-cnt.j-great { --jc: #ff4fa3; }
+.sekai-cnt.j-good { --jc: #33b6ff; }
+.sekai-cnt.j-miss { --jc: #9a97b8; }
+.sekai-res-note { font-size: .8rem; color: var(--fg-muted); }
+.sekai-res-btns { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.sekai-btn { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); color: var(--fg); border-radius: 999px; padding: .55rem 1.2rem; font-weight: 700; cursor: pointer; }
+.sekai-btn:hover { background: rgba(255, 255, 255, .15); }
+
+@media (max-width: 960px) {
+  .sekai-select { grid-template-columns: 17rem minmax(0, 1fr); }
+  .sekai-res-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .sekai-res-counts { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sekai-cnt { display: grid; justify-items: center; }
+}
+@media (max-width: 720px) {
+  .sekai-hide-sm { display: none; }
+  .sekai-brand b { display: none; }
+  .sekai-select { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "detail" "list"; }
+  .sekai-detail { position: static; grid-template-columns: 7rem minmax(0, 1fr); align-items: start; scroll-margin-top: calc(var(--nav-h) + .5rem); }
+  .sekai-detail > :not(.sekai-jacket):not(.sekai-d-head) { grid-column: 1 / -1; }
+  .sekai-jacket.big b { font-size: 3rem; }
+  .sekai-head-en { font-size: 2.4rem; }
+  .sekai-tabs { margin-left: 0; }
+  .sekai-row.sel { transform: none; }
+  .sekai-row.sel::before { display: none; }
+  .sekai-row { gap: .6rem; padding-right: .6rem; }
+  .sekai-diff { min-width: 3.9rem; font-size: .56rem; padding-inline: .3rem; }
+  .sekai-judge b { font-size: 2.6rem; }
+  .sekai-score b { font-size: 1.25rem; }
+  .sekai-life-bar { width: 5rem; }
+  .sekai-hud-song b { max-width: 9rem; }
+  .sekai-qcard { padding: .9rem .9rem 1rem; }
+  .sekai-keys { display: none; }
+  .sekai-res-main { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; padding: 1.1rem; }
+  .sekai-res-score { justify-items: center; }
+  .sekai-newrec { justify-self: center; }
+  .sekai-res-counts { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sekai-big-rank { width: 6.5rem; height: 6.5rem; font-size: 4rem; }
+}
+.sekai-judgehost.gone { opacity: 0; transition: opacity .4s; }
+@media (prefers-reduced-motion: reduce) {
+  .sekai-judge, .sekai-big-rank, .sekai-newrec { animation: none; }
+  .sekai-row, .sekai-ans .ans-opt, .sekai-life-bar i, .sekai-judgehost.gone { transition: none; }
+}
+.sekai-jacket b.sekai-jk-long { font-family: var(--font-display); font-weight: 800; font-size: .95rem; letter-spacing: -.02em; }
+.sekai-jacket.big b.sekai-jk-long { font-size: 4.2rem; }
+@media (max-width: 720px) { .sekai-jacket.big b.sekai-jk-long { font-size: 2.2rem; } }

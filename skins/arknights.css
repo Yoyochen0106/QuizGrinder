@@ -1,1 +1,334 @@
-/* arknights：實作中 */
+/* QuizGrinder 版面風格：明日方舟風（搭配 skins/arknights.js）
+   冷色工業科技戰術介面：深石板灰、白字、黃／青點綴、細技術線、斜切角、等寬數字。
+   刻意只做一種深色外觀，淺色 token 與兩個深色區塊寫同一組值。 */
+
+:root[data-skin="arknights"] {
+  --bg: #15171b; --surface: #1e2126; --surface-2: #282c33; --line: #3a3f48;
+  --fg: #eceef1; --fg-muted: #9aa2ad; --accent: #ffd23f; --accent-fg: #15171b; --mask: #2fc4e3;
+  --ok: #3fdcb0; --ok-bg: #12302a; --bad: #ff5f52; --bad-bg: #3a1a18; --warn: #ffd23f; --warn-bg: #3a3214;
+  --focus: #2fc4e3; --shadow: 0 10px 30px rgba(0, 0, 0, .45); --paper: #d6d9dd; --paper-img: .92;
+  --arknights-y: #ffd23f; --arknights-c: #2fc4e3; --arknights-dim: #5d646f; --arknights-panel: rgba(30, 33, 38, .92);
+  --font-display: "Montserrat", "Noto Sans TC", "PingFang TC", sans-serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r: 2px; --nav-h: 3.75rem; --max: 50rem;
+  --arknights-cut: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="arknights"]:not([data-theme="light"]) {
+    --bg: #15171b; --surface: #1e2126; --surface-2: #282c33; --line: #3a3f48;
+    --fg: #eceef1; --fg-muted: #9aa2ad; --accent: #ffd23f; --accent-fg: #15171b; --mask: #2fc4e3;
+    --ok: #3fdcb0; --ok-bg: #12302a; --bad: #ff5f52; --bad-bg: #3a1a18; --warn: #ffd23f; --warn-bg: #3a3214;
+    --focus: #2fc4e3; --shadow: 0 10px 30px rgba(0, 0, 0, .45); --paper: #d6d9dd; --paper-img: .92;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="arknights"][data-theme="dark"] {
+  --bg: #15171b; --surface: #1e2126; --surface-2: #282c33; --line: #3a3f48;
+  --fg: #eceef1; --fg-muted: #9aa2ad; --accent: #ffd23f; --accent-fg: #15171b; --mask: #2fc4e3;
+  --ok: #3fdcb0; --ok-bg: #12302a; --bad: #ff5f52; --bad-bg: #3a1a18; --warn: #ffd23f; --warn-bg: #3a3214;
+  --focus: #2fc4e3; --shadow: 0 10px 30px rgba(0, 0, 0, .45); --paper: #d6d9dd; --paper-img: .92;
+  color-scheme: dark;
+}
+:root[data-skin="arknights"] body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px),
+    radial-gradient(ellipse at 80% -10%, rgba(47, 196, 227, .10), transparent 55%),
+    linear-gradient(180deg, #1a1d22, #121418);
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+}
+:root[data-skin="arknights"] body::before { background: #0f1114; }
+:root[data-skin="arknights"] ::selection { background: var(--arknights-y); color: #111; }
+
+/* ---------------------------------------------------------------- 頂部列 */
+:root[data-skin="arknights"] .topbar { background: rgba(14, 16, 19, .94); border-bottom: 1px solid var(--line); box-shadow: inset 0 -2px 0 rgba(255, 210, 63, .0); backdrop-filter: blur(6px); }
+:root[data-skin="arknights"] .topbar::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 7rem; height: 2px; background: var(--arknights-y); }
+.arknights-top { gap: 1rem; min-width: 0; }
+.arknights-brand { display: flex; align-items: center; gap: .55rem; color: var(--fg); text-decoration: none; min-width: 0; }
+.arknights-brand-ico { width: 1.7rem; height: 1.7rem; color: var(--arknights-y); }
+.arknights-brand-txt { display: grid; line-height: 1.05; min-width: 0; }
+.arknights-brand-txt b { font-family: var(--font-display); font-weight: 800; letter-spacing: .14em; font-size: .95rem; }
+.arknights-brand-txt small { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .12em; color: var(--fg-muted); white-space: nowrap; }
+.arknights-top-code { font-family: var(--font-mono); font-size: .65rem; color: var(--arknights-dim); letter-spacing: .2em; border-left: 1px solid var(--line); padding-left: .8rem; }
+.arknights-hud { display: flex; align-items: stretch; gap: .35rem; margin-left: auto; }
+.arknights-hud-item {
+  position: relative; display: grid; grid-template-columns: auto auto; column-gap: .5rem; align-items: center; padding: .25rem .7rem .35rem;
+  border: 1px solid var(--line); background: rgba(255, 255, 255, .03); color: var(--fg); text-decoration: none;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+}
+.arknights-hud-item:hover { border-color: var(--arknights-c); }
+.arknights-hud-k { font-size: .66rem; color: var(--fg-muted); letter-spacing: .08em; }
+.arknights-hud-v { font-family: var(--font-mono); font-size: .8rem; color: var(--fg-muted); }
+.arknights-hud-v b { font-size: 1.05rem; color: var(--fg); font-weight: 600; }
+.arknights-hud-bar { grid-column: 1 / -1; height: 3px; background: #33383f; margin-top: .15rem; }
+.arknights-hud-bar i { display: block; height: 100%; background: var(--arknights-y); }
+
+/* ---------------------------------------------------------------- 通用外觀 */
+:root[data-skin="arknights"] h1, :root[data-skin="arknights"] h2, :root[data-skin="arknights"] h3 { font-family: var(--font-body); font-weight: 900; letter-spacing: .04em; }
+:root[data-skin="arknights"] .eyebrow { font-family: var(--font-mono); color: var(--arknights-y); letter-spacing: .18em; }
+:root[data-skin="arknights"] .eyebrow::before { content: "■ "; color: var(--arknights-c); }
+:root[data-skin="arknights"] .panel, :root[data-skin="arknights"] .kpi, :root[data-skin="arknights"] .qitem, :root[data-skin="arknights"] .action, :root[data-skin="arknights"] .card {
+  background: var(--arknights-panel); border: 1px solid var(--line); border-radius: 0; clip-path: var(--arknights-cut);
+}
+:root[data-skin="arknights"] .kpi { border-left: 3px solid var(--arknights-c); }
+:root[data-skin="arknights"] .kpi b { color: var(--fg); font-weight: 600; }
+:root[data-skin="arknights"] .kpi span { letter-spacing: .06em; }
+:root[data-skin="arknights"] .btn {
+  border-radius: 0; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); letter-spacing: .06em; font-weight: 700;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+}
+:root[data-skin="arknights"] .btn:hover { border-color: var(--arknights-c); background: #2f343c; }
+:root[data-skin="arknights"] .btn.primary { background: var(--arknights-y); border-color: var(--arknights-y); color: #111; }
+:root[data-skin="arknights"] .btn.mask { background: var(--arknights-c); border-color: var(--arknights-c); color: #0d1418; }
+:root[data-skin="arknights"] .btn.ghost { background: transparent; border-color: transparent; clip-path: none; }
+:root[data-skin="arknights"] .btn.danger { color: var(--bad); border-color: var(--bad); background: transparent; }
+:root[data-skin="arknights"] .chip, :root[data-skin="arknights"] .seg { border-radius: 0; }
+:root[data-skin="arknights"] .chip { background: transparent; border-color: var(--line); }
+:root[data-skin="arknights"] .chip[aria-pressed="true"], :root[data-skin="arknights"] .seg button[aria-pressed="true"] { background: var(--fg); color: #111; border-color: var(--fg); }
+:root[data-skin="arknights"] .seg button { background: transparent; }
+:root[data-skin="arknights"] input[type="search"], :root[data-skin="arknights"] input[type="text"], :root[data-skin="arknights"] select, :root[data-skin="arknights"] textarea {
+  border-radius: 0; background: #121418; border-color: var(--line);
+}
+:root[data-skin="arknights"] .tag { border-radius: 0; font-family: var(--font-mono); background: #2a2e35; }
+:root[data-skin="arknights"] .tag.subj { border-color: var(--arknights-c); color: var(--arknights-c); }
+:root[data-skin="arknights"] .tag.hot { background: rgba(255, 210, 63, .14); color: var(--arknights-y); }
+:root[data-skin="arknights"] .progress { height: 3px; border-radius: 0; background: #2b3037; }
+:root[data-skin="arknights"] .progress > i { background: var(--arknights-y); }
+:root[data-skin="arknights"] .bar .track { border-radius: 0; height: .5rem; background: #2b3037; }
+:root[data-skin="arknights"] .bar .track i { background: var(--arknights-c); }
+:root[data-skin="arknights"] .bar .track i.mid { background: var(--arknights-y); }
+:root[data-skin="arknights"] .bar .track i.low { background: var(--bad); }
+:root[data-skin="arknights"] .chart .b { fill: var(--arknights-c); }
+:root[data-skin="arknights"] .chart .b2 { fill: var(--arknights-y); }
+:root[data-skin="arknights"] .action.lead { background: var(--arknights-y); color: #111; border-color: var(--arknights-y); }
+:root[data-skin="arknights"] .navgrid button { border-radius: 0; background: transparent; }
+:root[data-skin="arknights"] .navgrid button.done { border-color: var(--arknights-c); color: var(--arknights-c); background: rgba(47, 196, 227, .08); }
+:root[data-skin="arknights"] .timer { color: var(--arknights-y); }
+:root[data-skin="arknights"] .score b { color: var(--arknights-y); }
+:root[data-skin="arknights"] .confirm { border-radius: 0; }
+:root[data-skin="arknights"] .pill { border-radius: 0; font-family: var(--font-mono); }
+:root[data-skin="arknights"] kbd { border-radius: 0; background: #2a2e35; }
+:root[data-skin="arknights"] #bottomnav { background: #0f1114; border-top: 1px solid var(--line); }
+:root[data-skin="arknights"] #bottomnav a[aria-current="page"] { color: var(--arknights-y); }
+:root[data-skin="arknights"] #bottomnav a.big { color: #111; background: var(--arknights-y); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%); padding-inline: .9rem; }
+:root[data-skin="arknights"] #skinbar { border-radius: 0; background: #1b1e23; }
+:root[data-skin="arknights"] .toast { border-radius: 0; background: var(--arknights-y); color: #111; font-weight: 700; }
+
+/* ---------------------------------------------------------------- 作答：戰術簡報 */
+.arknights-briefbar {
+  max-width: var(--max); margin: 0 auto .9rem; display: flex; align-items: center; gap: .7rem; min-width: 0;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .14em; color: var(--fg-muted);
+}
+.arknights-bb-code { background: var(--arknights-y); color: #111; padding: .1rem .5rem; font-weight: 600; white-space: nowrap; }
+.arknights-briefbar b { font-family: var(--font-body); font-weight: 900; color: var(--fg); font-size: 1rem; letter-spacing: .2em; white-space: nowrap; }
+.arknights-bb-line { flex: 1; height: 1px; min-width: 1rem; background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 10px); }
+.arknights-bb-r { white-space: nowrap; }
+:root[data-skin="arknights"] .qhead { font-family: var(--font-mono); letter-spacing: .06em; }
+:root[data-skin="arknights"] .qhead .eyebrow { color: var(--fg); }
+:root[data-skin="arknights"] #qcard { position: relative; padding: 1.4rem 1.4rem 1.5rem; border-top: 2px solid var(--arknights-c); box-shadow: none; }
+:root[data-skin="arknights"] #qcard::before {
+  content: "TACTICAL BRIEFING // QG-OPS"; position: absolute; top: .35rem; right: 1.4rem; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .2em; color: var(--arknights-dim);
+}
+:root[data-skin="arknights"] #qcard::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 46px; height: 6px;
+  background: repeating-linear-gradient(-45deg, var(--arknights-y) 0 5px, transparent 5px 10px);
+}
+:root[data-skin="arknights"] .qtext { font-weight: 500; }
+:root[data-skin="arknights"] .opt {
+  border-radius: 0; border: 1px solid var(--line); border-left: 3px solid var(--arknights-dim); background: rgba(255, 255, 255, .025);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); transition: background .12s, border-color .12s;
+}
+:root[data-skin="arknights"] .opt:hover:not([disabled]) { border-color: var(--arknights-c); border-left-color: var(--arknights-c); background: rgba(47, 196, 227, .07); }
+:root[data-skin="arknights"] .opt .key { border-radius: 0; background: transparent; border: 1px solid var(--arknights-dim); color: var(--fg); font-weight: 600; }
+:root[data-skin="arknights"] .opt.correct { border-left-color: var(--ok); }
+:root[data-skin="arknights"] .opt.correct .key { background: var(--ok); color: #0c1a16; border-color: var(--ok); }
+:root[data-skin="arknights"] .opt.wrong { border-left-color: var(--bad); }
+:root[data-skin="arknights"] .opt.wrong .key { background: var(--bad); color: #1a0b0a; border-color: var(--bad); }
+:root[data-skin="arknights"] .feedback { border-radius: 0; border-width: 0 0 0 3px; font-family: var(--font-body); }
+:root[data-skin="arknights"] .feedback strong::before { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .16em; margin-right: .6rem; padding: .05rem .4rem; }
+:root[data-skin="arknights"] .feedback.ok strong::before { content: "MISSION OK"; background: var(--ok); color: #0c1a16; }
+:root[data-skin="arknights"] .feedback.bad strong::before { content: "MISSION FAILED"; background: var(--bad); color: #1a0b0a; }
+
+/* ---------------------------------------------------------------- 首頁：作戰終端 */
+.arknights-home {
+  max-width: 76rem; margin: 0 auto; display: grid; gap: 1.1rem 1.25rem;
+  grid-template-columns: minmax(0, 1fr) 21rem; grid-template-areas: "head head" "main side"; align-items: start;
+}
+.arknights-head { grid-area: head; display: grid; gap: .2rem; position: relative; padding-left: 1rem; border-left: 3px solid var(--arknights-y); }
+.arknights-head h1 { font-size: 2rem; display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+.arknights-h1-en { font-family: var(--font-display); font-weight: 800; font-size: .95rem; letter-spacing: .4em; color: var(--arknights-dim); }
+.arknights-sub { color: var(--fg-muted); font-size: .85rem; }
+.arknights-code { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .18em; color: var(--arknights-c); white-space: nowrap; }
+.arknights-col-main { grid-area: main; display: grid; gap: 1.1rem; min-width: 0; }
+.arknights-col-side { grid-area: side; display: grid; gap: 1rem; min-width: 0; }
+.arknights-panel { position: relative; background: var(--arknights-panel); border: 1px solid var(--line); clip-path: var(--arknights-cut); padding: 1rem 1.1rem 1.1rem; min-width: 0; }
+.arknights-panel::before { content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 2px; background: var(--arknights-c); }
+.arknights-ph { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .7rem; margin-bottom: .75rem; }
+.arknights-ph h2 { font-size: 1.15rem; letter-spacing: .12em; }
+.arknights-ph-r { margin-left: auto; color: var(--fg-muted); font-size: .78rem; }
+.arknights-note { font-size: .78rem; color: var(--fg-muted); }
+
+/* 作戰入口與功能磚 */
+.arknights-menu { display: grid; gap: .6rem; }
+.arknights-op {
+  position: relative; display: grid; gap: .2rem; padding: 1rem 1.2rem 1.1rem; text-decoration: none; color: #111; overflow: hidden;
+  background: linear-gradient(115deg, #fff 0 62%, #e9ecef 62%); clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+  box-shadow: inset 0 -6px 0 var(--arknights-y); transition: transform .15s;
+}
+.arknights-op::after {
+  content: ""; position: absolute; right: -10px; bottom: 6px; width: 9rem; height: 1.2rem;
+  background: repeating-linear-gradient(-45deg, #111 0 7px, transparent 7px 14px); opacity: .12;
+}
+.arknights-op:hover { transform: translateX(3px); }
+.arknights-op:focus-visible { outline-offset: -4px; outline-color: #111; }
+.arknights-op-code { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; color: #555; }
+.arknights-op-main { display: flex; align-items: baseline; gap: .8rem; }
+.arknights-op-main b { font-size: 3rem; font-weight: 900; letter-spacing: .12em; line-height: 1.05; }
+.arknights-op-en { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: .35em; color: #1b8fa8; }
+.arknights-op-sub { font-size: .85rem; font-weight: 700; }
+.arknights-op-rec { display: flex; align-items: baseline; gap: .5rem; font-size: .72rem; color: #555; margin-top: .25rem; }
+.arknights-op-rec b { font-family: var(--font-mono); font-size: 1.1rem; color: #111; }
+.arknights-op-arrow { position: absolute; right: 1.1rem; top: 50%; width: 1.6rem; height: 1.6rem; border-top: 4px solid #111; border-right: 4px solid #111; transform: translateY(-50%) rotate(45deg); }
+.arknights-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.arknights-tile {
+  position: relative; display: grid; gap: .05rem; padding: .7rem .8rem .75rem; text-decoration: none; color: var(--fg); min-width: 0;
+  background: #262a31; border: 1px solid var(--line); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  transition: background .12s, border-color .12s;
+}
+.arknights-tile:hover { background: #2e333b; border-color: var(--arknights-c); }
+.arknights-tile-code { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .16em; color: var(--arknights-dim); }
+.arknights-tile-ico { position: absolute; right: .7rem; top: .65rem; color: var(--arknights-c); width: 1.3rem; height: 1.3rem; }
+.arknights-tile-zh { font-size: 1.15rem; font-weight: 900; letter-spacing: .14em; }
+.arknights-tile-sub { font-size: .72rem; color: var(--fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arknights-tile.alert { box-shadow: inset 3px 0 0 var(--bad); }
+.arknights-tile.alert .arknights-tile-sub { color: #ff9a90; }
+.arknights-segs { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; margin-bottom: .55rem; }
+.arknights-segs i { height: .9rem; background: #2b3037; transform: skewX(-20deg); }
+.arknights-segs i.on { background: var(--arknights-y); box-shadow: 0 0 6px rgba(255, 210, 63, .45); }
+
+/* 關卡地圖 */
+.arknights-seg { display: inline-flex; border: 1px solid var(--line); }
+.arknights-seg button { border: 0; background: transparent; color: var(--fg-muted); padding: .25rem .7rem; cursor: pointer; font-size: .8rem; display: inline-flex; gap: .35rem; align-items: center; }
+.arknights-seg button + button { border-left: 1px solid var(--line); }
+.arknights-seg button[aria-pressed="true"] { background: var(--fg); color: #111; font-weight: 700; }
+.arknights-map-scroll {
+  overflow-x: auto; overflow-y: hidden; margin: 0 -1.1rem; padding: .25rem 0 .5rem; scrollbar-width: thin; scrollbar-color: var(--arknights-dim) transparent;
+  background:
+    linear-gradient(90deg, rgba(47, 196, 227, .05) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(rgba(47, 196, 227, .05) 1px, transparent 1px) 0 0 / 48px 48px;
+  border-block: 1px solid #2c3037;
+}
+.arknights-map { position: relative; }
+.arknights-lines { position: absolute; inset: 0; }
+.arknights-lines svg { display: block; }
+.arknights-lines path { fill: none; stroke: #4a515c; stroke-width: 1.5; stroke-dasharray: 5 4; }
+.arknights-lines path.on { stroke: #dfe3e8; stroke-dasharray: none; }
+.arknights-joint { fill: #15171b; stroke: #6c7480; stroke-width: 1; }
+.arknights-node {
+  position: absolute; width: 136px; height: 52px; display: grid; grid-template-rows: auto 1fr auto; text-align: left; padding: .25rem .55rem .3rem;
+  border: 1px solid #59616c; background: #1a1d22; color: var(--fg); cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); transition: transform .12s, border-color .12s, background .12s;
+}
+.arknights-node:hover { transform: translateY(-2px); border-color: var(--fg); }
+.arknights-node-code { display: flex; align-items: center; gap: .3rem; font-family: var(--font-mono); font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: var(--fg-muted); }
+.arknights-node-code .ico { width: .8rem; height: .8rem; }
+.arknights-node-name { font-size: .8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.5; }
+.arknights-node-bar { height: 2px; background: #333840; }
+.arknights-node-bar i { display: block; height: 100%; background: currentColor; }
+.arknights-node.new { border-style: dashed; color: #8e96a1; }
+.arknights-node.new .arknights-node-name { color: #aeb5be; }
+.arknights-node.run { border-color: var(--arknights-c); color: var(--fg); }
+.arknights-node.run .arknights-node-code { color: var(--arknights-c); }
+.arknights-node.run .arknights-node-bar i { background: var(--arknights-c); }
+.arknights-node.clear { background: #e9ecef; color: #111; border-color: #fff; }
+.arknights-node.clear .arknights-node-code { color: #3c4450; }
+.arknights-node.clear .arknights-node-bar { background: #c3c8cf; }
+.arknights-node.elite { background: var(--arknights-y); color: #111; border-color: var(--arknights-y); }
+.arknights-node.elite .arknights-node-code { color: #5a4600; }
+.arknights-node.elite .arknights-node-bar { background: rgba(0, 0, 0, .2); }
+.arknights-node.sel { outline: 2px solid var(--arknights-y); outline-offset: 3px; }
+.arknights-node.sel::after { content: ""; position: absolute; right: 4px; bottom: 6px; width: 6px; height: 6px; background: var(--arknights-y); box-shadow: 0 0 0 2px #111; }
+.arknights-legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; align-items: center; font-size: .72rem; color: var(--fg-muted); margin: .6rem 0 .2rem; }
+.arknights-lg { display: inline-flex; align-items: center; gap: .35rem; }
+.arknights-lg i { width: .8rem; height: .55rem; border: 1px solid #59616c; }
+.arknights-lg.new i { border-style: dashed; }
+.arknights-lg.run i { border-color: var(--arknights-c); }
+.arknights-lg.clear i { background: #e9ecef; border-color: #fff; }
+.arknights-lg.elite i { background: var(--arknights-y); border-color: var(--arknights-y); }
+.arknights-lg-note { flex-basis: 100%; font-size: .68rem; color: var(--arknights-dim); }
+
+/* 關卡簡報 */
+.arknights-brief-panel { margin-top: .6rem; border-top: 1px solid var(--line); padding-top: .8rem; display: grid; gap: .7rem; }
+.arknights-brief-head { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
+.arknights-brief-code { font-size: 1.4rem; font-weight: 600; color: var(--fg); letter-spacing: .06em; }
+.arknights-brief-head h3 { font-size: 1.15rem; }
+.arknights-badge { font-size: .7rem; font-weight: 700; padding: .1rem .55rem; letter-spacing: .12em; border: 1px solid currentColor; }
+.arknights-badge.new { color: #9aa2ad; }
+.arknights-badge.run { color: var(--arknights-c); }
+.arknights-badge.clear { background: #e9ecef; color: #111; border-color: #e9ecef; }
+.arknights-badge.elite { background: var(--arknights-y); color: #111; border-color: var(--arknights-y); }
+.arknights-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .4rem; }
+.arknights-stat { display: grid; padding: .35rem .6rem; border-left: 2px solid var(--line); background: rgba(255, 255, 255, .025); }
+.arknights-stat span { font-size: .68rem; color: var(--fg-muted); letter-spacing: .1em; }
+.arknights-stat b { font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+.arknights-stat small { font-size: .7rem; color: var(--fg-muted); margin-left: .1rem; }
+.arknights-brief-btns { display: flex; flex-wrap: wrap; gap: .5rem; }
+.arknights-btn {
+  display: inline-flex; align-items: center; gap: .6rem; padding: .55rem 1rem; border: 1px solid var(--line); background: #2a2e35; color: var(--fg);
+  font-weight: 700; cursor: pointer; letter-spacing: .06em; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%);
+}
+.arknights-btn:hover { border-color: var(--arknights-c); }
+.arknights-btn.primary { background: var(--arknights-c); border-color: var(--arknights-c); color: #081418; }
+.arknights-btn.primary:hover { filter: brightness(1.08); }
+.arknights-btn-en { font-family: var(--font-display); font-weight: 800; letter-spacing: .25em; font-size: .8rem; padding-right: .6rem; border-right: 1px solid rgba(0, 0, 0, .35); }
+
+/* 基地 */
+.arknights-base > .arknights-note { margin: -.3rem 0 .8rem; }
+.arknights-facs { display: grid; grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr)); gap: .55rem; }
+.arknights-fac {
+  display: grid; gap: .3rem; text-align: left; padding: .55rem .7rem .6rem; border: 1px solid var(--line); background: #1a1d22; color: var(--fg); cursor: pointer; min-width: 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%);
+}
+.arknights-fac:hover { border-color: var(--arknights-c); background: #20242a; }
+.arknights-fac-top { display: flex; justify-content: space-between; gap: .5rem; font-size: .64rem; letter-spacing: .1em; color: var(--arknights-dim); }
+.arknights-fac-state { display: inline-flex; align-items: center; gap: .3rem; }
+.arknights-fac-state::before { content: ""; width: 6px; height: 6px; background: #4a515c; }
+.arknights-fac.live .arknights-fac-state { color: var(--arknights-y); }
+.arknights-fac.live .arknights-fac-state::before { background: var(--arknights-y); box-shadow: 0 0 6px var(--arknights-y); animation: arknights-blink 1.6s steps(2) infinite; }
+.arknights-fac-name { font-size: .92rem; font-weight: 900; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arknights-prod { position: relative; height: .55rem; background: #2b3037; overflow: hidden; }
+.arknights-prod i { position: absolute; inset: 0 auto 0 0; background: repeating-linear-gradient(-45deg, var(--arknights-c) 0 6px, #22a6c2 6px 12px); }
+.arknights-fac.live .arknights-prod i { background-size: 17px 17px; animation: arknights-flow 1.2s linear infinite; background-image: repeating-linear-gradient(-45deg, var(--arknights-y) 0 6px, #d4ad2a 6px 12px); }
+.arknights-fac-nums { display: flex; justify-content: space-between; gap: .4rem; font-size: .66rem; color: var(--fg-muted); white-space: nowrap; }
+.arknights-fac-nums b { color: var(--fg); font-weight: 600; }
+@keyframes arknights-flow { to { background-position: 17px 0; } }
+@keyframes arknights-blink { 50% { opacity: .3; } }
+
+@media (max-width: 960px) {
+  .arknights-home { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "side" "main"; }
+  .arknights-col-side { grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+}
+@media (max-width: 720px) {
+  .arknights-top-code, .arknights-hide-sm, .arknights-brand-txt small { display: none; }
+  .arknights-top { gap: .5rem; }
+  .arknights-hud-item { padding: .2rem .5rem .3rem; column-gap: .35rem; }
+  .arknights-hud-k { font-size: .6rem; }
+  .arknights-head h1 { font-size: 1.6rem; }
+  .arknights-op-main b { font-size: 2.4rem; }
+  .arknights-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arknights-panel { padding: .9rem .85rem 1rem; }
+  .arknights-map-scroll { margin: 0 -.85rem; }
+  .arknights-briefbar .arknights-bb-r { display: none; }
+}
+@media (max-width: 420px) {
+  .arknights-brand-txt b { font-size: .8rem; letter-spacing: .08em; }
+  .arknights-hud { gap: .25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arknights-fac.live .arknights-prod i, .arknights-fac.live .arknights-fac-state::before { animation: none; }
+  .arknights-op, .arknights-node, .arknights-tile { transition: none; }
+}
