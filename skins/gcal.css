@@ -1,1 +1,277 @@
-/* gcal：實作中 */
+/* QuizGrinder 版面風格：Google 日曆風（gcal）——月曆／週曆、左側迷你月曆與圖層、單日詳細面板 */
+:root[data-skin="gcal"] {
+  --bg: #f8fafd; --surface: #ffffff; --surface-2: #f1f3f4; --line: #dde3ea;
+  --fg: #1f1f1f; --fg-muted: #5f6368; --accent: #0b57d0; --accent-fg: #ffffff; --mask: #0b57d0;
+  --ok: #137333; --ok-bg: #e6f4ea; --bad: #c5221f; --bad-bg: #fce8e6; --warn: #8a5a00; --warn-bg: #fef7e0;
+  --focus: #0b57d0; --shadow: 0 1px 2px rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15); --paper: #ffffff; --paper-img: 1;
+  --font-display: "Roboto", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
+  --font-body: "Roboto", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
+  --r: 12px;
+  --gc-sel: #c2e7ff; --gc-sel-fg: #001d35; --gc-hover: rgba(68, 71, 70, .08);
+  --gc-log: #0277bd; --gc-due: #d84315; --gc-exam: #0b8043; --gc-ev-fg: #ffffff;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="gcal"]:not([data-theme="light"]) {
+    --bg: #131314; --surface: #1e1f20; --surface-2: #282a2c; --line: #3c4043;
+    --fg: #e3e3e3; --fg-muted: #a8acb0; --accent: #a8c7fa; --accent-fg: #062e6f; --mask: #a8c7fa;
+    --ok: #81c995; --ok-bg: #0f3a1f; --bad: #f28b82; --bad-bg: #3c1412; --warn: #fdd663; --warn-bg: #3b2f0a;
+    --focus: #a8c7fa; --shadow: 0 1px 3px rgba(0, 0, 0, .5), 0 4px 8px 3px rgba(0, 0, 0, .3); --paper: #dcdcdc; --paper-img: .92;
+    --gc-sel: #004a77; --gc-sel-fg: #c2e7ff; --gc-hover: rgba(227, 227, 227, .08);
+    --gc-log: #4fa3d9; --gc-due: #f07a4f; --gc-exam: #4fb67a; --gc-ev-fg: #101418;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="gcal"][data-theme="dark"] {
+  --bg: #131314; --surface: #1e1f20; --surface-2: #282a2c; --line: #3c4043;
+  --fg: #e3e3e3; --fg-muted: #a8acb0; --accent: #a8c7fa; --accent-fg: #062e6f; --mask: #a8c7fa;
+  --ok: #81c995; --ok-bg: #0f3a1f; --bad: #f28b82; --bad-bg: #3c1412; --warn: #fdd663; --warn-bg: #3b2f0a;
+  --focus: #a8c7fa; --shadow: 0 1px 3px rgba(0, 0, 0, .5), 0 4px 8px 3px rgba(0, 0, 0, .3); --paper: #dcdcdc; --paper-img: .92;
+  --gc-sel: #004a77; --gc-sel-fg: #c2e7ff; --gc-hover: rgba(227, 227, 227, .08);
+  --gc-log: #4fa3d9; --gc-due: #f07a4f; --gc-exam: #4fb67a; --gc-ev-fg: #101418;
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------- 外框 */
+:root[data-skin="gcal"] body::before { background: var(--bg); }
+:root[data-skin="gcal"] .topbar { background: var(--bg); border-bottom: 0; padding-left: max(8px, env(safe-area-inset-left, 0px)); }
+:root[data-skin="gcal"] .layout { display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); }
+:root[data-skin="gcal"] #sidebar {
+  position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); align-self: start;
+  height: calc(100vh - var(--nav-h)); overflow-y: auto; padding: .5rem .75rem 5rem 1rem;
+}
+:root[data-skin="gcal"] main { padding: .25rem 1rem 5rem .25rem; }
+:root[data-skin="gcal"] .view {
+  background: var(--surface); border-radius: 1rem; padding: 1.5rem; max-width: 52rem;
+}
+:root[data-skin="gcal"] .view.wide { max-width: 64rem; }
+:root[data-skin="gcal"] h1, :root[data-skin="gcal"] h2, :root[data-skin="gcal"] h3 { font-weight: 500; }
+:root[data-skin="gcal"] .eyebrow { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-weight: 500; }
+:root[data-skin="gcal"] .btn { border-radius: 999px; padding: .5rem 1.2rem; font-weight: 500; border-color: var(--line); }
+:root[data-skin="gcal"] .btn.primary, :root[data-skin="gcal"] .btn.mask { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+:root[data-skin="gcal"] .chip[aria-pressed="true"], :root[data-skin="gcal"] .seg button[aria-pressed="true"] { background: var(--gc-sel); color: var(--gc-sel-fg); border-color: var(--gc-sel); }
+:root[data-skin="gcal"] .panel, :root[data-skin="gcal"] .kpi, :root[data-skin="gcal"] .qitem, :root[data-skin="gcal"] .action { border-radius: 12px; }
+:root[data-skin="gcal"] .card { border-radius: 16px; box-shadow: none; }
+:root[data-skin="gcal"] .action.lead { background: var(--gc-sel); border-color: var(--gc-sel); color: var(--gc-sel-fg); }
+:root[data-skin="gcal"] .opt { border-radius: 12px; border-width: 1px; }
+:root[data-skin="gcal"] .opt:hover:not([disabled]) { background: var(--gc-hover); border-color: var(--line); }
+:root[data-skin="gcal"] .opt .key { border-radius: 50%; }
+:root[data-skin="gcal"] .progress > i, :root[data-skin="gcal"] .bar .track i { background: var(--accent); }
+:root[data-skin="gcal"] .bar .track i.low { background: var(--gc-due); }
+:root[data-skin="gcal"] .bar .track i.mid { background: #f6bf26; }
+:root[data-skin="gcal"] .gcal-iconbtn, :root[data-skin="gcal"] .gcal-today { font-family: var(--font-body); }
+
+/* ---------------------------------------------------------------- 頂部列 */
+.gcal-top { gap: .5rem; }
+.gcal-logo { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--fg-muted); margin-right: 2.1rem; padding-left: .5rem; }
+.gcal-logo-ico { width: 2.25rem; height: 2.25rem; color: var(--accent); }
+.gcal-logo-ico svg { stroke-width: 2.2; }
+.gcal-logo-t { font-size: 1.4rem; line-height: 1; }
+.gcal-today {
+  border: 1px solid var(--fg-muted); background: transparent; color: var(--fg); border-radius: 999px; padding: .45rem 1.15rem; font-weight: 500; font-size: .9rem; cursor: pointer;
+}
+.gcal-today:hover { background: var(--gc-hover); }
+.gcal-arrows { display: inline-flex; }
+.gcal-iconbtn {
+  display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 0; background: transparent; color: var(--fg); cursor: pointer; text-decoration: none; flex: none;
+}
+.gcal-iconbtn:hover { background: var(--gc-hover); }
+.gcal-iconbtn.sm { width: 1.75rem; height: 1.75rem; }
+.gcal-iconbtn.sm .ico { width: 1rem; height: 1rem; }
+.gcal-title { font-family: var(--font-body); font-size: 1.4rem; font-weight: 400; margin: 0 0 0 .5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.gcal-title-sub { color: var(--fg-muted); font-size: 1.1rem; }
+.gcal-switch { display: inline-flex; border: 1px solid var(--fg-muted); border-radius: 999px; overflow: hidden; flex: none; }
+.gcal-switch button { border: 0; background: transparent; color: var(--fg); padding: .4rem 1rem; cursor: pointer; font-weight: 500; font-size: .9rem; }
+.gcal-switch button + button { border-left: 1px solid var(--fg-muted); }
+.gcal-switch button[aria-pressed="true"] { background: var(--gc-sel); color: var(--gc-sel-fg); }
+.gcal-avatar { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: #7b1fa2; color: #fff; text-decoration: none; font-weight: 500; margin-left: .35rem; flex: none; }
+
+/* ---------------------------------------------------------------- 左側欄 */
+.gcal-side { display: grid; gap: 1rem; }
+.gcal-create {
+  justify-self: start; display: inline-flex; align-items: center; gap: .75rem; height: 3.5rem; padding: 0 1.4rem 0 1rem; border-radius: 1rem;
+  border: 0; background: var(--surface); color: var(--fg); box-shadow: var(--shadow); cursor: pointer; font-weight: 500; font-size: .95rem;
+}
+.gcal-create:hover { box-shadow: 0 1px 3px rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15); background: var(--surface-2); }
+.gcal-create .ico { width: 1.6rem; height: 1.6rem; color: var(--accent); }
+.gcal-create .ico svg { stroke-width: 2.6; }
+.gcal-mini { padding: 0 .25rem; }
+.gcal-mini-head { display: flex; align-items: center; gap: .1rem; font-size: .88rem; font-weight: 500; padding-left: .4rem; }
+.gcal-mini-head span { flex: 1; }
+.gcal-mini-grid { display: grid; grid-template-columns: repeat(7, 1fr); justify-items: center; row-gap: 1px; margin-top: .25rem; }
+.gcal-mini-w { font-size: .66rem; color: var(--fg-muted); line-height: 1.6rem; }
+.gcal-mini-d {
+  position: relative; width: 1.7rem; height: 1.7rem; border-radius: 50%; border: 0; background: transparent; color: var(--fg); font-size: .7rem; cursor: pointer; padding: 0; font-family: var(--font-body);
+}
+.gcal-mini-d:hover { background: var(--gc-hover); }
+.gcal-mini-d.out { color: var(--fg-muted); opacity: .7; }
+.gcal-mini-d.busy::after { content: ""; position: absolute; left: 50%; bottom: 1px; width: 3px; height: 3px; margin-left: -1.5px; border-radius: 50%; background: var(--gc-log); }
+.gcal-mini-d.sel { background: var(--gc-sel); color: var(--gc-sel-fg); font-weight: 700; }
+.gcal-mini-d.today { background: var(--accent); color: var(--accent-fg); font-weight: 700; }
+.gcal-mini-d.today::after { background: var(--accent-fg); }
+.gcal-side-sec { display: grid; gap: .1rem; }
+.gcal-side-h { font-family: var(--font-body); font-size: .95rem; font-weight: 500; margin: 0 0 .25rem; padding-left: .4rem; }
+.gcal-layers { display: grid; }
+.gcal-layer { display: flex; align-items: center; gap: .75rem; padding: .3rem .4rem; border-radius: 6px; cursor: pointer; font-size: .9rem; }
+.gcal-layer:hover { background: var(--gc-hover); }
+.gcal-layer input { width: 1.1rem; height: 1.1rem; margin: 0; cursor: pointer; }
+.gcal-layer.log input { accent-color: var(--gc-log); }
+.gcal-layer.due input { accent-color: var(--gc-due); }
+.gcal-layer.exam input { accent-color: var(--gc-exam); }
+.gcal-link { position: relative; display: flex; align-items: center; gap: .9rem; padding: .45rem .75rem; border-radius: 999px; color: var(--fg); text-decoration: none; font-size: .9rem; }
+.gcal-link:hover { background: var(--gc-hover); }
+.gcal-link[aria-current="page"] { background: var(--gc-sel); color: var(--gc-sel-fg); font-weight: 500; }
+.gcal-link .ico { width: 1.15rem; height: 1.15rem; }
+.gcal-link .badge { margin-left: auto; font-family: var(--font-mono); font-size: .65rem; line-height: 1.4; border-radius: 999px; padding: 0 .4rem; background: var(--gc-due); color: #fff; }
+
+/* ---------------------------------------------------------------- 首頁：月／週 */
+.gcal-home { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; align-items: start; }
+.gcal-home.has-day { grid-template-columns: minmax(0, 1fr) 22rem; }
+.gcal-main { background: var(--surface); border-radius: 1rem; overflow: hidden; min-width: 0; }
+.gcal-mobilebar, .gcal-fab { display: none; }
+.gcal-month {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); grid-template-rows: auto repeat(var(--rows), minmax(6.2rem, 1fr));
+  height: calc(100vh - var(--nav-h) - 4.75rem); min-height: 34rem;
+}
+.gcal-wd { text-align: center; font-size: .7rem; font-weight: 500; color: var(--fg-muted); padding-top: .45rem; border-right: 1px solid var(--line); }
+.gcal-wd:nth-child(7) { border-right: 0; }
+.gcal-cell {
+  display: flex; flex-direction: column; align-items: stretch; min-width: 0; min-height: 0; overflow: hidden; padding: .2rem .3rem .3rem;
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); cursor: pointer;
+}
+.gcal-cell:nth-child(7n + 7) { border-right: 0; }
+.gcal-cell:hover { background: var(--gc-hover); }
+.gcal-cell.sel { background: color-mix(in srgb, var(--gc-sel) 45%, transparent); }
+.gcal-dnum {
+  align-self: center; min-width: 1.75rem; height: 1.75rem; padding: 0 .35rem; border-radius: 999px; border: 0; background: transparent; color: var(--fg);
+  font-size: .75rem; font-weight: 500; cursor: pointer; font-family: var(--font-body); flex: none; white-space: nowrap;
+}
+.gcal-dnum:hover { background: var(--gc-hover); }
+.gcal-cell.out .gcal-dnum { color: var(--fg-muted); }
+.gcal-cell.today .gcal-dnum { background: var(--accent); color: var(--accent-fg); }
+.gcal-evs { display: grid; gap: 2px; margin-top: .15rem; min-width: 0; }
+.gcal-ev {
+  display: block; width: 100%; min-width: 0; text-align: left; border: 0; border-radius: 4px; padding: 0 .45rem; cursor: pointer;
+  background: var(--ev, var(--gc-log)); color: var(--gc-ev-fg); font-size: .75rem; font-weight: 500; line-height: 1.4rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-body);
+}
+.gcal-ev:hover { filter: brightness(1.08); box-shadow: var(--shadow); }
+.gcal-ev.log { --ev: var(--gc-log); }
+.gcal-ev.due { --ev: var(--gc-due); }
+.gcal-ev.exam { --ev: var(--gc-exam); }
+.gcal-cell.past .gcal-ev { opacity: .82; }
+.gcal-ev-s { display: none; }
+.gcal-more { border: 0; background: transparent; color: var(--fg); text-align: left; font-size: .72rem; font-weight: 500; padding: 0 .45rem; border-radius: 4px; cursor: pointer; }
+.gcal-more:hover { background: var(--gc-hover); }
+
+.gcal-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); min-height: calc(100vh - var(--nav-h) - 4.75rem); }
+.gcal-wcol { display: flex; flex-direction: column; min-width: 0; border-right: 1px solid var(--line); }
+.gcal-wcol:last-child { border-right: 0; }
+.gcal-wcol.sel { background: color-mix(in srgb, var(--gc-sel) 35%, transparent); }
+.gcal-whead {
+  display: grid; justify-items: center; gap: .1rem; padding: .6rem 0 .5rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; font-family: var(--font-body);
+}
+.gcal-wname { font-size: .72rem; font-weight: 500; color: var(--fg-muted); }
+.gcal-wnum { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; font-size: 1.5rem; }
+.gcal-whead:hover .gcal-wnum { background: var(--gc-hover); }
+.gcal-wcol.today .gcal-wname { color: var(--accent); }
+.gcal-wcol.today .gcal-wnum { background: var(--accent); color: var(--accent-fg); }
+.gcal-wbody { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: .4rem .3rem; cursor: pointer;
+  background-image: repeating-linear-gradient(transparent 0 3rem, var(--line) 3rem calc(3rem + 1px)); }
+.gcal-ev.tall { white-space: normal; line-height: 1.35; padding: .35rem .5rem; border-radius: 6px; }
+.gcal-ev-t { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gcal-ev-sub { display: block; font-weight: 400; font-size: .7rem; opacity: .9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gcal-foot { font-size: .8rem; color: var(--fg-muted); padding: .55rem 1rem; border-top: 1px solid var(--line); }
+.gcal-linkbtn { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; font: inherit; font-weight: 500; }
+.gcal-linkbtn:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------------------- 單日詳細 */
+.gcal-day { position: sticky; top: calc(var(--nav-h) + .5rem); background: var(--surface); border-radius: 1rem; padding: 1rem 1.1rem 1.25rem; display: grid; gap: 1rem; box-shadow: var(--shadow); min-width: 0; }
+.gcal-day-head { display: flex; align-items: center; gap: .75rem; }
+.gcal-day-date { display: grid; justify-items: center; flex: none; }
+.gcal-day-w { font-size: .7rem; color: var(--fg-muted); font-weight: 500; }
+.gcal-day-n { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; font-size: 1.45rem; }
+.gcal-day-date.today .gcal-day-w { color: var(--accent); }
+.gcal-day-date.today .gcal-day-n { background: var(--accent); color: var(--accent-fg); }
+.gcal-day-t { flex: 1; display: grid; min-width: 0; }
+.gcal-day-t strong { font-weight: 500; }
+.gcal-day-t span { font-size: .8rem; color: var(--fg-muted); }
+.gcal-dsec { display: grid; gap: .4rem; padding-left: .1rem; min-width: 0; }
+.gcal-dsec h3 { display: flex; align-items: center; gap: .6rem; font-family: var(--font-body); font-size: .85rem; font-weight: 500; color: var(--fg-muted); }
+.gcal-dot { width: .85rem; height: .85rem; border-radius: 4px; background: var(--ev); flex: none; }
+.gcal-dsec.log { --ev: var(--gc-log); }
+.gcal-dsec.due { --ev: var(--gc-due); }
+.gcal-dsec.exam { --ev: var(--gc-exam); }
+.gcal-big { font-size: 1rem; padding-left: 1.45rem; }
+.gcal-note { font-size: .8rem; color: var(--fg-muted); padding-left: 1.45rem; }
+.gcal-qs { list-style: none; margin: 0; padding: 0 0 0 1.45rem; display: grid; gap: .35rem; }
+.gcal-qs li { display: grid; font-size: .82rem; border-left: 3px solid var(--ev); padding: .15rem 0 .15rem .55rem; min-width: 0; }
+.gcal-q { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.gcal-qsrc { font-size: .7rem; color: var(--fg-muted); font-family: var(--font-mono); }
+.gcal-btn {
+  justify-self: start; display: inline-flex; align-items: center; gap: .4rem; margin-left: 1.45rem; border: 1px solid var(--line); background: transparent; color: var(--accent);
+  border-radius: 999px; padding: .45rem 1.1rem; font-weight: 500; font-size: .85rem; cursor: pointer; text-decoration: none; font-family: var(--font-body);
+}
+.gcal-btn:hover { background: var(--gc-hover); }
+.gcal-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.gcal-btn .ico { width: 1rem; height: 1rem; }
+.gcal-dempty { display: grid; gap: .6rem; color: var(--fg-muted); font-size: .9rem; }
+.gcal-dempty .gcal-btn { margin-left: 0; }
+
+/* 手機：單日詳細改成底部面板 */
+.mx-backdrop.gcal-sheet { place-items: end stretch; padding: 0; background: rgba(0, 0, 0, .4); }
+.mx-backdrop.gcal-sheet .mx-close { display: none; }
+.gcal-sheet-body { width: 100%; max-height: 85vh; overflow-y: auto; background: var(--surface); border-radius: 1.25rem 1.25rem 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.gcal-sheet-body .gcal-day { position: static; box-shadow: none; border-radius: 0; background: transparent; padding-bottom: 1.75rem; }
+
+/* ---------------------------------------------------------------- 手機 */
+@media (max-width: 900px) {
+  .gcal-home.has-day { grid-template-columns: minmax(0, 1fr); }
+  .gcal-day { position: static; }
+  .gcal-logo-t { display: none; }
+  .gcal-logo { margin-right: .25rem; }
+}
+@media (max-width: 720px) {
+  :root[data-skin="gcal"] .layout { display: block; }
+  :root[data-skin="gcal"] #sidebar { display: none; }
+  :root[data-skin="gcal"] main { padding: 0 .5rem; }
+  :root[data-skin="gcal"] .view { padding: 1rem; border-radius: .75rem; }
+  :root[data-skin="gcal"] .kpi { min-width: 0; }
+  :root[data-skin="gcal"] .kpi b { font-size: 1.2rem; overflow-wrap: anywhere; }
+  .gcal-top { gap: .2rem; }
+  .gcal-logo { padding-left: 0; }
+  .gcal-logo-ico { width: 1.8rem; height: 1.8rem; }
+  .gcal-search, .gcal-avatar { display: none; }
+  .gcal-today { padding: .3rem .7rem; font-size: .8rem; }
+  .gcal-arrows .gcal-iconbtn { width: 2rem; height: 2rem; }
+  .gcal-title { font-size: 1.05rem; margin-left: .15rem; }
+  .gcal-title-sub { display: none; }
+  .gcal-switch button { padding: .3rem .65rem; font-size: .8rem; }
+  .gcal-mobilebar { display: block; }
+  .gcal-layers.chips { display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none; padding: .1rem 0; }
+  .gcal-layers.chips .gcal-layer { flex: none; border: 1px solid var(--line); border-radius: 8px; padding: .2rem .6rem; gap: .4rem; font-size: .8rem; background: var(--surface); }
+  .gcal-layers.chips .gcal-layer input { width: .95rem; height: .95rem; }
+  .gcal-home { gap: .5rem; }
+  .gcal-main { border-radius: .75rem; }
+  .gcal-month { height: auto; min-height: 0; grid-template-rows: auto repeat(var(--rows), minmax(5.4rem, auto)); }
+  .gcal-cell { padding: .15rem .1rem .25rem; }
+  .gcal-dnum { min-width: 1.5rem; height: 1.5rem; font-size: .7rem; padding: 0 .2rem; }
+  .gcal-ev { padding: 0 .1rem; text-align: center; font-size: .62rem; line-height: 1.15rem; border-radius: 3px; text-overflow: clip; }
+  .gcal-ev-l { display: none; }
+  .gcal-ev-s { display: inline; }
+  .gcal-ev.tall { padding: .25rem .2rem; text-align: left; font-size: .62rem; }
+  .gcal-ev-t { white-space: normal; }
+  .gcal-ev-sub { font-size: .56rem; white-space: normal; }
+  .gcal-more { font-size: .6rem; padding: 0 .1rem; }
+  .gcal-week { min-height: 60vh; }
+  .gcal-wnum { width: 2rem; height: 2rem; font-size: 1rem; }
+  .gcal-wbody { padding: .3rem .12rem; }
+  .gcal-foot { padding: .5rem .75rem; }
+  .gcal-fab {
+    display: grid; place-items: center; position: fixed; z-index: 15; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(7.6rem + env(safe-area-inset-bottom, 0px));
+    width: 3.5rem; height: 3.5rem; border-radius: 1rem; border: 0; background: var(--gc-sel); color: var(--gc-sel-fg); box-shadow: var(--shadow); cursor: pointer;
+  }
+  .gcal-fab .ico { width: 1.6rem; height: 1.6rem; }
+  :root[data-skin="gcal"] #bottomnav { background: var(--bg); border-top: 0; }
+  :root[data-skin="gcal"] #bottomnav a[aria-current="page"] .ico { background: var(--gc-sel); color: var(--gc-sel-fg); border-radius: 999px; width: 3.5rem; padding: 0 1.1rem; }
+}
