@@ -95,6 +95,23 @@ skins/<id>.js/.css  其他風格，一個風格一組檔案
 | `tileGrid(qs, cls)` | 方形格狀牆（點開為貼文對話框） |
 | `skin()` / `base` | 目前風格 id、原版畫面函式表 |
 
+## AI（只在 claude.ai Artifact 內可用）
+
+Artifact 實驗版會宣告 `sample` 能力，讓頁面請 Claude 即時回答（例如產生解析、對話式家教）。用法：
+
+```js
+const sample = window.claude && window.claude.use ? await window.claude.use('sample') : null; // null：隱藏 AI 功能
+btn.onclick = async () => {
+  out.textContent = '思考中…';
+  try {
+    const { text } = await sample(prompt, { onText: ({ text }) => { out.textContent = text; } });
+  } catch (e) { out.textContent = e.text || ''; note.textContent = e.code === 'not_granted' ? '未允許使用 Claude' : '暫時無法回答'; }
+};
+// 多輪對話：sample([{ role: 'user', content: 規則 }, ...turns], { cache: false, onText })，turns 以 user 結尾
+```
+
+規則：只在使用者按下按鈕時呼叫（不可在載入時、迴圈或計時器中呼叫）；第一次呼叫會詢問使用者同意；每次呼叫都是獨立的，題目、選項、正解等需要的內容都要放進 prompt；網站版（非 Artifact）`window.claude` 不存在，必須有不靠 AI 的備案（例如顯示答案與題庫內的解析）。
+
 ## 測試
 
 ```bash
