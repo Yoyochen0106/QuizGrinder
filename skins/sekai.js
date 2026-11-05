@@ -150,14 +150,29 @@
     const ids = QG.buildQueue(s.ids, 'weak').slice(0, LEN);
     ui.run = { set: s, ids, i: 0, combo: 0, maxCombo: 0, score: 0, life: 100, counts: { PERFECT: 0, GREAT: 0, GOOD: 0, MISS: 0 }, miss: [], timeouts: 0, failed: false };
     ui.mode = 'play';
-    draw();
+    if (reduced()) { draw(); return; }
+    const run = ui.run;
+    flash('LIVE START', s.title);
+    run.adv = setTimeout(() => { if (ui.run === run) draw(); }, 820);
   }
+
+  /** 全螢幕斜向色帶轉場（入場與開始遊玩） */
+  function flash(big, small) {
+    const el = h('div', { class: 'sekai-flash', 'aria-hidden': 'true' },
+      h('span', { class: 'sekai-flash-b b1' }), h('span', { class: 'sekai-flash-b b2' }), h('span', { class: 'sekai-flash-b b3' }),
+      h('div', { class: 'sekai-flash-t' }, h('b', { text: big }), small ? h('span', { text: small }) : null));
+    document.body.append(el);
+    setTimeout(() => el.remove(), 1300);
+  }
+  let booted = false;
 
   function playView() {
     const run = ui.run;
     const q = QG.QMAP.get(run.ids[run.i]);
     run.done = false;
     const lane = h('span', { class: 'sekai-lane-cur' });
+    const note = h('span', { class: 'sekai-note' });
+    const setPos = (el) => { const f = Math.min(1, el / LIMIT); lane.style.width = f * 100 + '%'; note.style.top = f * 100 + '%'; };
     const secs = h('b', { class: 'sekai-secs', text: '0.0' });
     const judgeHost = h('div', { class: 'sekai-judgehost', 'aria-live': 'polite' });
     const nextBox = h('div', { class: 'sekai-next' });
@@ -175,7 +190,8 @@
       run.score += Math.round(JUDGE[j].pts * (1 + Math.min(run.combo, 50) / 100));
       run.life = Math.max(0, Math.min(100, run.life + JUDGE[j].life));
       if (run.life === 0) run.failed = true;
-      lane.style.width = Math.min(100, (el / LIMIT) * 100) + '%';
+      setPos(el);
+      note.classList.add(j === 'MISS' ? 'miss' : 'hit');
       fill(judgeHost, h('div', { class: 'sekai-judge j-' + j.toLowerCase() }, h('b', { text: j }),
         run.combo >= 2 ? h('span', { class: 'sekai-combo-pop', text: `${run.combo} COMBO` }) : null),
         h('span', { class: 'sekai-judge-sec', text: forced === 'TIMEOUT' ? '' : `${(el / 1000).toFixed(1)} 秒` }));
@@ -213,15 +229,17 @@
           h('span', { class: 'sekai-life' + lifeCls, role: 'img', 'aria-label': `生命 ${run.life}` }, h('span', { class: 'sekai-life-k', text: 'LIFE' }),
             h('span', { class: 'sekai-life-bar' }, h('i', { style: `width:${run.life}%` })), h('b', { text: String(run.life) }))),
         h('div', { class: 'sekai-hud-r' },
-          h('span', { class: 'sekai-score' }, h('small', { text: 'SCORE' }), h('b', { text: String(run.score).padStart(7, '0') })),
-          h('span', { class: 'sekai-combo' + (run.combo >= 2 ? ' on' : '') }, h('b', { text: String(run.combo) }), h('small', { text: 'COMBO' }))));
+          h('span', { class: 'sekai-score' }, h('small', { text: 'SCORE' }), h('b', { text: String(run.score).padStart(7, '0') }),
+            h('span', { class: 'sekai-gauge', 'aria-hidden': 'true' }, h('i', { style: `width:${Math.min(100, (run.score / (run.ids.length * 1000)) * 100)}%` }),
+              [['C', 0], ['B', 55], ['A', 78], ['S', 93]].map(([k, at]) => h('em', { style: `left:${at}%`, text: k })))),
+          h('span', { class: 'sekai-combo' + (run.combo >= 2 ? ' on' : '') + (run.done && run.combo >= 2 ? ' bump' : '') }, h('b', { text: String(run.combo) }), h('small', { text: 'COMBO' }))));
     }
     updateHud();
 
     run.tick = setInterval(() => {
       if (!lane.isConnected) { clearInterval(run.tick); return; }
       const el = performance.now() - t0;
-      lane.style.width = Math.min(100, (el / LIMIT) * 100) + '%';
+      setPos(el);
       secs.textContent = (Math.max(0, LIMIT - el) / 1000).toFixed(1);
       if (el >= LIMIT) timeout();
     }, 100);
@@ -243,6 +261,13 @@
       h('div', { class: 'sekai-lane', 'aria-hidden': 'true' },
         h('span', { class: 'sekai-zone z-p', text: 'PERFECT' }), h('span', { class: 'sekai-zone z-g', text: 'GREAT' }), h('span', { class: 'sekai-zone z-o', text: 'GOOD' }),
         lane, h('span', { class: 'sekai-lane-t' }, secs, ' s')),
+      h('div', { class: 'sekai-stage' },
+      h('div', { class: 'sekai-hwy', 'aria-hidden': 'true' },
+        h('div', { class: 'sekai-hwy-plane' },
+          h('span', { class: 'sekai-hz z-p' }), h('span', { class: 'sekai-hz z-g' }), h('span', { class: 'sekai-hz z-o' }),
+          h('span', { class: 'sekai-hwy-lanes' }, h('i'), h('i'), h('i')), note),
+        h('span', { class: 'sekai-hwy-line' }),
+        h('span', { class: 'sekai-hwy-legend' }, h('span', { text: 'PERFECT' }), h('span', { text: 'GREAT' }), h('span', { text: 'GOOD' }))),
       h('article', { class: 'sekai-qcard' },
         h('div', { class: 'sekai-qmeta' }, h('span', { class: 'sekai-qno', text: `NOTE ${String(run.i + 1).padStart(2, '0')}` }),
           h('span', { text: q.src.map(QG.srcLabel).join('・') })),
@@ -250,7 +275,7 @@
         h('p', { class: 'sekai-qtext', text: q.q }),
         q.fig ? h('figure', { class: 'qfig', style: 'margin:0' }, h('img', { src: q.fig, alt: '題目附圖（自原始試卷裁切）', loading: 'lazy' })) : null,
         opts,
-        judgeHost, nextBox),
+        judgeHost, nextBox)),
       h('div', { class: 'sekai-play-foot' },
         h('button', { type: 'button', class: 'sekai-quit', onclick: quit, text: '放棄（回選曲）' }),
         h('span', { class: 'sekai-keys', text: '按 1–4 或 A–D 作答，Enter 繼續' })));
@@ -325,6 +350,22 @@
         run.miss.length ? h('button', { type: 'button', class: 'sekai-btn', onclick: () => QG.startCustomPractice(run.miss, `${s.title}・MISS 題`) }, `慢慢練 MISS 的 ${run.miss.length} 題`) : null));
   }
 
+  /** 模擬考結果：結算風格的橫幅 */
+  function sekaiResult(baseViews) {
+    const view = baseViews.result();
+    const r = S().lastResult;
+    if (!r) return view;
+    const rank = r.score >= 90 ? 'S' : r.score >= 75 ? 'A' : r.score >= 60 ? 'B' : 'C';
+    const unanswered = r.items.filter((it) => !it.mine).length;
+    view.prepend(h('section', { class: 'sekai-exres', 'aria-label': `模擬考 ${r.score} 分，評級 ${rank}` },
+      h('span', { class: 'sekai-rays', 'aria-hidden': 'true' }),
+      h('div', { class: 'sekai-res-rank' }, h('span', { class: 'sekai-res-k', text: 'RANK' }), h('b', { class: 'sekai-big-rank r-' + rank, text: rank })),
+      h('div', { class: 'sekai-res-score' }, h('span', { class: 'sekai-res-k', text: 'SCORE' }), h('b', { text: String(r.score) }),
+        h('span', { class: 'sekai-res-hi', text: `答對 ${r.correct} / ${r.total}${unanswered ? `・未作答 ${unanswered}` : ''}` }),
+        r.correct === r.total ? h('span', { class: 'sekai-flag ap', text: 'ALL CORRECT' }) : null)));
+    return view;
+  }
+
   /* ---------------------------------------------------------------- 外框 */
 
   function draw() {
@@ -365,6 +406,12 @@
       { v: 'review', label: '錯題', icon: 'review', badge: true },
       { v: 'stats', label: '紀錄', icon: 'stats' },
     ],
-    views: { home: sekaiHome },
+    views: { home: sekaiHome, result: sekaiResult },
+    after: () => {
+      if (booted) return;
+      booted = true;
+      try { if (sessionStorage.getItem('qg-boot-sekai')) return; sessionStorage.setItem('qg-boot-sekai', '1'); } catch (e) { /* 無法使用時每次載入都播放 */ }
+      if (!reduced()) flash('READY', 'QuizGrinder');
+    },
   });
 })();

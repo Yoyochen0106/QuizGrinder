@@ -141,16 +141,23 @@
       dots.push(h('span', { class: 'uma-wk' + (i < p.week ? ' done' : i === p.week ? ' now' : ''), title: `第 ${i} 週` }, i === p.week ? h('b', { text: String(i) }) : null));
     }
     const editor = ui.editing ? dateForm(p) : null;
+    const today = S().days[QG.dayKey()] || { n: 0, c: 0 };
     return h('section', { class: 'uma-turn', 'aria-label': '育成回合' },
-      h('div', { class: 'uma-turn-l' },
-        h('span', { class: 'uma-turn-k', text: '備考育成期' }),
-        h('div', { class: 'uma-turn-big' }, h('b', { text: `第 ${p.week} 週` }), h('span', { text: ` / 共 ${p.total} 週` }))),
+      h('div', { class: 'uma-cal', 'aria-label': `第 ${p.week} 週，共 ${p.total} 週` },
+        h('span', { class: 'uma-cal-rings', 'aria-hidden': 'true' }, h('i'), h('i')),
+        h('span', { class: 'uma-cal-k', text: '第' }), h('b', { text: String(p.week) }), h('span', { class: 'uma-cal-k', text: `週 / ${p.total}` })),
+      h('div', { class: 'uma-goal' },
+        h('div', { class: 'uma-goal-plate' },
+          h('span', { class: 'uma-goal-tag', text: '目標' }),
+          h('span', { class: 'uma-goal-t', text: p.daysLeft >= 0 ? '考前衝刺・目標賽事＝模擬考' : '考試日已過，請設定新日期' }),
+          h('span', { class: 'uma-count' }, p.daysLeft >= 0 ? [h('span', { text: '還有' }), h('b', { text: String(p.daysLeft) }), h('span', { text: '天' })] : null)),
+        h('div', { class: 'uma-energy-row' },
+          h('span', { class: 'uma-turn-k', text: '今日訓練量' }),
+          h('span', { class: 'uma-energy', role: 'img', 'aria-label': `今日作答 ${today.n} / ${GOAL} 題` },
+            h('i', { style: `width:${Math.min(100, (today.n / GOAL) * 100)}%` }), h('span', { text: `${today.n} / ${GOAL}` })),
+          h('button', { type: 'button', class: 'uma-link', 'aria-expanded': ui.editing ? 'true' : 'false',
+            onclick: () => { ui.editing = !ui.editing; ui.err = ''; redraw(); } }, `考試日 ${fmtDate(p.target)}・變更`))),
       h('div', { class: 'uma-turn-track', 'aria-hidden': 'true' }, dots, h('span', { class: 'uma-wk goal' }, icon('uma-flag'))),
-      h('div', { class: 'uma-turn-r' },
-        h('span', { class: 'uma-turn-k', text: '距離目標賽事' }),
-        h('div', { class: 'uma-count' }, p.daysLeft >= 0 ? [h('span', { text: '還有' }), h('b', { text: String(p.daysLeft) }), h('span', { text: '天' })] : h('span', { text: '已結束，請設定新日期' })),
-        h('button', { type: 'button', class: 'uma-link', 'aria-expanded': ui.editing ? 'true' : 'false',
-          onclick: () => { ui.editing = !ui.editing; ui.err = ''; redraw(); } }, `考試日 ${fmtDate(p.target)}・變更`)),
       editor);
   }
 
@@ -185,9 +192,16 @@
         h('span', { class: 'uma-eval-n', text: nx ? `距 ${nx[1]} 還差 ${nx[0] - r.v} 分` : '已達最高評價' })),
       h('div', { class: 'uma-status-r' },
         h('div', { class: 'uma-row' }, h('span', { class: 'uma-k', text: '狀態' }), moodChip(m), h('span', { class: 'uma-sub', text: m.note })),
-        h('div', { class: 'uma-row' }, h('span', { class: 'uma-k', text: '今日訓練量' }),
-          h('span', { class: 'uma-energy', role: 'img', 'aria-label': `今日作答 ${today.n} / ${GOAL} 題` },
-            h('i', { style: `width:${Math.min(100, (today.n / GOAL) * 100)}%` }), h('span', { text: `${today.n} / ${GOAL}` }))),
+        h('div', { class: 'uma-row' }, h('span', { class: 'uma-k', text: '今日' }), h('span', { class: 'uma-sub', text: `作答 ${today.n} 題・答對 ${today.c} 題` })),
+        h('div', { class: 'uma-trend', role: 'img', 'aria-label': '近 7 天每日正確率' }, [6, 5, 4, 3, 2, 1, 0].map((d) => {
+          const k = QG.dayKey(new Date(Date.now() - d * DAY));
+          const x = S().days[k];
+          const acc = x && x.n ? x.c / x.n : null;
+          return h('span', { class: 'uma-tr' + (d === 0 ? ' today' : '') },
+            h('i', { style: `height:${acc === null ? 0 : Math.max(6, Math.round(acc * 100))}%` }),
+            h('small', { text: d === 0 ? '今天' : `${new Date(Date.now() - d * DAY).getDate()}日` }),
+            h('b', { text: acc === null ? '—' : Math.round(acc * 100) + '' }));
+        })),
         h('p', { class: 'uma-sub', text: r.exAvg === null
           ? `準備度＝全部官方題已練比例 × 正確率（${r.know} 分）。完成模擬考後也會算進評價。`
           : `準備度＝知識 ${r.know} 分 × 70% ＋ 最近模擬考平均 ${r.exAvg} 分 × 30%。` })));
@@ -268,6 +282,7 @@
   }
 
   function umaAfter(view) {
+    boot();
     if (view !== 'practice' && view !== 'review') return;
     const app = document.getElementById('app');
     const v = app && app.querySelector('.view');
@@ -281,6 +296,43 @@
       h('span', { class: 'uma-strip-n', text: `今日 ${today.n}/${GOAL}` })), v);
   }
 
+  /* ---------------------------------------------------------------- 模擬考結果：賽事結果 */
+
+  function umaResult(baseViews) {
+    const view = baseViews.result();
+    const r = S().lastResult;
+    if (!r) return view;
+    const g = gradeOf(r.score);
+    const prevBest = S().exams.slice(0, -1).reduce((a, e) => Math.max(a, e.score), 0);
+    const isBest = S().exams.length <= 1 || r.score > prevBest;
+    view.prepend(h('section', { class: 'uma-result', 'aria-label': `賽事結果 ${r.score} 分，評價 ${g}` },
+      h('span', { class: 'uma-sparkles', 'aria-hidden': 'true' }, [0, 1, 2, 3, 4, 5].map((i) => h('i', { style: `--i:${i}` }))),
+      h('div', { class: 'uma-race-ribbon', text: '目標賽事・結果' }),
+      h('div', { class: 'uma-res-main' },
+        gradeBadge(g, 'big'),
+        h('div', { class: 'uma-res-score' }, h('b', { text: String(r.score) }), h('span', { text: '分' })),
+        h('div', { class: 'uma-res-info' },
+          h('span', null, '答對 ', h('b', { text: `${r.correct} / ${r.total}` })),
+          isBest ? h('span', { class: 'uma-res-best', text: '自己的最佳紀錄！' }) : h('span', { text: `最佳 ${prevBest} 分` }))),
+      h('p', { class: 'uma-sub', text: '評價字母與首頁相同：S 85、A 70、B 55、C 40、D 30、E 20、F 10 分以上。' })));
+    return view;
+  }
+
+  /* ---------------------------------------------------------------- 入場：斜向色帶 */
+
+  let booted = false;
+  function boot() {
+    if (booted) return;
+    booted = true;
+    try { if (sessionStorage.getItem('qg-boot-uma')) return; sessionStorage.setItem('qg-boot-uma', '1'); } catch (e) { /* 無法使用時每次載入都播放 */ }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = h('div', { class: 'uma-boot', 'aria-hidden': 'true' },
+      h('span', { class: 'uma-boot-band b1' }), h('span', { class: 'uma-boot-band b2' }), h('span', { class: 'uma-boot-band b3' }),
+      h('b', { class: 'uma-boot-t', text: '備考培育' }));
+    document.body.append(el);
+    setTimeout(() => el.remove(), 1100);
+  }
+
   SK.register({
     id: 'uma', label: '賽馬娘風', group: '二次元手遊',
     top: umaTop,
@@ -291,7 +343,7 @@
       { v: 'review', label: '複習', icon: 'review', badge: true },
       { v: 'stats', label: '資料', icon: 'stats' },
     ],
-    views: { home: umaHome },
+    views: { home: umaHome, result: umaResult },
     after: umaAfter,
   });
 })();

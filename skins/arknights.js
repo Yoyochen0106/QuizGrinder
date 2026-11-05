@@ -104,7 +104,9 @@
         h('span', { class: 'arknights-op-main' }, h('b', { text: '作戰' }), h('span', { class: 'arknights-op-en', text: 'START' })),
         h('span', { class: 'arknights-op-sub', text: st.examRun ? '繼續進行中的模擬考' : `模擬考 ${QG.EXAM_LEN} 題・${QG.EXAM_MIN} 分鐘` }),
         h('span', { class: 'arknights-op-rec' }, h('span', { text: '最佳紀錄' }), h('b', { text: st.exams.length ? `${best}` : '—' }), h('span', { text: `出擊 ${st.exams.length} 次` })),
-        h('span', { class: 'arknights-op-arrow', 'aria-hidden': 'true' })),
+        h('span', { class: 'arknights-op-arrow', 'aria-hidden': 'true' }),
+        h('span', { class: 'arknights-op-barcode', 'aria-hidden': 'true' }),
+        h('span', { class: 'arknights-op-num', 'aria-hidden': 'true', text: '01' })),
       h('div', { class: 'arknights-tiles' },
         tile('#practice', 'arknights-drill', '演習', 'DRL-01', resume),
         tile('#review', 'review', '整備', 'RPR-02', due ? `${due} 題錯題到期` : '無到期錯題', due ? 'alert' : ''),
@@ -227,16 +229,61 @@
     const now = new Date();
     return h('div', { class: 'arknights-home' },
       h('header', { class: 'arknights-head' },
-        h('span', { class: 'arknights-code', text: `OPS-TERMINAL // ${now.getFullYear()}.${pad2(now.getMonth() + 1)}.${pad2(now.getDate())}` }),
+        h('span', { class: 'arknights-head-bg', 'aria-hidden': 'true', text: 'TERMINAL' }),
+        h('span', { class: 'arknights-code' }, `OPS-TERMINAL // ${now.getFullYear()}.${pad2(now.getMonth() + 1)}.${pad2(now.getDate())}`, h('i', { class: 'arknights-caret', 'aria-hidden': 'true' })),
         h('h1', null, '作戰終端', h('span', { class: 'arknights-h1-en', text: 'OPERATIONS' })),
-        h('p', { class: 'arknights-sub', text: `IPAS 初級電路板製程工程師・題庫 ${QG.fmtNum(QG.QS.length)} 題・連續 ${QG.streak()} 天` })),
+        h('p', { class: 'arknights-sub', text: `IPAS 初級電路板製程工程師・題庫 ${QG.fmtNum(QG.QS.length)} 題・連續 ${QG.streak()} 天` }),
+        h('span', { class: 'arknights-head-deco', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('b', { text: '///' }))),
       h('div', { class: 'arknights-col-main' }, stageMap(), base()),
       h('div', { class: 'arknights-col-side' }, menu(), quota()));
+  }
+
+  /* ---------------------------------------------------------------- 模擬考結果：作戰結束 */
+
+  const starsFor = (score) => (score >= 85 ? 3 : score >= 70 ? 2 : score >= 60 ? 1 : 0);
+  function akResult(baseViews) {
+    const view = baseViews.result();
+    const r = S().lastResult;
+    if (!r) return view;
+    const stars = starsFor(r.score);
+    const ok = r.score >= 60;
+    view.prepend(h('section', { class: 'arknights-result' + (ok ? ' ok' : ' ng'), 'aria-label': `作戰結束，${r.score} 分，${stars} 星` },
+      h('span', { class: 'arknights-res-band', 'aria-hidden': 'true' }),
+      h('span', { class: 'arknights-code', text: `QG-EX/OPS // ${QG.SUBJ_CODE[r.subject]} // RESULT` }),
+      h('div', { class: 'arknights-res-main' },
+        h('div', { class: 'arknights-res-title' }, h('b', { text: ok ? '作戰結束' : '作戰失敗' }), h('span', { text: ok ? 'MISSION COMPLETE' : 'MISSION FAILED' })),
+        h('div', { class: 'arknights-res-stars', 'aria-hidden': 'true' }, [1, 2, 3].map((i) => h('i', { class: i <= stars ? 'on' : null, style: `--d:${i * 0.12}s` })))),
+      h('div', { class: 'arknights-res-nums' },
+        h('div', null, h('span', { text: '評分' }), h('b', { class: 'mono', text: String(r.score) })),
+        h('div', null, h('span', { text: '命中' }), h('b', { class: 'mono', text: `${r.correct}/${r.total}` })),
+        h('div', null, h('span', { text: '評價' }), h('b', { class: 'mono', text: `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}` }))),
+      h('p', { class: 'arknights-note', text: '三星判定：60 分 ★、70 分 ★★、85 分 ★★★。' })));
+    return view;
+  }
+
+  /* ---------------------------------------------------------------- 入場：終端連線 */
+
+  let booted = false;
+  function boot() {
+    if (booted) return;
+    booted = true;
+    try { if (sessionStorage.getItem('qg-boot-arknights')) return; sessionStorage.setItem('qg-boot-arknights', '1'); } catch (e) { /* 無法使用時每次載入都播放 */ }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = h('div', { class: 'arknights-boot', 'aria-hidden': 'true' },
+      h('span', { class: 'arknights-boot-stripe' }),
+      h('div', { class: 'arknights-boot-box' },
+        h('span', { class: 'arknights-boot-code', text: 'QG-TERMINAL // ESTABLISHING LINK' }),
+        h('b', { text: '連線至作戰終端' }),
+        h('span', { class: 'arknights-boot-bar' }, h('i')),
+        h('span', { class: 'arknights-boot-meta' }, h('span', { text: 'IPAS-PCB' }), h('span', { text: `${QG.fmtNum(QG.QS.length)} RECORDS` }))));
+    document.body.append(el);
+    setTimeout(() => el.remove(), 1000);
   }
 
   /* ---------------------------------------------------------------- 作答頁：戰術簡報 */
 
   function akAfter(view) {
+    boot();
     const app = document.getElementById('app');
     if (!app) return;
     if (view === 'practice' || view === 'review' || view === 'exam') {
@@ -262,7 +309,7 @@
       { v: 'review', label: '整備', icon: 'review', badge: true },
       { v: 'stats', label: '紀錄', icon: 'stats' },
     ],
-    views: { home: akHome },
+    views: { home: akHome, result: akResult },
     after: akAfter,
   });
 })();

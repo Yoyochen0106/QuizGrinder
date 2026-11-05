@@ -352,3 +352,119 @@
 .sekai-jacket b.sekai-jk-long { font-family: var(--font-display); font-weight: 800; font-size: .95rem; letter-spacing: -.02em; }
 .sekai-jacket.big b.sekai-jk-long { font-size: 4.2rem; }
 @media (max-width: 720px) { .sekai-jacket.big b.sekai-jk-long { font-size: 2.2rem; } }
+
+/* ================================================================ v2：舞台、轉場、光效 */
+
+/* 換頁 */
+:root[data-skin="sekai"] #app > * { animation: sekai-in .45s cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes sekai-in { from { opacity: 0; transform: translateY(14px) skewY(1deg); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+.sekai-qcard { animation: sekai-card .38s cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes sekai-card { from { opacity: 0; transform: translateX(40px) skewX(-6deg); } to { opacity: 1; transform: none; } }
+
+/* 背景：漂浮的三角與光點 */
+:root[data-skin="sekai"] body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .9;
+  background:
+    linear-gradient(60deg, transparent 47%, rgba(51, 225, 255, .22) 47.4% 52.6%, transparent 53%) 8% 30% / 90px 78px no-repeat,
+    linear-gradient(-60deg, transparent 47%, rgba(255, 79, 163, .22) 47.4% 52.6%, transparent 53%) 88% 18% / 120px 104px no-repeat,
+    radial-gradient(circle, rgba(255, 255, 255, .7) 0 1.5px, transparent 2px) 0 0 / 170px 150px,
+    radial-gradient(circle, rgba(255, 225, 79, .6) 0 1px, transparent 1.5px) 40px 70px / 230px 190px;
+  animation: sekai-float 22s linear infinite;
+}
+@keyframes sekai-float { to { background-position: 8% 24%, 88% 26%, 0 -150px, 40px -120px; } }
+:root[data-skin="sekai"] .layout { position: relative; z-index: 1; }
+
+/* 全螢幕轉場 */
+.sekai-flash { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; display: grid; place-items: center; }
+.sekai-flash-b { position: absolute; left: -30%; right: -30%; height: 34%; transform: rotate(-12deg) translateX(-110%); animation: sekai-band 1.25s cubic-bezier(.7, 0, .2, 1) both; }
+.sekai-flash-b.b1 { top: 6%; background: linear-gradient(90deg, #33e1ff, #8a5cff); }
+.sekai-flash-b.b2 { top: 34%; background: linear-gradient(90deg, #ff4fa3, #ffe14f); animation-delay: .05s; }
+.sekai-flash-b.b3 { top: 62%; background: linear-gradient(90deg, #8a5cff, #33e1ff); animation-delay: .1s; }
+@keyframes sekai-band { 0% { transform: rotate(-12deg) translateX(-110%); } 40%, 62% { transform: rotate(-12deg) translateX(0); } 100% { transform: rotate(-12deg) translateX(110%); } }
+.sekai-flash-t { position: relative; display: grid; justify-items: center; animation: sekai-flash-t 1.25s ease both; }
+.sekai-flash-t b { font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: clamp(2.4rem, 9vw, 5rem); letter-spacing: .08em; color: #fff; text-shadow: 0 4px 0 rgba(21, 18, 51, .5), 0 0 30px rgba(255, 255, 255, .6); }
+.sekai-flash-t span { font-weight: 900; color: #fff; background: rgba(21, 18, 51, .6); padding: .1rem .9rem; border-radius: 999px; }
+@keyframes sekai-flash-t { 0%, 25% { opacity: 0; transform: scale(1.6); } 40%, 65% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(.9); } }
+
+/* 選曲：封面浮動與光澤 */
+.sekai-detail .sekai-jacket.big { animation: sekai-bob 4s ease-in-out infinite; }
+@keyframes sekai-bob { 50% { transform: translateY(-5px) rotate(-.6deg); } }
+.sekai-jacket::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .35) 45%, transparent 60%); background-size: 250% 100%; animation: sekai-gloss 4.5s ease-in-out infinite; }
+@keyframes sekai-gloss { 0%, 60% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
+.sekai-row.sel::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .18) 40%, transparent 60%); background-size: 250% 100%; animation: sekai-gloss 2.6s linear infinite; pointer-events: none; }
+.sekai-start { animation: sekai-glow 2s ease-in-out infinite; }
+@keyframes sekai-glow { 50% { box-shadow: 0 6px 0 #4b2aa8, 0 10px 40px rgba(255, 79, 163, .7); } }
+.sekai-start:hover { filter: brightness(1.1); }
+.sekai-detail::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, .03) 0 10px, transparent 10px 24px); }
+
+/* 遊玩：透視軌道（音符落到判定線＝逾時） */
+.sekai-stage { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1rem; align-items: start; }
+.sekai-hwy { position: sticky; top: calc(var(--nav-h) + 1rem); height: 21rem; perspective: 420px; perspective-origin: 50% 0%; }
+.sekai-hwy-plane {
+  position: absolute; left: 4%; right: 4%; top: 0; bottom: 1.6rem; transform: rotateX(38deg); transform-origin: 50% 100%;
+  background: linear-gradient(180deg, rgba(10, 8, 30, 0), rgba(10, 8, 30, .85) 20%); border-left: 2px solid rgba(255, 255, 255, .5); border-right: 2px solid rgba(255, 255, 255, .5);
+  box-shadow: 0 0 30px rgba(138, 92, 255, .4);
+}
+.sekai-hz { position: absolute; left: 0; right: 0; }
+.sekai-hz.z-p { top: 0; height: 25%; background: linear-gradient(180deg, rgba(255, 225, 79, 0), rgba(255, 225, 79, .2)); }
+.sekai-hz.z-g { top: 25%; height: 25%; background: rgba(255, 79, 163, .14); }
+.sekai-hz.z-o { top: 50%; height: 50%; background: rgba(51, 225, 255, .1); }
+.sekai-hwy-lanes { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.sekai-hwy-lanes i { border-right: 1px solid rgba(255, 255, 255, .18); }
+.sekai-hwy-lanes::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(180deg, transparent 0 30px, rgba(255, 255, 255, .07) 30px 32px); animation: sekai-scroll .8s linear infinite; }
+@keyframes sekai-scroll { to { background-position: 0 32px; } }
+.sekai-note {
+  position: absolute; left: 6%; right: 6%; top: 0; height: 12px; margin-top: -6px; border-radius: 6px;
+  background: linear-gradient(90deg, #33e1ff, #fff 50%, #33e1ff); box-shadow: 0 0 14px #33e1ff, 0 0 0 2px #fff;
+}
+.sekai-note.hit { background: linear-gradient(90deg, #ffe14f, #fff 50%, #ff4fa3); box-shadow: 0 0 24px #ffe14f, 0 0 0 2px #fff; }
+.sekai-note.miss { background: #6c6a8a; box-shadow: none; }
+.sekai-hwy-line { position: absolute; left: 0; right: 0; bottom: 1.45rem; height: 4px; border-radius: 2px; background: #fff; box-shadow: 0 0 12px #fff, 0 0 26px #33e1ff; }
+.sekai-hwy-legend { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: .3rem; font-family: var(--font-display); font-weight: 800; font-size: .44rem; letter-spacing: .06em; }
+.sekai-hwy-legend span:nth-child(1) { color: #ffe14f; }
+.sekai-hwy-legend span:nth-child(2) { color: #ff8cc6; }
+.sekai-hwy-legend span:nth-child(3) { color: #7fd9ff; }
+
+/* 分數評級刻度、Combo 跳動 */
+.sekai-gauge { position: relative; display: block; width: 11rem; height: 6px; margin-top: .35rem; border-radius: 3px; background: rgba(255, 255, 255, .14); }
+.sekai-gauge i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--sekai-grad); box-shadow: 0 0 8px rgba(255, 79, 163, .6); transition: width .4s; }
+.sekai-gauge em { position: absolute; top: 8px; transform: translateX(-50%); font-style: normal; font-family: var(--font-display); font-weight: 800; font-size: .55rem; color: var(--fg-muted); }
+.sekai-gauge em::before { content: ""; position: absolute; left: 50%; top: -10px; width: 1px; height: 8px; background: rgba(255, 255, 255, .5); }
+.sekai-score { padding-bottom: .8rem; }
+.sekai-combo.bump b { animation: sekai-bump .35s cubic-bezier(.3, 1.8, .5, 1); }
+@keyframes sekai-bump { from { transform: scale(1.5); } to { transform: none; } }
+.sekai-qcard::after { content: ""; position: absolute; left: 1.2rem; right: 1.2rem; top: 0; height: 3px; border-radius: 0 0 3px 3px; background: var(--sekai-grad); }
+.sekai-ans .ans-opt { position: relative; overflow: hidden; }
+.sekai-ans .ans-opt:active:not([disabled]) { transform: scale(.98); }
+.sekai-ans .ans-opt.ok::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, .45), transparent 40%); animation: sekai-tap .5s ease-out both; }
+@keyframes sekai-tap { from { opacity: 1; transform: scaleX(.2); transform-origin: left; } to { opacity: 0; transform: scaleX(1.2); } }
+
+/* 結算：放射光 */
+.sekai-res-main .sekai-res-rank, .sekai-exres .sekai-res-rank { position: relative; }
+.sekai-res-rank::before {
+  content: ""; position: absolute; left: 50%; top: 55%; width: 15rem; height: 15rem; margin: -7.5rem 0 0 -7.5rem; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(rgba(255, 255, 255, .12) 0 8deg, transparent 8deg 20deg); mask-image: radial-gradient(circle, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+  animation: sekai-spin 14s linear infinite;
+}
+@keyframes sekai-spin { to { transform: rotate(360deg); } }
+.sekai-big-rank { position: relative; }
+.sekai-exres {
+  position: relative; overflow: hidden; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.3rem 1.5rem; border-radius: 22px;
+  background: linear-gradient(120deg, rgba(51, 225, 255, .25), rgba(33, 29, 74, .92) 45%, rgba(255, 79, 163, .25)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2);
+}
+.sekai-exres .sekai-res-score > b { font-family: var(--font-display); font-weight: 800; font-size: 3.4rem; line-height: 1; }
+.sekai-exres .sekai-res-score { display: grid; gap: .2rem; justify-items: start; }
+
+@media (max-width: 720px) {
+  .sekai-stage { grid-template-columns: minmax(0, 1fr); }
+  .sekai-hwy { display: none; }
+  .sekai-gauge { width: 8rem; }
+  .sekai-exres { justify-content: center; text-align: center; }
+  .sekai-exres .sekai-res-score { justify-items: center; }
+}
+@media (min-width: 721px) { .sekai-lane { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-skin="sekai"] #app > *, .sekai-qcard, :root[data-skin="sekai"] body::after, .sekai-detail .sekai-jacket.big, .sekai-jacket::after, .sekai-row.sel::after,
+  .sekai-start, .sekai-hwy-lanes::after, .sekai-combo.bump b, .sekai-ans .ans-opt.ok::after, .sekai-res-rank::before { animation: none !important; }
+  .sekai-flash { display: none; }
+}

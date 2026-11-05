@@ -126,6 +126,7 @@
     });
     const totalClears = Object.values(store()).reduce((a, x) => a + (x.clears || 0), 0);
     return h('div', { class: 'zzz-lobby' },
+      h('div', { class: 'zzz-tape-strip', 'aria-hidden': 'true' }, h('span', { text: 'QUIZGRINDER ✕ TV GRID ✕ IPAS PCB ✕ '.repeat(4) })),
       h('header', { class: 'zzz-lhead' },
         h('span', { class: 'zzz-sticker y rot-l', text: 'RUN SETUP' }),
         h('h1', { class: 'zzz-title' }, '電視格', h('em', { text: '探索' })),
@@ -199,6 +200,7 @@
     const t = run.tiles[k];
     if (t.type === 'off') { say('這台電視沒有訊號，過不去。'); return; }
     run.pos = k;
+    run.fresh = k;
     run.moves++;
     run.visited.add(k);
     reveal();
@@ -306,7 +308,7 @@
         const shown = t.seen ? t.type : 'unknown';
         const state = t.done ? (t.type === 'q' ? (t.ok ? ' ok' : ' ng') : ' used') : '';
         const label = here ? `目前位置：${TYPE_ZH[t.type]}` : t.seen ? `${TYPE_ZH[t.type]}${t.done ? '（已完成）' : ''}` : '未知';
-        return h('button', { type: 'button', role: 'gridcell', class: `zzz-tv zzz-t-${shown}${state}${here ? ' here' : ''}${adj.has(k) && t.seen && t.type !== 'off' ? ' adj' : ''}${run.visited.has(k) ? ' vis' : ''}`,
+        return h('button', { type: 'button', role: 'gridcell', class: `zzz-tv zzz-t-${shown}${state}${here ? ' here' : ''}${here && run.fresh === k ? ' fresh' : ''}${adj.has(k) && t.seen && t.type !== 'off' ? ' adj' : ''}${run.visited.has(k) ? ' vis' : ''}`,
           'aria-label': label, tabindex: here ? '0' : '-1', onclick: () => tryMove(k) },
           h('span', { class: 'zzz-screen' }, t.seen ? tileGlyph(t.type, t) : h('span', { class: 'zzz-nosig', text: 'NO SIGNAL' }),
             t.seen && t.type !== 'off' && !here ? h('span', { class: 'zzz-cap', text: TYPE_ZH[t.type] }) : null),
@@ -331,7 +333,7 @@
       h('div', { class: 'zzz-facts' },
         fact('題目格', `${qDone}/${qTotal}`), fact('答對', `${run.correct}/${run.answered}`),
         fact('提示存量', String(run.hints)), fact('步數', String(run.moves)),
-        h('div', { class: 'zzz-fact' }, h('span', { text: '時間' }), h('b', { class: 'zzz-clock', text: fmtTime(Date.now() - run.t0) }))),
+        h('div', { class: 'zzz-fact zzz-rec' }, h('span', null, h('i', { class: 'zzz-rec-dot' }), 'REC'), h('b', { class: 'zzz-clock', text: fmtTime(Date.now() - run.t0) }))),
       h('p', { class: 'zzz-msg', role: 'status', text: run.msg || (blocked() ? '這格的題目還沒作答，按 Enter 或點這格作答。' : '用方向鍵／WASD 或點相鄰的電視移動。') }),
       h('div', { class: 'zzz-status-btns' },
         h('button', { type: 'button', class: 'zzz-btn', onclick: () => { ui.run = null; ui.mode = 'lobby'; draw(); } }, '撤退回櫃台')));
@@ -424,6 +426,38 @@
         run.wrong.length ? h('button', { type: 'button', class: 'zzz-btn', onclick: () => QG.startCustomPractice(run.wrong, `電視格探索：${run.tp.t} 答錯題`) }, `練習答錯的 ${run.wrong.length} 題`) : null));
   }
 
+  /* ---------------------------------------------------------------- 模擬考結果 */
+
+  function zzzResult(baseViews) {
+    const view = baseViews.result();
+    const r = S().lastResult;
+    if (!r) return view;
+    const grade = r.score >= 85 ? 'S' : r.score >= 70 ? 'A' : r.score >= 60 ? 'B' : 'C';
+    view.prepend(h('section', { class: 'zzz-exres', 'aria-label': `模擬考 ${r.score} 分，評級 ${grade}` },
+      h('span', { class: 'zzz-sticker y rot-l', text: 'MOCK EXAM RESULT' }),
+      h('div', { class: 'zzz-exres-main' },
+        h('b', { class: 'zzz-exres-score', text: String(r.score) }),
+        h('span', { class: 'zzz-exres-unit', text: '分' }),
+        h('span', { class: 'zzz-grade', text: grade })),
+      h('p', { class: 'zzz-bubble', text: r.score >= 60 ? `答對 ${r.correct} / ${r.total}，這輪過關了！` : `答對 ${r.correct} / ${r.total}，錯的題目已經進錯題本，回去補強再來。` })));
+    return view;
+  }
+
+  /* ---------------------------------------------------------------- 入場：轉台 */
+
+  let booted = false;
+  function boot() {
+    if (booted) return;
+    booted = true;
+    try { if (sessionStorage.getItem('qg-boot-zzz')) return; sessionStorage.setItem('qg-boot-zzz', '1'); } catch (e) { /* 無法使用時每次載入都播放 */ }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = h('div', { class: 'zzz-boot', 'aria-hidden': 'true' },
+      h('span', { class: 'zzz-boot-line' }), h('span', { class: 'zzz-boot-noise' }),
+      h('span', { class: 'zzz-boot-osd', text: 'CH 01 ▶ TV GRID' }));
+    document.body.append(el);
+    setTimeout(() => el.remove(), 1000);
+  }
+
   /* ---------------------------------------------------------------- 外框 */
 
   function zzzHome() {
@@ -457,6 +491,7 @@
       { v: 'review', label: '錯題', icon: 'review', badge: true },
       { v: 'stats', label: '統計', icon: 'stats' },
     ],
-    views: { home: zzzHome },
+    views: { home: zzzHome, result: zzzResult },
+    after: () => boot(),
   });
 })();

@@ -332,3 +332,160 @@
   .arknights-fac.live .arknights-prod i, .arknights-fac.live .arknights-fac-state::before { animation: none; }
   .arknights-op, .arknights-node, .arknights-tile { transition: none; }
 }
+
+/* ================================================================ v2：層次、裝飾、轉場 */
+
+/* 換頁：由右滑入＋短暫閃爍 */
+:root[data-skin="arknights"] #app > * { animation: arknights-in .46s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes arknights-in {
+  0% { opacity: 0; transform: translateX(32px); clip-path: inset(0 0 0 10%); }
+  35% { opacity: .85; }
+  45% { opacity: .35; }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; clip-path: inset(0 -50vw -50vh -50vw); }
+}
+:root[data-skin="arknights"] main { position: relative; }
+:root[data-skin="arknights"] body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(0, 0, 0, .45) 100%);
+}
+:root[data-skin="arknights"] .layout { position: relative; z-index: 1; }
+
+/* 入場：終端連線 */
+.arknights-boot {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none; display: grid; place-items: center;
+  background:
+    linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px) 0 0 / 28px 28px,
+    #0d0f12;
+  animation: arknights-boot-out 1s ease-in both;
+}
+@keyframes arknights-boot-out { 0%, 72% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+.arknights-boot-stripe { position: absolute; left: 0; right: 0; top: 18%; height: 10px; background: repeating-linear-gradient(-45deg, #ffd23f 0 10px, transparent 10px 20px); opacity: .5; animation: arknights-stripe .9s linear infinite; background-size: 28px 28px; }
+@keyframes arknights-stripe { to { background-position: 28px 0; } }
+.arknights-boot-box { display: grid; gap: .5rem; width: min(26rem, 80vw); }
+.arknights-boot-code { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .22em; color: #2fc4e3; }
+.arknights-boot-box b { font-size: 1.5rem; font-weight: 900; letter-spacing: .3em; color: #fff; }
+.arknights-boot-bar { position: relative; height: 3px; background: #2b3037; overflow: hidden; }
+.arknights-boot-bar i { position: absolute; inset: 0 auto 0 0; width: 100%; background: #ffd23f; transform-origin: left; animation: arknights-load .72s cubic-bezier(.6, 0, .3, 1) both; box-shadow: 0 0 10px #ffd23f; }
+@keyframes arknights-load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.arknights-boot-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; color: #6c7480; }
+
+/* 頁首：大字背景、游標、裝飾 */
+.arknights-head { overflow: hidden; padding-block: .4rem; }
+.arknights-head-bg {
+  position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-weight: 800; font-size: 5.5rem; line-height: 1;
+  letter-spacing: .28em; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .07); pointer-events: none; white-space: nowrap;
+}
+.arknights-caret { display: inline-block; width: .5em; height: .9em; margin-left: .35em; vertical-align: -.1em; background: #2fc4e3; animation: arknights-blink 1.1s steps(2) infinite; }
+.arknights-head-deco { position: absolute; right: 0; bottom: .3rem; display: flex; align-items: center; gap: 4px; font-family: var(--font-mono); color: #ffd23f; font-size: .8rem; letter-spacing: -.1em; }
+.arknights-head-deco i { width: 6px; height: 6px; background: #4a515c; }
+.arknights-head-deco i:first-child { background: #ffd23f; }
+.arknights-head-deco b { margin-left: .4rem; font-weight: 600; }
+
+/* 面板角括號 */
+.arknights-panel::after {
+  content: ""; position: absolute; right: 7px; bottom: 7px; width: 14px; height: 14px; pointer-events: none;
+  border-right: 2px solid #6c7480; border-bottom: 2px solid #6c7480;
+}
+.arknights-panel { background:
+  linear-gradient(135deg, rgba(255, 255, 255, .035), transparent 40%),
+  var(--arknights-panel); backdrop-filter: blur(6px); }
+
+/* 作戰入口：條碼、背景編號、透視傾斜 */
+.arknights-op-barcode {
+  position: absolute; left: 1.2rem; bottom: 12px; width: 5.5rem; height: .7rem; opacity: .75;
+  background: repeating-linear-gradient(90deg, #111 0 2px, transparent 2px 4px, #111 4px 5px, transparent 5px 8px, #111 8px 11px, transparent 11px 12px, #111 12px 13px, transparent 13px 17px);
+}
+.arknights-op-num { position: absolute; right: 3.6rem; top: .3rem; font-family: var(--font-display); font-weight: 800; font-size: 4.2rem; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(0, 0, 0, .1); }
+.arknights-op-rec { padding-bottom: .8rem; }
+.arknights-op::before { content: ""; position: absolute; left: 0; top: 0; bottom: 6px; width: 6px; background: #111; }
+.arknights-op { padding-left: 1.6rem; }
+.arknights-tile::after { content: ""; position: absolute; left: .8rem; right: .8rem; bottom: .3rem; height: 1px; background: linear-gradient(90deg, #4a515c, transparent); }
+.arknights-tile:active, .arknights-op:active, .arknights-btn:active, .arknights-fac:active { transform: translateY(1px) scale(.99); filter: brightness(1.15); }
+@media (min-width: 961px) {
+  .arknights-col-side { perspective: 1100px; }
+  .arknights-menu { transform: rotateY(-10deg); transform-origin: 100% 50%; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+  .arknights-menu:hover, .arknights-menu:focus-within { transform: rotateY(-4deg); }
+}
+
+/* 地圖：掃描光帶、選中脈衝 */
+.arknights-map-scroll {
+  background:
+    linear-gradient(90deg, transparent, rgba(47, 196, 227, .10), transparent) -40% 0 / 30% 100% no-repeat,
+    linear-gradient(90deg, rgba(47, 196, 227, .05) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(rgba(47, 196, 227, .05) 1px, transparent 1px) 0 0 / 48px 48px,
+    radial-gradient(ellipse at 50% 50%, rgba(47, 196, 227, .06), transparent 70%);
+  animation: arknights-scan 7s linear infinite;
+}
+@keyframes arknights-scan { from { background-position: -40% 0, 0 0, 0 0, 0 0; } to { background-position: 140% 0, 0 0, 0 0, 0 0; } }
+.arknights-node.sel { animation: arknights-pulse 1.8s ease-out infinite; }
+@keyframes arknights-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 210, 63, .55); } 70%, 100% { box-shadow: 0 0 0 10px rgba(255, 210, 63, 0); } }
+.arknights-brief-panel { animation: arknights-slide .35s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes arknights-slide { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+.arknights-brief-code { position: relative; padding-left: .7rem; }
+.arknights-brief-code::before { content: ""; position: absolute; left: 0; top: .2em; bottom: .2em; width: 3px; background: var(--arknights-y); }
+
+/* 作答卡：角括號、選項掃光 */
+:root[data-skin="arknights"] #qcard {
+  background:
+    linear-gradient(var(--arknights-y), var(--arknights-y)) left 10px top 12px / 16px 2px no-repeat,
+    linear-gradient(var(--arknights-y), var(--arknights-y)) left 10px top 12px / 2px 16px no-repeat,
+    linear-gradient(#6c7480, #6c7480) right 10px bottom 10px / 16px 2px no-repeat,
+    linear-gradient(#6c7480, #6c7480) right 10px bottom 10px / 2px 16px no-repeat,
+    linear-gradient(160deg, rgba(47, 196, 227, .05), transparent 35%),
+    var(--arknights-panel);
+}
+:root[data-skin="arknights"] .opt { position: relative; overflow: hidden; }
+:root[data-skin="arknights"] .opt::before {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(47, 196, 227, .16), transparent 60%);
+  transform: translateX(-100%); transition: transform .25s ease-out; pointer-events: none;
+}
+:root[data-skin="arknights"] .opt:hover:not([disabled])::before { transform: none; }
+:root[data-skin="arknights"] .opt:active:not([disabled]) { transform: translateX(2px); }
+:root[data-skin="arknights"] .feedback { animation: arknights-slide .3s ease-out both; background-image: linear-gradient(90deg, rgba(255, 255, 255, .03), transparent); }
+:root[data-skin="arknights"] .navgrid button.cur { outline-color: var(--arknights-y); }
+:root[data-skin="arknights"] .exam-bar { border-bottom: 1px solid var(--line); padding-bottom: .6rem; }
+:root[data-skin="arknights"] .hero h1 { position: relative; padding-left: .9rem; }
+:root[data-skin="arknights"] .hero h1::before { content: ""; position: absolute; left: 0; top: .15em; bottom: .15em; width: 4px; background: var(--arknights-y); }
+
+/* 模擬考結果：作戰結束 */
+.arknights-result {
+  position: relative; overflow: hidden; display: grid; gap: .6rem; padding: 1.2rem 1.4rem 1.1rem; color: #fff;
+  background: linear-gradient(100deg, #0d0f12 0 55%, #1b1e23); border: 1px solid var(--line); clip-path: var(--arknights-cut);
+}
+.arknights-res-band { position: absolute; left: -10%; right: -10%; top: 2.2rem; height: 4.6rem; background: rgba(255, 255, 255, .06); transform: skewY(-4deg); animation: arknights-band .6s cubic-bezier(.2, .8, .2, 1) both; }
+.arknights-result.ok .arknights-res-band { background: linear-gradient(90deg, rgba(255, 210, 63, .22), rgba(255, 210, 63, .04)); }
+.arknights-result.ng .arknights-res-band { background: linear-gradient(90deg, rgba(255, 95, 82, .25), rgba(255, 95, 82, .04)); }
+@keyframes arknights-band { from { transform: skewY(-4deg) scaleX(0); transform-origin: left; } to { transform: skewY(-4deg) scaleX(1); } }
+.arknights-res-main { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.arknights-res-title { display: grid; }
+.arknights-res-title b { font-size: 2.6rem; font-weight: 900; letter-spacing: .25em; line-height: 1.15; }
+.arknights-res-title span { font-family: var(--font-display); font-weight: 800; font-size: .85rem; letter-spacing: .5em; color: #ffd23f; }
+.arknights-result.ng .arknights-res-title span { color: #ff5f52; }
+.arknights-res-stars { display: flex; gap: .4rem; }
+.arknights-res-stars i {
+  width: 2.6rem; height: 2.6rem; background: #3a3f48;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.arknights-res-stars i.on { background: linear-gradient(#fff3b0, #ffd23f 60%, #d9a800); animation: arknights-star .45s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: var(--d); }
+@keyframes arknights-star { from { transform: scale(2.2) rotate(-30deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.arknights-res-nums { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+.arknights-res-nums div { display: grid; padding: .3rem .7rem; border-left: 2px solid #ffd23f; background: rgba(255, 255, 255, .04); }
+.arknights-res-nums span { font-size: .68rem; color: #9aa2ad; letter-spacing: .14em; }
+.arknights-res-nums b { font-size: 1.5rem; font-weight: 600; }
+.arknights-result .arknights-note { position: relative; }
+
+@media (max-width: 720px) {
+  .arknights-head-bg { font-size: 3rem; letter-spacing: .15em; }
+  .arknights-op-num { font-size: 3rem; right: 3rem; }
+  .arknights-res-title b { font-size: 1.9rem; letter-spacing: .15em; }
+  .arknights-res-stars i { width: 2rem; height: 2rem; }
+}
+@keyframes arknights-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-skin="arknights"] #app > *, .arknights-map-scroll, .arknights-node.sel, .arknights-brief-panel, .arknights-caret,
+  .arknights-res-band, .arknights-res-stars i.on, :root[data-skin="arknights"] .feedback, .arknights-boot, .arknights-boot-stripe { animation: none !important; }
+  .arknights-menu, :root[data-skin="arknights"] .opt::before { transition: none; }
+  .arknights-boot { display: none; }
+}

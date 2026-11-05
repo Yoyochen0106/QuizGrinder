@@ -301,3 +301,109 @@
   .zzz-tv, .zzz-tape, .zzz-go { transition: none; }
 }
 .zzz-counter { scroll-margin-top: calc(var(--nav-h) + 1rem); }
+
+/* ================================================================ v2：雜訊、轉台、故障、漫畫元素 */
+:root[data-skin="zzz"] {
+  --zzz-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 換頁：VHS 追蹤式切片滑入 */
+:root[data-skin="zzz"] #app > * { animation: zzz-in .42s steps(1, end) both, zzz-in-move .42s cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes zzz-in {
+  0% { clip-path: inset(0 0 100% 0); }
+  15% { clip-path: inset(10% 0 60% 0); }
+  30% { clip-path: inset(0 0 30% 0); }
+  45% { clip-path: inset(40% 0 0 0); }
+  60%, 100% { clip-path: inset(0 -50vw -50vh -50vw); }
+}
+@keyframes zzz-in-move { from { transform: translateX(-18px); opacity: .3; } to { transform: none; opacity: 1; } }
+
+/* 入場：轉台 */
+.zzz-boot { position: fixed; inset: 0; z-index: 90; pointer-events: none; background: #000; animation: zzz-boot-out 1s steps(1, end) both; }
+@keyframes zzz-boot-out { 0%, 85% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+.zzz-boot-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; background: #fff; transform: translate(-50%, -50%) scale(0, .004); animation: zzz-boot-line .8s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes zzz-boot-line { 0% { transform: translate(-50%, -50%) scale(0, .004); } 35% { transform: translate(-50%, -50%) scale(1, .004); } 60% { transform: translate(-50%, -50%) scale(1, 1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1, 1); opacity: 0; } }
+.zzz-boot-noise { position: absolute; inset: 0; background: var(--zzz-noise) 0 0 / 140px 140px, #222; opacity: 0; animation: zzz-boot-noise .9s steps(6) both; }
+@keyframes zzz-boot-noise { 0%, 45% { opacity: 0; } 55% { opacity: 1; background-position: 0 0; } 100% { opacity: 0; background-position: 70px 40px; } }
+.zzz-boot-osd { position: absolute; right: 8%; top: 10%; font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; letter-spacing: .08em; color: #7dff6a; text-shadow: 0 0 8px #7dff6a; opacity: 0; animation: zzz-osd .9s steps(1) both; }
+@keyframes zzz-osd { 0%, 40% { opacity: 0; } 41%, 100% { opacity: 1; } }
+
+/* 標題：色偏故障 */
+.zzz-title { text-shadow: -2px 0 #ff2a6d, 2px 0 #00e5ff; animation: zzz-glitch 4.5s steps(1) infinite; }
+.zzz-title em { text-shadow: none; }
+@keyframes zzz-glitch {
+  0%, 92%, 100% { transform: skewX(-8deg); text-shadow: -2px 0 #ff2a6d, 2px 0 #00e5ff; }
+  93% { transform: skewX(-8deg) translateX(3px); text-shadow: -5px 0 #ff2a6d, 4px 0 #00e5ff; clip-path: inset(10% 0 40% 0); }
+  95% { transform: skewX(-8deg) translateX(-2px); text-shadow: 3px 0 #ff2a6d, -3px 0 #00e5ff; clip-path: inset(50% 0 5% 0); }
+  97% { clip-path: none; }
+}
+
+/* 膠帶跑馬燈 */
+.zzz-tape-strip { grid-column: 1 / -1; overflow: hidden; background: var(--zzz-y); color: #000; border-block: 3px solid #000; transform: rotate(-1.2deg); margin: 0 -.5rem; box-shadow: 0 4px 0 #000; }
+.zzz-tape-strip span { display: inline-block; white-space: nowrap; padding: .15rem 0; font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: .8rem; letter-spacing: .12em; animation: zzz-marquee 22s linear infinite; }
+@keyframes zzz-marquee { to { transform: translateX(-50%); } }
+.zzz-lobby { grid-template-areas: "tape tape" "head head" "shelf counter"; }
+.zzz-tape-strip { grid-area: tape; }
+.zzz-open { animation: zzz-neon 3.2s steps(1) infinite; }
+@keyframes zzz-neon { 0%, 70%, 74%, 100% { opacity: 1; } 71%, 73% { opacity: .35; } }
+
+/* 電視：動態雜訊、轉台、玻璃反光 */
+.zzz-tv.zzz-t-unknown .zzz-screen::after, .zzz-tv.zzz-t-off .zzz-screen::after {
+  background: var(--zzz-noise) 0 0 / 140px 140px, repeating-linear-gradient(0deg, rgba(0, 0, 0, .3) 0 1px, transparent 1px 3px);
+  animation: zzz-static .5s steps(5) infinite; opacity: .55;
+}
+.zzz-tv.zzz-t-off .zzz-screen::after { opacity: .3; animation-duration: .8s; }
+@keyframes zzz-static { from { background-position: 0 0, 0 0; } to { background-position: 140px 90px, 0 0; } }
+.zzz-tv.zzz-t-unknown .zzz-screen { filter: none; }
+.zzz-tv.zzz-t-unknown .zzz-screen::before { background: rgba(0, 0, 0, .6); }
+.zzz-tv.fresh .zzz-screen { animation: zzz-ch .35s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes zzz-ch { 0% { transform: scaleY(.03); filter: brightness(4); } 50% { transform: scaleY(1.05); } 100% { transform: none; filter: none; } }
+.zzz-wall { position: relative; animation: zzz-power .55s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes zzz-power { 0% { transform: scale(1, .01); filter: brightness(5); } 45% { transform: scale(1, 1); filter: brightness(2); } 100% { transform: none; filter: none; } }
+.zzz-wall::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: radial-gradient(circle, rgba(255, 212, 0, .14) 1.3px, transparent 1.8px) 0 0 / 9px 9px; mask-image: linear-gradient(135deg, #000, transparent 35%); -webkit-mask-image: linear-gradient(135deg, #000, transparent 35%); }
+.zzz-tv.here .zzz-screen { box-shadow: inset 0 0 14px rgba(0, 0, 0, .9), inset 0 0 0 2px rgba(255, 212, 0, .5); }
+.zzz-tv:active { transform: translateY(2px); box-shadow: 0 1px 0 #000; }
+.zzz-glyph { animation: zzz-flicker 3s steps(1) infinite; }
+@keyframes zzz-flicker { 0%, 96%, 100% { opacity: 1; } 97% { opacity: .5; } }
+
+/* 狀態：漫畫對話框、REC 時碼 */
+.zzz-msg { position: relative; background: #fff; color: #000; border: 3px solid #000; border-radius: 18px; box-shadow: 4px 4px 0 #000; margin-top: .3rem; }
+.zzz-msg::before { content: ""; position: absolute; left: 1.4rem; top: -14px; width: 20px; height: 14px; background: #000; clip-path: polygon(0 100%, 30% 0, 100% 100%); }
+.zzz-msg::after { content: ""; position: absolute; left: calc(1.4rem + 4px); top: -8px; width: 12px; height: 9px; background: #fff; clip-path: polygon(0 100%, 30% 0, 100% 100%); }
+.zzz-rec span { display: inline-flex; align-items: center; gap: .3rem; color: #ff5a36; font-family: var(--font-display); font-weight: 800; letter-spacing: .12em; }
+.zzz-rec-dot { width: .55rem; height: .55rem; border-radius: 50%; background: #ff3b2f; box-shadow: 0 0 6px #ff3b2f; animation: zzz-recblink 1s steps(1) infinite; }
+@keyframes zzz-recblink { 50% { opacity: 0; } }
+.zzz-rec b { font-variant-numeric: tabular-nums; }
+
+/* 練習卡：漫畫分格 */
+:root[data-skin="zzz"] #qcard { position: relative; overflow: hidden; }
+:root[data-skin="zzz"] #qcard::after { content: ""; position: absolute; right: 0; top: 0; width: 9rem; height: 9rem; pointer-events: none; background: radial-gradient(circle, rgba(255, 212, 0, .35) 1.6px, transparent 2.1px) 0 0 / 9px 9px; mask-image: linear-gradient(225deg, #000, transparent 60%); -webkit-mask-image: linear-gradient(225deg, #000, transparent 60%); }
+:root[data-skin="zzz"] .feedback { background: #fff; color: #000; border: 3px solid #000; border-radius: 18px; box-shadow: 5px 5px 0 #000; animation: zzz-pop .3s cubic-bezier(.3, 1.6, .5, 1) both; }
+:root[data-skin="zzz"] .feedback.ok { box-shadow: 5px 5px 0 var(--ok); }
+:root[data-skin="zzz"] .feedback.bad { box-shadow: 5px 5px 0 var(--bad); }
+:root[data-skin="zzz"] .feedback .x { color: #333; }
+:root[data-skin="zzz"] .feedback strong { display: inline-block; justify-self: start; padding: 0 .5rem; transform: rotate(-2deg); }
+:root[data-skin="zzz"] .feedback.ok strong { background: var(--ok); }
+:root[data-skin="zzz"] .feedback.bad strong { background: var(--bad); }
+@keyframes zzz-pop { from { transform: scale(.85) rotate(-2deg); opacity: 0; } to { transform: none; opacity: 1; } }
+:root[data-skin="zzz"] .opt:active:not([disabled]) { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--zzz-y); }
+:root[data-skin="zzz"] .hero h1 { text-shadow: -2px 0 #ff2a6d, 2px 0 #00e5ff; }
+
+/* 模擬考結果 */
+.zzz-exres { position: relative; display: grid; gap: .8rem; justify-items: start; padding: 1.2rem 1.3rem 1.3rem; background: #111; border: 3px solid var(--zzz-y); border-radius: 14px; box-shadow: 8px 8px 0 #000; overflow: hidden; }
+.zzz-exres::after { content: ""; position: absolute; right: -2rem; bottom: -2rem; width: 14rem; height: 14rem; pointer-events: none; background: radial-gradient(circle, rgba(255, 212, 0, .3) 2px, transparent 2.6px) 0 0 / 11px 11px; mask-image: radial-gradient(circle at 70% 70%, #000, transparent 65%); -webkit-mask-image: radial-gradient(circle at 70% 70%, #000, transparent 65%); }
+.zzz-exres-main { display: flex; align-items: center; gap: .6rem; }
+.zzz-exres-score { font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: 5rem; line-height: 1; color: var(--zzz-y); text-shadow: -3px 0 #ff2a6d, 3px 0 #00e5ff, 6px 6px 0 #000; }
+.zzz-exres-unit { font-weight: 900; font-size: 1.4rem; align-self: flex-end; margin-bottom: .6rem; }
+.zzz-bubble { position: relative; background: #fff; color: #000; font-weight: 900; border: 3px solid #000; border-radius: 18px; padding: .5rem .9rem; box-shadow: 4px 4px 0 #000; z-index: 1; }
+
+@media (max-width: 720px) {
+  .zzz-lobby { grid-template-areas: "tape" "head" "counter" "shelf"; }
+  .zzz-exres-score { font-size: 3.6rem; }
+}
+@media (max-width: 960px) and (min-width: 721px) { .zzz-lobby { grid-template-areas: "tape" "head" "counter" "shelf"; } }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-skin="zzz"] #app > *, .zzz-title, .zzz-tape-strip span, .zzz-open, .zzz-tv.zzz-t-unknown .zzz-screen::after, .zzz-tv.zzz-t-off .zzz-screen::after,
+  .zzz-tv.fresh .zzz-screen, .zzz-wall, .zzz-glyph, .zzz-rec-dot, :root[data-skin="zzz"] .feedback { animation: none !important; }
+  .zzz-boot { display: none; }
+}
