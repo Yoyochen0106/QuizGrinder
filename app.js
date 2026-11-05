@@ -665,6 +665,12 @@
     });
   };
 
+  /** 直接開始錯題複習（ids 預設為所有到期題目） */
+  function startReview(ids) {
+    reviewRun = { queue: ids || dueReviewIds(), idx: 0, n: 0, c: 0, retried: new Set() };
+    if (location.hash === '#review') render(); else location.hash = '#review';
+  }
+
   function reviewHome(due, finished) {
     const st = S();
     const boxes = [0, 0, 0, 0, 0, 0];
@@ -899,7 +905,7 @@
   }
 
   /* ---------- 題庫瀏覽 ---------- */
-  const browse = { kw: '', subject: 'all', tag: '', only: 'all', show: false, limit: 30, mock: true };
+  const browse = { kw: '', subject: 'all', tag: '', exam: '', only: 'all', show: false, limit: 30, mock: true };
   views.browse = function () {
     const view = h('div', { class: 'view' });
     const listWrap = h('div', { class: 'qlist' });
@@ -909,6 +915,7 @@
       const kw = browse.kw.trim().toLowerCase();
       return QS.filter((q) => (browse.subject === 'all' || q.s === browse.subject)
         && (!browse.tag || q.t.includes(browse.tag))
+        && (!browse.exam || q.src.some((s) => s.exam === browse.exam))
         && (browse.mock || q.official)
         && (!kw || q.text.includes(kw))
         && (browse.only === 'all' || (browse.only === 'star' && st[q.id] && st[q.id].s) || (browse.only === 'wrong' && st[q.id] && st[q.id].w > 0) || (browse.only === 'hot' && q.src.length > 1) || (browse.only === 'fig' && q.fig)));
@@ -930,7 +937,9 @@
         options.map(([v, l]) => h('option', { value: v, text: l, selected: browse[key] === v }))));
     const practiceBtn = h('button', { class: 'btn primary', type: 'button', onclick: () => startCustomPractice(filtered().map((q) => q.id), `題庫篩選（${browse.kw || browse.tag || '自訂'}）`) });
     put(view, 
-      h('div', { class: 'hero' }, h('span', { class: 'eyebrow', text: '題庫' }), h('h1', { text: '查詢與瀏覽' })),
+      h('div', { class: 'hero' }, h('span', { class: 'eyebrow', text: '題庫' }), h('h1', { text: '查詢與瀏覽' }),
+        browse.exam ? h('div', { class: 'row' }, h('span', { class: 'tag subj', text: (EXAM_MAP.get(browse.exam) || {}).title || browse.exam }),
+          h('button', { class: 'btn small ghost', type: 'button', text: '× 取消考卷篩選', onclick: () => { browse.exam = ''; render(); } })) : null),
       h('section', { class: 'panel stack' },
         h('label', { class: 'field' }, h('span', { text: '關鍵字' }), kw),
         h('div', { class: 'grid-2' },
@@ -1128,14 +1137,16 @@
   }
 
   function updateBadges() {
-    const b = document.querySelector('[data-badge="review"]');
-    if (!b || !BANK) return;
+    if (!BANK) return;
     const n = dueReviewIds().length;
-    b.hidden = !n;
-    b.textContent = n > 99 ? '99+' : String(n);
+    document.querySelectorAll('[data-badge="review"]').forEach((b) => {
+      b.hidden = !n;
+      b.textContent = n > 99 ? '99+' : String(n);
+    });
   }
 
   let currentView = null;
+  const hooks = {}; // 風格實驗（skins.js）用：beforeRender(view)、afterRender(view, changed)
   function render() {
     const app = $('#app');
     const name = (location.hash || '#home').slice(1);
@@ -1144,11 +1155,13 @@
     keyHandler = null;
     const changed = v !== currentView;
     currentView = v;
+    if (hooks.beforeRender) hooks.beforeRender(v);
     document.querySelectorAll('[data-nav]').forEach((a) => {
       if (a.dataset.nav === v || (v === 'result' && a.dataset.nav === 'exam')) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     });
     fill(app, views[v]());
+    if (hooks.afterRender) hooks.afterRender(v, changed);
     updateBadges();
     if (changed) { window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
   }
@@ -1173,6 +1186,17 @@
       navigator.serviceWorker.register('sw.js').catch(() => { /* 離線功能非必要 */ });
     }
   }
+
+  /* 給 skins.js（版面風格實驗）使用的內部 API；主程式本身不依賴它 */
+  window.QG = {
+    h, fill, put, $, S, Store, views, hooks, render, browse, setKeys, toast,
+    startCustomPractice, startReview, ensurePractice, buildQueue, dueReviewIds, totals, streak, filterQuestions, filterLabel,
+    questionCard, rangePanel, kpi, barRow, toggleStar, srcLabel, updateBadges, pct, fmtNum, shuffle, dayKey,
+    SUBJ, SUBJ_SHORT, SUBJ_CODE, LETTERS, EXAM_LEN, EXAM_MIN,
+    get QS() { return QS; }, get QMAP() { return QMAP; }, get EXAM_MAP() { return EXAM_MAP; },
+    get TAGS() { return TAGS; }, get YEARS() { return YEARS; }, get BANK() { return BANK; },
+    get currentView() { return currentView; }, get reviewRun() { return reviewRun; },
+  };
 
   boot();
 })();

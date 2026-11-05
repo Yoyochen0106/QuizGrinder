@@ -20,6 +20,19 @@
 | 承上題 | 「承上題」可展開查看上一題，打亂順序練習時也不會失去上下文 |
 | 鍵盤／手勢 | `1`–`4` 或 `A`–`D` 作答、`Enter` 下一題、`S` 收藏；模擬考 `←` `→` 換題、`F` 標記；手機在題卡上左滑換下一題 |
 
+### 版面風格實驗
+
+在網址後面加上 `?skins`（例如 `http://localhost:8000/?skins`）會出現版面切換列，可以在四種版面之間切換：
+
+| 版面 | 借用的版面與互動模式 |
+|---|---|
+| 原版 | 電路板配色、單欄題卡 |
+| 影音牆 | 可收合的左側選單、分類膠囊列、卡片牆（縮圖、題數標籤、練習進度條）、錯題橫向捲動列；作答頁右側有「接下來」清單，點一下就能先做那題 |
+| 極簡搜尋 | 置中的大搜尋框、即時建議、功能選單；搜尋結果頁包含分類分頁、精選摘要、相關題目展開、分頁 |
+| 文件站 | 頂部分頁列、左側分組目錄（依科目、主題、考卷）、右側「本頁內容」與捲動追蹤、⌘K／Ctrl K 指令面板、上一頁／下一頁 |
+
+風格只借用版面與互動慣例，標誌一律使用 QuizGrinder 自己的圖示。程式在 `skins.js`、`skins.css`，題庫與學習邏輯完全共用。刪掉這兩個檔案就回到原版。
+
 學習進度存在瀏覽器的 localStorage。以 claude.ai Artifact 開啟時，會改存在使用者帳號的私人資料區，換裝置也會同步。
 
 ## 快速開始
@@ -34,6 +47,7 @@ python3 -m http.server 8000
 
 ```
 index.html  style.css  app.js        前端（單頁應用，#home #practice #review #exam #result #browse #stats）
+skins.js  skins.css                  版面風格實驗（網址加 ?skins 啟用）
 sw.js  manifest.webmanifest  icon.svg  PWA 離線支援
 pdfs/                                原始考卷 PDF
 data/
@@ -50,7 +64,7 @@ tools/
   build_artifact.py                  打包成 claude.ai Artifact → dist/artifact/
   generate_explanations.py           （選用）用 Gemini 產生解析
   tags.py                            主題標籤的關鍵字規則
-tests/e2e.cjs                        Playwright 端對端測試
+tests/e2e.cjs  tests/skins.cjs      Playwright 端對端測試（原版、四種版面）
 docs/
   DATA.md                            資料格式與建置流程
   AUDIT.md                           這次 PDF→JSON 品質稽核的結果
@@ -116,7 +130,7 @@ python3 tools/validate.py        # 檢查（有錯誤時結束碼為 1）
 第一次使用前，請在 repo 的 Settings → Pages → Source 選「GitHub Actions」。
 
 **claude.ai Artifact**：
-1. 執行 `python3 tools/build_artifact.py`。
+1. 執行 `python3 tools/build_artifact.py`；版面實驗版請加上 `--experiment`，輸出到 `dist/artifact-skins/`。
 2. 把 `dist/artifact/index.html` 連同 `data/bank.json`、`data/figures/*` 當作 files 一起發佈。
 
 ## 測試
@@ -125,6 +139,7 @@ python3 tools/validate.py        # 檢查（有錯誤時結束碼為 1）
 python3 -m http.server 8000 &
 npm install --no-save playwright && npx playwright install chromium
 node tests/e2e.cjs http://localhost:8000/
+node tests/skins.cjs http://localhost:8000/
 ```
 
 測試內容：
