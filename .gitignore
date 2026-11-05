@@ -1,1 +1,6 @@
 /venv
+__pycache__/
+/dist/
+data/figures/*.tmp*
+data/figures/_page_*
+.DS_Store

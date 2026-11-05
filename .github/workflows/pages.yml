@@ -1,0 +1,65 @@
+# 檢查題庫並部署到 GitHub Pages。
+# 第一次使用：repo Settings → Pages → Source 選「GitHub Actions」。
+name: 驗證並部署
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 安裝 poppler 與 Pillow
+        run: |
+          sudo apt-get update && sudo apt-get install -y poppler-utils
+          pip install Pillow
+      - name: 重新建置題庫並確認與提交的版本一致
+        run: |
+          python3 tools/build_bank.py --no-figures
+          git diff --exit-code -- data/bank.json || (echo "data/bank.json 與 overrides 不同步：請在本機執行 python3 tools/build_bank.py 後提交" && exit 1)
+      - name: 檢查題庫
+        run: python3 tools/validate.py
+      - name: 端對端測試
+        run: |
+          npm install --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+          python3 -m http.server 8000 &
+          sleep 1
+          node tests/e2e.cjs http://localhost:8000/
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 組出要發佈的檔案（不含 PDF 與工具）
+        run: |
+          mkdir -p _site/data
+          cp index.html style.css app.js sw.js manifest.webmanifest icon.svg _site/
+          cp data/bank.json _site/data/
+          cp -r data/figures _site/data/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
