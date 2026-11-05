@@ -122,16 +122,25 @@
     buildSkinbar();
   }
 
+  /** 版面切換列：依 group 分組的下拉選單＋上一個／下一個 */
   function buildSkinbar() {
     const bar = document.getElementById('skinbar');
     if (!bar) return;
+    const groups = [];
+    for (const k of SKINS) {
+      const g = k.group || '基本';
+      let grp = groups.find((x) => x.name === g);
+      if (!grp) groups.push((grp = { name: g, items: [] }));
+      grp.items.push(k);
+    }
     const sel = h('select', { class: 'sk-bar-select', id: 'sk-select', 'aria-label': '版面風格', onchange: (e) => setSkin(e.target.value) },
-      SKINS.map((k) => h('option', { value: k.id, text: k.label, selected: skin() === k.id })));
-    fill(bar, h('span', { class: 'sk-bar-label', text: '版面風格' }),
-      h('div', { class: 'sk-bar-btns', role: 'group', 'aria-label': '版面風格' }, SKINS.map((k) =>
-        h('button', { type: 'button', 'aria-pressed': skin() === k.id ? 'true' : 'false', text: k.label,
-          onclick: () => setSkin(k.id) }))),
-      sel);
+      groups.map((g) => h('optgroup', { label: g.name }, g.items.map((k) => h('option', { value: k.id, text: k.label, selected: skin() === k.id })))));
+    const i = SKINS.findIndex((k) => k.id === skin());
+    const step = (d) => setSkin(SKINS[(i + d + SKINS.length) % SKINS.length].id);
+    fill(bar, h('span', { class: 'sk-bar-label', text: `版面風格 ${i + 1}/${SKINS.length}` }),
+      h('button', { class: 'sk-bar-step', type: 'button', 'aria-label': '上一個版面', text: '‹', onclick: () => step(-1) }),
+      sel,
+      h('button', { class: 'sk-bar-step', type: 'button', 'aria-label': '下一個版面', text: '›', onclick: () => step(1) }));
   }
 
   function setSkin(id) {
@@ -726,10 +735,10 @@
   });
 
   /* ---------------------------------------------------------------- 接上主程式 */
-  register({ id: 'feed', label: 'YouTube 風', top: feedTop, side: feedSide, views: { home: feedHome, browse: feedResults },
+  register({ id: 'feed', label: 'YouTube 風', group: '第一批', top: feedTop, side: feedSide, views: { home: feedHome, browse: feedResults },
     after: (view) => { if (view === 'practice' || view === 'review') feedUpNext(view); } });
-  register({ id: 'search', label: 'Google 風', top: searchTop, views: { home: searchHome, browse: searchResults } });
-  register({ id: 'docs', label: 'Claude Docs 風', top: docsTop, side: docsSide, views: { home: docsHome }, after: docsAfter });
+  register({ id: 'search', label: 'Google 風', group: '第一批', top: searchTop, views: { home: searchHome, browse: searchResults } });
+  register({ id: 'docs', label: 'Claude Docs 風', group: '第一批', top: docsTop, side: docsSide, views: { home: docsHome }, after: docsAfter });
 
   const base = Object.assign({}, QG.views);
   for (const name of Object.keys(base)) {

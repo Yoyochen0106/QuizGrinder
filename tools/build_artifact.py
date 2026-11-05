@@ -36,8 +36,14 @@ def main():
     args = ap.parse_args()
     out = ROOT / "dist" / ("artifact-skins" if args.experiment else "artifact")
     html = (ROOT / "index.html").read_text("utf-8")
-    css = "\n".join((ROOT / f).read_text("utf-8") for f in ("style.css", "skins.css", "skins-more.css"))
-    js = "\n".join((ROOT / f).read_text("utf-8") for f in ("app.js", "skins.js", "skins-more.js"))
+    # 依 index.html 的引用順序收錄 skins/*.css 與 skins/*.js（順序＝切換列順序）
+    css_files = ["style.css", "skins.css", "skins-more.css"] + re.findall(r'href="(skins/[\w-]+\.css)"', html)
+    js_files = ["app.js", "skins.js", "skins-more.js"] + re.findall(r'src="(skins/[\w-]+\.js)"', html)
+    missing = [f for f in css_files + js_files if not (ROOT / f).exists()]
+    if missing:
+        raise SystemExit("缺少檔案：" + ", ".join(missing))
+    css = "\n".join((ROOT / f).read_text("utf-8") for f in css_files)
+    js = "\n".join((ROOT / f).read_text("utf-8") for f in js_files)
     head = section(html, "HEAD")
     env = "window.QG_ENV = 'artifact';"
     if args.experiment:

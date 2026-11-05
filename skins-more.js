@@ -611,12 +611,16 @@
   }
 
   /* ---------------------------------------------------------------- 註冊 */
-  SK.register({ id: 'ig', label: 'Instagram 風', top: igTop, side: igSide, nav: IG_NAV,
+  SK.register({ id: 'ig', label: 'Instagram 風', group: '第一批', top: igTop, side: igSide, nav: IG_NAV,
     views: { home: igHome, browse: igExplore, stats: igProfile } });
-  SK.register({ id: 'threads', label: 'Threads 風', top: thTop, side: thSide, nav: TH_NAV,
+  SK.register({ id: 'threads', label: 'Threads 風', group: '第一批', top: thTop, side: thSide, nav: TH_NAV,
     views: { home: thHome, browse: thSearch, stats: thProfile } });
-  SK.register({ id: 'game', label: 'Clash of Clans 風', top: gameTop, nav: GAME_NAV,
+  SK.register({ id: 'game', label: 'Clash of Clans 風', group: '第一批', top: gameTop, nav: GAME_NAV,
     views: { home: gameHome, result: gameResult } });
+
+  /* 共用元件開放給 skins/*.js 使用（見 docs/SKINS.md） */
+  Object.assign(SK, { modal, answerOptions, starBtn, copyQuestion, addToReview, relTime, feedPool, infiniteList, tileGrid, handle,
+    setOpenModal: (m) => { openModal = m; } });
 
   const prevBefore = QG.hooks.beforeRender;
   QG.hooks.beforeRender = (view) => { closeModals(); if (activeIO) { activeIO.disconnect(); activeIO = null; } prevBefore(view); };
