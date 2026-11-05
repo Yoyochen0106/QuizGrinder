@@ -726,10 +726,10 @@
   });
 
   /* ---------------------------------------------------------------- 接上主程式 */
-  register({ id: 'feed', label: '影音牆', top: feedTop, side: feedSide, views: { home: feedHome, browse: feedResults },
+  register({ id: 'feed', label: 'YouTube 風', top: feedTop, side: feedSide, views: { home: feedHome, browse: feedResults },
     after: (view) => { if (view === 'practice' || view === 'review') feedUpNext(view); } });
-  register({ id: 'search', label: '極簡搜尋', top: searchTop, views: { home: searchHome, browse: searchResults } });
-  register({ id: 'docs', label: '文件站', top: docsTop, side: docsSide, views: { home: docsHome }, after: docsAfter });
+  register({ id: 'search', label: 'Google 風', top: searchTop, views: { home: searchHome, browse: searchResults } });
+  register({ id: 'docs', label: 'Claude Docs 風', top: docsTop, side: docsSide, views: { home: docsHome }, after: docsAfter });
 
   const base = Object.assign({}, QG.views);
   for (const name of Object.keys(base)) {

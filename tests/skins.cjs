@@ -6,7 +6,7 @@ const assert = require('assert');
 const BASE = process.argv[2] || 'http://localhost:8000/';
 const SHOTS = process.argv[3] || '';
 const SKINS = ['classic', 'feed', 'search', 'docs', 'ig', 'threads', 'game'];
-const LABEL = { classic: '原版', feed: '影音牆', search: '極簡搜尋', docs: '文件站', ig: '照片牆', threads: '串文', game: '要塞' };
+const LABEL = { classic: '原版', feed: 'YouTube 風', search: 'Google 風', docs: 'Claude Docs 風', ig: 'Instagram 風', threads: 'Threads 風', game: 'Clash of Clans 風' };
 
 (async () => {
   const browser = await chromium.launch();

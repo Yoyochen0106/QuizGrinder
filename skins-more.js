@@ -611,11 +611,11 @@
   }
 
   /* ---------------------------------------------------------------- 註冊 */
-  SK.register({ id: 'ig', label: '照片牆', top: igTop, side: igSide, nav: IG_NAV,
+  SK.register({ id: 'ig', label: 'Instagram 風', top: igTop, side: igSide, nav: IG_NAV,
     views: { home: igHome, browse: igExplore, stats: igProfile } });
-  SK.register({ id: 'threads', label: '串文', top: thTop, side: thSide, nav: TH_NAV,
+  SK.register({ id: 'threads', label: 'Threads 風', top: thTop, side: thSide, nav: TH_NAV,
     views: { home: thHome, browse: thSearch, stats: thProfile } });
-  SK.register({ id: 'game', label: '要塞', top: gameTop, nav: GAME_NAV,
+  SK.register({ id: 'game', label: 'Clash of Clans 風', top: gameTop, nav: GAME_NAV,
     views: { home: gameHome, result: gameResult } });
 
   const prevBefore = QG.hooks.beforeRender;

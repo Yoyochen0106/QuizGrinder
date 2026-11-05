@@ -56,11 +56,17 @@
 @media (max-width: 720px) {
   :root[data-skin]:not([data-skin="classic"]) #bottomnav:not([hidden]) { display: flex; }
   :root[data-skin]:not([data-skin="classic"]) main { padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px)) !important; }
-  #skinbar:empty { display: none; }
-  #skinbar { left: auto; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px)); padding: .25rem; }
-  .sk-bar-label, .sk-bar-btns { display: none; }
-  .sk-bar-select { display: block; }
+  #skinbar { bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px)); }
   :root[data-skin="classic"] #skinbar { bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 1200px) {
+  #skinbar { padding: .25rem .25rem .25rem .75rem; }
+  .sk-bar-btns { display: none; }
+  .sk-bar-select { display: block; }
+}
+@media (max-width: 720px) {
+  .sk-bar-label { display: none; }
+  #skinbar { padding: .25rem; }
 }
 @media (min-width: 721px) {
   :root[data-skin] main { padding-bottom: 5rem; }
