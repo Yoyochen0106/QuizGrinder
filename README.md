@@ -22,19 +22,35 @@
 
 ### 版面風格實驗
 
-在網址後面加上 `?skins`（例如 `http://localhost:8000/?skins`）會出現版面切換列，可以在七種版面之間切換：
+在網址後面加上 `?skins`（例如 `http://localhost:8000/?skins`）會出現版面切換列。它是分組的下拉選單，旁邊有上一個／下一個按鈕。同一套題庫與學習紀錄可以套上原版加 41 種風格，共 42 種版面：
 
-| 版面 | 借用的版面與互動模式 |
+| 分組 | 版面 |
 |---|---|
-| 原版 | 電路板配色、單欄題卡 |
-| YouTube 風 | 可收合的左側選單、分類膠囊列、卡片牆（縮圖、題數標籤、練習進度條）、錯題橫向捲動列；作答頁右側有「接下來」清單，點一下就能先做那題 |
-| Google 風 | 置中的大搜尋框、即時建議、功能選單；搜尋結果頁包含分類分頁、精選摘要、相關題目展開、分頁 |
-| Claude Docs 風 | 頂部分頁列、左側分組目錄（依科目、主題、考卷）、右側「本頁內容」與捲動追蹤、⌘K／Ctrl K 指令面板、上一頁／下一頁 |
-| Instagram 風 | 限時動態圈（點開是全螢幕「快閃題組」：上方分段進度、點左右切題、作答後自動下一題）、方形貼文動態直接作答、探索格狀牆、個人檔案頁（答錯過／收藏格狀、模擬考精選） |
-| Threads 風 | 窄欄極簡動態、投票式作答、作答後展開「作者回覆」串（答案、出處、主題）、推薦主題清單、個人檔案 |
-| Clash of Clans 風 | 手機策略遊戲介面：等級盾牌與經驗條、銅幣／星星／連續天數資源列；工廠基地中每個主題是一棟建築，依練習量與正確率升到 5 級；每日任務；出擊（模擬考）後依分數得 1–3 顆星 |
+| 基本 | 原版 |
+| 第一批 | YouTube 風、Google 風、Claude Docs 風、Instagram 風、Threads 風、Clash of Clans 風 |
+| 學習測驗 | Duolingo 風、Quizlet 風、Anki 風、Kahoot! 風、Wordle 風、Stack Overflow 風 |
+| 社群內容 | TikTok 風、Netflix 風、Spotify 風、Reddit 風、Pinterest 風、LINE 風 |
+| 生產力 | Trello 風、Notion 風、GitHub 風、Google Sheets 風、Google 日曆風 |
+| 生活遊戲化 | 蝦皮風、Apple 健身風、Steam 風 |
+| 科技業 | Linear 風、ChatGPT 風、Vercel 風 |
+| 設計界 | Teenage Engineering 風、Figma 風、Are.na 風 |
+| 二次元手遊 | 明日方舟風、賽馬娘風、Project SEKAI 風、絕區零風、原神風、崩壞：星穹鐵道風、蔚藍檔案風、少女前線2風、重返未來：1999 風 |
 
-風格只借用版面與互動慣例，標誌、角色與美術一律是 QuizGrinder 自己的設計。程式在 `skins.js`、`skins.css`（前四種）與 `skins-more.js`、`skins-more.css`（後三種），題庫與學習邏輯完全共用；要塞版的經驗值、銅幣與星星都是由真實作答紀錄計算。刪掉這些檔案就回到原版。
+每種版面不只換色，也重做了首頁與互動，例如：
+- Duolingo：學習路徑
+- Kahoot!：限時搶答
+- Trello：可拖拉的錯題看板
+- Figma：可縮放的知識地圖
+- 絕區零：電視格探索
+- ChatGPT：對話家教；在 claude.ai Artifact 中可請 Claude 即時解釋
+
+**設計原則**：只借用版面、互動與配色。標誌、角色、立繪與遊戲素材一律不用，所有數字都由真實作答紀錄計算。
+
+**相關文件與程式**：
+- [`docs/SKINS.md`](docs/SKINS.md)：開發指南
+- [`docs/STYLE_RESEARCH.md`](docs/STYLE_RESEARCH.md)：候選清單
+- [`docs/game-ui/`](docs/game-ui/)：各遊戲的介面調查筆記
+- 程式：`skins.js`、`skins-more.js`、`skins/<id>.js`（各自搭配同名的 `.css`）
 
 學習進度存在瀏覽器的 localStorage。以 claude.ai Artifact 開啟時，會改存在使用者帳號的私人資料區，換裝置也會同步。
 
@@ -50,7 +66,7 @@ python3 -m http.server 8000
 
 ```
 index.html  style.css  app.js        前端（單頁應用，#home #practice #review #exam #result #browse #stats）
-skins*.js  skins*.css                版面風格實驗（網址加 ?skins 啟用）
+skins.js  skins-more.js  skins/       版面風格實驗（網址加 ?skins 啟用，原版＋41 種風格）
 sw.js  manifest.webmanifest  icon.svg  PWA 離線支援
 pdfs/                                原始考卷 PDF
 data/
