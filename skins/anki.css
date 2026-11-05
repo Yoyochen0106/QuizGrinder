@@ -1,1 +1,167 @@
-/* anki：實作中 */
+/* Anki 風（搭配 skins/anki.js）：樸素桌面程式外觀——置中工具列、牌組表、卡片＋底部按鈕列 */
+:root[data-skin="anki"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f2f2f2; --line: #cfcfcf;
+  --fg: #202020; --fg-muted: #6b6b6b; --accent: #2f6fd6; --accent-fg: #ffffff; --mask: #2f6fd6;
+  --ok: #1d7f2e; --ok-bg: #e6f4e8; --bad: #c62828; --bad-bg: #fbe7e7; --warn: #8a5a00; --warn-bg: #fff3d6;
+  --focus: #2f6fd6; --shadow: none; --paper: #ffffff; --paper-img: 1;
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --anki-tool: #f6f6f6; --anki-btn: #fdfdfd; --anki-btn-b: #b9b9b9; --anki-hover: #eef3fb;
+  --anki-new: #1f62d6; --anki-learn: #c62828; --anki-due: #1f8a2e; --anki-card: #ffffff;
+  --r: 4px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="anki"]:not([data-theme="light"]) {
+    --bg: #2f2f31; --surface: #3a3a3c; --surface-2: #444446; --line: #555557;
+    --fg: #e4e4e4; --fg-muted: #a7a7a7; --accent: #6ea6ff; --accent-fg: #111111; --mask: #6ea6ff;
+    --ok: #74d27f; --ok-bg: #233a26; --bad: #ff8a80; --bad-bg: #452626; --warn: #f3c463; --warn-bg: #3a2f14;
+    --focus: #6ea6ff; --shadow: none; --paper: #dddddd; --paper-img: .92;
+    --anki-tool: #262628; --anki-btn: #4a4a4c; --anki-btn-b: #626264; --anki-hover: #3c4658;
+    --anki-new: #7aaaff; --anki-learn: #ff7b7b; --anki-due: #6fd47e; --anki-card: #2f2f31;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="anki"][data-theme="dark"] {
+  --bg: #2f2f31; --surface: #3a3a3c; --surface-2: #444446; --line: #555557;
+  --fg: #e4e4e4; --fg-muted: #a7a7a7; --accent: #6ea6ff; --accent-fg: #111111; --mask: #6ea6ff;
+  --ok: #74d27f; --ok-bg: #233a26; --bad: #ff8a80; --bad-bg: #452626; --warn: #f3c463; --warn-bg: #3a2f14;
+  --focus: #6ea6ff; --shadow: none; --paper: #dddddd; --paper-img: .92;
+  --anki-tool: #262628; --anki-btn: #4a4a4c; --anki-btn-b: #626264; --anki-hover: #3c4658;
+  --anki-new: #7aaaff; --anki-learn: #ff7b7b; --anki-due: #6fd47e; --anki-card: #2f2f31;
+  color-scheme: dark;
+}
+:root[data-skin="anki"] body { font-size: .95rem; }
+:root[data-skin="anki"] body::before { background: var(--anki-tool); }
+:root[data-skin="anki"] h1, :root[data-skin="anki"] h2, :root[data-skin="anki"] h3 { font-weight: 600; }
+:root[data-skin="anki"] .eyebrow { font-family: var(--font-body); color: var(--fg-muted); letter-spacing: .02em; }
+
+/* ---------------------------------------------------------------- 工具列 */
+:root[data-skin="anki"] .topbar { background: var(--anki-tool); border-bottom: 1px solid var(--line); --nav-h: 2.75rem; }
+.anki-top { justify-content: center; position: relative; }
+.anki-logo { position: absolute; left: 0; display: grid; place-items: center; color: var(--fg-muted); }
+.anki-logo .ico { width: 1.4rem; height: 1.4rem; }
+.anki-tools { display: flex; gap: .15rem; }
+.anki-tools a { position: relative; padding: .25rem .8rem; color: var(--fg); text-decoration: none; font-size: .92rem; border-radius: 4px; }
+.anki-tools a:hover { background: var(--surface-2); }
+.anki-tools a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; text-decoration-color: var(--accent); }
+.anki-tools .badge { margin-left: .25rem; font-size: .68rem; border-radius: 999px; padding: 0 .35rem; background: var(--anki-learn); color: #fff; }
+.anki-sync { position: absolute; right: 0; display: grid; place-items: center; color: var(--anki-due); }
+.anki-sync .ico { width: 1.15rem; height: 1.15rem; }
+
+/* ---------------------------------------------------------------- 樸素按鈕 */
+.anki-btn, :root[data-skin="anki"] .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: .3rem .9rem; min-height: 2rem;
+  background: var(--anki-btn); color: var(--fg); border: 1px solid var(--anki-btn-b); border-radius: 4px; font-size: .9rem; font-weight: 400;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .06); cursor: pointer; text-decoration: none; line-height: 1.3; white-space: nowrap;
+}
+.anki-btn:hover, :root[data-skin="anki"] .btn:hover { background: var(--anki-hover); border-color: var(--accent); }
+:root[data-skin="anki"] .btn.primary, :root[data-skin="anki"] .btn.mask { background: var(--anki-btn); color: var(--fg); border-color: var(--accent); font-weight: 600; }
+:root[data-skin="anki"] .btn.ghost { border-color: transparent; background: transparent; box-shadow: none; }
+.anki-btnrow { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+
+/* ---------------------------------------------------------------- 牌組表 */
+.anki-page { max-width: 46rem; margin: 0 auto; }
+.anki-decks-wrap { display: grid; gap: 1.25rem; justify-items: center; padding-top: .75rem; }
+.anki-decks { width: min(36rem, 100%); border-collapse: collapse; font-size: .95rem; }
+.anki-decks th { font-weight: 600; color: var(--fg-muted); border-bottom: 1px solid var(--line); padding: .35rem .5rem; font-size: .85rem; }
+.anki-decks td { border-bottom: 0; padding: .1rem .5rem; white-space: nowrap; }
+.anki-decks tbody tr:hover { background: var(--surface-2); }
+.anki-decks .num { width: 4.5rem; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+.anki-decks td.new { color: var(--anki-new); }
+.anki-decks td.learn { color: var(--anki-learn); }
+.anki-decks td.due { color: var(--anki-due); }
+.anki-decks td.zero { color: var(--fg-muted); opacity: .45; }
+.anki-name { display: flex; align-items: center; }
+.anki-indent { display: inline-block; flex: none; }
+.anki-exp, .anki-exp-sp { width: 1.3rem; flex: none; }
+.anki-exp { border: 0; background: transparent; color: var(--fg-muted); cursor: pointer; font-size: 1rem; padding: 0; line-height: 1; }
+.anki-deck { border: 0; background: transparent; color: var(--fg); cursor: pointer; padding: .3rem .2rem; font-size: .95rem; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.anki-deck:hover { text-decoration: underline; color: var(--accent); }
+.anki-row.child .anki-deck { font-size: .92rem; }
+.anki-today { font-size: .9rem; color: var(--fg); }
+.anki-note { font-size: .78rem; color: var(--fg-muted); text-align: center; max-width: 30rem; }
+
+/* ---------------------------------------------------------------- 學習畫面 */
+.anki-study { display: grid; gap: .75rem; }
+.anki-studyhead { display: flex; justify-content: space-between; gap: .75rem; font-size: .85rem; border-bottom: 1px solid var(--line); padding-bottom: .4rem; }
+.anki-deckname { font-weight: 600; }
+.anki-card { background: var(--anki-card); padding: 1.5rem 1rem 2rem; text-align: center; font-size: 1.25rem; line-height: 1.6; display: grid; gap: 1rem; justify-items: center; }
+.anki-q { white-space: pre-wrap; overflow-wrap: anywhere; max-width: 40rem; }
+.anki-fig { max-width: 100%; background: var(--paper); opacity: var(--paper-img); padding: .3rem; }
+.anki-opts { margin: 0; padding: 0; list-style: none; display: grid; gap: .25rem; text-align: left; font-size: 1.05rem; max-width: 36rem; width: 100%; }
+.anki-opts li { display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); padding: .15rem .4rem; border-radius: 3px; overflow-wrap: anywhere; }
+.anki-opts li b { font-weight: 600; color: var(--fg-muted); }
+.anki-opts li.anki-ans { background: var(--ok-bg); color: var(--ok); font-weight: 600; }
+.anki-opts li.anki-ans b { color: var(--ok); }
+.anki-hr { width: 100%; border: 0; border-top: 1px solid var(--line); margin: .25rem 0; }
+.anki-a { display: grid; gap: .5rem; max-width: 38rem; }
+.anki-a-main { font-weight: 600; }
+.anki-a-x { font-size: .95rem; text-align: left; white-space: pre-wrap; color: var(--fg); }
+.anki-a-src { font-size: .78rem; color: var(--fg-muted); }
+.anki-bar {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: .75rem; padding: .6rem .75rem; margin-top: .5rem;
+  background: var(--anki-tool); border-top: 1px solid var(--line); border-radius: 2px;
+}
+.anki-bar > :last-child { justify-self: end; }
+.anki-bar > :first-child { justify-self: start; }
+.anki-show { display: grid; justify-items: center; gap: .2rem; }
+.anki-counts { font-size: .88rem; font-variant-numeric: tabular-nums; color: var(--fg-muted); }
+.anki-counts span.new { color: var(--anki-new); }
+.anki-counts span.learn { color: var(--anki-learn); }
+.anki-counts span.due { color: var(--anki-due); }
+.anki-counts span.cur { text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+.anki-showbtn { min-width: 9rem; }
+.anki-ease { display: flex; gap: .4rem; }
+.anki-ease-cell { display: grid; justify-items: center; gap: .1rem; }
+.anki-ivl { font-size: .75rem; color: var(--fg-muted); }
+.anki-ease .anki-btn { min-width: 4.6rem; }
+.anki-ease .anki-btn.again { color: var(--anki-learn); }
+.anki-ease .anki-btn.good { color: var(--anki-due); }
+.anki-ease .anki-btn.easy { color: var(--anki-new); }
+.anki-keys { text-align: center; font-size: .78rem; color: var(--fg-muted); }
+.anki-congrats .anki-card { font-size: 1rem; }
+.anki-congrats h2 { font-size: 1.3rem; }
+
+/* ---------------------------------------------------------------- 其他頁面：樸素化 */
+:root[data-skin="anki"] .card, :root[data-skin="anki"] .panel, :root[data-skin="anki"] .kpi, :root[data-skin="anki"] .qitem, :root[data-skin="anki"] .action {
+  border: 1px solid var(--line); border-radius: 4px; box-shadow: none;
+}
+:root[data-skin="anki"] .card { background: var(--anki-card); }
+:root[data-skin="anki"] #qcard .qtext { text-align: center; font-size: 1.2rem; }
+:root[data-skin="anki"] .opt { border: 1px solid var(--anki-btn-b); border-radius: 4px; background: var(--anki-btn); min-height: 2.6rem; padding: .45rem .7rem; }
+:root[data-skin="anki"] .opt:hover:not([disabled]) { background: var(--anki-hover); border-color: var(--accent); }
+:root[data-skin="anki"] .opt .key { border-radius: 3px; font-family: var(--font-body); }
+:root[data-skin="anki"] .feedback { border-radius: 4px; }
+:root[data-skin="anki"] .kpi b { font-family: var(--font-body); font-weight: 600; }
+:root[data-skin="anki"] .kpi { min-width: 0; }
+:root[data-skin="anki"] .action.lead { background: var(--anki-btn); color: var(--fg); border-color: var(--accent); }
+:root[data-skin="anki"] .chip, :root[data-skin="anki"] .seg, :root[data-skin="anki"] .tag { border-radius: 3px; }
+:root[data-skin="anki"] .chip[aria-pressed="true"], :root[data-skin="anki"] .seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+:root[data-skin="anki"] .tag.subj { border-color: var(--accent); color: var(--accent); }
+:root[data-skin="anki"] .progress > i, :root[data-skin="anki"] .bar .track i { background: var(--accent); }
+:root[data-skin="anki"] .chart .b { fill: var(--anki-due); }
+:root[data-skin="anki"] .chart .b2 { fill: var(--anki-new); }
+:root[data-skin="anki"] input[type="search"], :root[data-skin="anki"] input[type="text"], :root[data-skin="anki"] select, :root[data-skin="anki"] textarea { border-radius: 3px; border-color: var(--anki-btn-b); }
+:root[data-skin="anki"] .qlist { gap: 0; border: 1px solid var(--line); }
+:root[data-skin="anki"] .qlist .qitem { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+:root[data-skin="anki"] .qlist .qitem:nth-child(even) { background: var(--surface-2); }
+:root[data-skin="anki"] #bottomnav { background: var(--anki-tool); }
+:root[data-skin="anki"] #bottomnav a[aria-current="page"] { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .anki-tools { display: none; }
+  .anki-top { justify-content: flex-start; }
+  .anki-logo { position: static; }
+  .anki-top::after { content: "QuizGrinder"; font-weight: 600; font-size: .95rem; }
+  .anki-decks .num { width: 3.1rem; padding-inline: .25rem; font-size: .9rem; }
+  .anki-decks th.num { font-size: .78rem; }
+  .anki-card { padding: 1rem .25rem 1.5rem; font-size: 1.1rem; }
+  .anki-bar { grid-template-columns: 1fr 1fr; padding: .6rem; }
+  .anki-bar > .anki-show, .anki-bar > .anki-ease { grid-column: 1 / -1; grid-row: 1; justify-self: stretch; }
+  .anki-ease { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .3rem; }
+  .anki-ease .anki-btn { min-width: 0; width: 100%; padding-inline: .2rem; }
+  .anki-showbtn { width: 100%; }
+  .anki-keys { display: none; }
+  :root[data-skin="anki"] .kpi b { font-size: 1.25rem; overflow-wrap: anywhere; }
+}

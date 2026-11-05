@@ -1,1 +1,318 @@
-/* duolingo：實作中 */
+/* Duolingo 風（搭配 skins/duolingo.js）：學習路徑、圓胖立體按鈕、亮綠主色、Nunito 800 */
+:root[data-skin="duolingo"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f7f7f7; --line: #e5e5e5;
+  --fg: #4b4b4b; --fg-muted: #777777; --accent: #58cc02; --accent-fg: #ffffff; --mask: #1cb0f6;
+  --ok: #58a700; --ok-bg: #d7ffb8; --bad: #ea2b2b; --bad-bg: #ffdfe0; --warn: #cc7a00; --warn-bg: #fff4d6;
+  --focus: #1cb0f6; --shadow: none; --paper: #ffffff; --paper-img: 1;
+  --font-display: "Nunito", "Noto Sans TC", "PingFang TC", sans-serif;
+  --font-body: "Nunito", "Noto Sans TC", "PingFang TC", sans-serif;
+  --duolingo-green: #58cc02; --duolingo-green-d: #58a700; --duolingo-blue: #1cb0f6; --duolingo-blue-d: #1899d6; --duolingo-red: #ff4b4b; --duolingo-red-d: #ea2b2b;
+  --duolingo-gold: #ffc800; --duolingo-gold-d: #e5a500; --duolingo-orange: #ff9600; --duolingo-grey: #e5e5e5; --duolingo-grey-d: #b7b7b7;
+  --duolingo-ok-fg: #58a700; --duolingo-bad-fg: #ea2b2b; --duolingo-sel: #ddf4ff; --duolingo-sel-b: #84d8ff;
+  --r: 16px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="duolingo"]:not([data-theme="light"]) {
+    --bg: #131f24; --surface: #131f24; --surface-2: #202f36; --line: #37464f;
+    --fg: #f1f7fb; --fg-muted: #a5b5be; --accent: #58cc02; --accent-fg: #131f24; --mask: #49c0f8;
+    --ok: #79d634; --ok-bg: #20311a; --bad: #ff6b6b; --bad-bg: #3a2024; --warn: #ffb020; --warn-bg: #3a2e14;
+    --focus: #49c0f8; --shadow: none; --paper: #dfe4e6; --paper-img: .92;
+    --duolingo-grey: #37464f; --duolingo-grey-d: #24333a; --duolingo-ok-fg: #79d634; --duolingo-bad-fg: #ff7878; --duolingo-sel: #1d3b4a; --duolingo-sel-b: #3f85a7;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="duolingo"][data-theme="dark"] {
+  --bg: #131f24; --surface: #131f24; --surface-2: #202f36; --line: #37464f;
+  --fg: #f1f7fb; --fg-muted: #a5b5be; --accent: #58cc02; --accent-fg: #131f24; --mask: #49c0f8;
+  --ok: #79d634; --ok-bg: #20311a; --bad: #ff6b6b; --bad-bg: #3a2024; --warn: #ffb020; --warn-bg: #3a2e14;
+  --focus: #49c0f8; --shadow: none; --paper: #dfe4e6; --paper-img: .92;
+  --duolingo-grey: #37464f; --duolingo-grey-d: #24333a; --duolingo-ok-fg: #79d634; --duolingo-bad-fg: #ff7878; --duolingo-sel: #1d3b4a; --duolingo-sel-b: #3f85a7;
+  color-scheme: dark;
+}
+:root[data-skin="duolingo"] body { font-weight: 600; }
+:root[data-skin="duolingo"] body::before { background: var(--bg); }
+:root[data-skin="duolingo"] h1, :root[data-skin="duolingo"] h2, :root[data-skin="duolingo"] h3 { font-weight: 800; }
+:root[data-skin="duolingo"] .eyebrow { font-family: var(--font-body); font-weight: 800; color: var(--duolingo-blue); letter-spacing: .04em; }
+
+/* ---------------------------------------------------------------- 外框 */
+:root[data-skin="duolingo"] .topbar { background: var(--bg); border-bottom: 2px solid var(--line); }
+.duolingo-top { justify-content: space-between; }
+.duolingo-brand { display: inline-flex; align-items: center; gap: .4rem; color: var(--duolingo-green); text-decoration: none; font-family: "Nunito", sans-serif; font-weight: 900; font-size: 1.45rem; letter-spacing: -.01em; white-space: nowrap; }
+.duolingo-brand .ico { width: 1.7rem; height: 1.7rem; }
+.duolingo-brand .ico svg { stroke-width: 2.6; }
+.duolingo-stats { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
+.duolingo-chip { display: inline-flex; align-items: center; gap: .3rem; padding: .3rem .55rem; border-radius: 12px; font-weight: 800; font-size: 1.05rem; color: var(--duolingo-grey-d); text-decoration: none; white-space: nowrap; }
+.duolingo-chip .ico { width: 1.5rem; height: 1.5rem; }
+.duolingo-chip:hover { background: var(--surface-2); }
+.duolingo-chip.flame.on { color: var(--duolingo-orange); }
+.duolingo-chip.flame.on .ico svg { fill: var(--duolingo-orange); }
+.duolingo-chip.gem { color: var(--duolingo-blue); }
+.duolingo-chip.gem .ico svg { fill: color-mix(in srgb, var(--duolingo-blue) 30%, transparent); }
+.duolingo-chip.goal { color: var(--duolingo-green); }
+.duolingo-ring { display: inline-block; width: 1.55rem; height: 1.55rem; }
+.duolingo-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.duolingo-ring circle { fill: none; stroke-width: 4; }
+.duolingo-ring-bg { stroke: var(--duolingo-grey); }
+.duolingo-ring-fg { stroke: var(--duolingo-green); stroke-linecap: round; }
+
+:root[data-skin="duolingo"] .layout { display: grid; grid-template-columns: 16rem minmax(0, 1fr); }
+:root[data-skin="duolingo"] #sidebar {
+  position: sticky; top: calc(var(--nav-h) + 2px); align-self: start; height: calc(100vh - var(--nav-h) - 2px); overflow-y: auto;
+  border-right: 2px solid var(--line); padding: 1.25rem 1rem 1rem; background: var(--bg);
+}
+.duolingo-side { display: grid; gap: .45rem; }
+.duolingo-side-item {
+  position: relative; display: flex; align-items: center; gap: 1.1rem; padding: .55rem 1rem; border-radius: 12px; border: 2px solid transparent;
+  color: var(--fg-muted); text-decoration: none; font-weight: 800; font-size: .95rem; letter-spacing: .06em;
+}
+.duolingo-side-item:hover { background: var(--surface-2); }
+.duolingo-side-item[aria-current="page"] { background: var(--duolingo-sel); border-color: var(--duolingo-sel-b); color: var(--duolingo-blue); }
+.duolingo-side-ico { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 10px; color: #fff; }
+.duolingo-side-ico .ico { width: 1.3rem; height: 1.3rem; }
+.duolingo-side-ico .ico svg { stroke-width: 2.6; }
+.duolingo-side-ico.home { background: var(--duolingo-orange); }
+.duolingo-side-ico.review { background: var(--duolingo-red); }
+.duolingo-side-ico.exam { background: #ce82ff; }
+.duolingo-side-ico.browse { background: var(--duolingo-blue); }
+.duolingo-side-ico.stats { background: var(--duolingo-green); }
+.duolingo-side-ico.practice { background: var(--duolingo-gold); }
+.duolingo-side-item .badge { margin-left: auto; background: var(--duolingo-red); color: #fff; border-radius: 999px; font-size: .75rem; padding: 0 .45rem; font-family: var(--font-body); letter-spacing: 0; }
+
+/* ---------------------------------------------------------------- 立體按鈕 */
+.duolingo-btn, :root[data-skin="duolingo"] .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: 2px solid var(--line); border-bottom-width: 4px; border-radius: 16px;
+  background: var(--surface); color: var(--duolingo-blue); font-family: var(--font-body); font-weight: 800; letter-spacing: .05em; padding: .6rem 1.2rem; cursor: pointer; text-decoration: none; line-height: 1.3;
+}
+:root[data-skin="duolingo"] .btn:hover { background: var(--surface-2); }
+.duolingo-btn { background: var(--duolingo-green); border-color: var(--duolingo-green-d); color: #fff; font-size: 1rem; padding: .75rem 1.6rem; }
+.duolingo-btn:hover { filter: brightness(1.06); }
+:root[data-skin="duolingo"] .duolingo-btn.red { background: var(--duolingo-red); border-color: var(--duolingo-red-d); }
+.duolingo-btn.white { background: #fff; border-color: rgba(0, 0, 0, .18); color: var(--unit, var(--duolingo-green)); }
+.duolingo-btn.ghost { background: transparent; border-color: var(--line); color: var(--duolingo-blue); }
+:root[data-skin="duolingo"] .btn.primary, :root[data-skin="duolingo"] .btn.mask { background: var(--duolingo-green); border-color: var(--duolingo-green-d); color: #fff; }
+:root[data-skin="duolingo"] .btn.mask { background: var(--duolingo-blue); border-color: var(--duolingo-blue-d); }
+:root[data-skin="duolingo"] .btn.ghost { border-color: transparent; background: transparent; color: var(--fg-muted); }
+.duolingo-btn:active, :root[data-skin="duolingo"] .btn:active:not([disabled]) { transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px; }
+
+/* ---------------------------------------------------------------- 首頁：學習路徑 */
+.duolingo-home { display: grid; grid-template-columns: minmax(0, 37rem) 21rem; gap: 3rem; justify-content: center; max-width: 64rem; margin: 0 auto; align-items: start; }
+.duolingo-path { display: grid; gap: 2.5rem; min-width: 0; }
+.duolingo-unit { display: grid; gap: 2rem; }
+.duolingo-unit-head {
+  display: flex; align-items: stretch; justify-content: space-between; gap: .75rem; padding: .9rem 0 .9rem 1.1rem; border-radius: 16px;
+  background: var(--unit); color: #fff; box-shadow: 0 4px 0 color-mix(in srgb, var(--unit) 72%, #000);
+  position: sticky; top: calc(var(--nav-h) + 8px); z-index: 3;
+}
+.duolingo-unit-no { font-size: .8rem; font-weight: 800; letter-spacing: .06em; opacity: .85; }
+.duolingo-unit-head h2 { font-size: 1.25rem; line-height: 1.35; color: #fff; }
+.duolingo-guide { display: flex; align-items: center; gap: .4rem; padding: 0 1rem; border-left: 2px solid rgba(0, 0, 0, .15); color: #fff; text-decoration: none; font-weight: 800; font-size: .85rem; white-space: nowrap; }
+.duolingo-guide .ico { width: 1.3rem; height: 1.3rem; }
+.duolingo-steps { display: grid; gap: 1.6rem; justify-items: center; padding-bottom: .5rem; }
+.duolingo-step { display: grid; justify-items: center; gap: .6rem; width: 100%; }
+.duolingo-step-in { position: relative; display: grid; justify-items: center; gap: .3rem; transform: translateX(var(--x)); }
+.duolingo-node {
+  --c: var(--duolingo-grey); --cd: var(--duolingo-grey-d);
+  position: relative; width: 4.6rem; height: 4.1rem; border-radius: 50%; border: 0; cursor: pointer; padding: 0;
+  background: var(--c); box-shadow: 0 .45rem 0 var(--cd); color: #fff; transition: transform .1s;
+}
+.duolingo-node.started { --c: var(--unit); --cd: color-mix(in srgb, var(--unit) 70%, #000); }
+.duolingo-node.lv5 { --c: var(--duolingo-gold); --cd: var(--duolingo-gold-d); }
+.duolingo-node:not(.started):not(.next) { color: var(--duolingo-grey-d); }
+.duolingo-node.next:not(.started) { --c: var(--unit); --cd: color-mix(in srgb, var(--unit) 70%, #000); }
+.duolingo-node:hover { filter: brightness(1.05); }
+.duolingo-node:active { transform: translateY(.35rem); box-shadow: 0 .1rem 0 var(--cd); }
+.duolingo-node.next { outline: .45rem solid var(--duolingo-grey); outline-offset: .35rem; }
+.duolingo-node[aria-expanded="true"] { outline: .45rem solid color-mix(in srgb, var(--unit) 35%, transparent); outline-offset: .35rem; }
+.duolingo-node:focus-visible { outline: 3px solid var(--focus); outline-offset: .5rem; }
+.duolingo-node-face { display: grid; place-items: center; width: 100%; height: 100%; }
+.duolingo-node-face .ico { width: 2rem; height: 2rem; }
+.duolingo-node-face .ico svg { stroke-width: 2.6; }
+.duolingo-node.started .duolingo-node-face .ico svg, .duolingo-node.lv5 .duolingo-node-face .ico svg { fill: rgba(255, 255, 255, .9); }
+.duolingo-crown {
+  position: absolute; right: -.55rem; bottom: -.7rem; display: grid; place-items: center; width: 2rem; height: 2rem;
+  color: var(--duolingo-gold-d);
+}
+.duolingo-crown .ico { position: absolute; inset: 0; width: 100%; height: 100%; }
+.duolingo-crown .ico svg { fill: var(--duolingo-gold); stroke: var(--duolingo-gold-d); stroke-width: 1.6; }
+.duolingo-node.lv0 .duolingo-crown .ico svg { fill: var(--duolingo-grey); stroke: var(--duolingo-grey-d); }
+.duolingo-crown b { position: relative; font-size: .78rem; color: #7a5600; margin-top: .3rem; }
+.duolingo-node.lv0 .duolingo-crown b { color: var(--fg-muted); }
+.duolingo-node-label { margin-top: .55rem; font-weight: 800; font-size: .9rem; color: var(--fg); text-align: center; max-width: 9rem; line-height: 1.3; }
+.duolingo-bubble {
+  position: absolute; bottom: calc(100% + .1rem); left: 50%; transform: translateX(-50%); z-index: 2;
+  padding: .45rem .9rem; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); color: var(--unit);
+  font-weight: 900; letter-spacing: .06em; white-space: nowrap; animation: duolingo-bob 1.2s ease-in-out infinite;
+}
+.duolingo-bubble::after { content: ""; position: absolute; left: 50%; top: 100%; width: .7rem; height: .7rem; background: var(--surface); border: 2px solid var(--line); border-top: 0; border-left: 0; transform: translate(-50%, -50%) rotate(45deg); }
+.duolingo-step-in:has(.duolingo-bubble) { margin-top: 2.6rem; }
+@keyframes duolingo-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+.duolingo-pop {
+  position: relative; display: grid; gap: .5rem; width: min(21rem, 100%); padding: 1rem 1.1rem 1.1rem; border-radius: 16px;
+  background: var(--unit); color: #fff; box-shadow: 0 4px 0 color-mix(in srgb, var(--unit) 72%, #000);
+}
+.duolingo-pop::before { content: ""; position: absolute; top: -.5rem; left: calc(50% + var(--x, 0px)); width: 1rem; height: 1rem; background: var(--unit); transform: translateX(-50%) rotate(45deg); border-radius: 3px; }
+.duolingo-pop strong { font-size: 1.15rem; font-weight: 900; }
+.duolingo-pop span { font-size: .88rem; opacity: .95; }
+.duolingo-pop-bar { display: block; height: .7rem; border-radius: 999px; background: rgba(0, 0, 0, .2); overflow: hidden; }
+.duolingo-pop-bar i { display: block; height: 100%; border-radius: inherit; background: #fff; }
+.duolingo-pop .duolingo-btn { width: 100%; margin-top: .3rem; }
+.duolingo-aside { position: sticky; top: calc(var(--nav-h) + 1rem); display: grid; gap: 1.25rem; }
+.duolingo-card { display: grid; gap: .65rem; padding: 1.2rem 1.3rem; border: 2px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--fg); text-decoration: none; }
+.duolingo-card h3 { font-size: 1.2rem; }
+.duolingo-card p { font-size: .9rem; }
+.duolingo-goal { display: flex; align-items: center; gap: .75rem; }
+.duolingo-goal-bar { flex: 1; height: 1rem; border-radius: 999px; background: var(--duolingo-grey); overflow: hidden; }
+.duolingo-goal-bar i { display: block; height: 100%; border-radius: inherit; background: var(--duolingo-gold); box-shadow: inset 0 3px 0 rgba(255, 255, 255, .35); }
+.duolingo-goal b { font-size: .9rem; color: var(--fg-muted); white-space: nowrap; }
+.duolingo-mini { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.duolingo-mini > span { display: grid; justify-items: center; gap: .1rem; padding: .6rem .3rem; border: 2px solid var(--line); border-radius: 12px; }
+.duolingo-mini .ico { width: 1.6rem; height: 1.6rem; }
+.duolingo-mini > span:nth-child(1) .ico { color: var(--duolingo-orange); }
+.duolingo-mini > span:nth-child(2) .ico { color: var(--duolingo-blue); }
+.duolingo-mini > span:nth-child(3) .ico { color: var(--duolingo-gold-d); }
+.duolingo-mini b { font-size: 1.2rem; line-height: 1.2; }
+.duolingo-mini small { font-size: .72rem; color: var(--fg-muted); white-space: nowrap; }
+.duolingo-review { border-color: var(--duolingo-red); background: color-mix(in srgb, var(--duolingo-red) 8%, var(--surface)); }
+.duolingo-review h3 { color: var(--duolingo-red-d); }
+.duolingo-review.calm { border-color: var(--line); background: var(--surface); }
+.duolingo-review.calm h3 { color: var(--fg); }
+
+/* ---------------------------------------------------------------- 作答畫面（全部練習、複習、模擬考） */
+:root[data-skin="duolingo"] .card { border: 0; box-shadow: none; padding: .25rem 0; background: transparent; }
+:root[data-skin="duolingo"] .qtext { font-size: 1.3rem; font-weight: 700; color: var(--fg); }
+:root[data-skin="duolingo"] .opt {
+  border: 2px solid var(--line); border-bottom-width: 4px; border-radius: 14px; padding: .8rem 1rem; font-weight: 700; color: var(--fg); background: var(--surface);
+}
+:root[data-skin="duolingo"] .opt:hover:not([disabled]) { background: var(--surface-2); border-color: var(--line); }
+:root[data-skin="duolingo"] .opt:active:not([disabled]) { transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px; }
+:root[data-skin="duolingo"] .opt .key { border: 2px solid var(--line); background: transparent; color: var(--fg-muted); border-radius: 8px; font-family: var(--font-body); font-weight: 800; font-size: .85rem; }
+:root[data-skin="duolingo"] .opt.selected { background: var(--duolingo-sel); border-color: var(--duolingo-sel-b); }
+:root[data-skin="duolingo"] .opt.selected .key { border-color: var(--duolingo-sel-b); background: transparent; color: var(--duolingo-blue); }
+:root[data-skin="duolingo"] .opt.correct { background: var(--ok-bg); border-color: var(--duolingo-green); color: var(--duolingo-ok-fg); }
+:root[data-skin="duolingo"] .opt.correct .key { border-color: var(--duolingo-green); background: transparent; color: var(--duolingo-ok-fg); }
+:root[data-skin="duolingo"] .opt.wrong { background: var(--bad-bg); border-color: var(--duolingo-red); color: var(--duolingo-bad-fg); }
+:root[data-skin="duolingo"] .opt.wrong .key { border-color: var(--duolingo-red); background: transparent; color: var(--duolingo-bad-fg); }
+:root[data-skin="duolingo"] .progress { height: 1rem; border-radius: 999px; background: var(--duolingo-grey); }
+:root[data-skin="duolingo"] .progress > i { background: var(--duolingo-green); border-radius: inherit; box-shadow: inset 0 4px 0 rgba(255, 255, 255, .3); }
+:root[data-skin="duolingo"] .tag { border-radius: 8px; font-weight: 700; }
+:root[data-skin="duolingo"] .tag.subj { border: 2px solid var(--duolingo-blue); color: var(--duolingo-blue); }
+/* 底部大橫幅回饋 */
+:root[data-skin="duolingo"] .feedback {
+  position: relative; border: 0; border-radius: 16px; padding: 1.1rem 1.2rem 1.1rem 4.4rem; gap: .3rem; font-size: .95rem; font-weight: 700;
+}
+:root[data-skin="duolingo"] .feedback::before {
+  content: "✓"; position: absolute; left: 1rem; top: 1rem; width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); font-size: 1.5rem; font-weight: 900;
+}
+:root[data-skin="duolingo"] .feedback.ok { background: var(--ok-bg); color: var(--duolingo-ok-fg); }
+:root[data-skin="duolingo"] .feedback.bad { background: var(--bad-bg); color: var(--duolingo-bad-fg); }
+:root[data-skin="duolingo"] .feedback.bad::before { content: "✕"; }
+:root[data-skin="duolingo"] .feedback strong { font-size: 1.45rem; font-weight: 900; }
+:root[data-skin="duolingo"] .feedback .x { color: var(--fg); font-weight: 600; }
+:root[data-skin="duolingo"] .feedback #nextBtn { justify-self: end; margin-top: .4rem; min-width: 10rem; }
+:root[data-skin="duolingo"] .feedback.bad #nextBtn { background: var(--duolingo-red); border-color: var(--duolingo-red-d); }
+:root[data-skin="duolingo"] .panel, :root[data-skin="duolingo"] .kpi, :root[data-skin="duolingo"] .qitem, :root[data-skin="duolingo"] .action {
+  border: 2px solid var(--line); border-radius: 16px; box-shadow: none;
+}
+:root[data-skin="duolingo"] .action.lead { background: var(--duolingo-green); border-color: var(--duolingo-green-d); border-bottom-width: 4px; }
+:root[data-skin="duolingo"] .kpi { min-width: 0; }
+:root[data-skin="duolingo"] .kpi b { font-family: var(--font-body); font-weight: 900; color: var(--duolingo-gold-d); overflow-wrap: anywhere; }
+:root[data-skin="duolingo"] .chip, :root[data-skin="duolingo"] .seg { border-width: 2px; border-radius: 12px; font-weight: 800; }
+:root[data-skin="duolingo"] .chip[aria-pressed="true"], :root[data-skin="duolingo"] .seg button[aria-pressed="true"] { background: var(--duolingo-sel); color: var(--duolingo-blue); border-color: var(--duolingo-sel-b); }
+:root[data-skin="duolingo"] .bar .track { height: .8rem; border-radius: 999px; }
+:root[data-skin="duolingo"] .bar .track i { background: var(--duolingo-green); border-radius: inherit; }
+:root[data-skin="duolingo"] .bar .track i.mid { background: var(--duolingo-gold); }
+:root[data-skin="duolingo"] .bar .track i.low { background: var(--duolingo-red); }
+:root[data-skin="duolingo"] .chart .b { fill: var(--duolingo-green); }
+:root[data-skin="duolingo"] .chart .b2 { fill: var(--duolingo-gold); }
+:root[data-skin="duolingo"] input[type="search"], :root[data-skin="duolingo"] input[type="text"], :root[data-skin="duolingo"] select, :root[data-skin="duolingo"] textarea { border: 2px solid var(--line); border-radius: 12px; background: var(--surface-2); }
+
+/* ---------------------------------------------------------------- 課程中 */
+.duolingo-lesson { max-width: 40rem; }
+.duolingo-lesson .qhead, .duolingo-lesson .progress { display: none; }
+.duolingo-lesson-head { display: flex; align-items: center; gap: 1rem; }
+.duolingo-x { display: grid; place-items: center; color: var(--duolingo-grey-d); flex: none; }
+.duolingo-x .ico { width: 1.7rem; height: 1.7rem; }
+.duolingo-x .ico svg { stroke-width: 3; }
+.duolingo-lbar { flex: 1; height: 1rem; border-radius: 999px; background: var(--duolingo-grey); overflow: hidden; }
+.duolingo-lbar i { display: block; height: 100%; border-radius: inherit; background: var(--duolingo-green); box-shadow: inset 0 4px 0 rgba(255, 255, 255, .3); transition: width .3s ease; min-width: 1rem; }
+.duolingo-hearts { display: inline-flex; align-items: center; gap: .3rem; color: var(--duolingo-red); font-weight: 900; font-size: 1.15rem; }
+.duolingo-hearts .ico { width: 1.7rem; height: 1.7rem; }
+.duolingo-hearts .ico svg { fill: var(--duolingo-red); stroke: var(--duolingo-red-d); }
+.duolingo-hearts.empty { color: var(--duolingo-grey-d); }
+.duolingo-hearts.empty .ico svg { fill: var(--duolingo-grey); stroke: var(--duolingo-grey-d); }
+.duolingo-lesson-title { font-size: 1.5rem; font-weight: 900; color: var(--fg); line-height: 1.35; }
+.duolingo-lesson .qmeta .src { display: none; }
+.duolingo-lesson .qfoot { border-top: 2px solid var(--line); padding-top: 1rem; }
+.duolingo-done { display: grid; justify-items: center; gap: 1rem; text-align: center; padding: 2rem 0; }
+.duolingo-done-badge { display: grid; place-items: center; width: 7rem; height: 7rem; border-radius: 50%; background: var(--duolingo-gold); box-shadow: 0 .5rem 0 var(--duolingo-gold-d); color: #fff; }
+.duolingo-done-badge .ico { width: 4rem; height: 4rem; }
+.duolingo-done-badge .ico svg { fill: #fff; stroke: #fff; }
+.duolingo-done h1 { color: var(--duolingo-gold-d); font-size: 2rem; }
+.duolingo-done-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 8.5rem)); gap: .75rem; margin-top: .5rem; }
+.duolingo-done-box { --c: var(--duolingo-gold); display: grid; border: 2px solid var(--c); border-radius: 16px; background: var(--c); overflow: hidden; }
+.duolingo-done-box span { color: #fff; font-weight: 900; font-size: .8rem; letter-spacing: .06em; padding: .25rem; }
+.duolingo-done-box b { display: flex; align-items: center; justify-content: center; gap: .3rem; background: var(--surface); border-radius: 14px; padding: .7rem .3rem; color: var(--c); font-size: 1.3rem; }
+.duolingo-done-box b .ico { width: 1.4rem; height: 1.4rem; }
+.duolingo-done-box.acc { --c: var(--duolingo-green); }
+.duolingo-done-box.heart { --c: var(--duolingo-red); }
+.duolingo-done-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1rem; }
+
+/* ---------------------------------------------------------------- 個人檔案 */
+.duolingo-profile { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem 1.25rem; align-items: center; padding-bottom: 1.25rem; border-bottom: 2px solid var(--line); }
+.duolingo-avatar { display: grid; place-items: center; width: 5rem; height: 5rem; border-radius: 50%; border: 3px dashed var(--duolingo-blue); color: var(--duolingo-blue); }
+.duolingo-avatar .ico { width: 2.6rem; height: 2.6rem; }
+.duolingo-profile h1 { font-size: 1.8rem; }
+.duolingo-profile-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .75rem; }
+.duolingo-pstat { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: .6rem; align-items: center; padding: .7rem .9rem; border: 2px solid var(--line); border-radius: 14px; }
+.duolingo-pstat .ico { grid-row: span 2; width: 1.8rem; height: 1.8rem; }
+.duolingo-pstat b { font-size: 1.25rem; line-height: 1.2; }
+.duolingo-pstat span { font-size: .8rem; color: var(--fg-muted); }
+.duolingo-pstat.flame .ico { color: var(--duolingo-orange); }
+.duolingo-pstat.duoGem .ico { color: var(--duolingo-blue); }
+.duolingo-pstat.duoCrown .ico { color: var(--duolingo-gold-d); }
+.duolingo-pstat.duoTarget .ico { color: var(--duolingo-green); }
+
+/* ---------------------------------------------------------------- 手機底部導覽 */
+:root[data-skin="duolingo"] #bottomnav { border-top: 2px solid var(--line); background: var(--bg); }
+:root[data-skin="duolingo"] #bottomnav a { font-weight: 800; }
+:root[data-skin="duolingo"] #bottomnav a[aria-current="page"] { color: var(--duolingo-blue); }
+:root[data-skin="duolingo"] #bottomnav a[aria-current="page"] .ico { background: var(--duolingo-sel); border: 2px solid var(--duolingo-sel-b); border-radius: 10px; box-sizing: content-box; padding: .1rem .5rem; }
+:root[data-skin="duolingo"] #bottomnav .badge { background: var(--duolingo-red); color: #fff; }
+:root[data-skin="duolingo"].duolingo-in-lesson #bottomnav { display: none !important; }
+@media (max-width: 720px) {
+  :root[data-skin="duolingo"].duolingo-in-lesson #skinbar { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  :root[data-skin="duolingo"] .kpi b { font-size: 1.25rem; }
+}
+
+@media (max-width: 1100px) {
+  .duolingo-home { grid-template-columns: minmax(0, 37rem); }
+  .duolingo-aside { display: none; }
+}
+@media (max-width: 960px) {
+  :root[data-skin="duolingo"] .layout { grid-template-columns: 5.5rem minmax(0, 1fr); }
+  :root[data-skin="duolingo"] #sidebar { padding-inline: .6rem; }
+  .duolingo-side-item > span:not(.duolingo-side-ico):not(.badge) { display: none; }
+  .duolingo-side-item { justify-content: center; padding: .55rem; }
+  .duolingo-side-item .badge { position: absolute; top: 0; right: 0; }
+}
+@media (max-width: 720px) {
+  :root[data-skin="duolingo"] .layout { display: block; }
+  :root[data-skin="duolingo"] #sidebar { display: none; }
+  .duolingo-brand { font-size: 1.15rem; }
+  .duolingo-brand > span:not(.ico) { display: none; }
+  .duolingo-chip { font-size: .95rem; padding: .25rem .35rem; }
+  .duolingo-chip .ico, .duolingo-ring { width: 1.35rem; height: 1.35rem; }
+  .duolingo-unit-head h2 { font-size: 1.05rem; }
+  .duolingo-guide > span:not(.ico) { display: none; }
+  .duolingo-step-in { transform: translateX(calc(var(--x) * .75)); }
+  .duolingo-lesson-title { font-size: 1.25rem; }
+  :root[data-skin="duolingo"] .feedback #nextBtn { justify-self: stretch; }
+  :root[data-skin="duolingo"] .feedback { padding-left: 1.1rem; padding-top: 4rem; }
+  .duolingo-done-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .duolingo-bubble { animation: none; }
+  .duolingo-node, .duolingo-lbar i { transition: none; }
+}

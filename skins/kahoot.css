@@ -1,1 +1,243 @@
-/* kahoot：實作中 */
+/* Kahoot! 風（搭配 skins/kahoot.js）：深紫底、白色題目列、倒數圈、四色形狀答案方塊、全螢幕結果、頒獎台。
+   刻意只有一種外觀（遊戲場景），兩個深色區塊重複同一組 token。 */
+:root[data-skin="kahoot"] {
+  --bg: #46178f; --surface: #ffffff; --surface-2: #f2f2f2; --line: #d9d9d9;
+  --fg: #1a1a1a; --fg-muted: #555555; --accent: #46178f; --accent-fg: #ffffff; --mask: #46178f;
+  --ok: #26890c; --ok-bg: #e4f5dc; --bad: #c8102e; --bad-bg: #fde4e8; --warn: #8a5a00; --warn-bg: #fff1cc;
+  --focus: #ffd23f; --shadow: 0 4px 0 rgba(0, 0, 0, .25); --paper: #ffffff; --paper-img: 1;
+  --font-display: "Montserrat", "Noto Sans TC", "PingFang TC", sans-serif;
+  --font-body: "Montserrat", "Noto Sans TC", "PingFang TC", sans-serif;
+  --kahoot-red: #e21b3c; --kahoot-blue: #1368ce; --kahoot-yellow: #d89e00; --kahoot-green: #26890c; --kahoot-purple-d: #25076b; --kahoot-ok: #66bf39; --kahoot-ng: #f35;
+  --r: 6px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="kahoot"]:not([data-theme="light"]) {
+    --bg: #46178f; --surface: #ffffff; --surface-2: #f2f2f2; --line: #d9d9d9;
+    --fg: #1a1a1a; --fg-muted: #555555; --accent: #46178f; --accent-fg: #ffffff; --mask: #46178f;
+    --ok: #26890c; --ok-bg: #e4f5dc; --bad: #c8102e; --bad-bg: #fde4e8; --warn: #8a5a00; --warn-bg: #fff1cc;
+    --focus: #ffd23f; --shadow: 0 4px 0 rgba(0, 0, 0, .25); --paper: #ffffff; --paper-img: 1;
+    color-scheme: light;
+  }
+}
+:root[data-skin="kahoot"][data-theme="dark"] {
+  --bg: #46178f; --surface: #ffffff; --surface-2: #f2f2f2; --line: #d9d9d9;
+  --fg: #1a1a1a; --fg-muted: #555555; --accent: #46178f; --accent-fg: #ffffff; --mask: #46178f;
+  --ok: #26890c; --ok-bg: #e4f5dc; --bad: #c8102e; --bad-bg: #fde4e8; --warn: #8a5a00; --warn-bg: #fff1cc;
+  --focus: #ffd23f; --shadow: 0 4px 0 rgba(0, 0, 0, .25); --paper: #ffffff; --paper-img: 1;
+  color-scheme: light;
+}
+:root[data-skin="kahoot"] body {
+  font-weight: 600;
+  background-color: #46178f;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .06) 0 9rem, transparent 9.05rem),
+    radial-gradient(circle at 92% 88%, rgba(0, 0, 0, .12) 0 13rem, transparent 13.05rem),
+    linear-gradient(135deg, transparent 0 62%, rgba(255, 255, 255, .04) 62% 70%, transparent 70%);
+  background-attachment: fixed;
+}
+:root[data-skin="kahoot"] body::before { background: #3a1277; }
+:root[data-skin="kahoot"] h1, :root[data-skin="kahoot"] h2, :root[data-skin="kahoot"] h3 { font-family: var(--font-display); font-weight: 800; }
+:root[data-skin="kahoot"] .eyebrow { font-family: var(--font-display); font-weight: 800; color: var(--accent); letter-spacing: .04em; }
+:root[data-skin="kahoot"] :focus-visible:not(main) { outline: 3px solid #ffd23f; outline-offset: 2px; }
+
+/* ---------------------------------------------------------------- 頂部列 */
+:root[data-skin="kahoot"] .topbar { background: #3a1277; border-bottom: 0; box-shadow: 0 2px 0 rgba(0, 0, 0, .2); }
+.kahoot-brand { display: inline-flex; align-items: center; gap: .45rem; color: #fff; text-decoration: none; font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -.02em; white-space: nowrap; }
+.kahoot-brand .ico { width: 1.6rem; height: 1.6rem; }
+.kahoot-brand .ico svg { stroke-width: 2.6; }
+.kahoot-pill { display: inline-flex; align-items: center; gap: .35rem; padding: .3rem .8rem; border-radius: 4px; background: rgba(0, 0, 0, .3); color: #fff; font-weight: 800; font-size: .95rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.kahoot-pill .ico { width: 1rem; height: 1rem; color: #ffd23f; }
+.kahoot-pill .ico svg { fill: #ffd23f; }
+
+/* ---------------------------------------------------------------- 共用按鈕 */
+.kahoot-start, .kahoot-btn, .kahoot-next {
+  display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 4px; cursor: pointer; text-decoration: none;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; padding: .8rem 1.6rem; line-height: 1.2;
+  background: #333333; color: #fff; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35);
+}
+.kahoot-start:hover, .kahoot-btn:hover, .kahoot-next:hover { filter: brightness(1.15); }
+.kahoot-start:active, .kahoot-btn:active, .kahoot-next:active { transform: translateY(2px); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .35); }
+.kahoot-btn { background: #fff; color: var(--accent); box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18); border: 2px solid var(--accent); }
+.kahoot-btn.ghost { background: transparent; color: var(--fg-muted); border-color: transparent; box-shadow: none; }
+
+/* ---------------------------------------------------------------- 大廳 */
+.kahoot-page { min-height: calc(100vh - var(--nav-h) - 6rem); }
+.kahoot-lobby { display: grid; justify-items: center; align-content: center; gap: 1.75rem; min-height: calc(100vh - var(--nav-h) - 6rem); padding: 1rem 0 2rem; }
+.kahoot-logo { display: flex; align-items: center; gap: .6rem; color: #fff; font-family: "Montserrat", sans-serif; font-weight: 800; font-size: clamp(2.2rem, 7vw, 3.6rem); letter-spacing: -.03em; line-height: 1; }
+.kahoot-logo .ico { width: 1em; height: 1em; }
+.kahoot-logo .ico svg { stroke-width: 2.6; }
+.kahoot-card { width: min(23rem, 100%); background: #fff; color: var(--fg); border-radius: 8px; padding: 1.1rem; display: grid; gap: .6rem; box-shadow: 0 4px 0 rgba(0, 0, 0, .3); }
+.kahoot-card-label { font-weight: 800; font-size: .85rem; color: var(--fg-muted); }
+.kahoot-seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: .4rem; }
+.kahoot-seg button { border: 2px solid #ccc; background: #fff; border-radius: 4px; padding: .55rem .3rem; font-weight: 800; font-size: .9rem; cursor: pointer; color: #333; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .08); white-space: nowrap; }
+.kahoot-seg button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #fff; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .3); }
+.kahoot-card .kahoot-start { margin-top: .4rem; width: 100%; font-size: 1.25rem; padding: .9rem; }
+.kahoot-card-note { font-size: .78rem; color: var(--fg-muted); text-align: center; }
+.kahoot-lobby-best { color: #fff; font-weight: 700; text-align: center; }
+.kahoot-lobby-best b { font-size: 1.2rem; color: #ffd23f; }
+
+/* ---------------------------------------------------------------- 作答 */
+.kahoot-play { display: grid; gap: 1rem; max-width: 70rem; margin: 0 auto; min-height: calc(100vh - var(--nav-h) - 7rem); grid-template-rows: auto 1fr auto; }
+.kahoot-qbar { background: #fff; border-radius: 4px; padding: .9rem 1.25rem; box-shadow: 0 4px 0 rgba(0, 0, 0, .2); display: grid; place-items: center; min-height: 4.5rem; }
+.kahoot-q { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.05rem, 2.2vw, 1.6rem); text-align: center; color: #000; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.kahoot-mid { display: grid; grid-template-columns: 7rem minmax(0, 1fr) 7rem; align-items: center; gap: 1rem; }
+.kahoot-timer { position: relative; width: 6.5rem; height: 6.5rem; display: grid; place-items: center; justify-self: center; }
+.kahoot-timer svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.kahoot-ring-bg { fill: #864cbf; stroke: rgba(0, 0, 0, .25); stroke-width: 8; }
+.kahoot-ring-fg { fill: none; stroke: #fff; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset .1s linear; }
+.kahoot-timer b { position: relative; color: #fff; font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.kahoot-timer.low .kahoot-ring-fg { stroke: #ffd23f; }
+.kahoot-timer.low b { color: #ffd23f; }
+.kahoot-fig { margin: 0; display: grid; place-items: center; min-height: 8rem; }
+.kahoot-fig img { max-height: 15rem; max-width: 100%; background: #fff; border-radius: 4px; padding: .4rem; }
+.kahoot-fig.empty .ico { width: 6rem; height: 6rem; color: rgba(255, 255, 255, .18); }
+.kahoot-side { display: grid; justify-items: center; text-align: center; color: #fff; }
+.kahoot-side-n { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kahoot-side-l { font-size: .8rem; opacity: .8; margin-bottom: .6rem; }
+.kahoot-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.kahoot-tile {
+  display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: .8rem; min-height: 6rem; padding: .8rem 1.1rem;
+  border: 0; border-radius: 4px; color: #fff; text-align: left; cursor: pointer; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; line-height: 1.35;
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .28); overflow-wrap: anywhere; text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}
+.kahoot-tile:hover { filter: brightness(1.08); }
+.kahoot-tile:active { transform: translateY(2px); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .28); }
+.kahoot-tile.c0 { background: var(--kahoot-red); }
+.kahoot-tile.c1 { background: var(--kahoot-blue); }
+.kahoot-tile.c2 { background: var(--kahoot-yellow); }
+.kahoot-tile.c3 { background: var(--kahoot-green); }
+.kahoot-shape { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .2)); }
+.kahoot-shape svg { width: 100%; height: 100%; }
+.kahoot-tile-l { font-size: .9rem; opacity: .85; }
+
+/* ---------------------------------------------------------------- 全螢幕結果 */
+.kahoot-result {
+  position: fixed; inset: 0; z-index: 40; display: grid; align-content: center; justify-items: center; gap: .9rem; padding: 1.5rem 16px; text-align: center; color: #fff;
+  background: var(--kahoot-ok); animation: kahoot-in .25s ease-out both; overflow-y: auto;
+}
+.kahoot-result.ng { background: var(--kahoot-ng); }
+.kahoot-res-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 8vw, 3.5rem); line-height: 1; text-shadow: 0 3px 0 rgba(0, 0, 0, .2); }
+.kahoot-res-mark { display: grid; place-items: center; width: 5rem; height: 5rem; border-radius: 50%; background: #fff; color: var(--kahoot-ok); font-size: 3rem; font-weight: 800; line-height: 1; animation: kahoot-pop .4s cubic-bezier(.3, 1.6, .5, 1) .1s both; }
+.kahoot-result.ng .kahoot-res-mark { color: var(--kahoot-ng); }
+.kahoot-streak { display: inline-flex; align-items: center; gap: .4rem; font-weight: 800; font-size: 1.1rem; }
+.kahoot-streak .ico { width: 1.4rem; height: 1.4rem; }
+.kahoot-streak .ico svg { fill: #ffd23f; stroke: #ffd23f; }
+.kahoot-pts { padding: .5rem 1.5rem; border-radius: 4px; background: rgba(0, 0, 0, .3); font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; font-variant-numeric: tabular-nums; }
+.kahoot-res-ans { max-width: 36rem; font-weight: 600; }
+.kahoot-res-ans b { font-weight: 800; }
+.kahoot-res-total { font-weight: 700; opacity: .9; }
+.kahoot-next { background: #fff; color: #333; margin-top: .5rem; min-width: 10rem; }
+@keyframes kahoot-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kahoot-pop { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* ---------------------------------------------------------------- 頒獎台 */
+.kahoot-end { display: grid; justify-items: center; gap: 1rem; padding-bottom: 1rem; }
+.kahoot-end-title { color: #fff; font-size: clamp(2rem, 6vw, 3rem); text-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
+.kahoot-end-sub { color: #fff; opacity: .85; font-weight: 700; margin-top: -.5rem; }
+.kahoot-podium { display: grid; grid-template-columns: repeat(3, minmax(0, 11rem)); align-items: end; gap: .5rem; width: min(36rem, 100%); }
+.kahoot-pod { display: grid; gap: .5rem; align-content: end; animation: kahoot-rise .6s cubic-bezier(.3, 1.3, .5, 1) var(--d, 0s) both; }
+.kahoot-pod-name { display: grid; justify-items: center; gap: .05rem; padding: .45rem .3rem; border-radius: 4px; background: #fff; color: #333; text-align: center; box-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
+.kahoot-pod-name b { font-size: .92rem; }
+.kahoot-pod-name span { font-size: .85rem; font-weight: 800; color: var(--accent); }
+.kahoot-pod-name small { font-size: .72rem; color: var(--fg-muted); }
+.kahoot-pod.me .kahoot-pod-name { background: #ffd23f; }
+.kahoot-pod-block { display: grid; place-items: start center; padding-top: .9rem; border-radius: 4px 4px 0 0; background: #5a2ca8; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .2); }
+.kahoot-pod.p1 .kahoot-pod-block { height: 11rem; background: #6c35c4; }
+.kahoot-pod.p2 .kahoot-pod-block { height: 8rem; }
+.kahoot-pod.p3 .kahoot-pod-block { height: 6rem; }
+.kahoot-pod.empty { min-height: 6rem; }
+.kahoot-medal { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: #fff; border: 3px solid rgba(255, 255, 255, .6); }
+.kahoot-pod.p1 .kahoot-medal { background: #e8b100; }
+.kahoot-pod.p2 .kahoot-medal { background: #9aa4b1; }
+.kahoot-pod.p3 .kahoot-medal { background: #b8733a; }
+@keyframes kahoot-rise { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
+.kahoot-summary { width: min(36rem, 100%); }
+.kahoot-sum-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; text-align: center; }
+.kahoot-sum-row b { display: block; font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.kahoot-sum-row span { font-size: .8rem; color: var(--fg-muted); }
+.kahoot-end-btns { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: .3rem; }
+.kahoot-end-btns .kahoot-start, .kahoot-end-btns .kahoot-btn { font-size: 1rem; padding: .7rem 1.2rem; }
+
+/* ---------------------------------------------------------------- 其他頁面：紫底上的白色面板與四色選項 */
+:root[data-skin="kahoot"] #app > .view { background: var(--surface); border-radius: 8px; padding: 1.25rem; box-shadow: 0 4px 0 rgba(0, 0, 0, .3); }
+:root[data-skin="kahoot"] .card { border: 0; box-shadow: none; padding: .25rem 0; }
+:root[data-skin="kahoot"] .qtext { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: #000; }
+:root[data-skin="kahoot"] .opts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+:root[data-skin="kahoot"] .opt {
+  border: 0; border-radius: 4px; color: #fff; font-family: var(--font-display); font-weight: 800; min-height: 4.5rem; padding: .75rem .9rem; align-items: center;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .28); text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+}
+:root[data-skin="kahoot"] .opt:nth-child(1) { background: var(--kahoot-red); }
+:root[data-skin="kahoot"] .opt:nth-child(2) { background: var(--kahoot-blue); }
+:root[data-skin="kahoot"] .opt:nth-child(3) { background: var(--kahoot-yellow); }
+:root[data-skin="kahoot"] .opt:nth-child(4) { background: var(--kahoot-green); }
+:root[data-skin="kahoot"] .opt:hover:not([disabled]) { filter: brightness(1.08); border: 0; }
+:root[data-skin="kahoot"] .opt .key { background: rgba(255, 255, 255, .25); color: #fff; font-family: var(--font-display); font-weight: 800; border-radius: 4px; }
+:root[data-skin="kahoot"] .opt .mark { color: #fff; }
+:root[data-skin="kahoot"] .opt.selected { outline: 4px solid #333; outline-offset: 2px; }
+:root[data-skin="kahoot"] .opt.selected .key { background: #fff; color: #333; }
+:root[data-skin="kahoot"] .opt[disabled]:not(.correct):not(.wrong) { opacity: .3; }
+:root[data-skin="kahoot"] .opt.correct .key { background: #fff; color: var(--kahoot-green); }
+:root[data-skin="kahoot"] .opt.wrong { opacity: .75; }
+:root[data-skin="kahoot"] .opt.wrong .key { background: #333; color: #fff; }
+:root[data-skin="kahoot"] .feedback { border: 0; border-radius: 4px; color: #fff; font-weight: 700; }
+:root[data-skin="kahoot"] .feedback.ok { background: var(--kahoot-ok); }
+:root[data-skin="kahoot"] .feedback.bad { background: var(--kahoot-ng); }
+:root[data-skin="kahoot"] .feedback strong { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; }
+:root[data-skin="kahoot"] .btn { border-radius: 4px; font-family: var(--font-display); font-weight: 800; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .12); }
+:root[data-skin="kahoot"] .btn.primary, :root[data-skin="kahoot"] .btn.mask { background: #333; border-color: #333; color: #fff; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35); }
+:root[data-skin="kahoot"] .btn.ghost { box-shadow: none; }
+:root[data-skin="kahoot"] .progress { height: .5rem; background: #e9e1f5; }
+:root[data-skin="kahoot"] .progress > i { background: var(--accent); }
+:root[data-skin="kahoot"] .panel, :root[data-skin="kahoot"] .kpi, :root[data-skin="kahoot"] .qitem, :root[data-skin="kahoot"] .action { border-radius: 4px; border-width: 2px; }
+:root[data-skin="kahoot"] .kpi { min-width: 0; }
+:root[data-skin="kahoot"] .kpi b { font-family: var(--font-display); font-weight: 800; color: var(--accent); overflow-wrap: anywhere; }
+:root[data-skin="kahoot"] .action.lead { background: var(--accent); border-color: var(--accent); }
+:root[data-skin="kahoot"] .chip[aria-pressed="true"], :root[data-skin="kahoot"] .seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-skin="kahoot"] .chip, :root[data-skin="kahoot"] .seg { border-radius: 4px; font-weight: 700; }
+:root[data-skin="kahoot"] .tag.subj { border-color: var(--accent); color: var(--accent); }
+:root[data-skin="kahoot"] .bar .track i { background: var(--accent); }
+:root[data-skin="kahoot"] .chart .b { fill: var(--accent); }
+:root[data-skin="kahoot"] .chart .b2 { fill: var(--kahoot-yellow); }
+:root[data-skin="kahoot"] .navgrid button.done { border-color: var(--accent); color: var(--accent); }
+:root[data-skin="kahoot"] .timer { font-family: var(--font-display); font-weight: 800; color: var(--accent); }
+:root[data-skin="kahoot"] #bottomnav { background: #3a1277; border-top: 0; }
+:root[data-skin="kahoot"] #bottomnav a { color: rgba(255, 255, 255, .7); }
+:root[data-skin="kahoot"] #bottomnav a[aria-current="page"] { color: #fff; }
+:root[data-skin="kahoot"] #bottomnav .badge { background: var(--kahoot-red); color: #fff; }
+:root[data-skin="kahoot"].kahoot-ingame #bottomnav { display: none !important; }
+
+@media (max-width: 720px) {
+  .kahoot-brand { font-size: 1.1rem; }
+  .kahoot-play { min-height: 0; gap: .7rem; }
+  .kahoot-qbar { padding: .7rem .8rem; min-height: 0; }
+  .kahoot-mid { grid-template-columns: auto minmax(0, 1fr) auto; gap: .5rem; }
+  .kahoot-timer { width: 4.6rem; height: 4.6rem; }
+  .kahoot-timer b { font-size: 1.6rem; }
+  .kahoot-fig { min-height: 0; }
+  .kahoot-fig img { max-height: 10rem; }
+  .kahoot-fig.empty .ico { width: 3.5rem; height: 3.5rem; }
+  .kahoot-side-n { font-size: 1.15rem; }
+  .kahoot-tiles { grid-template-columns: minmax(0, 1fr); gap: .45rem; }
+  .kahoot-tile { min-height: 3.6rem; padding: .55rem .8rem; font-size: 1rem; gap: .6rem; }
+  .kahoot-shape { width: 1.8rem; height: 1.8rem; }
+  :root[data-skin="kahoot"].kahoot-ingame #skinbar { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  :root[data-skin="kahoot"].kahoot-ingame main { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)) !important; }
+  .kahoot-podium { gap: .3rem; }
+  .kahoot-pod-name { padding: .35rem .15rem; }
+  .kahoot-pod-name b { font-size: .78rem; }
+  .kahoot-pod.p1 .kahoot-pod-block { height: 8rem; }
+  .kahoot-pod.p2 .kahoot-pod-block { height: 6rem; }
+  .kahoot-pod.p3 .kahoot-pod-block { height: 4.5rem; }
+  .kahoot-medal { width: 2.4rem; height: 2.4rem; font-size: 1.1rem; }
+  :root[data-skin="kahoot"] #app > .view { padding: 1rem .85rem; }
+  :root[data-skin="kahoot"] .opts { grid-template-columns: minmax(0, 1fr); }
+  :root[data-skin="kahoot"] .opt { min-height: 3.4rem; }
+  :root[data-skin="kahoot"] .kpi b { font-size: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kahoot-result, .kahoot-res-mark, .kahoot-pod { animation: none; }
+  .kahoot-ring-fg { transition: none; }
+}
+:root[data-skin="kahoot"] .toast { background: #ffffff; color: #333333; font-weight: 700; }
