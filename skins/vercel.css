@@ -1,1 +1,310 @@
-/* vercel：實作中 */
+/* Vercel 風：黑白極簡部署儀表板（見 skins/vercel.js） */
+:root[data-skin="vercel"] {
+  --bg: #fafafa; --surface: #ffffff; --surface-2: #f2f2f2; --line: #ebebeb; --line-2: #e0e0e0;
+  --fg: #171717; --fg-muted: #666666; --fg-faint: #8f8f8f;
+  --accent: #171717; --accent-fg: #ffffff; --mask: #171717; --focus: #006bff;
+  --ok: #1a7f37; --ok-bg: #e9f7ee; --bad: #d8262c; --bad-bg: #fdeceb; --warn: #a35200; --warn-bg: #fff3e0;
+  --vercel-ready: #45a557; --vercel-warn: #f5a623; --vercel-error: #e5484d; --vercel-blue: #006bff;
+  --vercel-hover: #f5f5f5; --vercel-log: #fafafa;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 4px 12px rgba(0, 0, 0, .04); --paper: #ffffff; --paper-img: 1;
+  --font-display: "Inter", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
+  --font-body: "Inter", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r: 8px; --nav-h: 3.5rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="vercel"]:not([data-theme="light"]) {
+    --bg: #000000; --surface: #0a0a0a; --surface-2: #1a1a1a; --line: #242424; --line-2: #2e2e2e;
+    --fg: #ededed; --fg-muted: #a1a1a1; --fg-faint: #7c7c7c;
+    --accent: #ededed; --accent-fg: #0a0a0a; --mask: #ededed; --focus: #52a8ff;
+    --ok: #62c073; --ok-bg: #0f2a17; --bad: #ff6166; --bad-bg: #3a1214; --warn: #ffb224; --warn-bg: #33230a;
+    --vercel-ready: #62c073; --vercel-warn: #ffb224; --vercel-error: #ff6166; --vercel-blue: #52a8ff;
+    --vercel-hover: #111111; --vercel-log: #000000;
+    --shadow: 0 0 0 1px rgba(255, 255, 255, .02); --paper: #d9d9d9; --paper-img: .92;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="vercel"][data-theme="dark"] {
+  --bg: #000000; --surface: #0a0a0a; --surface-2: #1a1a1a; --line: #242424; --line-2: #2e2e2e;
+  --fg: #ededed; --fg-muted: #a1a1a1; --fg-faint: #7c7c7c;
+  --accent: #ededed; --accent-fg: #0a0a0a; --mask: #ededed; --focus: #52a8ff;
+  --ok: #62c073; --ok-bg: #0f2a17; --bad: #ff6166; --bad-bg: #3a1214; --warn: #ffb224; --warn-bg: #33230a;
+  --vercel-ready: #62c073; --vercel-warn: #ffb224; --vercel-error: #ff6166; --vercel-blue: #52a8ff;
+  --vercel-hover: #111111; --vercel-log: #000000;
+  --shadow: 0 0 0 1px rgba(255, 255, 255, .02); --paper: #d9d9d9; --paper-img: .92;
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------- 外框 */
+:root[data-skin="vercel"] body { font-size: .9rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+:root[data-skin="vercel"] body::before { background: var(--surface); }
+:root[data-skin="vercel"] .topbar { background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 1.5rem; }
+:root[data-skin="vercel"] main { padding-top: 0; }
+:root[data-skin="vercel"] main > .view { padding-top: 2rem; }
+:root[data-skin="vercel"] h1, :root[data-skin="vercel"] h2, :root[data-skin="vercel"] h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -.025em; }
+:root[data-skin="vercel"] h1 { font-size: 2rem; }
+:root[data-skin="vercel"] .eyebrow { color: var(--fg-muted); font-family: var(--font-mono); letter-spacing: 0; text-transform: none; }
+:root[data-skin="vercel"] .btn { border-radius: 6px; height: 2.25rem; padding: 0 .85rem; font-weight: 500; font-size: .85rem; }
+:root[data-skin="vercel"] .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+:root[data-skin="vercel"] .panel, :root[data-skin="vercel"] .kpi { border-radius: 12px; border-color: var(--line); box-shadow: var(--shadow); }
+:root[data-skin="vercel"] .seg { border-radius: 6px; }
+:root[data-skin="vercel"] .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+:root[data-skin="vercel"] .opt { border-radius: 8px; }
+
+/* ---------------------------------------------------------------- 頂部：麵包屑＋分頁 */
+.vercel-top { flex-direction: column; align-items: stretch; gap: 0; min-height: 0; }
+.vercel-bar { display: flex; align-items: center; gap: .35rem; height: 3.25rem; min-width: 0; }
+.vercel-logo { display: grid; place-items: center; width: 2rem; height: 2rem; color: var(--fg); flex: none; }
+.vercel-logo .ico { width: 1.45rem; height: 1.45rem; }
+.vercel-logo svg { stroke-width: 2.4; }
+.vercel-slash { display: inline-grid; color: var(--line-2); flex: none; }
+.vercel-slash .ico { width: 1.5rem; height: 1.5rem; }
+.vercel-slash svg { stroke-width: 1.2; }
+.vercel-team { display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; font-size: .875rem; white-space: nowrap; min-width: 0; }
+.vercel-team-av, .vercel-avatar { width: 1.35rem; height: 1.35rem; border-radius: 50%; background: conic-gradient(from 200deg, #ff0080, #7928ca, #0070f3, #00dfd8, #ff0080); flex: none; }
+.vercel-avatar { width: 2rem; height: 2rem; display: inline-block; margin-left: .35rem; }
+.vercel-plan { font-size: .7rem; font-weight: 500; padding: 0 .45rem; border-radius: 999px; background: var(--surface-2); color: var(--fg-muted); line-height: 1.6; }
+.vercel-switch {
+  display: inline-flex; align-items: center; gap: .45rem; height: 2rem; padding: 0 .4rem 0 .5rem; border: 0; border-radius: 6px; background: transparent;
+  color: var(--fg); font-size: .875rem; font-weight: 500; cursor: pointer; min-width: 0;
+}
+.vercel-switch:hover { background: var(--surface-2); }
+.vercel-switch-n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-switch .ico { width: .95rem; height: .95rem; color: var(--fg-muted); }
+.vercel-toplink { color: var(--fg-muted); text-decoration: none; font-size: .85rem; padding: .3rem .55rem; border-radius: 6px; }
+.vercel-toplink:hover { color: var(--fg); background: var(--surface-2); }
+.vercel-tabs { display: flex; gap: .1rem; margin: 0 -.5rem; overflow-x: auto; scrollbar-width: none; }
+.vercel-tabs::-webkit-scrollbar { display: none; }
+.vercel-tab {
+  position: relative; display: inline-flex; align-items: center; gap: .35rem; padding: .55rem .7rem .7rem; color: var(--fg-muted); text-decoration: none;
+  font-size: .85rem; white-space: nowrap; border-radius: 6px 6px 0 0;
+}
+.vercel-tab:hover { color: var(--fg); }
+.vercel-tab:hover::before { content: ""; position: absolute; inset: .25rem 0 .4rem; border-radius: 6px; background: var(--surface-2); z-index: -1; }
+.vercel-tab[aria-current="page"] { color: var(--fg); }
+.vercel-tab[aria-current="page"]::after { content: ""; position: absolute; left: .55rem; right: .55rem; bottom: 0; height: 2px; background: var(--fg); border-radius: 2px; }
+.vercel-tab .badge { font-family: var(--font-mono); font-size: .66rem; padding: 0 .35rem; border-radius: 999px; background: var(--surface-2); color: var(--fg); line-height: 1.5; border: 1px solid var(--line); }
+
+.vercel-pop {
+  position: fixed; z-index: 60; width: 18rem; max-height: min(26rem, 70vh); display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, .12); overflow: hidden;
+}
+.vercel-pop-search { display: flex; align-items: center; gap: .45rem; padding: 0 .75rem; border-bottom: 1px solid var(--line); color: var(--fg-muted); }
+.vercel-pop-search .ico { width: .95rem; height: .95rem; }
+:root[data-skin="vercel"] .vercel-pop-in { border: 0; background: transparent; padding: .7rem 0; outline: none; border-radius: 0; font-size: .875rem; }
+.vercel-pop-list { overflow-y: auto; padding: .3rem; }
+.vercel-pop-h { padding: .45rem .5rem .2rem; font-size: .72rem; color: var(--fg-faint); }
+.vercel-pop-item {
+  display: flex; align-items: center; gap: .6rem; width: 100%; height: 2.25rem; padding: 0 .5rem; border: 0; border-radius: 6px; background: transparent;
+  color: var(--fg); cursor: pointer; font-size: .85rem; text-align: left;
+}
+.vercel-pop-item > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-pop-item:hover, .vercel-pop-item:focus-visible { background: var(--surface-2); outline: none; }
+.vercel-pop-item .ico { width: 1rem; height: 1rem; }
+
+/* ---------------------------------------------------------------- 共用 */
+.vercel-wrap { max-width: 75rem; margin: 0 auto; padding: 1.75rem .5rem 0; display: grid; gap: 1.25rem; min-width: 0; }
+.vercel-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; height: 2.25rem; padding: 0 .9rem; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--line-2); background: var(--surface); color: var(--fg); font-size: .85rem; font-weight: 500; text-decoration: none; white-space: nowrap;
+}
+.vercel-btn .ico { width: 1rem; height: 1rem; }
+.vercel-btn:hover { background: var(--vercel-hover); }
+.vercel-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.vercel-btn.primary:hover { opacity: .88; }
+.vercel-btns { display: flex; gap: .5rem; flex-wrap: wrap; }
+.vercel-link { display: inline-flex; align-items: center; gap: .25rem; border: 0; background: none; padding: 0; color: var(--fg-muted); cursor: pointer; font-size: .85rem; justify-self: start; }
+.vercel-link .ico { width: .9rem; height: .9rem; }
+.vercel-link:hover { color: var(--fg); }
+.vercel-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); min-width: 0; display: grid; gap: .8rem; }
+.vercel-card-h { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-size: .875rem; }
+.vercel-card-h b { font-weight: 600; }
+.vercel-card-h .muted { font-size: .78rem; }
+.vercel-dot { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; flex: none; background: var(--fg-faint); }
+.vercel-dot.ready { background: var(--vercel-ready); }
+.vercel-dot.warn { background: var(--vercel-warn); }
+.vercel-dot.error { background: var(--vercel-error); }
+.vercel-dot.none { background: transparent; border: 1.5px solid var(--line-2); }
+.vercel-status { display: inline-flex; align-items: center; gap: .45rem; font-weight: 500; font-size: .85rem; }
+.vercel-env { font-size: .72rem; font-weight: 500; padding: 0 .4rem; border-radius: 4px; line-height: 1.6; white-space: nowrap; }
+.vercel-env.vercel-env-prod { background: color-mix(in srgb, var(--vercel-blue) 14%, transparent); color: var(--vercel-blue); }
+.vercel-env.vercel-env-prev { background: var(--surface-2); color: var(--fg-muted); }
+.vercel-pav {
+  display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; flex: none; font-size: .85rem; font-weight: 600;
+  border: 1px solid var(--line); background: radial-gradient(circle at 30% 25%, hsl(var(--h) 70% 92%), hsl(var(--h) 45% 80%)); color: hsl(var(--h) 45% 25%);
+}
+.vercel-pop .vercel-pav { width: 1.4rem; height: 1.4rem; font-size: .66rem; }
+.vercel-switch .vercel-pav { width: 1.3rem; height: 1.3rem; font-size: .62rem; }
+.vercel-pav.all { background: var(--fg); color: var(--surface); border: 0; }
+.vercel-pav.all .ico { width: .8rem; height: .8rem; }
+.vercel-none { padding: .5rem 0; font-size: .85rem; }
+.vercel-empty { display: grid; justify-items: center; gap: .5rem; text-align: center; padding: 3.5rem 1rem; border: 1px dashed var(--line-2); border-radius: 12px; background: var(--surface); }
+.vercel-empty-ico { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid var(--line); color: var(--fg-muted); }
+.vercel-empty p { max-width: 28rem; font-size: .85rem; }
+.vercel-empty .vercel-btns { margin-top: .5rem; justify-content: center; }
+
+/* ---------------------------------------------------------------- 概覽 */
+.vercel-toolbar { display: flex; gap: .6rem; align-items: center; }
+.vercel-search {
+  flex: 1; display: flex; align-items: center; gap: .5rem; height: 2.5rem; padding: 0 .75rem; border-radius: 6px;
+  border: 1px solid var(--line-2); background: var(--surface); color: var(--fg-muted); min-width: 0;
+}
+.vercel-search:focus-within { border-color: var(--fg-faint); box-shadow: 0 0 0 3px color-mix(in srgb, var(--fg) 8%, transparent); }
+.vercel-search .ico { width: 1rem; height: 1rem; }
+:root[data-skin="vercel"] .vercel-search-in { border: 0; background: transparent; padding: 0; outline: none; border-radius: 0; font-size: .875rem; height: 100%; }
+.vercel-cols { display: grid; grid-template-columns: 20rem minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.vercel-aside { display: grid; gap: 1.25rem; min-width: 0; }
+.vercel-bars svg { display: block; width: 100%; height: 3.5rem; }
+.vercel-bars rect { fill: var(--line-2); }
+.vercel-bars rect.ready { fill: var(--fg); }
+.vercel-bars rect.warn { fill: color-mix(in srgb, var(--fg) 55%, transparent); }
+.vercel-bars rect.error { fill: var(--vercel-error); }
+.vercel-usage { margin: 0; display: grid; gap: 0; }
+.vercel-usage > div { display: flex; justify-content: space-between; padding: .4rem 0; border-top: 1px solid var(--line); font-size: .82rem; }
+.vercel-usage dt { color: var(--fg-muted); }
+.vercel-usage dd { margin: 0; }
+.vercel-mini { display: grid; }
+.vercel-mini-row { display: flex; align-items: center; gap: .65rem; padding: .5rem .25rem; border-top: 1px solid var(--line); color: var(--fg); text-decoration: none; min-width: 0; }
+.vercel-mini-row:first-child { border-top: 0; }
+.vercel-mini-row:hover { background: var(--vercel-hover); }
+.vercel-mini-t { flex: 1; display: grid; line-height: 1.35; min-width: 0; }
+.vercel-mini-t b { font-weight: 500; font-size: .85rem; }
+.vercel-mini-t small { font-size: .75rem; }
+.vercel-projs { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.vercel-proj {
+  display: grid; gap: .7rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+  color: var(--fg); text-decoration: none; box-shadow: var(--shadow); min-width: 0; transition: border-color .15s, box-shadow .15s;
+}
+.vercel-proj:hover { border-color: var(--fg-faint); box-shadow: 0 4px 16px rgba(0, 0, 0, .06); }
+.vercel-proj-head { display: flex; align-items: center; gap: .7rem; min-width: 0; }
+.vercel-proj-t { flex: 1; display: grid; line-height: 1.35; min-width: 0; }
+.vercel-proj-t b { font-weight: 600; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-proj-t small { color: var(--fg-muted); font-size: .74rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-spark { display: block; height: 2.6rem; padding: .35rem .5rem; border-radius: 8px; background: var(--surface-2); }
+.vercel-spark svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.vercel-spark .line { fill: none; stroke: var(--fg); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.vercel-spark .area { fill: color-mix(in srgb, var(--fg) 7%, transparent); stroke: none; }
+.vercel-spark.ready .line { stroke: var(--vercel-ready); }
+.vercel-spark.warn .line { stroke: var(--vercel-warn); }
+.vercel-spark.error .line { stroke: var(--vercel-error); }
+.vercel-spark.none .line { stroke: var(--line-2); }
+.vercel-proj-foot { display: flex; align-items: center; gap: .7rem; font-size: .78rem; color: var(--fg-muted); white-space: nowrap; }
+.vercel-proj-foot b { color: var(--fg); font-weight: 500; }
+.vercel-prog { flex: 1; height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; min-width: 2rem; }
+.vercel-prog i { display: block; height: 100%; background: var(--fg); }
+
+/* ---------------------------------------------------------------- 練習紀錄 */
+.vercel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.vercel-head p { font-size: .875rem; margin-top: .25rem; }
+.vercel-filters { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.vercel-seg { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.vercel-seg button {
+  display: inline-flex; align-items: center; gap: .45rem; height: 1.9rem; padding: 0 .75rem; border: 0; border-radius: 5px; background: transparent;
+  color: var(--fg-muted); cursor: pointer; font-size: .82rem; font-weight: 500;
+}
+.vercel-seg button .mono { font-size: .72rem; color: var(--fg-faint); }
+.vercel-seg button[aria-selected="true"] { background: var(--surface-2); color: var(--fg); box-shadow: 0 0 0 1px var(--line-2); }
+.vercel-legend { display: inline-flex; align-items: center; gap: .35rem; font-size: .75rem; color: var(--fg-muted); }
+.vercel-legend .vercel-dot { margin-left: .5rem; }
+.vercel-list { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: var(--shadow); }
+.vercel-row {
+  display: grid; grid-template-columns: minmax(7rem, 1fr) minmax(6rem, .8fr) minmax(0, 2fr) 5rem 6rem 1.25rem; align-items: center; gap: 1rem;
+  padding: .85rem 1.1rem; border-top: 1px solid var(--line); color: var(--fg); text-decoration: none; min-width: 0;
+}
+.vercel-row:first-child { border-top: 0; }
+.vercel-row:hover { background: var(--vercel-hover); }
+.vercel-row > span { display: grid; gap: .1rem; min-width: 0; line-height: 1.4; }
+.vercel-row small { font-size: .75rem; }
+.vercel-row-id { justify-items: start; }
+.vercel-row-id b { font-weight: 500; font-size: .85rem; }
+.vercel-row-name { display: flex !important; align-items: center; gap: .4rem; min-width: 0; }
+.vercel-row-name .ico { width: .95rem; height: .95rem; color: var(--fg-muted); }
+.vercel-row-name b { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-row-main small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vercel-row-score { text-align: right; }
+.vercel-row-score b { font-weight: 500; }
+.vercel-row-time { text-align: right; font-size: .82rem; }
+.vercel-row-go { color: var(--fg-faint); }
+.vercel-row-go .ico { width: 1rem; height: 1rem; }
+
+/* ---------------------------------------------------------------- 詳情 */
+.vercel-link.back { margin-bottom: -.5rem; }
+.vercel-dcard { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: 1.5rem; padding: 1.1rem; }
+.vercel-preview {
+  display: grid; place-items: center; align-content: center; gap: .6rem; min-height: 12rem; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--line);
+  background: radial-gradient(circle at 50% 0%, var(--surface-2), var(--surface) 70%);
+}
+.vercel-preview .vercel-spark { width: 100%; height: 6rem; background: transparent; }
+.vercel-preview-cap { font-size: .75rem; color: var(--fg-muted); }
+.vercel-ring { position: relative; display: grid; place-content: center; justify-items: center; width: 8.5rem; height: 8.5rem; }
+.vercel-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vercel-ring .bg { fill: none; stroke: var(--surface-2); stroke-width: 7; }
+.vercel-ring .fg { fill: none; stroke: var(--fg); stroke-width: 7; stroke-linecap: round; }
+.vercel-ring.ready .fg { stroke: var(--vercel-ready); }
+.vercel-ring.warn .fg { stroke: var(--vercel-warn); }
+.vercel-ring.error .fg { stroke: var(--vercel-error); }
+.vercel-ring b { position: relative; font-size: 1.7rem; font-weight: 500; line-height: 1.1; }
+.vercel-ring small { position: relative; font-size: .72rem; color: var(--fg-muted); }
+.vercel-props { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem 1.5rem; align-content: start; }
+.vercel-props dt { font-size: .78rem; color: var(--fg-muted); margin-bottom: .2rem; }
+.vercel-props dd { margin: 0; font-size: .875rem; overflow-wrap: anywhere; }
+.vercel-props dd b { font-weight: 500; }
+.vercel-ptitle { display: flex; align-items: center; gap: .9rem; min-width: 0; }
+.vercel-ptitle .vercel-pav { width: 3rem; height: 3rem; font-size: 1.2rem; }
+.vercel-logs { gap: .6rem; }
+.vercel-log {
+  list-style: none; margin: 0; padding: .6rem 0; border-radius: 8px; border: 1px solid var(--line); background: var(--vercel-log);
+  font-family: var(--font-mono); font-size: .8rem; line-height: 1.75; overflow-x: auto;
+}
+.vercel-log li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: .5rem; padding: 0 1rem; }
+.vercel-log li:hover { background: var(--vercel-hover); }
+.vercel-log-n { color: var(--fg-faint); font-variant-numeric: tabular-nums; }
+.vercel-log-t { white-space: pre-wrap; overflow-wrap: anywhere; }
+.vercel-log li.dim .vercel-log-t { color: var(--fg-muted); }
+.vercel-log li.ok .vercel-log-t, .vercel-log li.ready .vercel-log-t { color: var(--vercel-ready); }
+.vercel-log li.warn .vercel-log-t { color: var(--vercel-warn); }
+.vercel-log li.error .vercel-log-t { color: var(--vercel-error); }
+.vercel-boxes { display: grid; gap: .45rem; }
+.vercel-box { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 2.5rem; align-items: center; gap: .75rem; font-size: .8rem; }
+.vercel-box .mono:first-child { color: var(--fg-muted); }
+.vercel-box b { text-align: right; font-weight: 500; }
+.vercel-box-bar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.vercel-box-bar i { display: block; height: 100%; background: var(--fg); border-radius: 4px; }
+
+/* ---------------------------------------------------------------- 回應式 */
+@media (max-width: 1100px) {
+  .vercel-cols { grid-template-columns: minmax(0, 1fr); }
+  .vercel-aside { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+}
+@media (max-width: 720px) {
+  :root[data-skin="vercel"] .topbar { padding: 0 12px; }
+  :root[data-skin="vercel"] main > .view { padding-top: 1.25rem; }
+  .vercel-bar { height: 3rem; }
+  .vercel-team-n, .vercel-plan, .vercel-toplink { display: none; }
+  .vercel-team + .vercel-slash { display: none; }
+  .vercel-tabs { margin: 0 -12px; padding: 0 6px; }
+  .vercel-wrap { padding: 1.1rem 0 0; gap: 1rem; }
+  :root[data-skin="vercel"] h1 { font-size: 1.5rem; }
+  .vercel-toolbar .vercel-btn > span:not(.ico) { display: none; }
+  .vercel-toolbar .vercel-btn { width: 2.5rem; height: 2.5rem; padding: 0; }
+  .vercel-projs { grid-template-columns: minmax(0, 1fr); }
+  .vercel-legend { display: none; }
+  .vercel-seg { width: 100%; }
+  .vercel-seg button { flex: 1; justify-content: center; }
+  .vercel-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "main score" "st time"; gap: .35rem .75rem; padding: .8rem .9rem; }
+  .vercel-row-id, .vercel-row-go { display: none !important; }
+  .vercel-row-main { grid-area: main; }
+  .vercel-row-score { grid-area: score; }
+  .vercel-row-st { grid-area: st; display: flex !important; align-items: center; gap: .5rem; }
+  .vercel-row-time { grid-area: time; display: flex !important; gap: .4rem; justify-content: flex-end; }
+  .vercel-dcard { grid-template-columns: minmax(0, 1fr); }
+  .vercel-preview { min-height: 0; }
+  .vercel-props { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .9rem 1rem; }
+  .vercel-log li { grid-template-columns: 4.2rem minmax(0, 1fr); padding: 0 .7rem; }
+  .vercel-head .vercel-btns { width: 100%; }
+  .vercel-head .vercel-btns .vercel-btn { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vercel-proj { transition: none; }
+}
