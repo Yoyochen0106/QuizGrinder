@@ -1,0 +1,105 @@
+{
+  "exam_id": "109-2-L11",
+  "source_pdf": "初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 4,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 C"
+    },
+    {
+      "number": 5,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 D"
+    },
+    {
+      "number": 9,
+      "options": {
+        "A": "5 × 10^8 ohm",
+        "B": "5 × 10^6 ohm",
+        "C": "5 × 10^4 ohm",
+        "D": "沒有限制"
+      },
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 B；選項指數遺失（108→10^8）"
+    },
+    {
+      "number": 11,
+      "answer": "C",
+      "reason": "官方答案 C，Gemini 誤為 A"
+    },
+    {
+      "number": 13,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 D"
+    },
+    {
+      "number": 16,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 A"
+    },
+    {
+      "number": 22,
+      "answer": [
+        "B",
+        "D"
+      ],
+      "reason": "疑義釋覆：本題答案選項(B)及(D)均給分（原答案 D）"
+    },
+    {
+      "number": 22,
+      "figure": {
+        "page": 5
+      },
+      "reason": "需看圖：下圖為何種載板封裝模式"
+    },
+    {
+      "number": 23,
+      "question": "典型的組裝後的印刷電路板，兩面佈滿各種零件，有插腳（DIP），表面黏著（SMD），球柵陣列（Ball Grid Array），連接器（Connector），下圖中所指的是何種元件？",
+      "reason": "「·」應為「，」"
+    },
+    {
+      "number": 23,
+      "figure": {
+        "page": 5
+      },
+      "reason": "需看圖：下圖中所指的元件"
+    },
+    {
+      "number": 30,
+      "answer": [
+        "C",
+        "D"
+      ],
+      "reason": "疑義釋覆：本題答案選項(C)及(D)均給分（原答案 C）"
+    },
+    {
+      "number": 32,
+      "question": "多層電路板是以絕緣材料固定配置的線路，作為電子互連的基礎，因此線路電阻越低越好。銅的電阻係數為 0.0174 Ohm-μm，當線寬為 15μm，厚度 5μm 時，若線長 10mm 時電阻為多少 Ohm？(Hint：電阻公式 R = ρ*l/A；R:電阻；ρ:電阻係數；l:線長；A:截面積)",
+      "answer": "B",
+      "reason": "官方答案 B (2.32 Ohm)，Gemini 誤為 D；ρ 被辨識為 p、l 被辨識為 1"
+    },
+    {
+      "number": 35,
+      "options": {
+        "A": "鎘 (Cd)，濃度限值 0.1%",
+        "B": "鉛 (Pb)，濃度限值 0.1%",
+        "C": "汞 (Hg)，濃度限值 0.1%",
+        "D": "六價鉻 (Cr6+)，濃度限值 0.1%"
+      },
+      "reason": "選項為表格，遺漏「濃度限值」欄，題目無法作答"
+    },
+    {
+      "number": 42,
+      "answer": "B",
+      "reason": "官方答案 B (±5%)，Gemini 誤為 A"
+    },
+    {
+      "number": 49,
+      "answer": "B",
+      "reason": "官方答案 B (雙面板)，Gemini 誤為 C"
+    }
+  ],
+  "problems": []
+}

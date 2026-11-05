@@ -1,0 +1,119 @@
+{
+ "exam_id": "113-1-L11",
+ "source_pdf": "(NEW)113-01初級電路板L11-01電路板產業概論.pdf",
+ "mode": "patch",
+ "patches": [
+  {
+   "number": 2,
+   "figure": {
+    "page": 1
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 3,
+   "figure": {
+    "page": 1
+   },
+   "reason": "承上題，需看第 2 題圖"
+  },
+  {
+   "number": 4,
+   "figure": {
+    "page": 2
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 8,
+   "answer": "ALL",
+   "reason": "官方標示(送分)：一律給分"
+  },
+  {
+   "number": 12,
+   "answer": "A",
+   "reason": "官方答案 A，Gemini 誤為 D"
+  },
+  {
+   "number": 13,
+   "answer": "C",
+   "reason": "官方答案 C，Gemini 誤為 A"
+  },
+  {
+   "number": 14,
+   "figure": {
+    "page": 4
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 16,
+   "answer": "B",
+   "reason": "官方答案 B，Gemini 誤為 D"
+  },
+  {
+   "number": 17,
+   "answer": "D",
+   "reason": "官方答案 D，Gemini 誤為 A"
+  },
+  {
+   "number": 20,
+   "answer": "C",
+   "reason": "官方更正答案為 C"
+  },
+  {
+   "number": 22,
+   "answer": "A",
+   "reason": "官方答案 A，Gemini 誤為 B"
+  },
+  {
+   "number": 23,
+   "answer": "C",
+   "reason": "官方答案 C，Gemini 誤為 A；需看圖",
+   "figure": {
+    "page": 6
+   }
+  },
+  {
+   "number": 24,
+   "figure": {
+    "page": 6
+   },
+   "reason": "承上題，需看第 23 題圖"
+  },
+  {
+   "number": 26,
+   "answer": "B",
+   "reason": "官方答案 B，Gemini 誤為 A"
+  },
+  {
+   "number": 28,
+   "options": {
+    "A": "1,2,5,8,9",
+    "B": "1,2,3,4,5,7",
+    "C": "1,2,3,4,5,6,7",
+    "D": "1，2，3，5，6，8"
+   },
+   "reason": "選項 D 換行被截斷，漏了 8"
+  },
+  {
+   "number": 30,
+   "answer": "A",
+   "reason": "官方答案 A，Gemini 誤為 D"
+  },
+  {
+   "number": 35,
+   "question": "圖中結構圖形式的電路板，稱為 Any-layer HDI (任意層高密度連結)，關於此結構設計的應用、特性與製作，下列敘述何者正確？\n1.從雙面芯板(D/S Core)做起；2.所有孔皆以盲孔製程為之；3.仍然需要有機械鑽孔；4.可以不做機械鑽孔；5.此製程可應用於高階智慧型手機",
+   "reason": "陳述句 1-5 遺失，被圖中標籤文字取代；需看圖",
+   "figure": {
+    "page": 9
+   }
+  },
+  {
+   "number": 39,
+   "answer": "B",
+   "reason": "官方答案 B，Gemini 誤為 C"
+  }
+ ],
+ "problems": []
+}

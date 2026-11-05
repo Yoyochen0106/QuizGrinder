@@ -1,0 +1,264 @@
+{
+  "exam_id": "mock-mingchi",
+  "source_pdf": "明志科大各25題模擬試題.pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 1,
+      "subject": "industry"
+    },
+    {
+      "number": 2,
+      "subject": "industry"
+    },
+    {
+      "number": 3,
+      "subject": "industry"
+    },
+    {
+      "number": 4,
+      "subject": "industry"
+    },
+    {
+      "number": 5,
+      "subject": "industry"
+    },
+    {
+      "number": 6,
+      "subject": "industry"
+    },
+    {
+      "number": 7,
+      "subject": "industry"
+    },
+    {
+      "number": 8,
+      "subject": "industry"
+    },
+    {
+      "number": 9,
+      "subject": "industry"
+    },
+    {
+      "number": 10,
+      "subject": "industry"
+    },
+    {
+      "number": 11,
+      "subject": "industry"
+    },
+    {
+      "number": 12,
+      "subject": "industry"
+    },
+    {
+      "number": 13,
+      "subject": "industry"
+    },
+    {
+      "number": 14,
+      "subject": "industry"
+    },
+    {
+      "number": 15,
+      "subject": "industry"
+    },
+    {
+      "number": 16,
+      "subject": "industry"
+    },
+    {
+      "number": 17,
+      "subject": "industry"
+    },
+    {
+      "number": 18,
+      "subject": "industry"
+    },
+    {
+      "number": 19,
+      "subject": "industry"
+    },
+    {
+      "number": 20,
+      "subject": "industry"
+    },
+    {
+      "number": 21,
+      "subject": "industry"
+    },
+    {
+      "number": 22,
+      "subject": "industry"
+    },
+    {
+      "number": 23,
+      "subject": "industry"
+    },
+    {
+      "number": 24,
+      "subject": "industry"
+    },
+    {
+      "number": 25,
+      "subject": "industry"
+    },
+    {
+      "number": 26,
+      "subject": "process"
+    },
+    {
+      "number": 27,
+      "subject": "process"
+    },
+    {
+      "number": 28,
+      "subject": "process"
+    },
+    {
+      "number": 29,
+      "subject": "process"
+    },
+    {
+      "number": 30,
+      "subject": "process"
+    },
+    {
+      "number": 31,
+      "subject": "process"
+    },
+    {
+      "number": 32,
+      "subject": "process"
+    },
+    {
+      "number": 33,
+      "subject": "process"
+    },
+    {
+      "number": 34,
+      "subject": "process"
+    },
+    {
+      "number": 35,
+      "subject": "process"
+    },
+    {
+      "number": 36,
+      "subject": "process"
+    },
+    {
+      "number": 37,
+      "subject": "process"
+    },
+    {
+      "number": 38,
+      "subject": "process"
+    },
+    {
+      "number": 39,
+      "subject": "process"
+    },
+    {
+      "number": 40,
+      "subject": "process"
+    },
+    {
+      "number": 41,
+      "subject": "process"
+    },
+    {
+      "number": 42,
+      "subject": "process"
+    },
+    {
+      "number": 43,
+      "subject": "process"
+    },
+    {
+      "number": 44,
+      "subject": "process"
+    },
+    {
+      "number": 45,
+      "subject": "process"
+    },
+    {
+      "number": 46,
+      "subject": "process"
+    },
+    {
+      "number": 47,
+      "subject": "process"
+    },
+    {
+      "number": 48,
+      "subject": "process"
+    },
+    {
+      "number": 49,
+      "subject": "process"
+    },
+    {
+      "number": 50,
+      "subject": "process"
+    },
+    {
+      "number": 13,
+      "options": {
+        "A": "銅厚大多是 3oz 以上稱之",
+        "B": "只能做單、雙面板",
+        "C": "可承載大電流",
+        "D": "可提升散熱性能"
+      },
+      "reason": "原 PDF 錯字 30Z→3oz"
+    },
+    {
+      "number": 17,
+      "question": "電路板製程中產生的固體廢棄物，下列何種製程的廢棄物中不含銅(Cu)成分？",
+      "reason": "原 PDF 重複「製程製程」"
+    },
+    {
+      "number": 24,
+      "question": "全球電路板供應台商為全球第一，就個別產品，下列哪種產品台灣和韓國在伯仲之間，但製程能力卻不及韓國？",
+      "options": {
+        "A": "軟板&軟硬結合板",
+        "B": "HDI 板",
+        "C": "多層板",
+        "D": "單面板"
+      },
+      "reason": "原 PDF 錯字：下咧→下列、軟結合板→軟硬結合板"
+    },
+    {
+      "number": 39,
+      "options": {
+        "A": "增加銅接觸表面積，提升與樹脂結合力",
+        "B": "防止樹脂在壓合過程中流動，影響板厚均勻性",
+        "C": "清潔銅面，去除表面氧化銅",
+        "D": "降低 PP 使用量，降低成本"
+      },
+      "reason": "原 PDF 多一個「工」字"
+    },
+    {
+      "number": 42,
+      "options": {
+        "A": "鑽軸 X、Y、Z 方向移動",
+        "B": "鑽軸 X、Y 方向，檯面 Z 方向移動",
+        "C": "鑽軸 Z 方向，檯面 X、Y 方向移動",
+        "D": "檯面 X、Y、Z 方向移動"
+      },
+      "reason": "原 PDF 錯字：錯軸→鑽軸、乙方向→Z 方向、種面→檯面"
+    },
+    {
+      "number": 46,
+      "question": "以下對多層板鑽孔蓋板、墊板的描述何者有誤？",
+      "reason": "原 PDF 錯字「和者」"
+    },
+    {
+      "number": 48,
+      "question": "1mil 等於多少 mm？",
+      "reason": "題號 23. 被併入題目文字"
+    }
+  ],
+  "problems": []
+}

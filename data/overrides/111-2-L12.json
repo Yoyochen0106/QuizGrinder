@@ -1,0 +1,48 @@
+{
+  "exam_id": "111-2-L12",
+  "source_pdf": "初級電路板L12-02電路板製造概論-正式版.pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 5,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 D"
+    },
+    {
+      "number": 6,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 A"
+    },
+    {
+      "number": 34,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 A"
+    },
+    {
+      "number": 40,
+      "options": {
+        "A": "①+③",
+        "B": "②+④",
+        "C": "①+④",
+        "D": "②+③"
+      },
+      "reason": "圈號被轉成 1+3 等，與題幹 ①②③④ 不一致"
+    },
+    {
+      "number": 45,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 C"
+    },
+    {
+      "number": 46,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 B"
+    },
+    {
+      "number": 47,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 C"
+    }
+  ],
+  "problems": []
+}

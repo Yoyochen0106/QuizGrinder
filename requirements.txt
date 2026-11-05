@@ -1,0 +1,4 @@
+# 只有「重新從 PDF 抽取題目」與「產生 AI 解析」需要；建置題庫只需 Python 標準函式庫 + Pillow
+google-genai>=1.0
+pydantic>=2.0
+Pillow>=10.0

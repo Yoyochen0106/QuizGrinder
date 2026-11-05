@@ -1,0 +1,71 @@
+{
+  "exam_id": "108-2-L12",
+  "source_pdf": "108年第二次初級電路板製程工程師能力鑑定-02電路板製造概論(當次試題公告108.12.02).pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 10,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 C"
+    },
+    {
+      "number": 15,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 A"
+    },
+    {
+      "number": 19,
+      "figure": {
+        "page": 5
+      },
+      "reason": "需看圖"
+    },
+    {
+      "number": 21,
+      "figure": {
+        "page": 5
+      },
+      "reason": "需看圖（樹脂結構式）"
+    },
+    {
+      "number": 26,
+      "figure": {
+        "page": 6
+      },
+      "reason": "需看圖（A、B 尺寸標示於盲孔截面圖）"
+    },
+    {
+      "number": 39,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 B"
+    },
+    {
+      "number": 43,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 C"
+    },
+    {
+      "number": 44,
+      "answer": "C",
+      "reason": "官方答案 C，Gemini 誤為 B"
+    },
+    {
+      "number": 45,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 C"
+    },
+    {
+      "number": 49,
+      "question": "直接雷射鉆孔前處理可以使用以下何種製程？\n1.黑化製程 2.棕化製程 3.刷磨製程 4.蝕刻製程",
+      "options": {
+        "A": "1,3",
+        "B": "1,3,4",
+        "C": "2,3",
+        "D": "1,2"
+      },
+      "answer": "D",
+      "reason": "陳述句被放進選項 A，選項整體下移一格（原 D「1,2」遺失）；官方答案 D=1,2"
+    }
+  ],
+  "problems": []
+}

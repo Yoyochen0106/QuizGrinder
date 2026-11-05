@@ -1,0 +1,20 @@
+{
+  "exam_id": "110-1-L12",
+  "source_pdf": "110年第一次初級電路板製程工程師-02電路板製造概論(當次試題公告110.10.04).pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 7,
+      "figure": {
+        "page": 3
+      },
+      "reason": "需看圖（樹脂結構式）"
+    },
+    {
+      "number": 43,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 D"
+    }
+  ],
+  "problems": []
+}

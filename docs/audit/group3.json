@@ -1,0 +1,442 @@
+{
+    "files": [
+        {
+            "pdf": "pdfs/初級電路板-01電路板產業概論(當次試題公告109.06.11)_疑義題釋覆結果版.pdf",
+            "json": "data/raw/初級電路板-01電路板產業概論(當次試題公告109.06.11)_疑義題釋覆結果版_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 29,
+                    "json": "D",
+                    "official": "B",
+                    "note": "figure question; arrow in photo points to an SMD part. Verified visually (p5)."
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 24,
+                    "field": "question",
+                    "issue": "duplicated phrase: '下列何者敘述何者有誤'",
+                    "suggested_fix": "WEEE 是歐洲聯盟在 2003 年 2 月所通過的一項環保指令，下列何者敘述有誤？"
+                },
+                {
+                    "number": 24,
+                    "field": "options.A",
+                    "issue": "'其他事物' differs from PDF '其他行事' (minor wording drift)",
+                    "suggested_fix": "防止電機與電子設備廢物的產生、促進廢舊物品在使用、回收以及其他行事的二手物件取回"
+                },
+                {
+                    "number": 29,
+                    "field": "question",
+                    "issue": "refers to '下圖' (PCB photo with arrow); image not in JSON, question unanswerable without it",
+                    "suggested_fix": "add image or drop question"
+                }
+            ],
+            "needs_figure": [
+                29
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 1,
+                    "official": "A and C both accepted (委員釋覆結果：(A)及(C)均給分; original key C). JSON 'A' is acceptable."
+                }
+            ],
+            "metadata_issues": [
+                "year 109 / exam_number '1' correct (109年第一次, 第一科 產業概論, 公告 109.06.01, 釋覆 109.06.11)",
+                "subject: whole paper is 產業概論 (industry) but 21 questions labelled 'process': #2,6,7,9,12,14,18,20,21,22,26,27,28,31,33,35,36,37,38,39,48"
+            ],
+            "duplicate_of": null,
+            "notes": [
+                "Shares 8-9 identical questions with the 109.11.19 paper (expected, same question bank); not a duplicate."
+            ],
+            "overall": "minor"
+        },
+        {
+            "pdf": "pdfs/初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版.pdf",
+            "json": "data/raw/初級電路板-01電路板產業概論(當次試題公告109.11.19)_疑義題釋覆結果版_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 4,
+                    "json": "C",
+                    "official": "A",
+                    "note": "打線>捲帶>覆晶; verified visually p2"
+                },
+                {
+                    "number": 5,
+                    "json": "D",
+                    "official": "A",
+                    "note": "事務機; verified visually p2"
+                },
+                {
+                    "number": 9,
+                    "json": "B",
+                    "official": "A",
+                    "note": "5×10^8 ohm; verified visually p3"
+                },
+                {
+                    "number": 11,
+                    "json": "A",
+                    "official": "C",
+                    "note": "verified visually p3"
+                },
+                {
+                    "number": 13,
+                    "json": "D",
+                    "official": "B",
+                    "note": "verified visually p3"
+                },
+                {
+                    "number": 16,
+                    "json": "A",
+                    "official": "D",
+                    "note": "key column 'D 16.' p4"
+                },
+                {
+                    "number": 32,
+                    "json": "D",
+                    "official": "B",
+                    "note": "2.32 Ohm; key 'B 32.' p6 (and 0.0174*10000/(15*5)=2.32 confirms)"
+                },
+                {
+                    "number": 42,
+                    "json": "A",
+                    "official": "B",
+                    "note": "±5%; key 'B 42.' p8"
+                },
+                {
+                    "number": 49,
+                    "json": "C",
+                    "official": "B",
+                    "note": "雙面板; key 'B 49.' p9"
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 9,
+                    "field": "options.A",
+                    "issue": "exponent lost: '5 × 108 ohm' (PDF shows 5×10^8); same for B '5 × 106' and C '5 × 104'",
+                    "suggested_fix": "A: 5 × 10^8 ohm; B: 5 × 10^6 ohm; C: 5 × 10^4 ohm"
+                },
+                {
+                    "number": 35,
+                    "field": "options.A",
+                    "issue": "PDF options are a table with a 濃度限值 column (all 0.1%); JSON options only list the substances (鎘/鉛/汞/六價鉻), so the question '下列何者為非' is unanswerable/misleading",
+                    "suggested_fix": "A: 鎘(Cd)，濃度限值 0.1%; B: 鉛(Pb)，濃度限值 0.1%; C: 汞(Hg)，濃度限值 0.1%; D: 六價鉻(Cr6+)，濃度限值 0.1%"
+                },
+                {
+                    "number": 32,
+                    "field": "question",
+                    "issue": "OCR-like errors: 'R = p*l/A', 'p:電阻係數', '1:線長' (PDF: ρ and lowercase l)",
+                    "suggested_fix": "(Hint：電阻公式 R = ρ*l/A) R:電阻；ρ:電阻係數；l:線長；A:截面積"
+                },
+                {
+                    "number": 22,
+                    "field": "question",
+                    "issue": "refers to '下圖' (package cross-section image) not available",
+                    "suggested_fix": "add image or drop question"
+                },
+                {
+                    "number": 23,
+                    "field": "question",
+                    "issue": "refers to '下圖' (PCB photo) not available; also stray '·' instead of '，' after (SMD)",
+                    "suggested_fix": "add image; replace '·' with '，'"
+                }
+            ],
+            "needs_figure": [
+                22,
+                23
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 22,
+                    "official": "B and D both accepted (委員釋覆：(B)及(D)均給分; original key D). JSON 'B' acceptable."
+                },
+                {
+                    "number": 30,
+                    "official": "C and D both accepted (委員釋覆：(C)及(D)均給分; original key C). JSON 'C' acceptable."
+                }
+            ],
+            "metadata_issues": [
+                "Paper is 109年第二次 第一科 (考試 109.11.14, 釋覆 109.11.19). year 109 OK; exam_number is '01' (format inconsistent with other files; if exam_number means sitting it should be '2')",
+                "subject: industry paper, 6 labelled 'process': #32,38,40,42,47,50"
+            ],
+            "duplicate_of": null,
+            "notes": [
+                "Cross-check: identical questions in other repo files agree with the official key here (e.g. 109.06.11 #9 = A for our #4; 108-2 01 #25 = C for our #11; 108-1 01 #36 = B for our #42; 108-2 01 #3 = B for our #49), confirming the JSON answers are wrong."
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/初級電路板-02電路板製造概論-正式版考題(有答案).pdf",
+            "json": "data/raw/初級電路板-02電路板製造概論-正式版考題(有答案)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 30,
+                    "field": "question",
+                    "issue": "exponent lost: '1.602×10-19 庫侖' (PDF superscript)",
+                    "suggested_fix": "1.602×10^-19 庫侖"
+                },
+                {
+                    "number": 36,
+                    "field": "question",
+                    "issue": "#35 and #36 are identical (question, options, answer A) in the official PDF itself - not an extraction error, but the quiz shows the same item twice",
+                    "suggested_fix": "keep as is (faithful) or drop one"
+                }
+            ],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "Real exam: 109年第二次初級電路板製程工程師能力鑑定 第二科 電路板製造概論 (考試日期 109.11.14). JSON year 109 is correct; exam_number '2' fits (第二次 / 第二科).",
+                "subject: process paper, 17 labelled 'industry': #1,2,3,4,5,6,9,10,11,12,13,19,23,32,46,47,48"
+            ],
+            "duplicate_of": null,
+            "notes": [
+                "Not a duplicate of any other repo file (only 4-5 shared questions with 108-2 and 110-1 製造概論 papers). It is the 製造概論 companion of the 109.11.19 產業概論 paper.",
+                "#27 official key A (鈀) for 'ENIG/ENEPIG 在銅表面上沉積的第一層金屬' is technically doubtful (Ni is deposited first) but JSON matches the official key."
+            ],
+            "overall": "minor"
+        },
+        {
+            "pdf": "pdfs/初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+            "json": "data/raw/初級電路板L11-01電路板產業概論-公告考題(11201)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 1,
+                    "field": "question",
+                    "issue": "'下列何者為非有誤' - typo copied verbatim from the PDF",
+                    "suggested_fix": "關於 PCB 的敘述，下列何者有誤？"
+                }
+            ],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "112年第一次 第一科 (考試 112.05.20): year 112 / exam_number '1' correct",
+                "subject: industry paper, 29 labelled 'process': #2,4,6,7,11,12,15,16,17,20,22,23,24,26,28,29,30,31,32,33,34,35,36,37,38,40,43,44,50"
+            ],
+            "duplicate_of": null,
+            "notes": [
+                "5 questions also appear in 112年第二次 01 paper; not a duplicate."
+            ],
+            "overall": "good"
+        },
+        {
+            "pdf": "pdfs/初級電路板L12-02電路板製造概論-公告考題(11201).pdf",
+            "json": "data/raw/初級電路板L12-02電路板製造概論-公告考題(11201)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "112年第一次 第二科 (考試 112.05.20): year 112 / exam_number '1' correct",
+                "subject: process paper, 6 labelled 'industry': #15,16,42,48,49,50"
+            ],
+            "duplicate_of": null,
+            "overall": "good"
+        },
+        {
+            "pdf": "pdfs/初級電路板L12-02電路板製造概論-正式版.pdf",
+            "json": "data/raw/初級電路板L12-02電路板製造概論-正式版_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 5,
+                    "json": "D",
+                    "official": "A",
+                    "note": "防焊偏移; verified visually p1"
+                },
+                {
+                    "number": 6,
+                    "json": "A",
+                    "official": "D",
+                    "note": "電鍍; verified visually p1"
+                },
+                {
+                    "number": 34,
+                    "json": "A",
+                    "official": "B",
+                    "note": "銅箔; key '(B) 34.' p3"
+                },
+                {
+                    "number": 45,
+                    "json": "C",
+                    "official": "D",
+                    "note": "膠片異物; key '(D) 45.' p4"
+                },
+                {
+                    "number": 46,
+                    "json": "B",
+                    "official": "A",
+                    "note": "鑽針檢驗; key '(A) 46.' p4"
+                },
+                {
+                    "number": 47,
+                    "json": "C",
+                    "official": "D",
+                    "note": "內層接點數; key '(D) 47.' p4"
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 40,
+                    "field": "options.A",
+                    "issue": "circled numerals flattened: options '1+3','2+4','1+4','2+3' while question uses ①②③④",
+                    "suggested_fix": "A: ①+③; B: ②+④; C: ①+④; D: ②+③"
+                }
+            ],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "Real exam: 111 年度 初級 科目二 電路板製造概論, 考試日期 111.11.19 = 111年第二次. year 111 correct; exam_number '1' should be '2' (111年第一次 is the 111.05.21 N111 paper)",
+                "subject: process paper, 25 labelled 'industry': #1,2,3,4,7,8,9,11,12,13,14,15,16,19,20,21,24,36,43,44,45,46,47,48,49"
+            ],
+            "duplicate_of": null,
+            "notes": [
+                "Not a duplicate of N111年第一次 02 (111.05.21): zero identical questions. Answer key is the '作答區' column."
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/初級電路板製程工程師-公告樣題.pdf",
+            "json": "data/raw/初級電路板製程工程師-公告樣題_structured_output.json",
+            "pdf_question_count": 60,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 40,
+                    "json": "D",
+                    "official": "B",
+                    "note": "PDF L12 Q10 (OEM); verified visually p7"
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 31,
+                    "field": "number",
+                    "issue": "PDF numbers restart per subject (L11 1-30, L12 1-30 = 60 questions). JSON keeps L11 1-30 as #1-30, renumbers L12 1-20 as #31-50, and DROPS L12 #21-30 (10 questions, keys 21D 22D 23B 24D 25B 26B 27B 28D 29A 30A)",
+                    "suggested_fix": "re-extract L12 #21-30 (PDF pages 9-11) as #51-60, or note the paper is truncated"
+                },
+                {
+                    "number": 48,
+                    "field": "options.A",
+                    "issue": "options are HALLUCINATED: PDF options (A)-(D) are four images of resist cross-sections (甲/乙 pairs); JSON invented 'A:(甲) B:(乙) C:無 D:以上皆非'. Answer A cannot be interpreted.",
+                    "suggested_fix": "drop question or render images"
+                },
+                {
+                    "number": 50,
+                    "field": "question",
+                    "issue": "'loz 銅箔' (lowercase L) should be '1oz'",
+                    "suggested_fix": "1oz 銅箔相當於約 35μm 的厚度"
+                },
+                {
+                    "number": 16,
+                    "field": "question",
+                    "issue": "'請問此圖為哪種類型軟板?' - image (p3) not available",
+                    "suggested_fix": "add image or drop question"
+                }
+            ],
+            "needs_figure": [
+                16,
+                48
+            ],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "Real exam: 106年第二次初級電路板製程工程師能力鑑定-考試樣題公告 (10611 版). year 106 OK; exam_number '1' should be '2'",
+                "subject labels correct (1-30 industry, 31-50 process)"
+            ],
+            "duplicate_of": "Partial overlap only: 21 questions identical to pdfs/106年第一次初級電路板製程工程師-公告樣題0516.pdf (10605 V1 版); different version/sitting, not a duplicate",
+            "notes": [
+                "Heads-up for the agent covering the 106年第一次 file: for shared questions its JSON disagrees with that PDF's own key (e.g. 晶圓 vs 電路板 1000倍 question: PDF key C, JSON #11 B; Pd(P) layer question: PDF key A, JSON #42 C)."
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/明志科大各25題模擬試題.pdf",
+            "json": "data/raw/明志科大各25題模擬試題_structured_output.orig.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 48,
+                    "field": "question",
+                    "issue": "question number leaked into text: '23.1mil 等於多少 mm' (PDF Q23 is '1mil 等於多少 mm') - misleading",
+                    "suggested_fix": "1mil 等於多少 mm"
+                },
+                {
+                    "number": 13,
+                    "field": "options.A",
+                    "issue": "source typo copied: '30Z' (should be 3 oz)",
+                    "suggested_fix": "銅厚大多是 3oz 以上稱之"
+                },
+                {
+                    "number": 42,
+                    "field": "options.B",
+                    "issue": "source typos copied: B '錯軸', C '鑽軸乙方向', D '種面'",
+                    "suggested_fix": "B: 鑽軸 X、Y 方向，檯面 Z 方向移動; C: 鑽軸 Z 方向，檯面 X、Y 方向移動; D: 檯面 X、Y、Z 方向移動"
+                },
+                {
+                    "number": 39,
+                    "field": "options.D",
+                    "issue": "stray char '工' (source typo): '降低 PP 使用量工'",
+                    "suggested_fix": "降低 PP 使用量，降低成本"
+                },
+                {
+                    "number": 46,
+                    "field": "question",
+                    "issue": "source typo '和者有誤'",
+                    "suggested_fix": "以下對多層板鑽孔蓋板、墊板的描述何者有誤？"
+                },
+                {
+                    "number": 24,
+                    "field": "question",
+                    "issue": "source typos: '下咧' and option A '軟板&軟結合板'",
+                    "suggested_fix": "下列; A: 軟板&軟硬結合板"
+                },
+                {
+                    "number": 17,
+                    "field": "question",
+                    "issue": "duplicated word '製程製程' (source)",
+                    "suggested_fix": "下列何種製程的廢棄物中不含銅(Cu)成分？"
+                },
+                {
+                    "number": 22,
+                    "field": "question",
+                    "issue": "sentence starts '越高、多功能的板子' - subject missing in source (likely '層數越高')",
+                    "suggested_fix": "層數越高、多功能的板子..."
+                }
+            ],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "Mock test (no exam year): year 0, exam_number used as section ('1' = 第一科產業概論 #1-25, '2' = 第二科製造概論 #26-50) - acceptable but year 0 may display oddly",
+                "subject: #17 and #18 are in 第一科 (industry) but labelled 'process'"
+            ],
+            "duplicate_of": null,
+            "trimmed_file_check": "data/raw/明志科大各25題模擬試題_structured_output.json has 25 items and is exactly equal (deep equality) to .orig.json items #26-50",
+            "notes": [
+                "PDF is born-digital (Word) with the source typos above; JSON faithfully copies them. Answers are the '(X)' line under each question."
+            ],
+            "overall": "minor"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+  "exam_id": "111-1-L11",
+  "source_pdf": "N111年第一次初級電路板製程工程師-01電路板產業概論(當次試題公告111.05.21)-含疑義釋覆結果.pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 7,
+      "answer": [
+        "B",
+        "C"
+      ],
+      "reason": "疑義釋覆：(B)和(C)皆給分"
+    },
+    {
+      "number": 11,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 D"
+    },
+    {
+      "number": 26,
+      "answer": "C",
+      "reason": "官方答案 C，Gemini 誤為 B"
+    },
+    {
+      "number": 45,
+      "question": "危害性物質限制指令(RoHS)針對電路板耐燃劑之管制品以何物質為主?",
+      "reason": "題目結尾漏字「主」"
+    }
+  ],
+  "problems": []
+}

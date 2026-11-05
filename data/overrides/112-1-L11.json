@@ -1,0 +1,13 @@
+{
+  "exam_id": "112-1-L11",
+  "source_pdf": "初級電路板L11-01電路板產業概論-公告考題(11201).pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 1,
+      "question": "關於 PCB 的敘述，下列何者有誤？",
+      "reason": "原 PDF 題幹「何者為非有誤」語病"
+    }
+  ],
+  "problems": []
+}

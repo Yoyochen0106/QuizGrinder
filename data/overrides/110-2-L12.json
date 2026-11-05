@@ -1,0 +1,85 @@
+{
+  "exam_id": "110-2-L12",
+  "source_pdf": "110年第二次初級電路板製程工程師-02電路板製造概論(當次試題公告110.11.22).pdf",
+  "mode": "patch",
+  "patches": [
+    {
+      "number": 10,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 D"
+    },
+    {
+      "number": 12,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 C"
+    },
+    {
+      "number": 13,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 A；需看圖（基材截面圖）",
+      "figure": {
+        "page": 4
+      }
+    },
+    {
+      "number": 17,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 B"
+    },
+    {
+      "number": 21,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 D"
+    },
+    {
+      "number": 23,
+      "answer": "C",
+      "reason": "官方答案 C，Gemini 誤為 B"
+    },
+    {
+      "number": 24,
+      "answer": "D",
+      "reason": "官方答案 D，Gemini 誤為 C"
+    },
+    {
+      "number": 27,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 D"
+    },
+    {
+      "number": 35,
+      "figure": {
+        "page": 8
+      },
+      "reason": "需看圖（曝光顯影流程圖）"
+    },
+    {
+      "number": 36,
+      "question": "曝光製程中，曝光能量E隨燈光強度I和時間t而變化，其中燈光強度I一般為固定值。試問當燈光強度 I = 10 mw/cm²，且濕墨光阻曝光能量需要 100 mj/cm²，則所需要曝光時間為何？\n曝光能量公式：E=It\nE：總曝光能量(mj/cm²)\nI：燈光強度(mw/cm²)\nT：曝光時間(sec)",
+      "reason": "補回 PDF 題目中的曝光能量公式"
+    },
+    {
+      "number": 38,
+      "figure": {
+        "page": 9
+      },
+      "reason": "需看圖（樹脂結構式）"
+    },
+    {
+      "number": 40,
+      "answer": "A",
+      "reason": "官方答案 A，Gemini 誤為 D"
+    },
+    {
+      "number": 46,
+      "answer": "C",
+      "reason": "官方答案 C，Gemini 誤為 A"
+    },
+    {
+      "number": 48,
+      "answer": "B",
+      "reason": "官方答案 B，Gemini 誤為 C"
+    }
+  ],
+  "problems": []
+}

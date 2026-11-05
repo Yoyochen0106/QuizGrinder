@@ -1,0 +1,20 @@
+{
+ "exam_id": "105-S-L11",
+ "source_pdf": "105-02-01電路板產業基礎概論-上傳版本.pdf",
+ "mode": "patch",
+ "patches": [
+  {
+   "number": 10,
+   "question": "典型印刷電路板規格中，微孔(via)直徑(200-80)×10⁻⁶m(3~8mil)被稱為？",
+   "reason": "10⁻⁶ 的指數遺失"
+  },
+  {
+   "number": 17,
+   "figure": {
+    "page": 2
+   },
+   "reason": "需看圖"
+  }
+ ],
+ "problems": []
+}

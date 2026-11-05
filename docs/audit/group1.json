@@ -1,0 +1,549 @@
+{
+    "files": [
+        {
+            "pdf": "pdfs/(NEW)113-01初級電路板L11-01電路板產業概論.pdf",
+            "json": "json/(NEW)113-01初級電路板L11-01電路板產業概論_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 12,
+                    "json": "D",
+                    "official": "A",
+                    "note": ""
+                },
+                {
+                    "number": 13,
+                    "json": "A",
+                    "official": "C",
+                    "note": ""
+                },
+                {
+                    "number": 16,
+                    "json": "D",
+                    "official": "B",
+                    "note": ""
+                },
+                {
+                    "number": 17,
+                    "json": "A",
+                    "official": "D",
+                    "note": ""
+                },
+                {
+                    "number": 22,
+                    "json": "B",
+                    "official": "A",
+                    "note": ""
+                },
+                {
+                    "number": 23,
+                    "json": "A",
+                    "official": "C",
+                    "note": ""
+                },
+                {
+                    "number": 26,
+                    "json": "A",
+                    "official": "B",
+                    "note": ""
+                },
+                {
+                    "number": 30,
+                    "json": "D",
+                    "official": "A",
+                    "note": ""
+                },
+                {
+                    "number": 39,
+                    "json": "C",
+                    "official": "B",
+                    "note": ""
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 28,
+                    "field": "options.D",
+                    "issue": "Truncated: JSON '1,2,3,5,6,' drops the final item that wrapped onto the next line",
+                    "suggested_fix": "1，2，3，5，6，8"
+                },
+                {
+                    "number": 35,
+                    "field": "question",
+                    "issue": "Statement list 1-5 that the options refer to is missing; replaced with figure-label garbage ('Any-layer HDI結構 ↑ 疊孔') and a stray leading 「 instead of 圖中",
+                    "suggested_fix": "圖中結構圖形式的電路板，稱為 Any-layer HDI (任意層高密度連結)，關於此結構設計的應用、特性與製作，下列敘述何者正確？ 1.從雙面芯板(D/S Core)做起；2.所有孔皆以盲孔製程為之；3.仍然需要有機械鑽孔；4.可以不做機械鑽孔；5.此製程可應用於高階智慧型手機"
+                },
+                {
+                    "number": 0,
+                    "field": "all",
+                    "issue": "Question/option strings keep the PDF's hard line breaks ('\\n' mid-sentence) and use half-width punctuation; cosmetic only, applies to many questions.",
+                    "suggested_fix": "join wrapped lines"
+                }
+            ],
+            "needs_figure": [
+                2,
+                3,
+                4,
+                14,
+                23,
+                24,
+                35
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 8,
+                    "official": "printed C, marked (送分): all answers credited"
+                },
+                {
+                    "number": 20,
+                    "official": "C (更正, corrected answer); JSON C ok"
+                }
+            ],
+            "metadata_issues": [
+                "subject mis-tagged on 26 questions (file is 01 產業概論 → all should be industry): [2, 3, 4, 7, 8, 10, 12, 13, 14, 15, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31, 32, 33, 34, 35, 38, 40]",
+                "Q3/Q24 are 承上題 follow-ups to figure questions Q2/Q23, so they need the figure too; Q38 option D '2，3，4，' is truncated in the PDF itself"
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/(NEW)113-01初級電路板L12-02電路板製造概論.pdf",
+            "json": "json/(NEW)113-01初級電路板L12-02電路板製造概論_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 9,
+                    "field": "question",
+                    "issue": "黏滞 vs PDF 黏滯 (variant character)",
+                    "suggested_fix": "黏滯"
+                },
+                {
+                    "number": 0,
+                    "field": "all",
+                    "issue": "Question/option strings keep the PDF's hard line breaks ('\\n' mid-sentence) and use half-width punctuation; cosmetic only, applies to many questions.",
+                    "suggested_fix": "join wrapped lines"
+                }
+            ],
+            "needs_figure": [
+                25,
+                27,
+                39,
+                40
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 5,
+                    "official": "B (更正, corrected answer); JSON B ok"
+                }
+            ],
+            "metadata_issues": [
+                "subject mis-tagged on 16 questions (file is 02 製造概論 → all should be process): [1, 2, 3, 6, 7, 8, 9, 10, 11, 27, 40, 42, 46, 47, 48, 49]",
+                "Q40 is 承上題 of figure Q39"
+            ],
+            "overall": "good"
+        },
+        {
+            "pdf": "pdfs/105-02-01電路板產業基礎概論-上傳版本.pdf",
+            "json": "json/105-02-01電路板產業基礎概論-上傳版本_structured_output.json",
+            "pdf_question_count": 30,
+            "json_question_count": 30,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 10,
+                    "field": "question",
+                    "issue": "Exponent lost: '(200-80)10m' should be (200-80)×10⁻⁶ m",
+                    "suggested_fix": "典型印刷電路板規格中，微孔(via)直徑(200-80)×10⁻⁶m(3~8mil)被稱為？"
+                }
+            ],
+            "needs_figure": [
+                17
+            ],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "subject mis-tagged on 10 questions (file is 01 產業基礎概論 → all should be industry): [4, 6, 7, 8, 10, 12, 13, 17, 19, 28]",
+                "This is a 30-question 樣題 (sample paper) for 105年度第二次; count 30 is correct, year 105 / exam_number '2' correct"
+            ],
+            "overall": "minor"
+        },
+        {
+            "pdf": "pdfs/106年第一次初級電路板製程工程師-公告樣題0516.pdf",
+            "json": "json/106年第一次初級電路板製程工程師-公告樣題0516_structured_output.json",
+            "pdf_question_count": 60,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 4,
+                    "json": "B",
+                    "official": "C",
+                    "note": "L11 #4"
+                },
+                {
+                    "number": 11,
+                    "json": "B",
+                    "official": "C",
+                    "note": "L11 #11"
+                },
+                {
+                    "number": 13,
+                    "json": "C",
+                    "official": "A",
+                    "note": "L11 #13"
+                },
+                {
+                    "number": 25,
+                    "json": "B",
+                    "official": "A",
+                    "note": "L11 #25"
+                },
+                {
+                    "number": 29,
+                    "json": "D",
+                    "official": "B",
+                    "note": "JSON #29 is a broken merge: first half of L11 #29 stem + options copied from L11 #22 (COB/COG/COF/以上皆是); official answer for L11 #29 is B"
+                },
+                {
+                    "number": 30,
+                    "json": "A",
+                    "official": "B",
+                    "note": "JSON #30 = second half of L11 #29 stem with its real options; official B"
+                },
+                {
+                    "number": 31,
+                    "json": "A",
+                    "official": "D",
+                    "note": "JSON #31 = L11 #30"
+                },
+                {
+                    "number": 35,
+                    "json": "C",
+                    "official": "A",
+                    "note": "JSON #35 = L12 #4"
+                },
+                {
+                    "number": 36,
+                    "json": "C",
+                    "official": "B",
+                    "note": "JSON #36 = L12 #5; PDF strikes out C and corrects to B in red"
+                },
+                {
+                    "number": 38,
+                    "json": "A",
+                    "official": "C",
+                    "note": "JSON #38 = L12 #7"
+                },
+                {
+                    "number": 41,
+                    "json": "C",
+                    "official": "D",
+                    "note": "JSON #41 = L12 #10"
+                },
+                {
+                    "number": 42,
+                    "json": "C",
+                    "official": "A",
+                    "note": "JSON #42 = L12 #11"
+                },
+                {
+                    "number": 43,
+                    "json": "B",
+                    "official": "D",
+                    "note": "JSON #43 = L12 #12"
+                },
+                {
+                    "number": 48,
+                    "json": "B",
+                    "official": "A",
+                    "note": "JSON #48 = L12 #17"
+                },
+                {
+                    "number": 49,
+                    "json": "A",
+                    "official": "B",
+                    "note": "JSON #49 = L12 #18"
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 0,
+                    "field": "structure",
+                    "issue": "PDF is a two-part sample paper: L11 產業概論 Q1-30 + L12 製造概論 Q1-30 (60 questions, numbering restarts). JSON forced it into 50: JSON 1-28 = L11 1-28, JSON 29+30 = L11 29 split in two, JSON 31 = L11 30, JSON 32-50 = L12 1-19. L12 Q20-30 (11 questions) are missing entirely",
+                    "suggested_fix": "Re-extract as 60 questions (or two 30-question sets) keeping PDF numbering"
+                },
+                {
+                    "number": 29,
+                    "field": "question+options",
+                    "issue": "Stem is only the first sentence of L11 #29 and options are wrong (copied from L11 #22: COB/COG/COF/以上皆是)",
+                    "suggested_fix": "Merge #29 and #30: 'RoHS 指令的主要目標…以保護環境。該指令適用於其工作電壓交流與直流為多少伏特的所有設備?' options A 大於1000V AC 或1500V DC / B 小於… / C 等於… / D 以上皆非, answer B"
+                },
+                {
+                    "number": 30,
+                    "field": "question",
+                    "issue": "Only the second half of L11 #29 stem (starts '該指令適用於…'); context lost",
+                    "suggested_fix": "see #29"
+                }
+            ],
+            "needs_figure": [
+                7,
+                14,
+                16
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 36,
+                    "official": "B (L12 #5, printed C struck out and corrected to B)"
+                }
+            ],
+            "metadata_issues": [
+                "subject: JSON 1-31 are L11 (industry) and 32-50 L12 (process); mis-tagged: 12,13,14,16,17,31 tagged process (should be industry), 32 tagged industry (should be process)",
+                "year 106 / exam_number '1' OK (it is a 公告樣題, sample paper, not an actual sitting)"
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/107年第二次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告107.12.10).pdf",
+            "json": "json/107年第二次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告107.12.10)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 29,
+                    "json": "D",
+                    "official": "B",
+                    "note": "question split across page break"
+                }
+            ],
+            "text_issues": [
+                {
+                    "number": 9,
+                    "field": "question+options",
+                    "issue": "Question truncated at page break (ends '…組裝及') and all four options are literal 'Missing Option A/B/C/D'",
+                    "suggested_fix": "…組裝及測試等歷經將近五十年的歷史，電路板仍然保持相當的產業動能，主要的原因為何？ A 近五十年，全球沒有任何的經濟蕭條；B 電路板產業可以獨立運作，無須上下游產業的鏈結；C 電路板是電子工業之母，它只有景氣循環的波動，這個產品不會衰退，一直都有最基本的需求；D 國際化與全球化的趨勢，各地的電路板都蓬勃的發展"
+                },
+                {
+                    "number": 21,
+                    "field": "options.D",
+                    "issue": "Truncated at page break",
+                    "suggested_fix": "三維模造立體互連元件是由德國 LPKF 公司利用其雷射設備和有專利添加催化劑的塑料製作而成，因為其 3D 立體特性，近年來廣泛應用於高密度互連基板(HDI)的製造"
+                },
+                {
+                    "number": 29,
+                    "field": "question",
+                    "issue": "Beginning of stem lost at page break; JSON starts mid-sentence with '體元件構裝都是…'",
+                    "suggested_fix": "在電路板依產品應用分類中，其中有一項為 IC 構裝載板(IC Substrate)，在早期半導體元件構裝都是以陶瓷材料或者導線架(Lead Frame)作為載體…"
+                },
+                {
+                    "number": 32,
+                    "field": "options.C",
+                    "issue": "Stray '1' inserted ('更複雜的 1 3D IC')",
+                    "suggested_fix": "相關技術，可以透過內部連線或是更複雜的 3D IC 技術整合，構建成更為複雜的、完整的 SiP 系統功能"
+                },
+                {
+                    "number": 33,
+                    "field": "question+options",
+                    "issue": "Stray trailing '電子' on stem and all four options are 'Missing Option A/B/C/D'",
+                    "suggested_fix": "A 透過電路板的結構設計使各元件間內部電性連接，發揮電子產品的功能；B 除了晶圓晶片的設計製造外，幾乎都要用到一般電路板及 IC 載板；C 電腦系統的完整上下游的供應鏈內容，及提供產品的廠商縱向橫向的模組產品也都需要用到電路板；D 電子產品演變劇烈，未來幾年內就不再需要電路板 (answer D)"
+                },
+                {
+                    "number": 46,
+                    "field": "options.C/options.D",
+                    "issue": "Options C and D are 'Missing Option C/D' (page break)",
+                    "suggested_fix": "C 因應法規的需求，廠商從西元 2006 年起開始進行製程轉變；D 較低階多層板陸續轉往大陸生產 (answer D)"
+                }
+            ],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "exam_number is '1' but file is 107年第二次 → should be '2'",
+                "subject mis-tagged on 29 questions (file is 01 產業概論 → all should be industry): [1, 2, 14, 15, 16, 17, 18, 19, 20, 21, 23, 25, 26, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 40, 46, 47, 48, 49]"
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/107年第二次初級電路板製程工程師能力鑑定-02電路板製造概論(當次試題公告107.12.10).pdf",
+            "json": "json/107年第二次初級電路板製程工程師能力鑑定-02電路板製造概論(當次試題公告107.12.10)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [],
+            "needs_figure": [],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 19,
+                    "official": "printed A; PDF note: 樣題公告有誤，此題當次考試皆送分 (all answers credited)"
+                }
+            ],
+            "metadata_issues": [
+                "exam_number is '1' but file is 107年第二次 → should be '2'",
+                "subject mis-tagged on 6 questions (file is 02 製造概論 → all should be process): [11, 41, 44, 46, 47, 48]"
+            ],
+            "overall": "minor"
+        },
+        {
+            "pdf": "pdfs/108年第一次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.05.27) (1).pdf",
+            "json": "json/108年第一次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.05.27) (1)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 48,
+                    "field": "options.A-D",
+                    "issue": "Hallucinated options: JSON options are permutations of the figure's step labels (除膠及樹脂粗化, 蝕除化銅層, 影線轉移製程, 鈀催化劑去除) instead of the real options; answer C then points to a meaningless option",
+                    "suggested_fix": "A 剝除光阻劑、無電解銅製程、鍍銅填孔製程、雷射盲孔加工；B 雷射盲孔加工、鍍銅填孔製程、無電解銅製程、剝除光阻劑；C 雷射盲孔加工、無電解銅製程、鍍銅填孔製程、剝除光阻劑；D 無電解銅製程、雷射盲孔加工、鍍銅填孔製程、剝除光阻劑 (answer C)"
+                },
+                {
+                    "number": 42,
+                    "field": "options.B",
+                    "issue": "'solderling' typo (PDF: soldering); 助銲劑 rendered as 助焊劑",
+                    "suggested_fix": "soldering"
+                }
+            ],
+            "needs_figure": [
+                39,
+                48
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 16,
+                    "official": "B or C (疑義釋覆: 選項(B)及(C)均給分); original C; JSON B is acceptable"
+                },
+                {
+                    "number": 17,
+                    "official": "all of A/B/C/D credited (疑義釋覆; nominal answer C); JSON A — recommend setting C"
+                },
+                {
+                    "number": 25,
+                    "official": "A or D (疑義釋覆: 選項(A)及(D)均給分); JSON A ok"
+                }
+            ],
+            "metadata_issues": [
+                "subject mis-tagged on 26 questions (file is 01 產業概論 → all should be industry): [3, 4, 5, 12, 13, 14, 15, 18, 20, 21, 22, 23, 25, 29, 31, 32, 33, 34, 36, 38, 39, 42, 45, 46, 48, 50]",
+                "DUPLICATE: this is the 疑義題釋覆結果 (108.06.03) re-issue of the same exam as file #8 (108.05.27 original). Same 50 questions and same base key; PDF-level differences are only the dispute notes on Q16/17/25 and Q19 option D (台北 here vs 高雄 in #8). The JSON differences between the two (the ~6 non-identical questions) come from extraction errors: #8 has 9 wrong answers; this one has hallucinated Q48 options and a Q42 typo. Recommend keeping only this file (after fixing Q48) and dropping #8 from the quiz pool."
+            ],
+            "overall": "minor"
+        },
+        {
+            "pdf": "pdfs/108年第一次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.05.27).pdf",
+            "json": "json/108年第一次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.05.27)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [
+                {
+                    "number": 2,
+                    "json": "D",
+                    "official": "C",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 13,
+                    "json": "C",
+                    "official": "D",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 24,
+                    "json": "C",
+                    "official": "B",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 27,
+                    "json": "A",
+                    "official": "B",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 31,
+                    "json": "B",
+                    "official": "C",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 35,
+                    "json": "A",
+                    "official": "D",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 39,
+                    "json": "D",
+                    "official": "B",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 42,
+                    "json": "B",
+                    "official": "D",
+                    "note": "verified visually"
+                },
+                {
+                    "number": 45,
+                    "json": "C",
+                    "official": "A",
+                    "note": "verified visually"
+                }
+            ],
+            "text_issues": [],
+            "needs_figure": [
+                39,
+                48
+            ],
+            "disputed_or_multi_answer": [
+                {
+                    "number": 16,
+                    "official": "C here; later 疑義釋覆 (file #7) accepts B or C"
+                },
+                {
+                    "number": 17,
+                    "official": "C here; later 疑義釋覆 credits all options"
+                },
+                {
+                    "number": 25,
+                    "official": "A here; later 疑義釋覆 accepts A or D"
+                }
+            ],
+            "metadata_issues": [
+                "subject mis-tagged on 20 questions (file is 01 產業概論 → all should be industry): [2, 3, 4, 5, 18, 20, 21, 22, 23, 29, 31, 32, 33, 34, 36, 38, 39, 41, 42, 48]",
+                "DUPLICATE of file #7 (same exam, original 108.05.27 release without dispute results). Recommend removing from quiz pool."
+            ],
+            "overall": "major"
+        },
+        {
+            "pdf": "pdfs/108年第二次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.12.02).pdf",
+            "json": "json/108年第二次初級電路板製程工程師能力鑑定-01電路板產業概論(當次試題公告108.12.02)_structured_output.json",
+            "pdf_question_count": 50,
+            "json_question_count": 50,
+            "answer_key_found": true,
+            "answer_mismatches": [],
+            "text_issues": [
+                {
+                    "number": 27,
+                    "field": "options.A",
+                    "issue": "Stray leading ')' (PDF itself has '(A))')",
+                    "suggested_fix": "晶片線路微細化的發展導致和電路板線路尺寸差異在 1000~10000 倍之間"
+                }
+            ],
+            "needs_figure": [
+                14,
+                27
+            ],
+            "disputed_or_multi_answer": [],
+            "metadata_issues": [
+                "exam_number is '1' but file is 108年第二次 → should be '2'",
+                "subject mis-tagged on 13 questions (file is 01 產業概論 → all should be industry): [2, 8, 12, 13, 14, 17, 18, 19, 24, 28, 43, 45, 48]"
+            ],
+            "overall": "good"
+        }
+    ]
+}

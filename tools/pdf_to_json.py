@@ -1,3 +1,16 @@
+"""用 Gemini 把 pdfs/ 的考卷 PDF 轉成結構化 JSON → data/raw/
+
+這是題庫的「第一手抽取」，品質有限（詳見 docs/QA_REPORT.md）；人工修正請寫在
+data/overrides/<exam_id>.json，不要直接改 data/raw，之後由 tools/build_bank.py 合併。
+
+需要：pip install -r requirements.txt、環境變數 GEMINI_API_KEY（或 GOOGLE_API_KEY）。
+用法：
+  python3 tools/pdf_to_json.py                       # 轉換所有尚未轉換的 PDF
+  python3 tools/pdf_to_json.py pdfs/某份考卷.pdf      # 只轉指定檔案
+  python3 tools/pdf_to_json.py --model gemini-2.5-pro --force pdfs/某份考卷.pdf
+新增考卷後別忘了在 data/exams.json 登錄。
+"""
+import argparse
 import os
 import pathlib
 import json
@@ -33,6 +46,12 @@ class ExamSet(BaseModel):
 
 # --- 2. 主要處理函數 ---
 
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT_DIR = str(ROOT / 'data' / 'raw')
+MODEL = 'gemini-2.5-flash'
+FORCE = False
+
+
 def extract_exams_from_pdf(file_path: str):
     """
     上傳 PDF 檔案，並要求 Gemini Flash Lite 提取結構化資料。
@@ -49,7 +68,7 @@ def extract_exams_from_pdf(file_path: str):
     output_filename[1] = "_structured_output.json"
     output_filename = ''.join(output_filename)
     output_filepath = os.path.join(OUT_DIR, output_filename)
-    if os.path.exists(output_filepath):
+    if os.path.exists(output_filepath) and not FORCE:
         print(f'輸出檔案 {output_filepath} 已存在 - 跳過')
         return
 
@@ -80,6 +99,9 @@ def extract_exams_from_pdf(file_path: str):
             f"轉換為我指定的 JSON 格式。請確保每個題目的 'number' 欄位是從 1 到 50 的整數，並且 'source' 欄位固定為 '{file_name_only}'。"
             "對於 'subject' 欄位，請根據題目內容判斷是屬於 'process' (製程相關) 還是 'industry' (產業概論相關)。"
             "請務必確保輸出的總題數是 50 題，且答案是 A, B, C, D 之一。"
+            "注意版面：每題左側『作答區／答案』欄的字母就是官方答案，若有疑義釋覆或紅字更正，以更正後答案為準；"
+            "四個選項必須分別放在 A、B、C、D，選項文字不要包含 (A)(B) 標籤；"
+            "題目引用的 1.2.3. 陳述句要放在 question 內；跨頁的題目要完整接起來，不可留空或寫 Missing Option。"
         )
 
         filepath = pathlib.Path(file_path)
@@ -94,8 +116,8 @@ def extract_exams_from_pdf(file_path: str):
         # 4. 呼叫模型
         print("正在要求模型進行解析與結構化輸出 (這可能需要幾分鐘)...")
         response = client.models.generate_content(
-            # model='gemini-2.5-flash',  # 建議使用 Flash 或 Pro 處理複雜文件結構
-            model='gemini-2.5-flash-lite',  # 建議使用 Flash 或 Pro 處理複雜文件結構
+            # flash-lite 抽取錯誤率偏高（見 docs/QA_REPORT.md），預設改用 flash，可用 --model 指定
+            model=MODEL,
             contents=contents,
             config=config,
         )
@@ -147,21 +169,16 @@ def extract_exams_from_pdf(file_path: str):
 
 # --- 3. 執行腳本 ---
 if __name__ == "__main__":
-    # 請將這裡替換成您實際的 PDF 檔案路徑
-    # FILE_PATH = "xxx.pdf" 
-    # FILE_PATH = './pdfs/' + os.listdir('./pdfs')[0]
-    # FILE_PATH = 'text.txt'
-
-    OUT_DIR = './json'
+    ap = argparse.ArgumentParser(description="用 Gemini 把考卷 PDF 轉成結構化 JSON")
+    ap.add_argument("files", nargs="*", help="要轉換的 PDF（預設：pdfs/ 全部）")
+    ap.add_argument("--model", default=MODEL, help=f"Gemini 模型（預設 {MODEL}）")
+    ap.add_argument("--force", action="store_true", help="輸出已存在也重新轉換")
+    args = ap.parse_args()
+    MODEL = args.model
+    FORCE = args.force
     os.makedirs(OUT_DIR, exist_ok=True)
-    
-    # 由於 PDF 解析和生成 50 條 JSON 結構的任務較重，
-    # 建議使用 gemini-2.5-flash 或 gemini-2.5-pro。
-    # gemini-2.5-flash_lite (若 SDK 支援，通常指 flash) 具有上下文限制，
-    # 對於大型 PDF 可能不如 Pro 穩定。
-    
-    files = os.listdir('./pdfs')
-    for i, fname in enumerate(files):
-        FILE_PATH = './pdfs/' + fname
-        print(f'Processing {i+1}/{len(files)}: {FILE_PATH}')
-        extract_exams_from_pdf(FILE_PATH)
+
+    files = args.files or [str(ROOT / 'pdfs' / f) for f in sorted(os.listdir(ROOT / 'pdfs')) if f.lower().endswith('.pdf')]
+    for i, path in enumerate(files):
+        print(f'Processing {i+1}/{len(files)}: {path}')
+        extract_exams_from_pdf(path)

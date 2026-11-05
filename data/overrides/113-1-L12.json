@@ -1,0 +1,46 @@
+{
+ "exam_id": "113-1-L12",
+ "source_pdf": "(NEW)113-01初級電路板L12-02電路板製造概論.pdf",
+ "mode": "patch",
+ "patches": [
+  {
+   "number": 5,
+   "answer": "B",
+   "reason": "官方更正答案為 B"
+  },
+  {
+   "number": 9,
+   "question": "高分子聚合物(Polymer)在電路板的應用非常多,如環氧樹脂、聚醯亞胺等,製程過程因溫度之逐漸上升,導致其物理性質漸起變化。由常溫時之堅硬及脆性如玻璃般的物質,轉變成為一種黏滯度較低,柔軟有彈性(flexible and elastic)另一種狀態。此轉化溫度,下列敘述何者有誤?",
+   "reason": "黏滞→黏滯（與 PDF 一致）"
+  },
+  {
+   "number": 25,
+   "figure": {
+    "page": 5
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 27,
+   "figure": {
+    "page": 6
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 39,
+   "figure": {
+    "page": 9
+   },
+   "reason": "需看圖"
+  },
+  {
+   "number": 40,
+   "figure": {
+    "page": 9
+   },
+   "reason": "承上題，需看第 39 題圖"
+  }
+ ],
+ "problems": []
+}
